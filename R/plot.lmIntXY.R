@@ -9,7 +9,7 @@ function # Plot confidence and prediction intervals for regression.
 ##
 ##note<< deprecated, use 'lmInt' and 'plot.lmInt' instead
 ##
-(lmi, ##<< an object of class 'lmIntXY'
+(x, ##<< an object of class 'lmIntXY'
 fit = FALSE, ##<< plot the fitted regression line?
 cia = FALSE, ##<< plot confidence intervals \emph{around} the regression
 ## line? (See 'lmInt' for explanation.)
@@ -21,19 +21,19 @@ pi = FALSE, ##<< plot prediction intervals? (See 'lmInt' for
 ## to plot the lines
 ) {
   if (fit) {
-    lines(lmi$x,lmi$fit,...)
+    lines(x$x,x$fit,...)
   }
   if (cia) {
-    lines(lmi$x,lmi$ciaLwr,...)
-    lines(lmi$x,lmi$ciaUpr,...)
+    lines(x$x,x$ciaLwr,...)
+    lines(x$x,x$ciaUpr,...)
   }
   if (cif) {
-    lines(lmi$x,lmi$cifLwr,...)
-    lines(lmi$x,lmi$cifUpr,...)
+    lines(x$x,x$cifLwr,...)
+    lines(x$x,x$cifUpr,...)
   }
   if (pi) {
-    lines(lmi$x,lmi$piLwr,...)
-    lines(lmi$x,lmi$piUpr,...)
+    lines(x$x,x$piLwr,...)
+    lines(x$x,x$piUpr,...)
   }
 },ex=function() {
   # see lmIntXY

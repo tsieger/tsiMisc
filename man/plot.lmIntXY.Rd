@@ -2,10 +2,10 @@
 \alias{plot.lmIntXY}
 \title{Plot confidence and prediction intervals for regression.}
 
-\usage{\method{plot}{lmIntXY}(lmi, fit = FALSE, cia = FALSE, cif = FALSE, pi = FALSE, 
+\usage{\method{plot}{lmIntXY}(x, fit = FALSE, cia = FALSE, cif = FALSE, pi = FALSE, 
     ...)}
 \arguments{
-  \item{lmi}{an object of class 'lmIntXY'}
+  \item{x}{an object of class 'lmIntXY'}
   \item{fit}{plot the fitted regression line?}
   \item{cia}{plot confidence intervals \emph{around} the regression
 line? (See 'lmInt' for explanation.)}

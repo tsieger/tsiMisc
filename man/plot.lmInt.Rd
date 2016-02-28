@@ -2,11 +2,11 @@
 \alias{plot.lmInt}
 \title{Plot confidence and prediction intervals for regression.}
 
-\usage{\method{plot}{lmInt}(lmi, x = colnames(lmi)[1], fit = FALSE, cia = FALSE, 
+\usage{\method{plot}{lmInt}(x, xx = colnames(lmi)[1], fit = FALSE, cia = FALSE, 
     cif = FALSE, pi = FALSE, band = FALSE, ...)}
 \arguments{
-  \item{lmi}{an object of class 'lmInt'}
-  \item{x}{the name of dependent variable to plot against}
+  \item{x}{an object of class 'lmInt'}
+  \item{xx}{the name of dependent variable to plot against}
   \item{fit}{plot the fitted regression line?}
   \item{cia}{plot confidence intervals \emph{around} the regression
 line? (See 'lmInt' for explanation.)}
