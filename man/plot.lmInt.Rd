@@ -2,7 +2,7 @@
 \alias{plot.lmInt}
 \title{Plot confidence and prediction intervals for regression.}
 
-\usage{\method{plot}{lmInt}(x, xx = colnames(lmi)[1], fit = FALSE, cia = FALSE, 
+\usage{\method{plot}{lmInt}(x, xx = colnames(x)[1], fit = FALSE, cia = FALSE, 
     cif = FALSE, pi = FALSE, band = FALSE, ...)}
 \arguments{
   \item{x}{an object of class 'lmInt'}
