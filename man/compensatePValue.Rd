@@ -39,5 +39,6 @@ compensatePValue(.025,2,method='sidak')
 
 # demonstrate the iterative Holm-Bonferroni method:
 #compensatePValue(c(.01,.02,.04,.05),method='holm-bonferroni')
-compensatePValue(c(.05,.04,.01,.02),method='holm-bonferroni')
+#compensatePValue(c(.05,.04,.01,.02),method='holm-bonferroni')
+# use 'p.adjust' instead
 }
