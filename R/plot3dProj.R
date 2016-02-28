@@ -190,7 +190,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
                 }
                 # create a scatter plot texture 
                 png(textureFileName)
-                opar<-par(mar=c(6,5,4,2)+.1)
+                opar<-par(mar=c(6,5,4,2)+.1, ask=FALSE)
                 idx1<-which(w2-w1!=0)
                 idx2<-which(w3-w1!=0)
                 plot(x[,c(idx1,idx2)],pch=19,frame=F,col=col,cex.lab=3)#,xlim=c(-1,1),ylim=c(-1,1))
