@@ -1,4 +1,5 @@
 ^.gitignore$
+^.git$
 
 ^man/.*patch$
 ^man/.*orig$
