@@ -8,7 +8,7 @@ function # Plot confidence and prediction intervals for regression.
 ##seealso<< lmInt
 ##
 (x, ##<< an object of class 'lmInt'
-xx = colnames(lmi)[1], ##<< the name of dependent variable to plot against
+xx = colnames(x)[1], ##<< the name of dependent variable to plot against
 fit = FALSE, ##<< plot the fitted regression line?
 cia = FALSE, ##<< plot confidence intervals \emph{around} the regression
 ## line? (See 'lmInt' for explanation.)
@@ -24,7 +24,7 @@ band = FALSE, ##<< draw polygonal confidence bands instead of simple lines?
   if (is.character(xx)) {
     xx<-parse(text=xx)
   }
-  with(lmi,{
+  with(x,{
     xx<-eval(xx)
     xOrder<-order(xx)
     xx<-xx[xOrder]
