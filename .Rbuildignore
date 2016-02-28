@@ -1,0 +1,22 @@
+^.gitignore$
+
+^man/.*patch$
+^man/.*orig$
+^man/.*rej$
+^man/lmInt-.*$
+^man/lmInt.html$
+^man/stylesheet.css$
+
+# .md files
+^cran-comments\.md$
+^NEWS.md$
+
+^release_HOWTO.txt$
+
+# scripts
+^version_update$
+^create_test_dist$
+^create_test_dist\.old$
+^test_dist$
+^fix_man$
+^make_NEWS$
