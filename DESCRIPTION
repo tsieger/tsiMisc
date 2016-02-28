@@ -5,8 +5,8 @@ Version: 0.0.0.9000
 Date: 2015-05-29
 Author: Tomas Sieger
 Depends: rgl
-Imports: devtools, e1071, gdata, geometry, inlinedocs, stringr
-Suggests: idendro, testthat, coin, MASS, scales
+Imports: coin, devtools, e1071, gdata, geometry, inlinedocs, stringr
+Suggests: idendro, testthat, MASS, scales
 URL: http://github.com/tsieger/tsiMisc
 Maintainer: Tomas Sieger <tomas.sieger@seznam.cz>
 Description: Miscelanous utility functions, mostly related to exploratory statistical analysis.

@@ -153,11 +153,6 @@ plot = TRUE, ##<< if TRUE, a plot is produced.
   }
 
   method<-match.arg(method)
-  if (method=='spearmanExact') {
-    if (!require(coin)) {
-      stop('"spearmanExact" method requested, but the "coin" package is not available')
-    }
-  }
   if (!is.null(i1)) {
     if (is.character(i1)) {
       i1<-indexOf(i1,colnames(x))

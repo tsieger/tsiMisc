@@ -56,4 +56,5 @@ export(to.matrix)
 export(vectorLength)
 export(vectorprod)
 
+importFrom(coin, spearman_test)
 import(stringr)
