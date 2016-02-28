@@ -200,7 +200,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
                 dev.off()
                 # plot the texture
                 #rgl.quads(tx(rbind(w1,w2,w4,w3)),texture=textureFileName,alpha=.5,texcoord=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),lit=FALSE,front='fill',back='cull')
-                rgl.quads(tx(rbind(w1,w2,w4,w3),center=FALSE),texture=textureFileName,alpha=1,texcoord=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),
+                rgl.quads(tx(rbind(w1,w2,w4,w3),center=FALSE),texture=textureFileName,alpha=1,texcoords=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),
                   lit=TRUE,shininess=100,front='fill',back='cull',ambient=gray(.5),specular='black')
               }
             }
