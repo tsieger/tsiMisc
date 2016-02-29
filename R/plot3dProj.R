@@ -16,7 +16,7 @@ size = 3, ##<< size of points
 alpha = 1, ##<< alpha of points
 scale = TRUE, ##<< if TRUE, data get scaled to the range of '[-1, 1]'
 ## in all dimensions
-tx = function(y,center=TRUE){if(center)y<-y-matrix(colMeans(x),nrow=nrow(y),ncol=ncol(x),byrow=TRUE);return(y)}, ##<< transform
+tx = function(y,center=TRUE) y-center*matrix(colMeans(x),nrow=nrow(y),ncol=ncol(x),byrow=TRUE), ##<< transform
 ## function used to transform data from the k-dimensional space of 'x'
 ## into 3D space to visualize
 scatters=TRUE,
