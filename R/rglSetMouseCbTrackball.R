@@ -81,12 +81,14 @@ affectSubscenes = TRUE ##<< if TRUE, interaction affects all subscenes
   }
   rgl.set(cur, TRUE)
 },ex=function() {
-  dev1 <- open3d()
-  shade3d(cube3d(color = rep(rainbow(6), rep(4, 6))))
-  dev2 <- open3d()
-  mfrow3d(1, 2, sharedMouse = TRUE)
-  shade3d(cube3d(color = rep(rainbow(6), rep(4, 6))))
-  next3d()
-  shade3d(cube3d(color = rep(rainbow(6), rep(4, 6))))
-  rglSetMouseCbTrackball(c(dev1, dev2))
+  if (require(rgl)) {
+    dev1 <- open3d()
+    shade3d(cube3d(color = rep(rainbow(6), rep(4, 6))))
+    dev2 <- open3d()
+    mfrow3d(1, 2, sharedMouse = TRUE)
+    shade3d(cube3d(color = rep(rainbow(6), rep(4, 6))))
+    next3d()
+    shade3d(cube3d(color = rep(rainbow(6), rep(4, 6))))
+    rglSetMouseCbTrackball(c(dev1, dev2))
+  }
 })
