@@ -1,7 +1,7 @@
 pvalStars<-structure(
 function # p-value text summary.
-##<< details
-## 'pvalStars' create a graphical representation of p-value(s) (AKA
+##description<<
+## 'pvalStars' creates a graphical representation of p-value(s) (AKA
 ## "significance stars").
 (p ##<< p-value(s)
 ) {

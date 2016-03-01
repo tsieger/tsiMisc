@@ -1,7 +1,9 @@
 \name{plotMatrix}
 \alias{plotMatrix}
 \title{Plot a matrix.}
-
+\description{'plotMatrix' plots a matrix, decorated with the names
+of rows and columns, and, if requested, with lines separating
+specified rows/columns. Also, a legend gets drawn, by default.}
 \usage{plotMatrix(x, col = gray.colors(16), transpose = FALSE, axes = c(2, 
     3), legend = TRUE, legend.width = 0.2, legend.nlevels = length(col) + 
     1, rowDelim = NULL, rowDelimCol = "black", colDelim = NULL, 
@@ -24,9 +26,7 @@ separation line}
 a separation line}
   \item{colDelimCol}{the color of the column separation line}
 }
-\details{'plotMatrix' plots a matrix, decorated with the names
-of rows and columns, and, if requested, with lines separating
-specified rows/columns. Also, a legend gets drawn, by default.}
+
 
 
 \author{Tomas Sieger}

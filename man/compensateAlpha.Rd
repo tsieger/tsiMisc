@@ -1,7 +1,9 @@
 \name{compensateAlpha}
 \alias{compensateAlpha}
 \title{Significance level compensation for multiple comparisons.}
-
+\description{'compensateAlpha' compensates statistical significance level
+(alpha) for multiple comparisons/tests.
+}
 \usage{compensateAlpha(alpha, n, method = c("bonferroni", "sidak"), 
     r = 0)}
 \arguments{
@@ -25,7 +27,7 @@ method.}
 
 
 
-\seealso{compensatePValue}
+\seealso{'compensatePValue', 'stats::p.adjust'}
 \examples{
 compensateAlpha(.05,2,method='sidak')
 }

@@ -1,6 +1,6 @@
 percentTrue<-structure(
 function # Percentual ratio of TRUE cases.
-##<<details
+##description<<
 ## `percent` computes the percentual ratio of TRUE cases
 (x, ##<< a logical vector (or a vector that can be coerced to one)
 digits = NULL ##<< number of decimal places (passed to 'round')

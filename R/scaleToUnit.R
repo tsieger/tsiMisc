@@ -1,5 +1,7 @@
 scaleToUnit<-structure(
-function # Scale the columns of a numeric matrix to the unit range.
+function # Scale to unit range.
+##description<<
+## 'scaleToUnit' scales the columns of a numeric matrix to the unit range.
 (x, ##<< numeric matrix
 min = 0, ##<< minimum in each dimension to scale to  (defaults to 0)
 max = 1, ##<< maximum in each dimension to scale to (defaults to 1)

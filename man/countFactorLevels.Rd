@@ -1,7 +1,10 @@
 \name{countFactorLevels}
 \alias{countFactorLevels}
 \title{Count the number of factor levels.}
-
+\description{'countFactorLevels' summarizes a data frame, a list, or a factor by
+computing the number of declared and used factor levels in it (in
+case of factors) or its constituents (in case of data frames and
+lists).}
 \usage{countFactorLevels(x)}
 \arguments{
   \item{x}{a data frame, a list, or a factor}
@@ -23,5 +26,7 @@ if (require(MASS)) {
   # omitting the first row results in some levels of 'Cars$Model' and
   # 'Cars93$Make' unused (and reported in the second row)
   countFactorLevels(Cars93[-1L, ])
+
+  countFactorLevels(Cars93$Model[-1L])
   }
 }

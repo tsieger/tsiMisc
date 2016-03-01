@@ -1,14 +1,15 @@
 blandAltman<-structure(
 function # Bland-Altman plot.
-##<<details
+##description<<
 ## The Bland-Altman plot (AKA Tukey mean-difference plot) is a
 ## graphical tool to measure agreement between two estimates of a
 ## single variables methods.
 ##
+##details<<
 ## Code taken from http://rstats.tiddlyspot.com/#Bland-Altman and
 ## updated slightly.
 ##
-##<< references Bland JM, Altman DG (1986) _Statistical methods for
+##references<< Bland JM, Altman DG (1986) _Statistical methods for
 ## assessing agreement between two methods of clinical measurement.__
 ## Lancet 327 (8476): 30710.
 (x1, ##<< the first estimate

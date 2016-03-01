@@ -1,6 +1,6 @@
 rglSetMouseCbTrackball<-structure(
 function # Link the current device with others to share mouse control using the 'trackball' mode.
-##<< details
+##description<<
 ## 'rglSetMouseCbTrackball' sets mouse "trackball" callback for given
 ## button on selected device(s), such that interaction made using the
 ## given button affects all the devices (and all their subscenes, by
@@ -8,8 +8,7 @@ function # Link the current device with others to share mouse control using the 
 ##
 ## The code is mostly based on the 'mouseCallbacks' demo from the
 ## 'rgl' package.
-(
-dev = rgl.cur(), ##<< device(s) to set callback for
+(dev = rgl.cur(), ##<< device(s) to set callback for
 button = 1, ##<< button to set callback for
 affectSubscenes = TRUE ##<< if TRUE, interaction affects all subscenes
 ## in a device, not only the current one

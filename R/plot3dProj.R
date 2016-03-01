@@ -1,7 +1,7 @@
 plot3dProj<-structure(
 function # Visualize multidimensional data in 3D and/or multiple 2D projections.
-##<< details
-##
+##description<<
+## TODO
 (x, ##<< a data frame or matrix to visualize. Instances in rows,
 ## features in columns. It must have at least 3 columns (dimensions).
 col =  NULL, ##<< the
@@ -19,11 +19,8 @@ scale = TRUE, ##<< if TRUE, data get scaled to the range of '[-1, 1]'
 tx = function(y,center=TRUE) y-center*matrix(colMeans(x),nrow=nrow(y),ncol=ncol(x),byrow=TRUE), ##<< transform
 ## function used to transform data from the k-dimensional space of 'x'
 ## into 3D space to visualize
-scatters=TRUE,
-wireFrame=TRUE,
-axes = TRUE,
 type = '3aw,sw', ##<<
-col.axes = 'gray',
+col.axes = 'gray', ##<< color of axes in the 3D plot
 axesExpansion = 1.1, ##<<
 separateAxes=FALSE,
 annotate=FALSE,

@@ -1,7 +1,8 @@
 \name{pvalStars}
 \alias{pvalStars}
 \title{p-value text summary.}
-
+\description{'pvalStars' creates a graphical representation of p-value(s) (AKA
+"significance stars").}
 \usage{pvalStars(p)}
 \arguments{
   \item{p}{p-value(s)}

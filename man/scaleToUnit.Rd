@@ -1,7 +1,7 @@
 \name{scaleToUnit}
 \alias{scaleToUnit}
-\title{Scale the columns of a numeric matrix to the unit range.}
-
+\title{Scale to unit range.}
+\description{'scaleToUnit' scales the columns of a numeric matrix to the unit range.}
 \usage{scaleToUnit(x, min = 0, max = 1, singular = TRUE)}
 \arguments{
   \item{x}{numeric matrix}

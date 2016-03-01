@@ -1,6 +1,6 @@
 seqRob<-structure(
 function # Robust sequence generation resembling the matlab ':' operator.
-##<< details
+##description<<
 ## 'seqRob' is similar to 'base::seq' with the only difference in the
 ## case when 'by' is specified and goes in the opposite direction to
 ## 'from' to 'to'. In this case 'base::seq' raises an error, while

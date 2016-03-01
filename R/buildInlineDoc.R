@@ -1,6 +1,6 @@
 buildInlineDoc<-structure(
 function # inlinedocs build
-##<< details
+##description<<
 ## This is simple a delegate wrapper for 'inlinedocs::package.skeleton.dx' to
 ## to generate inline docs for an R package.
 (path = '~/src/Rweb/tsiMisc' ##<< path to R package source

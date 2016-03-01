@@ -1,6 +1,6 @@
 plotShadow<-structure(
 function # Plot a shadow matrix.
-##details<<
+##description<<
 ## 'plotShadow' explores missing values in a matrix by plotting the
 ## shadow matrix of the data, in which missing values are coded as
 ## black rectangles, and non-missing values are given in light gray.

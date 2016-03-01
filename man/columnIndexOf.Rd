@@ -1,7 +1,7 @@
 \name{columnIndexOf}
 \alias{columnIndexOf}
 \title{Indices of data frame columns identified by name.}
-
+\description{Indices of data frame columns identified by name.}
 \usage{columnIndexOf(x, d, regexp = TRUE)}
 \arguments{
   \item{x}{name(s) of columns to be searched for}

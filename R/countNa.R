@@ -1,6 +1,6 @@
 countNa<-structure(
 function # Count NA's in a data frame.
-##<<details
+##description<<
 ## 'countNa' computes the number of missing values in a data frame.
 ## It counts the number of missings in each column, the number of rows
 ## in which a value in at least one columns is missing, and the

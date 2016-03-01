@@ -1,7 +1,8 @@
 \name{flip}
 \alias{flip}
 \title{Flip an array.}
-
+\description{Flip an array along some dimension(s), e.g. flip a matrix upside
+down or left to right.}
 \usage{flip(x, dim = 1)}
 \arguments{
   \item{x}{an array}

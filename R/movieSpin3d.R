@@ -1,6 +1,6 @@
 movieSpin3d<-structure(
 function # Create a movie by rotating a 3D rgl scene.
-##<< details
+##description<<
 ## 'movieSpin3d' is basically just a wrapper for
 ## 'movie3d(spin3d(axis=axis, rpm = rpm), fps = fps, ...)'
 ## that sets the duration to the value of '60/rpm-1/fps', which
@@ -8,7 +8,8 @@ function # Create a movie by rotating a 3D rgl scene.
 ## when repeated. This is in contrast to setting the duration to the
 ## value of 60/rpm, which results in rendering the last frame
 ## identical to the first one, thus making the animation non-smooth.
-##<<sealso rgl::movie3d, rgl::play3d
+##
+##sealso<< rgl::movie3d, rgl::play3d
 (axis, ##<< axis to rotate around
 rpm, ##<< the speed of rotation (rotations per minute)
 fps = 5, ##<< frame rate (frames per second)

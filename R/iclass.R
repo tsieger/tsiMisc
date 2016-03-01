@@ -1,6 +1,6 @@
 iclass<-structure(
 function # Determine implicit class.
-##details<<
+##description<<
 ## 'iclass' determines the implicit class of a base type. The code is
 ## taken from the great "Advanced R" by Hadley Wickham.
 ##

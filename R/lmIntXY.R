@@ -1,7 +1,6 @@
 lmIntXY<-structure(
 function # Confidence and prediction intervals for regression.
-###
-##details<<
+##description<<
 ## 'lmInt' contructs confidence and prediction intervals for simple
 ## linear regression. For a simple univariate linear model in the form
 ## of \eqn{EY = beta_0 + beta_1 X} computed using 'lm(y ~ x)',
@@ -13,6 +12,7 @@ function # Confidence and prediction intervals for regression.
 ## point-wise confidence bands for new observations \eqn{Y} for each
 ## individual \eqn{x}).
 ##
+##details<<
 ## The confidence intervals around the regression line and the
 ## prediction intervals are computed using the 'predict.lm' function.
 ## The confidence intervals for the regression line are computed
@@ -20,7 +20,7 @@ function # Confidence and prediction intervals for regression.
 ##
 ##references<< Karel Zv\'{a}ra: Regrese, Matfyzpress Praha 2008
 ##
-##seealso<< predict.lm, lm
+##seealso<< 'stats::predict.lm', 'stats::lm'
 ##
 ##note<< deprecated, use 'lmInt' instead
 ##

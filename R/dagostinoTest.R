@@ -1,9 +1,10 @@
 dagostinoTest<-structure(
 function # D'Agostino normality test.
-##details<<
+##description<<
 ## Performs D'Agostino normality tests based on skewness, kurtosis, and
 ## an omnibus test.
 ##
+##details<<
 ## The implementation is taken from Zvara2008 (appendix A.4.1).
 ##
 ##references<< DAgostino, Ralph B.; Albert Belanger; Ralph B. DAgostino, Jr

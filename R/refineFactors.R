@@ -1,6 +1,6 @@
 refineFactors<-structure(
 function # Refine factors in two twin data frames.
-##<<details
+##description<<
 ## Refine two data frames 'x1' and 'x2' to be usable as a pair of
 ## a train/test set pair in a modeling or classification task, such
 ## that a model/classifier (e.g. a binomial GLM) can be trained on the
@@ -11,6 +11,7 @@ function # Refine factors in two twin data frames.
 ## have appeared in it, giving no clue how to predict response using
 ## such an unknown factor level.
 ##
+##details<<
 ## Usually, the refinement consists of i) making the levels of factors
 ## in individual columns in each of the sets identical, and
 ## ii) removing columns containing factors of only a single level. This
@@ -18,7 +19,7 @@ function # Refine factors in two twin data frames.
 ## level not appearing in the twin data frame, and dropping unused
 ## levels from factors.
 ##
-##<<seealso dropLevels
+##seealso<< 'dropLevels'
 (x1, ##<< first data frame
 x2, ##<< second data frame
 unify = TRUE, ##<< shall factors be unified?

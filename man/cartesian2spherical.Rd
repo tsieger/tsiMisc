@@ -1,7 +1,8 @@
 \name{cartesian2spherical}
 \alias{cartesian2spherical}
 \title{Cartesian to spherical coordinate conversion.}
-
+\description{Cartesian to spherical coordinate conversion.
+}
 \usage{cartesian2spherical(x, y = NULL, z = NULL)}
 \arguments{
   \item{x}{x coordinate (or a vector of length 3 holding \eqn{x, y, z})}
@@ -17,7 +18,7 @@ point represented as \eqn{x, y, z} in Cartesian coordinates.}
 
 
 
-
+\seealso{'spherical2cartesian'}
 \examples{
 cartesian2spherical(c(0, 0, 0))
 cartesian2spherical(c(1, 2, 3))

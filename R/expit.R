@@ -1,10 +1,11 @@
 expit<-structure(
 function # The expit function (the inverse to logit).
-##<< details
+##description<<
 ## 'expit' computes 'exp(x) / (1 + exp(x))', i.e. the inverse to
 ## 'logit', i.e. it maps the interval '(-inf, inf)' to the interval
 ## of '[0, 1]'.
-##<<seealso logit
+##
+##seealso<< 'logit'
 (x ##<< a number
 ) {
   return(exp(x)/(1+exp(x)))

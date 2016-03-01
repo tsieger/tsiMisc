@@ -1,15 +1,13 @@
 \name{plot3dProj}
 \alias{plot3dProj}
 \title{Visualize multidimensional data in 3D and/or multiple 2D projections.}
-
-\usage{
-plot3dProj(x, col = NULL, cls = NULL, palette = c("black", "red", "green", "blue"), size = 3, alpha = 1, scale = TRUE, tx = function(y, center = TRUE) {
-    if (center) 
-        y <- y - matrix(colMeans(x), nrow = nrow(y), ncol = ncol(x), byrow = TRUE)
-    return(y)
-}
- scatters = TRUE, wireFrame = TRUE, axes = TRUE, type = "3aw,sw", col.axes = "gray", axesExpansion = 1.1, separateAxes = FALSE, annotate = FALSE, debug = FALSE)
-}
+\description{TODO}
+\usage{plot3dProj(x, col = NULL, cls = NULL, palette = c("black", "red", 
+    "green", "blue"), size = 3, alpha = 1, scale = TRUE, tx = function(y, 
+    center = TRUE) y - center * matrix(colMeans(x), nrow = nrow(y), 
+    ncol = ncol(x), byrow = TRUE), type = "3aw,sw", col.axes = "gray", 
+    axesExpansion = 1.1, separateAxes = FALSE, annotate = FALSE, 
+    debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
 features in columns. It must have at least 3 columns (dimensions).}
@@ -28,16 +26,9 @@ in all dimensions}
   \item{tx}{transform
 function used to transform data from the k-dimensional space of 'x'
 into 3D space to visualize}
-  \item{scatters}{
-}
-  \item{wireFrame}{
-}
-  \item{axes}{
-}
   \item{type}{
 }
-  \item{col.axes}{
-}
+  \item{col.axes}{color of axes in the 3D plot}
   \item{axesExpansion}{
 }
   \item{separateAxes}{

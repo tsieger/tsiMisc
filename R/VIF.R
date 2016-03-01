@@ -1,13 +1,15 @@
 VIF <- structure(
 function # Variance-inflaction factor.
-##details<<
+##description<<
 ## 'VIF' computes multicolinearity-related diagnostic statistics for a
 ## linear model with an absolute term.
+##
+##details<<
 ## The implementation was taken from Zvara2008.
 ##
 ##references<< Karel Zvara: Regrese, Matfyzpress Praha 2008
 ##
-##seealso<< car::vif
+##seealso<< 'car::vif'
 (m ##<< linear model fitted by 'lm'
 )
 {

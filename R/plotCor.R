@@ -1,6 +1,6 @@
 plotCor<-structure(
 function # Plot decorated bivariate correlations.
-##<<details
+##description<<
 ## 'plotCor' creates a matrix of bivariate correlation plots between
 ## all/selected pairs of variables in a data frame, similarly to
 ## 'plot.data.frame'. On the diagonal, there are histograms of
@@ -10,15 +10,17 @@ function # Plot decorated bivariate correlations.
 ## mean. Above (or below) the diagonal, there are estimates of the
 ## correlation coefficients and their significances shown.
 ##
-## 'plotCor' is based/inspired by several other similar plots (can't
-## name all of them now, sorry). Parts of the code The code
+## 'plotCor' is based on / inspired by several other similar plots.
+## I thank their authors, but, unfortunatelly, can't give credits to
+## them, as I can't remember all of them.
+##
 #<<references
 ## Mohammad F. HUQUE , Mohammed QUASEM, Atiar RAHMAN, and Satya D. DUBEY.
 ## An Improved Ad-Hoc Multiplicity Adjustment Method for Correlated Response Variables
 ## Statistics in Biopharmaceutical Research 2010, Vol. 2, No. 1, DOI: 10.1198/sbr.2009.0052
 (x, ##<< data frame
-method = c('pearson','spearman','spearmanExact','glmPoisson','lm'),
-##<< method used to compute the coefficient and the significance of the
+method = c('pearson','spearman','spearmanExact','glmPoisson','lm'), ##<< method
+## used to compute the coefficient and the significance of the
 ## relation between each pair of variables. 'pearson', 'spearman', and
 ## 'spearmanExact' refer to correlation coefficients (the former two
 ## implemented in terms of 'stats::cor.test', the latter in terms of

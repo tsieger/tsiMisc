@@ -1,7 +1,13 @@
 \name{rglSetMouseCbTrackball}
 \alias{rglSetMouseCbTrackball}
 \title{Link the current device with others to share mouse control using the 'trackball' mode.}
+\description{'rglSetMouseCbTrackball' sets mouse "trackball" callback for given
+button on selected device(s), such that interaction made using the
+given button affects all the devices (and all their subscenes, by
+default).
 
+The code is mostly based on the 'mouseCallbacks' demo from the
+'rgl' package.}
 \usage{rglSetMouseCbTrackball(dev = rgl.cur(), button = 1, affectSubscenes = TRUE)}
 \arguments{
   \item{dev}{device(s) to set callback for}

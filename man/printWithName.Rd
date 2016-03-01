@@ -1,7 +1,11 @@
 \name{printWithName}
 \alias{printWithName}
-\title{Print the name and value of a variable.}
+\alias{.pn}
 
+\title{Print the name and value of a variable.}
+\description{'printWithName' prints both the name and value of a variable. Useful
+for debug purposes.
+}
 \usage{printWithName(x)}
 \arguments{
   \item{x}{variable}
@@ -13,7 +17,7 @@
 
 
 
-
+\seealso{'NCmisc::preview', 'NCmisc::prv'}
 \examples{
 a<-1:10
 .pn(a)

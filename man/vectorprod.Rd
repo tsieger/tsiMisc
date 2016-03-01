@@ -1,7 +1,7 @@
 \name{vectorprod}
 \alias{vectorprod}
 \title{3D vector product.}
-
+\description{'vectorprod' computes 3D vector product.}
 \usage{vectorprod(a, b)}
 \arguments{
   \item{a}{first vector}

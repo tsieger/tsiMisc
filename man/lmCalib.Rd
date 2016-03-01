@@ -1,7 +1,9 @@
 \name{lmCalib}
 \alias{lmCalib}
 \title{Calibration in regression.}
-
+\description{'lmCalib' computes the estimate of \eqn{x_0} in which the regression
+of \eqn{y ~ x} reaches given \eqn{y0}, and the related confidence interval.
+}
 \usage{lmCalib(x, y, y0, fixed = FALSE, approx = FALSE, alpha = 0.05)}
 \arguments{
   \item{x}{independent variable}
@@ -12,10 +14,7 @@ independent variable}
   \item{approx}{use approximation, or Fieller method?}
   \item{alpha}{confidence interval significance level}
 }
-\details{'lmCalib' computes the estimate of \eqn{x_0} in which the regression
-of \eqn{y ~ x} reaches given \eqn{y0}, and the related confidence interval.
-
-Tho code is taken from Appendix A.4.5 in Zvara2008.
+\details{Tho code is taken from Appendix A.4.5 in Zvara2008.
 The estimation is based on chapter 4.4. in Zvara2008
 }
 \value{A vector of the estimate of 'x0', and lower and upper limits of
@@ -28,7 +27,7 @@ Models, Irwin, Homewood, Illinois (1985).
 
 
 
-\seealso{lmInt}
+\seealso{'lmInt'}
 \examples{
 iris.setosa<-iris[iris$Species=='setosa',]
 attach(iris.setosa)

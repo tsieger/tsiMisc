@@ -1,6 +1,6 @@
 flip<-structure(
 function # Flip an array.
-##<<details
+##description<<
 ## Flip an array along some dimension(s), e.g. flip a matrix upside
 ## down or left to right.
 (x, ##<< an array

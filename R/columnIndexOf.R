@@ -1,5 +1,7 @@
 columnIndexOf<-structure(
 function # Indices of data frame columns identified by name.
+##description<<
+## Indices of data frame columns identified by name.
 (x, ##<< name(s) of columns to be searched for
 d, ##<< data frame whose columns shall be searched
 regexp = TRUE ##<< If TRUE, 'x' of character type are interpreted as

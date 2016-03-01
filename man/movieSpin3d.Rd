@@ -1,7 +1,15 @@
 \name{movieSpin3d}
 \alias{movieSpin3d}
 \title{Create a movie by rotating a 3D rgl scene.}
+\description{'movieSpin3d' is basically just a wrapper for
+'movie3d(spin3d(axis=axis, rpm = rpm), fps = fps, ...)'
+that sets the duration to the value of '60/rpm-1/fps', which
+results in a sequence of frames that form a continuous animation
+when repeated. This is in contrast to setting the duration to the
+value of 60/rpm, which results in rendering the last frame
+identical to the first one, thus making the animation non-smooth.
 
+sealso<< rgl::movie3d, rgl::play3d}
 \usage{movieSpin3d(axis, rpm, fps = 5, ...)}
 \arguments{
   \item{axis}{axis to rotate around}

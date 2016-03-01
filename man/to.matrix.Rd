@@ -1,11 +1,12 @@
 \name{to.matrix}
 \alias{to.matrix}
 \title{Conversion to a matrix.}
-
+\description{'to.matrix' attempts to convert any data to a row matrix. In
+particular, data frames are converted by 'as.matrix', (numeric)
+vectors are converted to a single row matrix.}
 \usage{to.matrix(x)}
 \arguments{
-  \item{x}{
-}
+  \item{x}{data to convert to a matrix}
 }
 
 \value{matrix}

@@ -1,16 +1,16 @@
 \name{plotShadow}
 \alias{plotShadow}
 \title{Plot a shadow matrix.}
-
+\description{'plotShadow' explores missing values in a matrix by plotting the
+shadow matrix of the data, in which missing values are coded as
+black rectangles, and non-missing values are given in light gray.}
 \usage{plotShadow(x, col = gray.colors(2), transpose = FALSE)}
 \arguments{
   \item{x}{a matrix}
   \item{col}{color palette}
   \item{transpose}{transpose the matrix?}
 }
-\details{'plotShadow' explores missing values in a matrix by plotting the
-shadow matrix of the data, in which missing values are coded as
-black rectangles, and non-missing values are given in light gray.}
+
 
 
 \author{Tomas Sieger}

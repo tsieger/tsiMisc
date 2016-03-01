@@ -1,7 +1,10 @@
 \name{plot.lmInt}
 \alias{plot.lmInt}
 \title{Plot confidence and prediction intervals for regression.}
-
+\description{'plot.lmInt' adds confidence and/or prediction intervals to
+an existing plot depicting a simple univariate linear model.
+The intervals are computed using the 'lmInt' function.
+}
 \usage{\method{plot}{lmInt}(x, xx = colnames(x)[1], fit = FALSE, cia = FALSE, 
     cif = FALSE, pi = FALSE, band = FALSE, ...)}
 \arguments{
@@ -18,17 +21,14 @@ explanation.)}
   \item{\dots}{additional arguments to be passed to the 'lines' function used
 to plot the lines}
 }
-\details{'plot.lmInt' adds confidence and/or prediction intervals to
-an existing plot depicting a simple univariate linear model.
-The intervals are computed using the 'lmInt' function.
-}
+
 
 
 \author{Tomas Sieger}
 
 
 
-\seealso{lmInt
+\seealso{'lmInt'
 }
 \examples{
 # see lmInt

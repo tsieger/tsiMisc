@@ -1,7 +1,9 @@
 cartesian2polar<-structure(
 function # Cartesian to polar coordinate conversion.
-##<< details
-##<<seealso cartesian2spherical, polar2cartesian
+##description<<
+## Cartesian to polar coordinate conversion.
+##
+##seealso<< 'cartesian2spherical', 'polar2cartesian'
 (x, ##<< x coordinate (or a vector of length 2 holding \eqn{x, y})
 y = NULL ##<< y coordinate
 ) {

@@ -1,12 +1,12 @@
 compensateAlpha<-structure(
 function # Significance level compensation for multiple comparisons.
-##<<details
+##description<<
 ## 'compensateAlpha' compensates statistical significance level
 ## (alpha) for multiple comparisons/tests.
 ##
 ##references<<
 ## SISA, http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm
-##seealso<< compensatePValue
+##seealso<< 'compensatePValue', 'stats::p.adjust'
 (alpha, ##<< significance level to be compensated
 n, ##<< comparison count
 method = c('bonferroni', 'sidak'), ##<< compensation method,

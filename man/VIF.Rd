@@ -1,14 +1,14 @@
 \name{VIF}
 \alias{VIF}
 \title{Variance-inflaction factor.}
-
+\description{'VIF' computes multicolinearity-related diagnostic statistics for a
+linear model with an absolute term.
+}
 \usage{VIF(m)}
 \arguments{
   \item{m}{linear model fitted by 'lm'}
 }
-\details{'VIF' computes multicolinearity-related diagnostic statistics for a
-linear model with an absolute term.
-The implementation was taken from Zvara2008.
+\details{The implementation was taken from Zvara2008.
 }
 \value{a matrix. In rows: diagnostic statistics related to individual
 regressors in the original model.
@@ -22,7 +22,7 @@ all the others, and tolerance (1-R^2 = 1/VIF).}
 
 
 
-\seealso{car::vif}
+\seealso{'car::vif'}
 \examples{
 m<-lm(Sepal.Width~Sepal.Length+Petal.Width+Petal.Length,iris)
 VIF(m)

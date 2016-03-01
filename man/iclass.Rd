@@ -1,14 +1,14 @@
 \name{iclass}
 \alias{iclass}
 \title{Determine implicit class.}
-
+\description{'iclass' determines the implicit class of a base type. The code is
+taken from the great "Advanced R" by Hadley Wickham.
+}
 \usage{iclass(x)}
 \arguments{
   \item{x}{base type}
 }
-\details{'iclass' determines the implicit class of a base type. The code is
-taken from the great "Advanced R" by Hadley Wickham.
-}
+
 \value{A vector describing the implicit class of 'x'.}
 \references{Wickham, Hadley. _Advanced R_.
 Available online at http://adv-r.had.co.nz/OO-essentials.html}

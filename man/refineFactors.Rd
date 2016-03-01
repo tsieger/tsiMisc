@@ -1,7 +1,16 @@
 \name{refineFactors}
 \alias{refineFactors}
 \title{Refine factors in two twin data frames.}
-
+\description{Refine two data frames 'x1' and 'x2' to be usable as a pair of
+a train/test set pair in a modeling or classification task, such
+that a model/classifier (e.g. a binomial GLM) can be trained on the
+train set and can be then directly applied to the test set.
+Note that had the sets not been refined this way, a model trained on
+a train set could not have been directly applied to the test set
+because a new factor level (not appearing in the train set) would
+have appeared in it, giving no clue how to predict response using
+such an unknown factor level.
+}
 \usage{refineFactors(x1, x2, unify = TRUE, dropSingular = TRUE, naLimit = Inf, 
     k = 5, naLevelName = "(NA)", verbose = FALSE)}
 \arguments{
@@ -20,14 +29,20 @@ at least 'naLimit' NA's (in 'x1' and in 'x2') will be converted}
 used to represent missing values}
   \item{verbose}{report progress?}
 }
-
+\details{Usually, the refinement consists of i) making the levels of factors
+in individual columns in each of the sets identical, and
+ii) removing columns containing factors of only a single level. This
+first task is achieved by removing rows in which appears a factor of
+level not appearing in the twin data frame, and dropping unused
+levels from factors.
+}
 \value{A list of refined 'x1' and 'x2',}
 
 \author{Tomas Sieger}
 
 
 
-
+\seealso{'dropLevels'}
 \examples{
 # unify factor levels and remove constant factors:
 x<-data.frame(x = 1:6, y = c('a','b','c','b','c','d'), z = c('d','c','c','c','c','d'))

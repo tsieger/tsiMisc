@@ -1,8 +1,7 @@
 countIntersect<-structure(
 function # Cardinality of set intersections.
-##<<details
-## TODO
-## Given 'n' sets, 'countIntersect' counts the number of elements
+##description<<
+## Given 'n' sets, 'countIntersect' computes the number of elements
 ## being shared by the individual 'n*(n-1)/2' pairs of sets.
 (..., ##<< several numeric or character vectors to intersect;
 ## alternatively, a data frame or matrix can be supplied, whose columns

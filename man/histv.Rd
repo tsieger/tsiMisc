@@ -1,7 +1,9 @@
 \name{histv}
 \alias{histv}
 \title{Vertically aligned histograms.}
-
+\description{'histv' creates one or more vertically aligned histograms,
+rendered by 'hist'. This is useful for visual comparison of several
+numeric vectors.}
 \usage{histv(..., setup = TRUE, setupDev = NULL, ylimFixed = FALSE, 
     col = NULL, border = NULL, main = NULL, xlab = NULL, callback = NULL, 
     debug = FALSE)}

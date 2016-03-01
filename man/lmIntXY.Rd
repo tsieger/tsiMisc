@@ -1,15 +1,7 @@
 \name{lmIntXY}
 \alias{lmIntXY}
 \title{Confidence and prediction intervals for regression.}
-
-\usage{lmIntXY(x, y, d = 100)}
-\arguments{
-  \item{x}{independent variable, or a fitted linear model}
-  \item{y}{dependent variable}
-  \item{d}{a vector of values to compute the intervals for, or a number of values
-to be automatically generated to uniformly span the range of `x'}
-}
-\details{'lmInt' contructs confidence and prediction intervals for simple
+\description{'lmInt' contructs confidence and prediction intervals for simple
 linear regression. For a simple univariate linear model in the form
 of \eqn{EY = beta_0 + beta_1 X} computed using 'lm(y ~ x)',
 'lmIntervals' computes confidence intervals around the regression
@@ -19,8 +11,15 @@ regression line (i.e. the simultaneous confidence bands of
 \eqn{E(Y)} for all \eqn{x}), and prediction intervals (i.e.
 point-wise confidence bands for new observations \eqn{Y} for each
 individual \eqn{x}).
-
-The confidence intervals around the regression line and the
+}
+\usage{lmIntXY(x, y, d = 100)}
+\arguments{
+  \item{x}{independent variable, or a fitted linear model}
+  \item{y}{dependent variable}
+  \item{d}{a vector of values to compute the intervals for, or a number of values
+to be automatically generated to uniformly span the range of `x'}
+}
+\details{The confidence intervals around the regression line and the
 prediction intervals are computed using the 'predict.lm' function.
 The confidence intervals for the regression line are computed
 according to eq. (4.15) in Zvara2008.
@@ -41,7 +40,7 @@ are computed for,
 }
 
 
-\seealso{predict.lm, lm
+\seealso{'stats::predict.lm', 'stats::lm'
 }
 \examples{
 iris.setosa<-iris[iris$Species=='setosa',]

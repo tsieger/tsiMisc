@@ -1,6 +1,7 @@
 vectorLength<-structure(
 function # Vector length.
-##<< details
+##description<<
+## 'vectorLength' computes the length of a vector.
 (v ##<< a vector
 ) {
   return(sqrt(sum(v^2)))

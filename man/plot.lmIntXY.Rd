@@ -1,7 +1,10 @@
 \name{plot.lmIntXY}
 \alias{plot.lmIntXY}
 \title{Plot confidence and prediction intervals for regression.}
-
+\description{'plot.lmIntXY' adds confidence and/or prediction intervals to
+an existing plot depicting a simple univariate linear model.
+The intervals are computed using the 'lmInt' function.
+}
 \usage{\method{plot}{lmIntXY}(x, fit = FALSE, cia = FALSE, cif = FALSE, pi = FALSE, 
     ...)}
 \arguments{
@@ -16,10 +19,7 @@ explanation.)}
   \item{\dots}{additional arguments to be passed to the 'lines' function used
 to plot the lines}
 }
-\details{'plot.lmIntXY' adds confidence and/or prediction intervals to
-an existing plot depicting a simple univariate linear model.
-The intervals are computed using the 'lmInt' function.
-}
+
 
 
 \author{Tomas Sieger}
@@ -27,7 +27,7 @@ The intervals are computed using the 'lmInt' function.
 }
 
 
-\seealso{lmIntXY
+\seealso{'lmIntXY'
 }
 \examples{
 # see lmIntXY

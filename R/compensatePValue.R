@@ -1,14 +1,15 @@
 compensatePValue<-structure(
 function # P-value compensation for multiple comparisons.
-##details<<
+##description<<
 ## 'compensatePValue' compensates a p-value for the number of tests
 ## performed.
+##
 ##references<<
 ## SISA, http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm
 ## Sture Holm, A Simple Sequentially Rejective Multiple Test Procedure, Scand J Statist 6: 65-70, 1979
 ##note<< deprecated, not working properly, use 'stats::p.adjust' instead
 ##
-##seealso<< p.adjust, compensateAlpha
+##seealso<< 'stats::p.adjust', 'compensateAlpha'
 (p, ##<< p-value(s) to be compensated
 n=length(p), ##<< number of tests made
 method = c('bonferroni', 'sidak', 'holm-bonferroni'), ##<< compensation method,
@@ -46,7 +47,7 @@ r = 0 ##<< optional mean "correlation between the tests made",
     # https://en.wikipedia.org/wiki/Holm%E2%80%93Bonferroni_method#Adjusted_P-value
     #  .04   .06   .08   .08
     # (this adjustment is not implemented)
-    stop('p-values are not adjusted properly, use \'p.adjust\' instead')
+    stop('p-values are not adjusted properly, use \'stats::p.adjust\' instead')
     # TODO
 
     # sort p-values
@@ -96,5 +97,5 @@ r = 0 ##<< optional mean "correlation between the tests made",
   # demonstrate the iterative Holm-Bonferroni method:
   #compensatePValue(c(.01,.02,.04,.05),method='holm-bonferroni')
   #compensatePValue(c(.05,.04,.01,.02),method='holm-bonferroni')
-  # use 'p.adjust' instead
+  # use 'stats::p.adjust' instead
 })

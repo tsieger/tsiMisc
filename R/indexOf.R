@@ -1,8 +1,9 @@
 indexOf<-structure(
 function # Indices of member(s) in vector.
-##<<details
+##description<<
 ## 'indexOf' finds indices of value(s) in a given vector.
-##<<sealso regexpr
+##
+##sealso<< regexpr
 (x, ##<< value(s) to be searched for in vector 'v'
 v, ##<< vector
 regexp = TRUE ##<< If TRUE, 'x' of character type is interpreted as

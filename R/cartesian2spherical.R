@@ -1,7 +1,9 @@
 cartesian2spherical<-structure(
 function # Cartesian to spherical coordinate conversion.
-##<< details
-##<<seealso spherical2cartesian
+##description<<
+## Cartesian to spherical coordinate conversion.
+##
+##seealso<< 'spherical2cartesian'
 (x, ##<< x coordinate (or a vector of length 3 holding \eqn{x, y, z})
 y = NULL, ##<< y coordinate
 z = NULL ## z coordinate

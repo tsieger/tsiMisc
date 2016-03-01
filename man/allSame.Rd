@@ -1,7 +1,7 @@
 \name{allSame}
 \alias{allSame}
-\title{Given a vector, are all the values in it the same?}
-
+\title{Are all values the same?}
+\description{Given a vector, are all the values in it the same?}
 \usage{allSame(x)}
 \arguments{
   \item{x}{a vector}

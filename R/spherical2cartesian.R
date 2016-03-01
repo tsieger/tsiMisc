@@ -1,7 +1,10 @@
 spherical2cartesian<-structure(
 function # Spherical to Cartesian coordinate conversion.
-##<< details
-##<<seealso cartesian2spherical
+##description<<
+## 'spherical2cartesian' provides spherical to Cartesian coordinate
+## conversion.
+##
+##seealso<< 'cartesian2spherical'
 (r, ##<< radius (or a vector of length 3 holding \eqn{r, theta,
 ## phi})
 theta = NULL, ##<< inclination

@@ -1,7 +1,17 @@
 \name{lnormPar}
 \alias{lnormPar}
 \title{Lognormal distribution parameter conversion.}
-\description{between linear and log scales.}
+\description{'lnormPar' converts the parameters of lognormal distribution
+between linear and log scales.
+Lognormal distribution is naturally characterized by parameters on
+the log scale. However, the distribution can also be parameterized
+on the linear scale, e.g. using sample-based parameters estimates.
+'lnormPar' accepts either the 'mean' and 'sd' parameters
+from the linear scale and computes the 'meanlog' and 'sdlog'
+parameters on the log scale, or 'meanlog' and 'sdlog' parameters
+from the log scale and computes the 'mean' and 'sd' parameters on
+the linear scale.
+}
 \usage{lnormPar(mean = NULL, sd = NULL, meanlog = NULL, sdlog = NULL)}
 \arguments{
   \item{mean}{the mean on the linear scale}

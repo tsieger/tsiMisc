@@ -1,7 +1,9 @@
 \name{repmat}
 \alias{repmat}
 \title{Repeat matrix.}
-
+\description{Create a big matrix by tiling given matrix m*n times in a
+rectangular grid. 'repmat' resembles the matlab function of the same
+name.}
 \usage{repmat(x, m, n)}
 \arguments{
   \item{x}{a matrix}

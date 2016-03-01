@@ -1,6 +1,6 @@
 plotMatrix<-structure(
 function # Plot a matrix.
-##details<<
+##description<<
 ## 'plotMatrix' plots a matrix, decorated with the names
 ## of rows and columns, and, if requested, with lines separating
 ## specified rows/columns. Also, a legend gets drawn, by default.

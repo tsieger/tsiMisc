@@ -1,11 +1,11 @@
 plot.lmIntXY<-structure(
 function # Plot confidence and prediction intervals for regression.
-##details<<
+##description<<
 ## 'plot.lmIntXY' adds confidence and/or prediction intervals to
 ## an existing plot depicting a simple univariate linear model.
 ## The intervals are computed using the 'lmInt' function.
 ##
-##seealso<< lmIntXY
+##seealso<< 'lmIntXY'
 ##
 ##note<< deprecated, use 'lmInt' and 'plot.lmInt' instead
 ##

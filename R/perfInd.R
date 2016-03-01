@@ -1,14 +1,14 @@
 perfInd<-structure(
 function # Compute performance indicators.
-##details<<
+##description<<
 ## Compute several indicators to describe the performance of a binary
 ## classifier, e.g. sensitivity, specificity, an estimate of the area
 ## under the receiver operating characteristic, the Gini coefficient
 ## etc. (see the return value).
 ##
-##<<seealso ROCR::performance which gives many more measures
+##seealso<< 'ROCR::performance' which gives many more measures
 ##
-##<<references
+##references<<
 ## Fawcett, Tom (2006). _An Introduction to ROC Analysis_. Pattern
 ## Recognition Letters 27 (8): 861874.
 ## doi:10.1016/j.patrec.2005.10.010.

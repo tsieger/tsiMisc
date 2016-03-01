@@ -1,11 +1,11 @@
 plot.lmInt<-structure(
 function # Plot confidence and prediction intervals for regression.
-##details<<
+##description<<
 ## 'plot.lmInt' adds confidence and/or prediction intervals to
 ## an existing plot depicting a simple univariate linear model.
 ## The intervals are computed using the 'lmInt' function.
 ##
-##seealso<< lmInt
+##seealso<< 'lmInt'
 ##
 (x, ##<< an object of class 'lmInt'
 xx = colnames(x)[1], ##<< the name of dependent variable to plot against

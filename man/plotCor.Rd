@@ -1,15 +1,33 @@
 \name{plotCor}
 \alias{plotCor}
 \title{Plot decorated bivariate correlations.}
+\description{'plotCor' creates a matrix of bivariate correlation plots between
+all/selected pairs of variables in a data frame, similarly to
+'plot.data.frame'. On the diagonal, there are histograms of
+individual variables colored, by default,according to the estimated
+normality of those variables. Below (or above) the diagonal, there
+are scatter plots enriched by smoothed conditional estimates of the
+mean. Above (or below) the diagonal, there are estimates of the
+correlation coefficients and their significances shown.
 
+'plotCor' is based on / inspired by several other similar plots.
+I thank their authors, but, unfortunatelly, can't give credits to
+them, as I can't remember all of them.
+}
 \usage{plotCor(x, method = c("pearson", "spearman", "spearmanExact", 
     "glmPoisson", "lm"), adjust = FALSE, i1 = NULL, i2 = NULL, 
     normalityColor = TRUE, aboveDiag = FALSE, silent = FALSE, 
     plot = TRUE, ...)}
 \arguments{
   \item{x}{data frame}
-  \item{method}{
-}
+  \item{method}{method
+used to compute the coefficient and the significance of the
+relation between each pair of variables. 'pearson', 'spearman', and
+'spearmanExact' refer to correlation coefficients (the former two
+implemented in terms of 'stats::cor.test', the latter in terms of
+'coin::spearman_test'). 'lm' refers to a linear model.
+'glmPoisson' refers to a Poisson generalized linear model, i.e.
+'stats::glm' with the Poisson family.}
   \item{adjust}{adjust p-values to the number of tests performed?
 If TRUE, approximate adjustment is used, correcting for the
 estimated effective number of tests performed, considering possible

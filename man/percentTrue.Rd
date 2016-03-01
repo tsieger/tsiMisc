@@ -1,7 +1,7 @@
 \name{percentTrue}
 \alias{percentTrue}
 \title{Percentual ratio of TRUE cases.}
-
+\description{`percent` computes the percentual ratio of TRUE cases}
 \usage{percentTrue(x, digits = NULL)}
 \arguments{
   \item{x}{a logical vector (or a vector that can be coerced to one)}

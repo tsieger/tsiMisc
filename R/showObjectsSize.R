@@ -1,16 +1,19 @@
-sos<-showObjectsSize<-structure(
+.sos<-showObjectsSize<-structure(
 function # R object size dump.
-##<<details
+##description<<
 ## 'showObjectsSize' shows how much memory do objects in specific
 ## environment(s) occupy. It builds upon 'object.size' and gathers
 ## information about the size and mode of objects in specific
 ## environment(s). It supports environment name filtering using regular
 ## expressions, object mode filtering, as well as filtering by size.
 ##
+##details<<
 ## Partially based on
 ## http://jeromyanglim.blogspot.cz/2009/11/memory-management-in-r-few-tips-and.html.
-##<<seealso
-## 'object.size', 'ls', 'mode'
+##
+##alias<< '.sos'
+##
+##seealso<< 'object.size', 'ls', 'mode'
 (mode = NULL, ##<< mode of objects to show (see 'mode'), use NULL to show
 ## objects of all modes.
 n = 20, ##<< number of objects to show (the first 'n' biggest objects

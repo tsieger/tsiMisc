@@ -1,15 +1,14 @@
 \name{dagostinoTest}
 \alias{dagostinoTest}
 \title{D'Agostino normality test.}
-
+\description{Performs D'Agostino normality tests based on skewness, kurtosis, and
+an omnibus test.
+}
 \usage{dagostinoTest(x)}
 \arguments{
   \item{x}{a non-empty numeric vector of data}
 }
-\details{Performs D'Agostino normality tests based on skewness, kurtosis, and
-an omnibus test.
-
-The implementation is taken from Zvara2008 (appendix A.4.1).
+\details{The implementation is taken from Zvara2008 (appendix A.4.1).
 }
 \value{Data frame having the results of the skewness, kurtosis, and
 omnibus tests in columns, and the test statistics and P-values

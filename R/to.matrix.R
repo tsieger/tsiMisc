@@ -1,10 +1,10 @@
 to.matrix<-structure(
 function # Conversion to a matrix.
-##<< details
+##description<<
 ## 'to.matrix' attempts to convert any data to a row matrix. In
 ## particular, data frames are converted by 'as.matrix', (numeric)
 ## vectors are converted to a single row matrix.
-(x ##<<
+(x ##<< data to convert to a matrix
 )
 {
   if (!is.matrix(x)) {

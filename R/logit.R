@@ -1,9 +1,10 @@
 logit<-structure(
 function # The logit function.
-##<< details
+##description<<
 ## 'logit' computes 'log( p / (1-p))', i.e. maps the interval '[0, 1]'
 ## to the interval of '(-inf, inf)'.
-##<<seealso expit
+##
+##seealso<< 'expit'
 (p ##<< a number in the range of <0, 1>
 ) {
   if (any(p<0) || any(p>1)) {

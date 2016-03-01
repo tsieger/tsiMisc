@@ -1,6 +1,12 @@
 .pn<-printWithName<-structure(
 function # Print the name and value of a variable.
-##<< seealso NCmisc::preview, NCmisc::prv
+##description<<
+## 'printWithName' prints both the name and value of a variable. Useful
+## for debug purposes.
+##
+##alias<< .pn
+##
+##seealso<< 'NCmisc::preview', 'NCmisc::prv'
 (x ##<< variable
 ) {
   cat(paste0(deparse(substitute(x)),'\n'))

@@ -1,5 +1,7 @@
 vectorprod<-structure(
 function # 3D vector product.
+##description<<
+## 'vectorprod' computes 3D vector product.
 (a, ##<< first vector
 b ##<< second vector
 ) {

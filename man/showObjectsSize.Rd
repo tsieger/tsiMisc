@@ -1,7 +1,14 @@
 \name{showObjectsSize}
 \alias{showObjectsSize}
-\title{R object size dump.}
+\alias{'.sos'}
 
+\title{R object size dump.}
+\description{'showObjectsSize' shows how much memory do objects in specific
+environment(s) occupy. It builds upon 'object.size' and gathers
+information about the size and mode of objects in specific
+environment(s). It supports environment name filtering using regular
+expressions, object mode filtering, as well as filtering by size.
+}
 \usage{showObjectsSize(mode = NULL, n = 20, env = parent.frame(), recursive = FALSE, 
     envNameRegexpr = NULL, all.names = TRUE, sizeUnits = 1024 * 
         1024, verbose = FALSE)}
@@ -20,7 +27,9 @@ If 'FALSE', names which begin with a '.' are omitted.}
   \item{sizeUnits}{the units of size (defaults to 1MB)}
   \item{verbose}{if 'TRUE', progress is reported.}
 }
-
+\details{Partially based on
+http://jeromyanglim.blogspot.cz/2009/11/memory-management-in-r-few-tips-and.html.
+}
 \value{A data frame of columns 'name', 'size', 'mode', and 'env'.
 In addition, the total size of all objects found is put into
 the 'totalSize' attribute of the data frame.}
@@ -29,7 +38,7 @@ the 'totalSize' attribute of the data frame.}
 
 
 
-
+\seealso{'object.size', 'ls', 'mode'}
 \examples{
 showObjectsSize(n=20)
 

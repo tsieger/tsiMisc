@@ -1,5 +1,7 @@
 allSame<-structure(
-function # Given a vector, are all the values in it the same?
+function # Are all values the same?
+##description<<
+## Given a vector, are all the values in it the same?
 (x ##<< a vector
 ) {
   return(all(x==head(x,1)))

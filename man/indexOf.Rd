@@ -1,7 +1,9 @@
 \name{indexOf}
 \alias{indexOf}
 \title{Indices of member(s) in vector.}
+\description{'indexOf' finds indices of value(s) in a given vector.
 
+sealso<< regexpr}
 \usage{indexOf(x, v, regexp = TRUE)}
 \arguments{
   \item{x}{value(s) to be searched for in vector 'v'}

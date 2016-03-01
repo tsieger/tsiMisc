@@ -1,7 +1,6 @@
 histv<-structure(
 function # Vertically aligned histograms.
-###
-##<< details
+##description<<
 ## 'histv' creates one or more vertically aligned histograms,
 ## rendered by 'hist'. This is useful for visual comparison of several
 ## numeric vectors.

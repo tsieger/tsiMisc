@@ -1,6 +1,6 @@
 lmSignif<-structure(
 function # Overall linear model significance.
-##<<details
+##description<<
 ## 'lmSignif' compute the significance of the F statistics in a
 ## 'lm.summary' object.
 (s ##<< an object of class 'lm.summary'

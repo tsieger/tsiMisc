@@ -1,9 +1,9 @@
 corCritVal<-structure(
 function # Critical values for correlation coefficients.
-##<< details
+##description<<
 ## TODO: details, reference
 (n, ##<< sample size
-alpha, ##<< significance level
+alpha = 0.05, ##<< significance level
 method = c('pearson', 'spearman'),
 approximate = FALSE
 ) {

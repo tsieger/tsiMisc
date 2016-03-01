@@ -1,7 +1,6 @@
 lnormPar<-structure(
 function # Lognormal distribution parameter conversion.
-### between linear and log scales.
-##<< details
+##description<<
 ## 'lnormPar' converts the parameters of lognormal distribution
 ## between linear and log scales.
 ## Lognormal distribution is naturally characterized by parameters on
@@ -12,6 +11,7 @@ function # Lognormal distribution parameter conversion.
 ## parameters on the log scale, or 'meanlog' and 'sdlog' parameters
 ## from the log scale and computes the 'mean' and 'sd' parameters on
 ## the linear scale.
+##
 ##references<<
 ## http://www.mathworks.com/help/stats/lognstat.html
 (mean = NULL, ##<< the mean on the linear scale

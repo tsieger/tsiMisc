@@ -1,13 +1,13 @@
 normality2flag<-structure(
 function # Sample normality estimate flag.
-##<<details
+##description<<
 ## 'normality2flag' estimates the normality of a vector vector 'x' and
 ## returns a discrete flag assessing the normality (normal,
 ## non-normal, don't know).
 ##
 ## TODO: allow user-supplied normality test?
 ##
-##<<seealso dagostinoTest, normality2color
+##seealso<< 'dagostinoTest', 'normality2color'
 (x ##<< a numeric vector to be tested for normality
 ) {
   if (length(na.omit(x))>=6) {
