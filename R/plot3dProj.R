@@ -108,19 +108,18 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   ###
   ## plotting functions
   plotAxes<-function() {
-    v0<-rep(0,k)
-    axes.radius<-c(.01,.01,.03,0)
-    if (separateAxes) {
-    #  axes.radius<-axes.radius/5
-    }
-    for (i in 1:k) {
-      v1<-v2<-v3<-v4<-rep(0,k)
-      v1[i]<-.95
-      v2[i]<-.95
-      v3[i]<-1
-      v4[i]<-1.1
-      shade3d(cylinder3d(tx(axesExpansion*rbind(v0,v1,v2,v3),center=FALSE),radius=axes.radius,closed=-2),col=col.axes)#,emission=col.axes,specular=col.axes,alpha=1,shininess=0)
-      text3d(tx(axesExpansion*rbind(v4),center=FALSE),texts=colnames(x)[i],col=col.axes)#,emission=col.axes,specular=col.axes,alpha=1,shinness=0)
+    if (!is.null(colnames(x))) {
+      v0<-rep(0,k)
+      axes.radius<-c(.01,.01,.03,0)
+      for (i in 1:k) {
+        v1<-v2<-v3<-v4<-rep(0,k)
+        v1[i]<-.95
+        v2[i]<-.95
+        v3[i]<-1
+        v4[i]<-1.1
+        shade3d(cylinder3d(tx(axesExpansion*rbind(v0,v1,v2,v3),center=FALSE),radius=axes.radius,closed=-2),col=col.axes)#,emission=col.axes,specular=col.axes,alpha=1,shininess=0)
+        text3d(tx(axesExpansion*rbind(v4),center=FALSE),texts=colnames(x)[i],col=col.axes)#,emission=col.axes,specular=col.axes,alpha=1,shinness=0)
+      }
     }
   }
 
