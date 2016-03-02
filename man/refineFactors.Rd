@@ -12,7 +12,7 @@ have appeared in it, giving no clue how to predict response using
 such an unknown factor level.
 }
 \usage{refineFactors(x1, x2, unify = TRUE, dropSingular = TRUE, naLimit = Inf, 
-    k = 5, naLevelName = "(NA)", verbose = FALSE)}
+    k = 5, naLevelName = "(NA)", verbose = FALSE, debug = FALSE)}
 \arguments{
   \item{x1}{first data frame}
   \item{x2}{second data frame}
@@ -28,6 +28,8 @@ at least 'naLimit' NA's (in 'x1' and in 'x2') will be converted}
   \item{naLevelName}{the name of the special factor level
 used to represent missing values}
   \item{verbose}{report progress?}
+  \item{debug}{if TRUE, debugs will be printed. If numeric of value
+greater than 1, verbose debugs will be produced.}
 }
 \details{Usually, the refinement consists of i) making the levels of factors
 in individual columns in each of the sets identical, and
