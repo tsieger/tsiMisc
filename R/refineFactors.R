@@ -33,7 +33,9 @@ k = 5, ##<< the number of intervals into which numeric columns having
 ## at least 'naLimit' NA's (in 'x1' and in 'x2') will be converted
 naLevelName = "(NA)", ##<< the name of the special factor level
 ## used to represent missing values
-verbose = FALSE ##<< report progress?
+verbose = FALSE, ##<< report progress?
+debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
+## greater than 1, verbose debugs will be produced.
 ) {
 
   if (is.null(naLimit) || is.na(naLimit)) {
@@ -98,70 +100,119 @@ verbose = FALSE ##<< report progress?
   if (!is.null(x1)) x1<-na.omit(x1)
   if (!is.null(x2)) x2<-na.omit(x2)
 
-  dirty<-FALSE
-  i<-1
-  while (i<=ncol(x1)) {
-    if (verbose) cat(paste0('processing column ',i,': ',colnames(x1)[i],'\n'))
+  columnsRemoved<-c()
+  x1.orig<-x1
+  x2.orig<-x2
+  while (TRUE) {
+    if (debug) .pn(columnsRemoved)
+    x1<-x1.orig
+    x2<-x2.orig
+    if (length(columnsRemoved)>0) {
+      x1<-x1[,-columnsRemoved,drop=FALSE]
+      x2<-x2[,-columnsRemoved,drop=FALSE]
+    }
+    if (debug>1) {
+      cat('x1 and x2 entering next iteration:\n')
+      .pn(x1)
+      .pn(x2)
+    }
     dirty<-FALSE
-    if (is.factor(x1[,i])) {
-
-      # sanity check
-      if (length(levels(x1[,i]))!=length(levels(x2[,i])) || any(levels(x1[,i])!=levels(x2[,i]))) {
-        stop(paste0('levels of factor \'',colnames(x1)[i],'\' incompatible: ',
-          paste(levels(x1[,i]),collapse=' '),' vs. ',paste(levels(x2[,i]),collapse=' ')))
+    columnRemoved<-FALSE
+    i<-1
+    while (i<=ncol(x1)) {
+      if (verbose) cat(paste0('processing column ',i,': ',colnames(x1)[i],'\n'))
+      if (debug>1) {
+        cat('x1 and x2 at this stage:\n')
+        .pn(x1)
+        .pn(x2)
       }
+      dirty<-FALSE
+      if (is.factor(x1[,i])) {
 
-      f1<-x1[,i]
-      f2<-x2[,i]
+        # sanity check
+        if (length(levels(x1[,i]))!=length(levels(x2[,i])) || any(levels(x1[,i])!=levels(x2[,i]))) {
+          stop(paste0('levels of factor \'',colnames(x1)[i],'\' incompatible: ',
+            paste(levels(x1[,i]),collapse=' '),' vs. ',paste(levels(x2[,i]),collapse=' ')))
+        }
 
-      if (dropSingular) {
-        if (length(levels(dropLevels(f1)))<2 || length(levels(dropLevels(f2)))<2) {
-          if (verbose) paste(' dropping this column due to singularity')
-          x1<-x1[,-i,drop=FALSE]
-          x2<-x2[,-i,drop=FALSE]
-          next
-        }
-      }
+        f1<-x1[,i]
+        f2<-x2[,i]
 
-      if (unify) {
-        sf1<-sapply(levels(f1),function(x)sum(f1==x,na.rm=T))
-        sf2<-sapply(levels(f2),function(x)sum(f2==x,na.rm=T))
-        if (verbose) {
-          cat(' levels non-empty in x1?\n')
-          print(sf1)
-          cat(' levels non-empty in x2?\n')
-          print(sf2)
-        }
-        ii<-which(sf1!=sf2)
-        if (verbose) {
-          cat(' indices that differ: ')
-          print(ii)
-        }
-        if (length(ii)>0) {
-          if (verbose) cat(' fixing\n')
-          dirty<-TRUE
-          for (iii in ii) {
-            if (sf1[iii]>0) {
-              if (verbose) cat('removing',levels(f1)[iii],'from x1\n')
-              x1<-x1[!x1[,i]%in%levels(f1)[iii],]
-            } else {
-              if (verbose) cat('removing',levels(f1)[iii],'from x2\n')
-              x2<-x2[!x2[,i]%in%levels(f1)[iii],]
+        if (dropSingular) {
+          if (length(levels(dropLevels(f1)))<2 || length(levels(dropLevels(f2)))<2) {
+            if (verbose) cat(' dropping this column due to singularity, restarting\n')
+            # indices of columns in original x1
+            idx<-1:(ncol(x1)+length(columnsRemoved))
+            # remove columns that have already been removed
+            if (length(columnsRemoved)>0) {
+              idx<-idx[-columnsRemoved]
             }
+            columnsRemoved<-c(columnsRemoved,idx[i])
+            columnRemoved<-TRUE
+            x1<-x1[,-i,drop=FALSE]
+            x2<-x2[,-i,drop=FALSE]
+            break
           }
         }
+
+        if (unify) {
+          sf1<-sapply(levels(f1),function(x)sum(f1==x,na.rm=T))
+          sf2<-sapply(levels(f2),function(x)sum(f2==x,na.rm=T))
+          if (verbose) {
+            cat(' levels non-empty in x1?\n')
+            print(sf1)
+            cat(' levels non-empty in x2?\n')
+            print(sf2)
+          }
+          ii<-which(sf1!=sf2)
+          if (verbose) {
+            cat(' indices that differ: ')
+            print(ii)
+          }
+          if (length(ii)>0) {
+            if (verbose) cat(' fixing\n')
+            dirty<-TRUE
+            for (iii in ii) {
+              if (sf1[iii]>0) {
+                if (verbose) cat('removing',levels(f1)[iii],'from x1\n')
+                x1<-x1[!x1[,i]%in%levels(f1)[iii],,drop=FALSE]
+              } else {
+                if (verbose) cat('removing',levels(f1)[iii],'from x2\n')
+                x2<-x2[!x2[,i]%in%levels(f1)[iii],,drop=FALSE]
+              }
+            }
+          }
+          if (nrow(x1)==0 || nrow(x2)==0) {
+            # indices of columns in original x1
+            idx<-1:(ncol(x1)+length(columnsRemoved))
+            # remove columns that have already been removed
+            if (length(columnsRemoved)>0) {
+              idx<-idx[-columnsRemoved]
+            }
+            columnsRemoved<-c(columnsRemoved,idx[i])
+            if (verbose) cat(' effectively dropping this column, restarting\n')
+            columnRemoved<-TRUE
+            break
+          }
+        }
+        x1[,i]<-dropLevels(x1[,i],reorder=FALSE)
+        x2[,i]<-dropLevels(x2[,i],reorder=FALSE)
       }
-      x1[,i]<-dropLevels(x1[,i],reorder=FALSE)
-      x2[,i]<-dropLevels(x2[,i],reorder=FALSE)
+      if (dirty) {
+        # something has been removed, and this could have affected
+        # some already processed columns -> restart iterating over
+        # the columns
+        i<-1
+      } else {
+        i<-i+1
+      }
     }
-    if (dirty) {
-      # something has been removed, and this could have affected
-      # some already processed columns -> restart iterating over
-      # the columns
-      i<-1
-    } else {
-      i<-i+1
+    if (debug>1) {
+      cat('x1 and x2 after this iteration:\n')
+      .pn(x1)
+      .pn(x2)
     }
+    if (!columnRemoved) break
   }
 
   res<-list(x1=x1,x2=x2)
