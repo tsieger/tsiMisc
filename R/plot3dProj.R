@@ -43,7 +43,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     stop('\'tx\' must result in 3D data')
   }
 
-  if (is.null(col)) {
+  if (is.null(col) || length(col)==0) {
     if (!is.null(cls) && !is.null(palette)) {
       col<-palette[cls]
     } else {
