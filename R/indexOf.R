@@ -15,6 +15,7 @@ regexp = TRUE ##<< If TRUE, 'x' of character type is interpreted as
     rv<-c(unlist(sapply(x,function(cn)which(cn==v))))
   }
   names(rv)<-NULL
+  ### Indices of members.
   return(rv)
 },ex=function() {
   # numeric examples
