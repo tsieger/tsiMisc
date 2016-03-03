@@ -4,10 +4,19 @@
 \description{'spca' computes supervised principal component analysis as
 described in Barshan et al.
 }
-\usage{spca(x, xLabels)}
+\usage{spca(x, xLabels, center = TRUE, scale = FALSE, retx = FALSE, 
+    debug = FALSE)}
 \arguments{
   \item{x}{a data matrix (features in columns, samples in rows)}
-  \item{xLabels}{classification of x (logical or factor)}
+  \item{xLabels}{classification of x (logical, numeric, or a factor)}
+  \item{center}{a logical value indicating whether to center the
+data. This is advisable.}
+  \item{scale}{a logical value indicating whether to scale the
+data to have unit variance.}
+  \item{retx}{a logical value indicating whether to return the
+rotated version of 'x'}
+  \item{debug}{if TRUE, debugs will be printed. If numeric of value
+greater than 1, verbose debugs will be produced.}
 }
 
 
