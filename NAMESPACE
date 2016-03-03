@@ -52,6 +52,8 @@ export(spca)
 export(spherical2cartesian)
 export(strTrim)
 export(to.matrix)
+export(txPca)
+export(txSpca)
 export(vectorLength)
 export(vectorprod)
 
