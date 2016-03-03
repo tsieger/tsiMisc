@@ -6,8 +6,7 @@
     "green", "blue"), size = 3, alpha = 1, scale = TRUE, tx = function(y, 
     center = TRUE) y - center * matrix(colMeans(x), nrow = nrow(y), 
     ncol = ncol(x), byrow = TRUE), type = "3aw,sw", col.axes = "gray", 
-    axesExpansion = 1.1, separateAxes = FALSE, annotate = FALSE, 
-    debug = FALSE)}
+    axesExpansion = 1.1, annotate = FALSE, debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
 features in columns. It must have at least 3 columns (dimensions).}
@@ -30,8 +29,6 @@ into 3D space to visualize}
 }
   \item{col.axes}{color of axes in the 3D plot}
   \item{axesExpansion}{
-}
-  \item{separateAxes}{
 }
   \item{annotate}{
 }
