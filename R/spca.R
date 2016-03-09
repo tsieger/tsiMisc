@@ -10,7 +10,14 @@ function # Supervised PCA.
 ## Pattern Recognition, Vol. 44, No. 7. (29 July 2011), pp. 1357-1371,
 ## doi:10.1016/j.patcog.2010.12.015.
 (x, ##<< a data matrix (features in columns, samples in rows)
-xLabels, ##<< classification of x (logical, numeric, or a factor)
+y = diag(1, nrow(x)), ##<< target classification of x (logical, numeric,
+## or a factor), or a kernel matrix of the target. If not specified, it
+## defaults to identity matrix, in which case SPCA becomes equivalent
+## to classical PCA (as the matrix being decomposed equals the
+## covariance matrix of 'x'. (Strictly speaking, when centering is in
+## use, SPCA becomes the classical PCA. Otherwise, SPCA yields
+## components similar to those yielded by PCA over centered data, but
+## shifted.)
 center = TRUE, ##<< a logical value indicating whether to center the
 ## data. This is advisable.
 scale = FALSE, ##<< a logical value indicating whether to scale the
@@ -21,7 +28,6 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 ## greater than 1, verbose debugs will be produced.
 ) {
   if (!is.matrix(x)) x<-as.matrix(x)
-  if (!is.factor(xLabels)) xLabels<-as.factor(xLabels)
 
   if (is.logical(center) && center) {
     x<-scale(x,center=TRUE, scale=FALSE)
@@ -37,10 +43,15 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   }
   n<-nrow(x)
   H<-diag(1,n)-matrix(1/n,n,n)
-  L<-matrix(0,n,n)
-  for (i in levels(xLabels)) {
-    tmp<-xLabels==i
-    L[tmp,tmp]<-1
+  if (is.matrix(y)) {
+    L<-y
+  } else {
+    if (!is.factor(y)) y<-as.factor(y)
+    L<-matrix(0,n,n)
+    for (i in levels(y)) {
+      tmp<-y==i
+      L[tmp,tmp]<-1
+    }
   }
   if (debug) {
     .pn(x)
