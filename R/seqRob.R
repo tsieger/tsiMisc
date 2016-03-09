@@ -10,14 +10,16 @@ to = 1, ##<< to
 by = NULL, ##<< increment
 ... ##<<
 ) {
-  if (!missing(by) && (from<to)!=(by>0)) {
-    rv<-vector(class(from),0)
-  } else {
-    if (!missing(by)) {
-      rv<-seq(from=from,to=to,by=by,...)
+  if (!missing(by)) {
+    if (from==to) {
+      rv<-from
+    } else if ((from<to)!=(by>0)) {
+      rv<-vector(class(from),0)
     } else {
-      rv<-seq(from=from,to=to,...)
+      rv<-seq(from=from,to=to,by=by,...)
     }
+  } else {
+    rv<-seq(from=from,to=to,...)
   }
   return(rv)
   ### Sequence similar to the result of 'base::seq'.
