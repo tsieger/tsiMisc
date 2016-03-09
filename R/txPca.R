@@ -20,6 +20,7 @@ k = 3, ##<< number of dimensions of the result, defaults to 3 in order
   }
 
   tx<-function(y, center=TRUE) {
+    y<-to.matrix(y)
     if (center) {
       if (is.numeric(s$center)) {
         y<-t(apply(y,1,function(z)z-s$center))
