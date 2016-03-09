@@ -7,12 +7,19 @@ function # Supervised PCA transform.
 ##
 ##seealso<< 'spca', 'txPca', 'plot3dProj'
 (x, ##<< a data matrix (features in columns, samples in rows)
-xLabels, ##<< classification of x (logical or factor)
+y = diag(1, nrow(x)), ##<< target classification of x (logical, numeric,
+## or a factor), or a kernel matrix of the target. If not specified, it
+## defaults to identity matrix, in which case SPCA becomes equivalent
+## to classical PCA (as the matrix being decomposed equals the
+## covariance matrix of 'x'. (Strictly speaking, when centering is in
+## use, SPCA becomes the classical PCA. Otherwise, SPCA yields
+## components similar to those yielded by PCA over centered data, but
+## shifted.)
 k = 3, ##<< number of dimensions of the result, defaults to 3 in order
 ## to be usable in 'plot3dProj'
 ... ##<< additional arguments to 'spca'
 ) {
-  s<-spca(x,xLabels,retx=TRUE,...)
+  s<-spca(x,y,retx=TRUE,...)
 
   if (!is.null(k)) {
     if (k>ncol(s$x)) {
