@@ -3,11 +3,19 @@
 \title{Supervised PCA transform.}
 \description{'txSpca' transforms data using supervised principal component
 analysis.
+TODO
 }
-\usage{txSpca(x, xLabels, k = 3, ...)}
+\usage{txSpca(x, y = diag(1, nrow(x)), k = 3, ...)}
 \arguments{
   \item{x}{a data matrix (features in columns, samples in rows)}
-  \item{xLabels}{classification of x (logical or factor)}
+  \item{y}{target classification of x (logical, numeric,
+or a factor), or a kernel matrix of the target. If not specified, it
+defaults to identity matrix, in which case SPCA becomes equivalent
+to classical PCA (as the matrix being decomposed equals the
+covariance matrix of 'x'. (Strictly speaking, when centering is in
+use, SPCA becomes the classical PCA. Otherwise, SPCA yields
+components similar to those yielded by PCA over centered data, but
+shifted.)}
   \item{k}{number of dimensions of the result, defaults to 3 in order
 to be usable in 'plot3dProj'}
   \item{\dots}{additional arguments to 'spca'}
