@@ -2,6 +2,7 @@
 \alias{txPca}
 \title{PCA transform.}
 \description{'txPca' transforms data using principal component analysis.
+TODO
 }
 \usage{txPca(x, k = 3, ...)}
 \arguments{
