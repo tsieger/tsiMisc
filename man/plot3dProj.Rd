@@ -44,7 +44,9 @@ greater than 1, verbose debugs will be produced.}
 
 
 \examples{
-  plot3dProj(iris[,1:3], cls=iris$Species)
+  if (interactive() && require(rgl)) {
+    plot3dProj(iris[,1:3], cls=iris$Species)
+  }
 
 # TODO: unify/propagate scaling done in plot3dProj here ?!
 #  p <- prcomp(iris[, 1:4], center = TRUE, scale = TRUE)
