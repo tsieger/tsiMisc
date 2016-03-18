@@ -81,7 +81,7 @@ affectSubscenes = TRUE ##<< if TRUE, interaction affects all subscenes
   }
   rgl.set(cur, TRUE)
 },ex=function() {
-  if (require(rgl)) {
+  if (interactive() && require(rgl)) {
     dev1 <- open3d()
     shade3d(cube3d(color = rep(rainbow(6), rep(4, 6))))
     dev2 <- open3d()
