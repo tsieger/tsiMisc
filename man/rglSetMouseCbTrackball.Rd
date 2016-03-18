@@ -24,7 +24,7 @@ in a device, not only the current one}
 
 
 \examples{
-if (require(rgl)) {
+if (interactive() && require(rgl)) {
   dev1 <- open3d()
   shade3d(cube3d(color = rep(rainbow(6), rep(4, 6))))
   dev2 <- open3d()
