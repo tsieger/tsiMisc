@@ -2,10 +2,10 @@
 \alias{reloadByName}
 \title{Reload R package(s).}
 \description{This is a simple wrapper for
-devtools::reload(devtools::inst(pkgName)).}
+\code{\link[devtools]{reload(devtools::inst(pkgName))}}.}
 \usage{reloadByName(pkgName = "tsiMisc")}
 \arguments{
-  \item{pkgName}{name (or a vector of names) of R packages to be reloaded}
+  \item{pkgName}{name (or a vector of names) of R package(s) to be reloaded}
 }
 
 
@@ -18,4 +18,6 @@ devtools::reload(devtools::inst(pkgName)).}
 \examples{
 library(MASS)
 reloadByName('MASS')
+# or without quotes as
+reloadByName(MASS)
 }
