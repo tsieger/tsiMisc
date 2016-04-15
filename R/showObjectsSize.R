@@ -1,32 +1,32 @@
 .sos<-showObjectsSize<-structure(
 function # R object size dump.
 ##description<<
-## 'showObjectsSize' shows how much memory do objects in specific
-## environment(s) occupy. It builds upon 'object.size' and gathers
-## information about the size and mode of objects in specific
+## \code{showObjectsSize} shows how much memory do objects in specific
+## environment(s) occupy. It builds upon \code{\link{object.size}} and
+## gathers information about the size and mode of objects in specific
 ## environment(s). It supports environment name filtering using regular
 ## expressions, object mode filtering, as well as filtering by size.
 ##
 ##details<<
 ## Partially based on
-## http://jeromyanglim.blogspot.cz/2009/11/memory-management-in-r-few-tips-and.html.
+## \url{http://jeromyanglim.blogspot.cz/2009/11/memory-management-in-r-few-tips-and.html}.
 ##
-##alias<< '.sos'
+##alias<< \code{.sos}
 ##
-##seealso<< 'object.size', 'ls', 'mode'
-(mode = NULL, ##<< mode of objects to show (see 'mode'), use NULL to show
-## objects of all modes.
-n = 20, ##<< number of objects to show (the first 'n' biggest objects
+##seealso<< \code{link{object.size}}, \code{link{ls}}, \code{link{mode}}
+(mode = NULL, ##<< mode of objects to show (see 'mode'), use code{NULL} to
+##  show objects of all modes.
+n = 20, ##<< number of objects to show (the first \code{n} biggest objects
 ## will be shown).
 env = parent.frame(), ##<< environment to operate in.
 recursive = FALSE, ##<< shall we iteratively look in parent environments?
 envNameRegexpr = NULL, ##<< regular expression character filter applied
-## to the names of environments. If not NULL, only environments matched
-## by 'envNameRegexpr' are considered.
-all.names = TRUE, ##<< if 'TRUE', all object names are returned.
-## If 'FALSE', names which begin with a '.' are omitted.
+## to the names of environments. If not \code{NULL}, only environments
+## matched by \code{envNameRegexpr} are considered.
+all.names = TRUE, ##<< if \code{TRUE}, all object names are returned.
+## If \code{FALSE}, names which begin with a '.' are omitted.
 sizeUnits = 1024*1024, ##<< the units of size (defaults to 1MB)
-verbose = FALSE ##<< if 'TRUE', progress is reported.
+verbose = FALSE ##<< if \code{TRUE}, progress is reported.
 ) {
   res<-NULL
   while (TRUE) {
@@ -127,9 +127,10 @@ verbose = FALSE ##<< if 'TRUE', progress is reported.
   if (!is.null(n)) rv<-rv[seqRob(1,min(nrow(rv),n),1),]
 
   return(rv)
-  ### A data frame of columns 'name', 'size', 'mode', and 'env'.
+  ### A data frame of columns \code{name}, \code{size}, \code{mode},
+  ### and \code{env}.
   ### In addition, the total size of all objects found is put into
-  ### the 'totalSize' attribute of the data frame.
+  ### the \code{totalSize} attribute of the data frame.
 },ex=function() {
   showObjectsSize(n=20)
 
