@@ -2,7 +2,7 @@ reloadByName<-structure(
 function # Reload R package(s).
 ##description<<
 ## This is a simple wrapper for
-## \code{\link{devtools::reload(devtools::inst(pkgName))}}.
+## \code{\link[devtools]{reload(devtools::inst(pkgName))}}.
 (pkgName = 'tsiMisc' ##<< name (or a vector of names) of R package(s) to be reloaded
 ) {
   
