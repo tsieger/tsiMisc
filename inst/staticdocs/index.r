@@ -4,6 +4,7 @@ sd_section("Dev tools",
   c(
     "reloadByName",
     "buildInlineDoc",
+    "buildSiteDoc",
     "showObjectsSize"
   )
 )
