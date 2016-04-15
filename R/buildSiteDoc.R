@@ -4,7 +4,7 @@ function # build_site build
 ## This is a simple delegate wrapper for
 ## \code{\link{staticdocs::build_site}} to generate package doc for an
 ## R package. In addition, if there are any rgl devices opened by
-## \code{\link{staticdocs::build_site}}, they get closed.
+## \code{\link[staticdocs]{build_site}}, they get closed.
 ##
 ## TODO: Remove this rgl-closing hack.
 (path = '~/src/Rweb/tsiMisc' ##<< path to an R package source
