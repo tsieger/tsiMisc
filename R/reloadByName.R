@@ -2,8 +2,8 @@ reloadByName<-structure(
 function # Reload R package(s).
 ##description<<
 ## This is a simple wrapper for
-## devtools::reload(devtools::inst(pkgName)).
-(pkgName = 'tsiMisc' ##<< name (or a vector of names) of R packages to be reloaded
+## \code{\link{devtools::reload(devtools::inst(pkgName))}}.
+(pkgName = 'tsiMisc' ##<< name (or a vector of names) of R package(s) to be reloaded
 ) {
   
   # attempt to accept also non-quoted package names
@@ -24,4 +24,6 @@ function # Reload R package(s).
 },ex=function() {
   library(MASS)
   reloadByName('MASS')
+  # or without quotes as
+  reloadByName(MASS)
 })
