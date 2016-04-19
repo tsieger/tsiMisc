@@ -22,7 +22,7 @@ to be usable in 'plot3dProj'}
 }
 
 \value{Transform function taking two arguments: a data matrix to
-transform, and logical determining whether the data are to be
+transform, and a logical determining whether the data are to be
 centered, or not. The parameters of the transform get returned in
 the \code{params} attribute (see \code{\link{spca}}).}
 

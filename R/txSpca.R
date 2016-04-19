@@ -49,7 +49,7 @@ k = 3, ##<< number of dimensions of the result, defaults to 3 in order
 
   return(tx)
   ### Transform function taking two arguments: a data matrix to
-  ### transform, and logical determining whether the data are to be
+  ### transform, and a logical determining whether the data are to be
   ### centered, or not. The parameters of the transform get returned in
   ### the \code{params} attribute (see \code{\link{spca}}).
 },ex=function() {
