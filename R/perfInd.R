@@ -6,7 +6,7 @@ function # Compute performance indicators.
 ## under the receiver operating characteristic, the Gini coefficient
 ## etc. (see the return value).
 ##
-##seealso<< 'ROCR::performance' which gives many more measures
+##seealso<< \code{link[ROCR]{performance}} which gives many more measures
 ##
 ##references<<
 ## Fawcett, Tom (2006). _An Introduction to ROC Analysis_. Pattern
@@ -16,13 +16,40 @@ function # Compute performance indicators.
 ## F-Measure to ROC, Informedness, Markedness & Correlation._
 ## Journal of Machine Learning Technologies ISSN: 2229-3981 &
 ## ISSN: 2229-399X, Volume 2, Issue 1, 2011, pp-37-63
-## Available online at http://www.bioinfo.in/contents.php?id=51
+## Available online at \url{http://www.bioinfo.in/contents.php?id=51}
+##
 (x, ##<< a 2x2 classification table having predictions in rows, and
-## ground truth in columns
-negativeFirst = FALSE ##<< if TRUE, positive case come first in both
-## rows and columns
+## ground truth in columns (negative cases come first, by default, see
+## the \code{negativeFirst} argument), or a vector of predicted values
+## for each observation (coded, by default, such that negative cases
+## come first, e.g. as \code{0} and \code{1}, or \code{FALSE} and
+## \code{TRUE}, or as a factor).
+y = NULL, ##<< if \code{x} is a vector of predictions, \code{y} holds
+## the vector of ground truth classification for each observation
+## (coded, by default, such that negative cases come first, e.g. as
+## \code{0} and \code{1}, or \code{FALSE} and \code{TRUE}, or as a
+## factor).
+negativeFirst = TRUE, ##<< if TRUE, negative cases come first in both
+## rows and columns of \code{x}, or in vectors \code{x} and \code{y}
+debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
+## greater than 1, verbose debugs will be produced.
 ) {
-  if (negativeFirst) {
+  if (!is.null(y)) {
+    xname<-deparse(substitute(x))
+    if (xname!=make.names(xname)) {
+      xname<-'x'
+    }
+    yname<-deparse(substitute(y))
+    if (yname!=make.names(yname)) {
+      yname<-'y'
+    }
+    if (debug) .pn(xname)
+    if (debug) .pn(yname)
+    txt<-paste0('table(',xname,'=x,',yname,'=y)')
+    if (debug) .pn(txt)
+    x<-eval(parse(text=txt))
+  }
+  if (!negativeFirst) {
     x<-flip(x,1:2)
   }
   sensitivity<-x[1,1]/sum(x[,1])
@@ -42,32 +69,34 @@ negativeFirst = FALSE ##<< if TRUE, positive case come first in both
   auc<-sensitivity*(1-specificity)/2+specificity*sensitivity+specificity*(1-sensitivity)/2
   gini<-2*auc-1
   n=sum(x)
-  res<-data.frame(sensitivity=sensitivity,
-    specificity=specificity,
-    npv=npv,
-    ppv=ppv,
-    wnpv=wnpv,
-    wppv=wppv,
-    fpr=fpr,
-    fnr=fnr,
-    fdr=fdr,
-    acc=acc,
-    f1=f1,
-    auc=auc,
-    gini=gini,
-    n=n)
+
+  ##value<< a list containing the following named entries:
+  res<-list(
+    table=x, ##<< classification table
+    sensitivity=sensitivity, ##<< sensitivity
+    specificity=specificity, ##<< specificity
+    npv=npv, ##<< negative predicted value
+    ppv=ppv, ##<< positive predicted value
+    wnpv=wnpv, ##<< weighted negative predicted value (an obscure measure)
+    wppv=wppv, ##<< weighted positive predicted value
+    fpr=fpr, ##<< false positive rate
+    fnr=fnr, ##<< false negative rate
+    fdr=fdr, ##<< false discovery rate
+    acc=acc, ##<< accuracy
+    f1=f1, ##<< F1 score
+    auc=auc, ##<< AUC (area under the ROC curve estimated by
+    ## interpolating the (0,0), (1-specificity, sensitivity) and 
+    ## (1, 1) points in the ROC space)
+    gini=gini, ##<< the Gini index
+    n=n) ##<< number of observations classified
   return(res)
-  ### A row matrix containing named entries of 'sensitivity',
-  ### 'specificity', 'npv' (negative predictive value), 'ppv',
-  ### 'wnpv' (weighted npv, an obscure measure), 'wppv',
-  ### 'fpr' (falso positive rate), 'fnr', 'fdr' (false discovery rate),
-  ### 'acc' (accuracy), 'f1', 'auc' (area under the ROC curve estimated
-  ### by interpolating the (0,0), (1-specificity, sensitivity) and 
-  ### (1, 1) points in the ROC space), 'gini' (the Gini index), and 'n'
-  ### (number of classified cases).
+  ##<< end
 },ex=function() {
   # example from https://en.wikipedia.org/w/index.php?title=Sensitivity_and_specificity&oldid=680316530
   x<-matrix(c(20,10,180,1820),2)
   print(x)
   perfInd(x)
+
+  # compute perormance over a vector of predicted and true classification:
+  print(perfInd(c(0,0,1,1,1), c(0,0,0,1,1)))
 })
