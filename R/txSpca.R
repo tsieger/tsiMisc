@@ -19,12 +19,12 @@ k = 3, ##<< number of dimensions of the result, defaults to 3 in order
 ## to be usable in 'plot3dProj'
 ... ##<< additional arguments to 'spca'
 ) {
-  s<-spca(x,y,retx=TRUE,...)
+  s<-spca(x,y,retx=FALSE,...)
 
   if (!is.null(k)) {
-    if (k>ncol(s$x)) {
-      warning(paste('\'k\' of',k,'greater than the dimensionality of the data',ncol(s$x)))
-      k<-ncol(s$x)
+    if (k>ncol(x)) {
+      warning(paste('\'k\' of',k,'greater than the dimensionality of the data',ncol(x)))
+      k<-ncol(x)
     }
   }
 
@@ -45,11 +45,13 @@ k = 3, ##<< number of dimensions of the result, defaults to 3 in order
     y<-y[,1:k,drop=FALSE]
     return(y)
   }
+  attr(tx,'params')<-s
 
+  return(tx)
   ### Transform function taking two arguments: a data matrix to
   ### transform, and logical determining whether the data are to be
-  ### centered, or not.
-  return(tx)
+  ### centered, or not. The parameters of the transform get returned in
+  ### the \code{params} attribute (see \code{\link{spca}}).
 },ex=function() {
   tx<-txSpca(iris[,1:4],iris$Species)
   plot(tx(iris[1:10,1:4])[,1:2])
@@ -60,4 +62,8 @@ k = 3, ##<< number of dimensions of the result, defaults to 3 in order
   plot(txSpca(iris[,1:4],iris$Species)(iris[,1:4])[,1:2],col=c('red','green','blue')[as.numeric(iris$Species)])
   plot(txPca(iris[,1:4])(iris[,1:4])[,1:2],col=c('red','green','blue')[as.numeric(iris$Species)])
   par(opar)
+
+  x<-iris[,1:4]
+  y<-iris$Species
+  plot3dProj(x, cls=y, tx=txSpca(x,y))
 })

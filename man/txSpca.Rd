@@ -21,7 +21,10 @@ to be usable in 'plot3dProj'}
   \item{\dots}{additional arguments to 'spca'}
 }
 
-
+\value{Transform function taking two arguments: a data matrix to
+transform, and logical determining whether the data are to be
+centered, or not. The parameters of the transform get returned in
+the \code{params} attribute (see \code{\link{spca}}).}
 
 \author{Tomas Sieger}
 
@@ -38,4 +41,8 @@ opar<-par(mfrow=c(1,2))
 plot(txSpca(iris[,1:4],iris$Species)(iris[,1:4])[,1:2],col=c('red','green','blue')[as.numeric(iris$Species)])
 plot(txPca(iris[,1:4])(iris[,1:4])[,1:2],col=c('red','green','blue')[as.numeric(iris$Species)])
 par(opar)
+
+x<-iris[,1:4]
+y<-iris$Species
+plot3dProj(x, cls=y, tx=txSpca(x,y))
 }
