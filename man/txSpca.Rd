@@ -42,6 +42,7 @@ plot(txSpca(iris[,1:4],iris$Species)(iris[,1:4])[,1:2],col=c('red','green','blue
 plot(txPca(iris[,1:4])(iris[,1:4])[,1:2],col=c('red','green','blue')[as.numeric(iris$Species)])
 par(opar)
 
+# a 3D example
 x<-iris[,1:4]
 y<-iris$Species
 plot3dProj(x, cls=y, tx=txSpca(x,y))
