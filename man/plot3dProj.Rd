@@ -5,8 +5,9 @@
 \usage{plot3dProj(x, col = NULL, cls = NULL, palette = c("black", "red", 
     "green", "blue"), size = 3, alpha = 1, scale = TRUE, tx = function(y, 
     center = TRUE) y - center * matrix(colMeans(x), nrow = nrow(y), 
-    ncol = ncol(x), byrow = TRUE), type = "3aw,sw", col.axes = "gray", 
-    axesExpansion = 1.1, annotate = FALSE, debug = FALSE)}
+    ncol = ncol(x), byrow = TRUE), k = ncol(x), dimToShow = NULL, 
+    type = "3aw,sw", col.axes = "gray", axesExpansion = 1.1, 
+    annotate = FALSE, debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
 features in columns. It must have at least 3 columns (dimensions).}
@@ -22,9 +23,22 @@ argument}
   \item{alpha}{alpha of points}
   \item{scale}{if TRUE, data get scaled to the range of '[-1, 1]'
 in all dimensions}
-  \item{tx}{transform
+  \item{tx}{Transform
 function used to transform data from the k-dimensional space of 'x'
-into 3D space to visualize}
+into 3D space to visualize. The function must accept two arguments:
+a data matrix to transform, and a logical called \code{center}
+specifying whether to center the data prior the transform. The
+function must return a 3-column transformed version of the input
+data matrix.}
+  \item{k}{if \code{tx} is one of \code{\link{txPca}} or
+\code{\link{txSpa}}, \code{k} can specify the number of dimensions
+to plot. The default is the number of dimensions of \code{x}, but
+smaller values are recommended for high-dimensional data in order to
+speed up plotting.}
+  \item{dimToShow}{if \code{tx} is user-supplied, \code{dimToShow}
+can specify which dimensions of \code{x} to plot. \code{dimToShow}
+can be a numeric vector consisting of dimensions to show, or a
+character vector of the names of dimensions to show.}
   \item{type}{
 }
   \item{col.axes}{color of axes in the 3D plot}
