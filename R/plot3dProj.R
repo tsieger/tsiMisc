@@ -89,7 +89,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         dimVisible<-colnames(x)%in%dimToShow
       }
       if (sum(dimVisible)<3) {
-        stop('\'dimToShow\' argument selects ',sum(dimVisible),' dimension(s), and we need at least 3 for a 3D plot')
+        stop('\'dimToShow\' argument selects ',sum(dimVisible),
+          ' dimension(s), and we need at least 3 for a 3D plot')
       }
     } else {
       if (!is.null(attr(tx,'params')) &&
@@ -102,7 +103,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         }
         dimVisible<-varExpl>=sort(varExpl,decreasing=TRUE)[k]
       } else {
-        stop('can\'t determine which dimensions to show: missing \'dimToShow\' argument and \'tx\' does not contain \'varExplained\' function')
+        stop('can\'t determine which dimensions to show: missing \'dimToShow\' ',
+          'argument and \'tx\' does not contain \'varExplained\' function')
       }
     }
   } else {
@@ -205,8 +207,12 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         v2[dimVisibleIdx[i]]<-.95
         v3[dimVisibleIdx[i]]<-1
         v4[dimVisibleIdx[i]]<-1.1
-        shade3d(cylinder3d(tx(axesExpansion*rbind(v0,v1,v2,v3),center=FALSE),radius=axes.radius,closed=-2),col=col.axes)#,emission=col.axes,specular=col.axes,alpha=1,shininess=0)
-        text3d(tx(axesExpansion*rbind(v4),center=FALSE),texts=colnames(x)[dimVisibleIdx[i]],col=col.axes)#,emission=col.axes,specular=col.axes,alpha=1,shinness=0)
+        shade3d(cylinder3d(tx(axesExpansion*rbind(v0,v1,v2,v3),center=FALSE),
+          radius=axes.radius,closed=-2),col=col.axes)
+          #,emission=col.axes,specular=col.axes,alpha=1,shininess=0)
+        text3d(tx(axesExpansion*rbind(v4),center=FALSE),
+          texts=colnames(x)[dimVisibleIdx[i]],col=col.axes)
+          #,emission=col.axes,specular=col.axes,alpha=1,shinness=0)
       }
     }
   }
@@ -214,7 +220,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   # plot wire frame
   plotWireFrame<-function(annotate=FALSE) {
     lines3d(wf,color='lightgray',alpha=.5)
-    #lines3d(wf,color='lightgray',emission='lightgray',specular='lightgray',ambient='lightgray',alpha=.5,shiness=50)
+    #lines3d(wf,color='lightgray',emission='lightgray',
+    #specular='lightgray',ambient='lightgray',alpha=.5,shiness=50)
 
     if (annotate) {
       # mark point (-1,-1,-1,...,-1)
@@ -241,7 +248,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       tmp.col<-rep(col,length=nrow(x))
       tmp.alpha<-rep(alpha,length=nrow(x))
       for (s in unique(size)) {
-        points3d(tx(x[tmp.size==s,],!scale),size=s,color=tmp.col[tmp.size==s],alpha=tmp.alpha[tmp.size==s])
+        points3d(tx(x[tmp.size==s,],!scale),size=s,
+          color=tmp.col[tmp.size==s],alpha=tmp.alpha[tmp.size==s])
       }
     }
   }
@@ -258,13 +266,17 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
           if (i2 %in% idx.convhull && sum(v1!=v2)==1) {
             for (i3 in (i2+1):nrow(vs)) {
               v3<-vs[i3,]
-              if (i3 %in% idx.convhull && sum(v1!=v2)==1 && sum(v1!=v3)==1 && sum(v2!=v3)==2) {
+              if (i3 %in% idx.convhull && sum(v1!=v2)==1 &&
+                sum(v1!=v3)==1 && sum(v2!=v3)==2) {
                 #cat(sprintf('%d %d %d\n',i1,i2,i3))
                 v4<-v2+v3-v1
                 i4<-which(apply(vs,1,function(x)all(v4==x)))
                 if (!i4 %in% idx.convhull) next
                 # order the vertices such that the face points towards inside
-                if (tcrossprod(vectorprod(tx(rbind(v1),center=FALSE),tx(rbind(v2),center=FALSE)),tx(rbind(v4),center=FALSE))<0) {
+                if (tcrossprod(vectorprod(
+                  tx(rbind(v1),center=FALSE),
+                  tx(rbind(v2),center=FALSE)),
+                  tx(rbind(v4),center=FALSE))<0) {
                   w1<-v1
                   w2<-v2
                   w4<-v4
@@ -280,15 +292,21 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
                 opar<-par(mar=c(6,5,4,2)+.1, ask=FALSE)
                 idx1<-which(w2-w1!=0)
                 idx2<-which(w3-w1!=0)
-                plot(x[,c(idx1,idx2)],pch=19,frame=F,col=col,cex.lab=3)#,xlim=c(-1,1),ylim=c(-1,1))
+                plot(x[,c(idx1,idx2)],pch=19,frame=F,col=col,cex.lab=3)
+                #,xlim=c(-1,1),ylim=c(-1,1))
                 #text(0,.5,paste(idx1,idx2),cex=8)
-                #text(0,-.5,paste(crossprod(vectorprod(v1,v2),v4)<0,paste(w2-w1,collapse=' '),paste(w3-w1,collapse=' '),sep=','),cex=3)
+                #text(0,-.5,paste(crossprod(vectorprod(v1,v2),v4)<0,
+                #  paste(w2-w1,collapse=' '),paste(w3-w1,collapse=' '),sep=','),cex=3)
                 par(opar)
                 dev.off()
                 # plot the texture
-                #rgl.quads(tx(rbind(w1,w2,w4,w3)),texture=textureFileName,alpha=.5,texcoord=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),lit=FALSE,front='fill',back='cull')
-                rgl.quads(tx(rbind(w1,w2,w4,w3),center=FALSE),texture=textureFileName,alpha=1,texcoords=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),
-                  lit=TRUE,shininess=100,front='fill',back='cull',ambient=gray(.5),specular='black')
+                #rgl.quads(tx(rbind(w1,w2,w4,w3)),texture=textureFileName,alpha=.5,
+                #  texcoord=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),lit=FALSE,front='fill',back='cull')
+                rgl.quads(tx(rbind(w1,w2,w4,w3),center=FALSE),
+                  texture=textureFileName,
+                  alpha=1,texcoords=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),
+                  lit=TRUE,shininess=100,front='fill',back='cull',
+                  ambient=gray(.5),specular='black')
               }
             }
           }
@@ -318,7 +336,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       subsceneTypes<-str_split(subsceneRowType,',')[[1]]
       maxRowSize<-max(maxRowSize,length(subsceneTypes))
     }
-    if (debug) cat(sprintf('opening %d x %d subscenes\n',length(subsceneRowTypes),maxRowSize))
+    if (debug) {
+      cat(sprintf('opening %d x %d subscenes\n',
+        length(subsceneRowTypes),maxRowSize))
+    }
     mfrow3d(length(subsceneRowTypes),maxRowSize,sharedMouse=T)
     firstSubscene<-TRUE
     for (subsceneRowType in subsceneRowTypes) {
