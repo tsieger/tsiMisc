@@ -247,7 +247,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       # mark point (-1,-1,-1,...,-1)
       v<-rep(.5,k0)
       v[dimVisibleIdx]<--1
-      points3d(tx(rbind(v,center=FALSE)),color='black',size=10)
+      points3d(tx(rbind(v),center=FALSE),color='black',size=10)
       # mark axes pointing away from (-1,-1,-1,...,-1,0,0,0)
       for (i in 1:k) {
         v<-rep(.5,k0)
