@@ -2,22 +2,28 @@
 \alias{plot3dProj}
 \title{Visualize multidimensional data in 3D and/or multiple 2D projections.}
 \description{TODO}
-\usage{plot3dProj(x, col = NULL, cls = NULL, size = 3, alpha = 1, palette = c("black", 
-    "red", "green", "blue"), main = NULL, scale = TRUE, tx = function(y, 
-    center = TRUE) y - center * matrix(colMeans(x), nrow = nrow(y), 
-    ncol = ncol(x), byrow = TRUE), k = ncol(x), dimToShow = NULL, 
+\usage{plot3dProj(x, col = NULL, cls = NULL, size = 3, alpha = 1, x2 = NULL, 
+    col2 = NULL, cls2 = NULL, size2 = 3, alpha2 = 1, palette = c("black", 
+        "red", "green", "blue"), main = NULL, scale = TRUE, tx = function(y, 
+        center = TRUE) y - center * matrix(colMeans(x), nrow = nrow(y), 
+        ncol = ncol(x), byrow = TRUE), k = ncol(x), dimToShow = NULL, 
     type = "3awm,sw", col.axes = "gray", axesExpansion = 1.1, 
     annotate = FALSE, debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
 features in columns. It must have at least 3 columns (dimensions).}
-  \item{col}{the
+  \item{col}{the color of individual instances
 color of individual instances, recycled if necessary}
   \item{cls}{class membership of individual instances. This serves
 the only purpose of alternative color specification: if
 'col' is NULL ...}
   \item{size}{size of points}
   \item{alpha}{alpha of points}
+  \item{x2}{another data frame or matrix to visualize.}
+  \item{col2}{the color of data in \code{x2}}
+  \item{cls2}{class membership of data in \code{x2}}
+  \item{size2}{size of points in \code{x2}}
+  \item{alpha2}{alpha of points in \code{x2}}
   \item{palette}{color palette to be
 used for individual classes specified in \code{cls}, see the
 \code{col} argument}

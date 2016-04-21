@@ -4,13 +4,18 @@ function # Visualize multidimensional data in 3D and/or multiple 2D projections.
 ## TODO
 (x, ##<< a data frame or matrix to visualize. Instances in rows,
 ## features in columns. It must have at least 3 columns (dimensions).
-col =  NULL, ##<< the
+col =  NULL, ##<< the color of individual instances
 ## color of individual instances, recycled if necessary
 cls = NULL, ##<< class membership of individual instances. This serves
 ## the only purpose of alternative color specification: if
 ## 'col' is NULL ...
 size = 3, ##<< size of points
 alpha = 1, ##<< alpha of points
+x2 = NULL, ##<< another data frame or matrix to visualize.
+col2 =  NULL, ##<< the color of data in \code{x2}
+cls2 = NULL, ##<< class membership of data in \code{x2}
+size2 = 3, ##<< size of points in \code{x2}
+alpha2 = 1, ##<< alpha of points in \code{x2}
 palette = c('black','red','green','blue'), ##<< color palette to be
 ## used for individual classes specified in \code{cls}, see the
 ## \code{col} argument
@@ -122,9 +127,23 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       col<-'black'
     }
   }
+  if (!is.null(x2)) {
+    if (is.null(col2) || length(col2)==0) {
+      if (!is.null(cls2) && !is.null(palette)) {
+        col2<-palette[cls2]
+      } else {
+        col2<-'black'
+      }
+    }
+  }
   
   if (scale) {
     x<-scaleToUnit(x,-1,1)
+    if (!is.null(x2)) {
+      scalingTx<-attr(x,'scaleToUnit:tx')
+      stopifnot(scalingTx!=NULL)
+      x2<-scalingTx(x2)
+    }
   }
 
   doPlotWireFrame<-stringr::str_detect(type,'w')
@@ -240,7 +259,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   }
 
   # plot 3D scatter plot of observations
-  plot3dScatter<-function() {
+  plot3dScatter<-function(x,size,col,alpha) {
     #spheres3d(tx(x),radius=radius,color=col,alpha=alpha)
     if (length(unique(size))==1) {
       points3d(tx(x,!scale),size=size,color=col,alpha=alpha)
@@ -365,7 +384,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
             switch(plotType,
               'a'=plotAxes(),
               'w'=plotWireFrame(),
-              '3'=plot3dScatter(),
+              '3'=plot3dScatter(x,size,col,alpha),
+              '4'=plot3dScatter(x2,size2,col2,alpha2),
               's'=plotScatters(),
               'm'=plotTitle(),
               'otherwise'=stop('unknown type "',plotType,'"'))
