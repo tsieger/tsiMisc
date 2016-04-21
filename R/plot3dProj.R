@@ -9,11 +9,12 @@ col =  NULL, ##<< the
 cls = NULL, ##<< class membership of individual instances. This serves
 ## the only purpose of alternative color specification: if
 ## 'col' is NULL ...
-palette = c('black','red','green','blue'), ##<< color palette to be
-## used for individual classes specified in 'cls', see the 'col'
-## argument
 size = 3, ##<< size of points
 alpha = 1, ##<< alpha of points
+palette = c('black','red','green','blue'), ##<< color palette to be
+## used for individual classes specified in \code{cls}, see the
+## \code{col} argument
+main = NULL, ##<< title
 scale = TRUE, ##<< if TRUE, data get scaled to the range of '[-1, 1]'
 ## in all dimensions
 tx = function(y,center=TRUE) y-center*matrix(colMeans(x),nrow=nrow(y),ncol=ncol(x),byrow=TRUE), ##<< Transform
@@ -32,7 +33,7 @@ dimToShow = NULL, ##<< if \code{tx} is user-supplied, \code{dimToShow}
 ## can specify which dimensions of \code{x} to plot. \code{dimToShow}
 ## can be a numeric vector consisting of dimensions to show, or a
 ## character vector of the names of dimensions to show.
-type = '3aw,sw', ##<<
+type = '3awm,sw', ##<<
 col.axes = 'gray', ##<< color of axes in the 3D plot
 axesExpansion = 1.1, ##<<
 annotate=FALSE,
@@ -316,6 +317,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     #unlink(textureFileName)
   }
 
+  plotTitle<-function() {
+    decorate3d(main=main,box=FALSE,axes=FALSE)
+  }
+
   #type = '3aw,sw', '3,s;a'
 
   scenes<-c()
@@ -362,6 +367,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
               'w'=plotWireFrame(),
               '3'=plot3dScatter(),
               's'=plotScatters(),
+              'm'=plotTitle(),
               'otherwise'=stop('unknown type "',plotType,'"'))
           }
         }
