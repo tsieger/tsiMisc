@@ -163,8 +163,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         if (signatureInConvhull[signature(b1)]&&signatureInConvhull[signature(b2)]) {
           v1<--1+2*b1
           v2<--1+2*b2
-          wireFrame[cnt+1,]<-tx(rbind(v1),center=FALSE)
-          wireFrame[cnt+2,]<-tx(rbind(v2),center=FALSE)
+          tmp<-rbind(v1,v2)
+          colnames(tmp)<-colnames(x)
+          wireFrame[cnt+1,]<-tx(tmp[1,,drop=FALSE],center=FALSE)
+          wireFrame[cnt+2,]<-tx(tmp[2,,drop=FALSE],center=FALSE)
           # reserve lines of NA's
           cnt<-cnt+3
           #lines3d(rbind(tx(rbind(v1)),tx(v2)),color=c('gray'))
@@ -200,6 +202,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     signature<-function(x) 1+crossprod(x==1,2^((length(x)-1):0))
     bSignatures<-apply(bs,1,signature)
     vs<--1+2*bs
+    colnames(vs)<-colnames(x)
     if (debug>1) .pn(vs)
     # find convex hull - only points on the convex hull will be visible
     idx.convhull<-unique(as.numeric(geometry::convhulln(tx(rbind(vs),center=FALSE))))
@@ -227,10 +230,12 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         v2[dimVisibleIdx[i]]<-.95
         v3[dimVisibleIdx[i]]<-1
         v4[dimVisibleIdx[i]]<-1.1
-        shade3d(cylinder3d(tx(axesExpansion*rbind(v0,v1,v2,v3),center=FALSE),
+        tmp<-rbind(v0,v1,v2,v3,v4)
+        colnames(tmp)<-colnames(x)
+        shade3d(cylinder3d(tx(axesExpansion*tmp[1:4,],center=FALSE),
           radius=axes.radius,closed=-2),col=col.axes)
           #,emission=col.axes,specular=col.axes,alpha=1,shininess=0)
-        text3d(tx(axesExpansion*rbind(v4),center=FALSE),
+        text3d(tx(axesExpansion*tmp[5,,drop=FALSE],center=FALSE),
           texts=colnames(x)[dimVisibleIdx[i]],col=col.axes)
           #,emission=col.axes,specular=col.axes,alpha=1,shinness=0)
       }
@@ -247,13 +252,17 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       # mark point (-1,-1,-1,...,-1)
       v<-rep(.5,k0)
       v[dimVisibleIdx]<--1
-      points3d(tx(rbind(v),center=FALSE),color='black',size=10)
+      tmp<-rbind(v)
+      colnames(tmp)<-colnames(x)
+      points3d(tx(tmp,center=FALSE),color='black',size=10)
       # mark axes pointing away from (-1,-1,-1,...,-1,0,0,0)
       for (i in 1:k) {
         v<-rep(.5,k0)
         v[dimVisibleIdx]<--1
         v[dimVisibleIdx[i]]<-1
-        text3d(tx(rbind(v),center=FALSE),texts=i)
+        tmp<-rbind(v)
+        colnames(tmp)<-colnames(x)
+        text3d(tx(tmp,center=FALSE),texts=i)
       }
     }
   }
@@ -293,10 +302,13 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
                 i4<-which(apply(vs,1,function(x)all(v4==x)))
                 if (!i4 %in% idx.convhull) next
                 # order the vertices such that the face points towards inside
+                tmp<-rbind(v1,v2,v4)
+                colnames(tmp)<-colnames(x)
+                tmp<-tx(tmp,center=FALSE)
                 if (tcrossprod(vectorprod(
-                  tx(rbind(v1),center=FALSE),
-                  tx(rbind(v2),center=FALSE)),
-                  tx(rbind(v4),center=FALSE))<0) {
+                  tmp[1,,drop=FALSE],
+                  tmp[2,,drop=FALSE]),
+                  tmp[3,,drop=FALSE])<0) {
                   w1<-v1
                   w2<-v2
                   w4<-v4
@@ -322,7 +334,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
                 # plot the texture
                 #rgl.quads(tx(rbind(w1,w2,w4,w3)),texture=textureFileName,alpha=.5,
                 #  texcoord=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),lit=FALSE,front='fill',back='cull')
-                rgl.quads(tx(rbind(w1,w2,w4,w3),center=FALSE),
+                tmp<-rbind(w1,w2,w4,w3)
+                colnames(tmp)<-colnames(x)
+                rgl.quads(tx(tmp,center=FALSE),
                   texture=textureFileName,
                   alpha=1,texcoords=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),
                   lit=TRUE,shininess=100,front='fill',back='cull',
