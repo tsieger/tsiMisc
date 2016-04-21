@@ -62,7 +62,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   if (debug) {
     .pn(Q)
   }
-  U<-eigen(Q)
+  U<-eigen(Q,symmetric=TRUE)
   if (debug) {
     .pn(U)
   }
