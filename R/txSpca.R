@@ -21,6 +21,11 @@ k = 3, ##<< number of dimensions of the result, defaults to 3 in order
 ) {
   s<-spca(x,y,retx=FALSE,...)
 
+  # add function taking \code{k}, the number of components, and
+  # returning the contribution of individual dimensions to the top
+  # \code{k} components
+  s$varExplained<-function(k) apply(s$vectors,1,function(x)crossprod(x[1:k]))
+
   if (!is.null(k)) {
     if (k>ncol(x)) {
       warning(paste('\'k\' of',k,'greater than the dimensionality of the data',ncol(x)))
@@ -52,6 +57,10 @@ k = 3, ##<< number of dimensions of the result, defaults to 3 in order
   ### transform, and a logical determining whether the data are to be
   ### centered, or not. The parameters of the transform get returned in
   ### the \code{params} attribute (see \code{\link{spca}}).
+  ### In addition, there is the \code{varExplained} function added to
+  ### the parameters, which takes \code{k}, the number of components,
+  ### and returns the contribution of individual dimensions to the top
+  ### \code{k} components.
 },ex=function() {
   tx<-txSpca(iris[,1:4],iris$Species)
   plot(tx(iris[1:10,1:4])[,1:2])
