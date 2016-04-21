@@ -16,9 +16,22 @@ size = 3, ##<< size of points
 alpha = 1, ##<< alpha of points
 scale = TRUE, ##<< if TRUE, data get scaled to the range of '[-1, 1]'
 ## in all dimensions
-tx = function(y,center=TRUE) y-center*matrix(colMeans(x),nrow=nrow(y),ncol=ncol(x),byrow=TRUE), ##<< transform
+tx = function(y,center=TRUE) y-center*matrix(colMeans(x),nrow=nrow(y),ncol=ncol(x),byrow=TRUE), ##<< Transform
 ## function used to transform data from the k-dimensional space of 'x'
-## into 3D space to visualize
+## into 3D space to visualize. The function must accept two arguments:
+## a data matrix to transform, and a logical called \code{center}
+## specifying whether to center the data prior the transform. The
+## function must return a 3-column transformed version of the input
+## data matrix.
+k = ncol(x), ##<< if \code{tx} is one of \code{\link{txPca}} or
+## \code{\link{txSpa}}, \code{k} can specify the number of dimensions
+## to plot. The default is the number of dimensions of \code{x}, but
+## smaller values are recommended for high-dimensional data in order to
+## speed up plotting.
+dimToShow = NULL, ##<< if \code{tx} is user-supplied, \code{dimToShow}
+## can specify which dimensions of \code{x} to plot. \code{dimToShow}
+## can be a numeric vector consisting of dimensions to show, or a
+## character vector of the names of dimensions to show.
 type = '3aw,sw', ##<<
 col.axes = 'gray', ##<< color of axes in the 3D plot
 axesExpansion = 1.1, ##<<
@@ -33,14 +46,71 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
   if (!is.matrix(x)) x<-as.matrix(x)
   if (!is.null(cls)) cls<-as.factor(cls)
-  k<-ncol(x)
-  
-  if (k<3) {
+
+  # check the \code{tx} argument
+  if (is.null(tx)) {
+    stop('need an \'tx\' argument')
+  }
+  if (length(formals(tx))!=2 || names(formals(tx))[2]!='center') {
+    stop('\'tx\' must take two arguments, and the second must be named \'center\'')
+  }
+  tmp<-tx(x[1,,drop=FALSE],center=TRUE)
+  if (!inherits(tmp,'matrix')) {
+    stop('invalid \'tx\' argument: it does not produce a matrix ',
+      '(maybe you forgot to add \'drop=FALSE\' when indexing your matrix')
+  }
+
+  # dimensionality of \code{x}
+  k0<-ncol(x)
+  if (k0<3 || k<3) {
     stop('we need at least 3D data')
   }
-  if (ncol(tx(x[1,,drop=FALSE]))!=3) {
+  if (ncol(tx(x[1,,drop=FALSE],center=TRUE))!=3) {
     stop('\'tx\' must result in 3D data')
   }
+
+  if (debug) .pn(k0)
+  if (debug) .pn(k)
+
+  if (k<k0) {
+    # user requested to draw fewer than \code{k0} dimensions
+    # determine which dimensions to omit
+    if (!is.null(dimToShow)) {
+      if (debug) {
+        cat('guessing which dimensions to show from \'dimToShow\' argument')
+        .pn(dimToShow)
+      }
+      if (is.numeric(dimToShow)) {
+        if (!all(dimToShow %in% 1:k0) || anyDuplicated(dimToShow)) {
+          stop('invalid \'dimToShow\' argument, expected unique numbers in the range of 1 to',k0)
+        }
+        dimVisible<-(1:k0)%in%dimToShow
+      } else {
+        dimVisible<-colnames(x)%in%dimToShow
+      }
+      if (sum(dimVisible)<3) {
+        stop('\'dimToShow\' argument selects ',sum(dimVisible),' dimension(s), and we need at least 3 for a 3D plot')
+      }
+    } else {
+      if (!is.null(attr(tx,'params')) &&
+        !is.null(attr(tx,'params')$varExplained) &&
+        is.function(attr(tx,'params')$varExplained)) {
+        varExpl<-attr(tx,'params')$varExplained(k)
+        if (debug) {
+          cat('deviance in first k dimensions:\n')
+          .pn(varExpl)
+        }
+        dimVisible<-varExpl>=sort(varExpl,decreasing=TRUE)[k]
+      } else {
+        stop('can\'t determine which dimensions to show: missing \'dimToShow\' argument and \'tx\' does not contain \'varExplained\' function')
+      }
+    }
+  } else {
+    dimVisible<-rep(TRUE,k0)
+  }
+  if (debug) .pn(dimVisible)
+  dimVisibleIdx<-which(dimVisible)
+  if (debug) .pn(dimVisibleIdx)
 
   if (is.null(col) || length(col)==0) {
     if (!is.null(cls) && !is.null(palette)) {
@@ -51,7 +121,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   }
   
   if (scale) {
-    x<-scaleToUnit(x)
+    x<-scaleToUnit(x,-1,1)
   }
 
   doPlotWireFrame<-stringr::str_detect(type,'w')
@@ -61,13 +131,13 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     wireFrame<-matrix(NA,nrow=3*k*2^(k-1),ncol=3)
     bs<-e1071::bincombinations(k-1)
     cnt<-0
-    for (i in 1:k) {
-      b1<-rep(0,k)
+    for (i in 1:k) {      # 'i' iterates over 'dimVisibleIdx'
+      b1<-rep(.5,k0) # .5 for invisible dimensions
       b2<-b1
-      b1[i]<-0
-      b2[i]<-1
+      b1[dimVisibleIdx[i]]<-0
+      b2[dimVisibleIdx[i]]<-1
       for (bi in 1:nrow(bs)) {
-        b1[-i]<-b2[-i]<-bs[bi,]
+        b1[dimVisibleIdx[-i]]<-b2[dimVisibleIdx[-i]]<-bs[bi,]
         if (signatureInConvhull[signature(b1)]&&signatureInConvhull[signature(b2)]) {
           v1<--1+2*b1
           v2<--1+2*b2
@@ -86,21 +156,40 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
   if (doPlotScatters || doPlotWireFrame) {
     # compute coordinates of all vertices of the individual axes in the untransformed space
-    bs<-e1071::bincombinations(k)
-    bs<-bs[,ncol(bs):1]
-    stopifnot(bs[1,-1]==bs[2,-1]) # each pair of vertices must differ just in the first coordinate
-    signature<-function(x) 1+crossprod(x,2^((length(x)-1):0))
+    bs0<-e1071::bincombinations(k)
+    bs0<-bs0[,ncol(bs0):1]
+    # make sure we got what we expected,
+    # each pair of vertices must differ just in the first coordinate
+    stopifnot(bs0[1,-1]==bs0[2,-1])
+    # supplement dimensions to show with zeros for hidden dimensions
+    # (insert zero columns at invisible dimensions)
+    bs<-matrix(.5,nrow(bs0),k0)
+    i<-1
+    for (i0 in 1:k0) {
+      if (dimVisible[i0]) {
+        bs[,i0]<-bs0[,i]
+        i<-i+1
+      }
+    }
+    # Now we consider a 0/1 vector as a binary number, and
+    # this way characterize the vector by a single number.
+    # (Note we convert .5 (standing for hidden dims) to 0 when
+    # computing the signature.)
+    signature<-function(x) 1+crossprod(x==1,2^((length(x)-1):0))
     bSignatures<-apply(bs,1,signature)
     vs<--1+2*bs
+    if (debug>1) .pn(vs)
     # find convex hull - only points on the convex hull will be visible
     idx.convhull<-unique(as.numeric(geometry::convhulln(tx(rbind(vs),center=FALSE))))
     #sort(idx.convhull)
     idxInConvhull<-1:nrow(vs)%in%idx.convhull
-    signatureInConvhull<-rep(FALSE,nrow(vs))
+    signatureInConvhull<-rep(FALSE,2^k0)
     signatureInConvhull[bSignatures[idxInConvhull]]<-TRUE
+    if (debug>1) .pn(signatureInConvhull)
   }
   if (doPlotWireFrame) {
     wf<-buildWireFrame()
+    if (debug>1) .pn(wf)
   }
 
 
@@ -108,16 +197,16 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   ## plotting functions
   plotAxes<-function() {
     if (!is.null(colnames(x))) {
-      v0<-rep(0,k)
+      v0<-rep(0,k0)
       axes.radius<-c(.01,.01,.03,0)
       for (i in 1:k) {
-        v1<-v2<-v3<-v4<-rep(0,k)
-        v1[i]<-.95
-        v2[i]<-.95
-        v3[i]<-1
-        v4[i]<-1.1
+        v1<-v2<-v3<-v4<-rep(0,k0)
+        v1[dimVisibleIdx[i]]<-.95
+        v2[dimVisibleIdx[i]]<-.95
+        v3[dimVisibleIdx[i]]<-1
+        v4[dimVisibleIdx[i]]<-1.1
         shade3d(cylinder3d(tx(axesExpansion*rbind(v0,v1,v2,v3),center=FALSE),radius=axes.radius,closed=-2),col=col.axes)#,emission=col.axes,specular=col.axes,alpha=1,shininess=0)
-        text3d(tx(axesExpansion*rbind(v4),center=FALSE),texts=colnames(x)[i],col=col.axes)#,emission=col.axes,specular=col.axes,alpha=1,shinness=0)
+        text3d(tx(axesExpansion*rbind(v4),center=FALSE),texts=colnames(x)[dimVisibleIdx[i]],col=col.axes)#,emission=col.axes,specular=col.axes,alpha=1,shinness=0)
       }
     }
   }
@@ -129,12 +218,15 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
     if (annotate) {
       # mark point (-1,-1,-1,...,-1)
-      points3d(tx(rbind(rep(-1,k),center=FALSE)),color='black',size=10)
-      # mark axes pointing away from (-1,-1,-1,...,-1)
+      v<-rep(.5,k0)
+      v[dimVisibleIdx]<--1
+      points3d(tx(rbind(v,center=FALSE)),color='black',size=10)
+      # mark axes pointing away from (-1,-1,-1,...,-1,0,0,0)
       for (i in 1:k) {
-        v1<-rep(-1,k)
-        v1[i]<-1
-        text3d(tx(rbind(v1),center=FALSE),texts=i)
+        v<-rep(.5,k0)
+        v[dimVisibleIdx]<--1
+        v[dimVisibleIdx[i]]<-1
+        text3d(tx(rbind(v),center=FALSE),texts=i)
       }
     }
   }
