@@ -93,7 +93,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       stop('can\'t specify both the \'dimToShow\' and \'k\' arguments')
     }
     if (debug) {
-      cat('guessing which dimensions to show from \'dimToShow\' argument')
+      cat('guessing which dimensions to show from \'dimToShow\' argument\n')
       .pn(dimToShow)
     }
     if (is.numeric(dimToShow)) {
