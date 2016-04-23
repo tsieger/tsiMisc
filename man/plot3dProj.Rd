@@ -6,8 +6,8 @@
     col2 = NULL, cls2 = NULL, size2 = 3, alpha2 = 1, palette = c("black", 
         "red", "green", "blue"), main = NULL, scale = TRUE, tx = function(y, 
         center = TRUE) y - center * matrix(colMeans(x), nrow = nrow(y), 
-        ncol = ncol(x), byrow = TRUE), k = ncol(x), dimToShow = NULL, 
-    type = "3awm,sw", col.axes = "gray", axesExpansion = 1.1, 
+        ncol = ncol(x), byrow = TRUE), dimToShow = 1:ncol(x), 
+    k = NULL, type = "3awm,sw", col.axes = "gray", axesExpansion = 1.1, 
     annotate = FALSE, debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
@@ -37,15 +37,25 @@ a data matrix to transform, and a logical called \code{center}
 specifying whether to center the data prior the transform. The
 function must return a 3-column transformed version of the input
 data matrix.}
+  \item{dimToShow}{a numeric or character vector of dimensions
+of \code{x} to plot. If numeric, it indexes the dimensions to show.
+If character, it lists  the names of dimensions to show.
+The default it to plot all dimensions. \code{dimToShow} takes
+precedence over \code{k}, another way to specify the dimensions to
+show.}
   \item{k}{if \code{tx} is one of \code{\link{txPca}} or
-\code{\link{txSpa}}, \code{k} can specify the number of dimensions
-to plot. The default is the number of dimensions of \code{x}, but
-smaller values are recommended for high-dimensional data in order to
-speed up plotting.}
-  \item{dimToShow}{if \code{tx} is user-supplied, \code{dimToShow}
-can specify which dimensions of \code{x} to plot. \code{dimToShow}
-can be a numeric vector consisting of dimensions to show, or a
-character vector of the names of dimensions to show.}
+\code{\link{txSpa}}, \code{k} can specify the number of (most
+"significant") dimensions to plot. The default is the number of
+dimensions of \code{x}, but smaller values are recommended for
+high-dimensional data in order to speed up plotting. Internally, the
+\code{k} dimensions selected to be shown are those which contribute
+the most to the top \code{k} components (principal or supervised
+principal components) of the data. To determine this contribution,
+the code calls the \code{varExplained} stored as a name member of a
+list attached to the \code{tx} argument as the \code{params}
+attribute. This function takes \code{k}, the number of top
+components, and returns the contribution of individual dimensions to
+these components.}
   \item{type}{
 }
   \item{col.axes}{color of axes in the 3D plot}

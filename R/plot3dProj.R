@@ -29,15 +29,25 @@ tx = function(y,center=TRUE) y-center*matrix(colMeans(x),nrow=nrow(y),ncol=ncol(
 ## specifying whether to center the data prior the transform. The
 ## function must return a 3-column transformed version of the input
 ## data matrix.
-k = ncol(x), ##<< if \code{tx} is one of \code{\link{txPca}} or
-## \code{\link{txSpa}}, \code{k} can specify the number of dimensions
-## to plot. The default is the number of dimensions of \code{x}, but
-## smaller values are recommended for high-dimensional data in order to
-## speed up plotting.
-dimToShow = NULL, ##<< if \code{tx} is user-supplied, \code{dimToShow}
-## can specify which dimensions of \code{x} to plot. \code{dimToShow}
-## can be a numeric vector consisting of dimensions to show, or a
-## character vector of the names of dimensions to show.
+dimToShow = 1:ncol(x), ##<< a numeric or character vector of dimensions
+## of \code{x} to plot. If numeric, it indexes the dimensions to show.
+## If character, it lists  the names of dimensions to show.
+## The default it to plot all dimensions. \code{dimToShow} takes
+## precedence over \code{k}, another way to specify the dimensions to
+## show.
+k = NULL, ##<< if \code{tx} is one of \code{\link{txPca}} or
+## \code{\link{txSpa}}, \code{k} can specify the number of (most
+## "significant") dimensions to plot. The default is the number of
+## dimensions of \code{x}, but smaller values are recommended for
+## high-dimensional data in order to speed up plotting. Internally, the
+## \code{k} dimensions selected to be shown are those which contribute
+## the most to the top \code{k} components (principal or supervised
+## principal components) of the data. To determine this contribution,
+## the code calls the \code{varExplained} stored as a name member of a
+## list attached to the \code{tx} argument as the \code{params}
+## attribute. This function takes \code{k}, the number of top
+## components, and returns the contribution of individual dimensions to
+## these components.
 type = '3awm,sw', ##<<
 col.axes = 'gray', ##<< color of axes in the 3D plot
 axesExpansion = 1.1, ##<<
@@ -68,52 +78,58 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
   # dimensionality of \code{x}
   k0<-ncol(x)
-  if (k0<3 || k<3) {
+  if (debug) .pn(k0)
+  if (debug) .pn(k)
+
+  if (k0<3) {
     stop('we need at least 3D data')
   }
   if (ncol(tx(x[1,,drop=FALSE],center=TRUE))!=3) {
     stop('\'tx\' must result in 3D data')
   }
 
-  if (debug) .pn(k0)
-  if (debug) .pn(k)
-
-  if (k<k0) {
+  if (!is.null(dimToShow)) {
+    if (!is.null(k)) {
+      stop('can\'t specify both the \'dimToShow\' and \'k\' arguments')
+    }
+    if (debug) {
+      cat('guessing which dimensions to show from \'dimToShow\' argument')
+      .pn(dimToShow)
+    }
+    if (is.numeric(dimToShow)) {
+      if (!all(dimToShow %in% 1:k0) || anyDuplicated(dimToShow)) {
+        stop('invalid \'dimToShow\' argument, expected unique numbers in the range of 1 to',k0)
+      }
+      dimVisible<-(1:k0)%in%dimToShow
+    } else {
+      dimVisible<-colnames(x)%in%dimToShow
+    }
+    k<-sum(dimVisible)
+    if (k<3) {
+      stop('\'dimToShow\' argument selects ',sum(dimVisible),
+        ' dimension(s), and we need at least 3 for a 3D plot')
+    }
+  } else if (!is.null(k) && k<k0) {
+    if (k<3) {
+      stop('invalid \'k\' argument, must be >= 3')
+    }
     # user requested to draw fewer than \code{k0} dimensions
     # determine which dimensions to omit
-    if (!is.null(dimToShow)) {
+    if (!is.null(attr(tx,'params')) &&
+      !is.null(attr(tx,'params')$varExplained) &&
+      is.function(attr(tx,'params')$varExplained)) {
+      varExpl<-attr(tx,'params')$varExplained(k)
       if (debug) {
-        cat('guessing which dimensions to show from \'dimToShow\' argument')
-        .pn(dimToShow)
+        cat('deviance in first k dimensions:\n')
+        .pn(varExpl)
       }
-      if (is.numeric(dimToShow)) {
-        if (!all(dimToShow %in% 1:k0) || anyDuplicated(dimToShow)) {
-          stop('invalid \'dimToShow\' argument, expected unique numbers in the range of 1 to',k0)
-        }
-        dimVisible<-(1:k0)%in%dimToShow
-      } else {
-        dimVisible<-colnames(x)%in%dimToShow
-      }
-      if (sum(dimVisible)<3) {
-        stop('\'dimToShow\' argument selects ',sum(dimVisible),
-          ' dimension(s), and we need at least 3 for a 3D plot')
-      }
+      dimVisible<-varExpl>=sort(varExpl,decreasing=TRUE)[k]
     } else {
-      if (!is.null(attr(tx,'params')) &&
-        !is.null(attr(tx,'params')$varExplained) &&
-        is.function(attr(tx,'params')$varExplained)) {
-        varExpl<-attr(tx,'params')$varExplained(k)
-        if (debug) {
-          cat('deviance in first k dimensions:\n')
-          .pn(varExpl)
-        }
-        dimVisible<-varExpl>=sort(varExpl,decreasing=TRUE)[k]
-      } else {
-        stop('can\'t determine which dimensions to show: missing \'dimToShow\' ',
-          'argument and \'tx\' does not contain \'varExplained\' function')
-      }
+      stop('can\'t determine which dimensions to show: ',
+        '\'tx\' does not contain \'varExplained\' function')
     }
   } else {
+    k<-k0
     dimVisible<-rep(TRUE,k0)
   }
   if (debug) .pn(dimVisible)
