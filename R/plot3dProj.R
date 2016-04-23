@@ -287,7 +287,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   plot3dScatter<-function(x,size,col,alpha) {
     #spheres3d(tx(x),radius=radius,color=col,alpha=alpha)
     if (length(unique(size))==1) {
-      points3d(tx(x,!scale),size=size,color=col,alpha=alpha)
+      points3d(tx(x,!scale),size=size[1],color=col,alpha=alpha)
     } else {
       tmp.size<-rep(size,length=nrow(x))
       tmp.col<-rep(col,length=nrow(x))
