@@ -34,7 +34,12 @@ negativeFirst = TRUE, ##<< if TRUE, negative cases come first in both
 debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 ## greater than 1, verbose debugs will be produced.
 ) {
-  if (!is.null(y)) {
+  if (!is.table(x)) {
+    if (is.null(y)) {
+      stop('\'x\' argmument not a table, expected \'y\'')
+    }
+
+    # determine names of 'x' and 'y'
     xname<-deparse(substitute(x))
     if (xname!=make.names(xname)) {
       xname<-'x'
@@ -45,9 +50,51 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     }
     if (debug) .pn(xname)
     if (debug) .pn(yname)
+
+    # if any of 'x' and 'y' has no two distinct values, fix it
+    if (length(table(x))!=2 || length(table(y))!=2) {
+      if (length(table(x))>2) {
+        stop('\'x\' contains more than two distinct values')
+      }
+      if (length(table(y))>2) {
+        stop('\'y\' contains more than two distinct values')
+      }
+      if (length(table(x))==1 && length(table(y))==1) {
+        x<-as.factor(x)
+        # create a surrogate level
+        levels(x)<-c(levels(x),paste0(levels(x),'2'))
+        y<-as.factor(y)
+        levels(y)<-c(levels(y),paste0(levels(y),'2'))
+      } else if (length(table(x))==1) {
+        y<-as.factor(y)
+        if (levels(as.factor(x))%in%levels(y)) {
+          # take the levels of 'y' for 'x'
+          x<-factor(x,levels=levels(y))
+        } else {
+          x<-as.factor(x)
+          # create a surrogate level
+          levels(x)<-c(levels(x),paste0(levels(x),'2'))
+        }
+      } else {
+        x<-as.factor(x)
+        if (levels(as.factor(y))%in%levels(x)) {
+          # take the levels of 'x' for 'y'
+          y<-factor(y,levels=levels(x))
+        } else {
+          x<-as.factor(x)
+          # create a surrogate level
+          levels(x)<-c(levels(x),paste0(levels(x),'2'))
+        }
+      }
+    }
+
     txt<-paste0('table(',xname,'=x,',yname,'=y)')
     if (debug) .pn(txt)
     x<-eval(parse(text=txt))
+  } else {
+    if (length(dim(x))!=2 || !all(dim(x)==c(2,2))) {
+      stop('2x2 table expected')
+    }
   }
   if (!negativeFirst) {
     x<-flip(x,1:2)
