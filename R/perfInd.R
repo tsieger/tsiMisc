@@ -52,6 +52,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   if (!negativeFirst) {
     x<-flip(x,1:2)
   }
+
+  # convert to double to avoid integer ovewflow
+  storage.mode(x)<-'double'
+
   sensitivity<-x[1,1]/sum(x[,1])
   specificity<-x[2,2]/sum(x[,2])
   ppv<-        x[1,1]/sum(x[1,])
