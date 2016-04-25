@@ -38,6 +38,9 @@ greater than 1, verbose debugs will be produced.}
 \item{fdr}{false discovery rate}
 \item{accuracy}{accuracy}
 \item{f1}{F1 score}
+\item{mcc}{Matthews correlation coefficient}
+\item{informedness}{informedness}
+\item{markedness}{markedness}
 \item{auc}{AUC (area under the ROC curve estimated by
 interpolating the (0,0), (1-specificity, sensitivity) and 
 (1, 1) points in the ROC space)}

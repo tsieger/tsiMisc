@@ -135,6 +135,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     fdr=fdr, ##<< false discovery rate
     accuracy=acc, ##<< accuracy
     f1=f1, ##<< F1 score
+    mcc=mcc, ##<< Matthews correlation coefficient
+    informedness=informedness, ##<< informedness
+    markedness=markedness, ##<< markedness
     auc=auc, ##<< AUC (area under the ROC curve estimated by
     ## interpolating the (0,0), (1-specificity, sensitivity) and 
     ## (1, 1) points in the ROC space)
