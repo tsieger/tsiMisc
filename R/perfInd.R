@@ -133,7 +133,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     fpr=fpr, ##<< false positive rate
     fnr=fnr, ##<< false negative rate
     fdr=fdr, ##<< false discovery rate
-    acc=acc, ##<< accuracy
+    accuracy=acc, ##<< accuracy
     f1=f1, ##<< F1 score
     auc=auc, ##<< AUC (area under the ROC curve estimated by
     ## interpolating the (0,0), (1-specificity, sensitivity) and 

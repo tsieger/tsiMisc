@@ -7,8 +7,8 @@
         "red", "green", "blue"), main = NULL, scale = TRUE, tx = function(y, 
         center = TRUE) y - center * matrix(colMeans(x), nrow = nrow(y), 
         ncol = ncol(x), byrow = TRUE), dimToShow = 1:ncol(x), 
-    k = NULL, type = "3awm,sw", col.axes = "gray", axesExpansion = 1.1, 
-    annotate = FALSE, debug = FALSE)}
+    k = NULL, type = "3awm,sw", devices = rgl.cur(), col.axes = "gray", 
+    axesExpansion = 1.1, annotate = FALSE, debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
 features in columns. It must have at least 3 columns (dimensions).}
@@ -58,6 +58,11 @@ components, and returns the contribution of individual dimensions to
 these components.}
   \item{type}{
 }
+  \item{devices}{a list of devices to plot at, defaulting to
+the current active device, if any. If \code{devices} is NULL, empty,
+contains invalid devices, or does not hold enough devices to plot
+all the scenes requested by the \code{type} argument, new scene(s)
+will be created for such scenes.}
   \item{col.axes}{color of axes in the 3D plot}
   \item{axesExpansion}{
 }
@@ -67,7 +72,7 @@ these components.}
 greater than 1, verbose debugs will be produced.}
 }
 
-
+\value{a list of rgl device IDs holding the scenes plotted}
 
 \author{Tomas Sieger}
 

@@ -36,7 +36,7 @@ greater than 1, verbose debugs will be produced.}
 \item{fpr}{false positive rate}
 \item{fnr}{false negative rate}
 \item{fdr}{false discovery rate}
-\item{acc}{accuracy}
+\item{accuracy}{accuracy}
 \item{f1}{F1 score}
 \item{auc}{AUC (area under the ROC curve estimated by
 interpolating the (0,0), (1-specificity, sensitivity) and 
