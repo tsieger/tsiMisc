@@ -300,7 +300,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       tmp.col<-rep(col,length=nrow(x))
       tmp.alpha<-rep(alpha,length=nrow(x))
       for (s in unique(size)) {
-        points3d(tx(x[tmp.size==s,],!scale),size=s,
+        points3d(tx(x[tmp.size==s,,drop=FALSE],!scale),size=s,
           color=tmp.col[tmp.size==s],alpha=tmp.alpha[tmp.size==s])
       }
     }
