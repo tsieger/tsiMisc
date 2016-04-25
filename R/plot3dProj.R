@@ -65,6 +65,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   #library(geometry) # convhulln
   #library(tsiMisc) # vectorprod
 
+  if (debug) .pn(devices)
+
   if (!is.matrix(x)) x<-as.matrix(x)
   if (!is.null(cls)) cls<-as.factor(cls)
 
@@ -384,7 +386,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     sceneType<-sceneTypes[i]
 
     if (debug) cat(sprintf('plotting scene "%s"\n',sceneType));
-    if (length(devices)>=i && !devices[i]%in%rgl.dev.list()) {
+    if (length(devices)>=i && devices[i]%in%rgl.dev.list()) {
       if (debug) cat(sprintf('reusing device %d for scene %d\n',devices[i],i));
       rgl.set(devices[i])#,silent=TRUE
       rgl.clear(type='shapes')
