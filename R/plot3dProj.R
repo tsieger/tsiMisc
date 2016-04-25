@@ -49,6 +49,11 @@ k = NULL, ##<< if \code{tx} is one of \code{\link{txPca}} or
 ## components, and returns the contribution of individual dimensions to
 ## these components.
 type = '3awm,sw', ##<<
+devices = rgl.cur(), ##<< a list of devices to plot at, defaulting to
+## the current active device, if any. If \code{devices} is NULL, empty,
+## contains invalid devices, or does not hold enough devices to plot
+## all the scenes requested by the \code{type} argument, new scene(s)
+## will be created for such scenes.
 col.axes = 'gray', ##<< color of axes in the 3D plot
 axesExpansion = 1.1, ##<<
 annotate=FALSE,
@@ -379,8 +384,16 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     sceneType<-sceneTypes[i]
 
     if (debug) cat(sprintf('plotting scene "%s"\n',sceneType));
-    #if (i>1 || rgl.cur()==0) {
-      scenes<-c(scenes,open3d())
+    if (length(devices)>=i && !devices[i]%in%rgl.dev.list()) {
+      if (debug) cat(sprintf('reusing device %d for scene %d\n',devices[i],i));
+      rgl.set(devices[i])#,silent=TRUE
+      rgl.clear(type='shapes')
+      rgl.clear(type='userviewpoint')
+    } else {
+      if (debug) cat('opening a new device\n')
+      open3d()
+    }
+    scenes<-c(scenes,rgl.cur())
     #}
     # split to rows of subscenes
     subsceneRowTypes<-str_split(sceneType,';')[[1]]
@@ -425,6 +438,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     }
   }
   rglSetMouseCbTrackball(scenes)
+
+  return(scenes)
+  ### a list of rgl device IDs holding the scenes plotted
 
 },ex=function() {
   if (interactive() && require(rgl)) {
