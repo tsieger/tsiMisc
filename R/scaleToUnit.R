@@ -24,11 +24,15 @@ singular = TRUE ##<< if TRUE, constant columns will be transformed to
   }
   txImpl<-function(x,minX,maxX,min,max) {
     if (!is.matrix(x)) x<-as.matrix(x)
-    y<-apply(x,1,function(x) pmin(max,pmax(min,(max-min)*(x-minX)/(maxX-minX)+min)))
-    if (ncol(x)>1) {
-      y<-t(y)
+    if (nrow(x)>0) {
+      y<-apply(x,1,function(x) pmin(max,pmax(min,(max-min)*(x-minX)/(maxX-minX)+min)))
+      if (ncol(x)>1) {
+        y<-t(y)
+      }
+      dimnames(y)<-dimnames(x)
+    } else {
+      y<-x
     }
-    dimnames(y)<-dimnames(x)
     return(y)
   }
   tx<-function(x) txImpl(x,minX,maxX,min,max)
