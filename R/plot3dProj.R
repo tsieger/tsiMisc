@@ -427,7 +427,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     #unlink(textureFileName)
   }
 
-  plotTitle<-function() {
+  plotTitle<-function(main) {
     decorate3d(main=main,box=FALSE,axes=FALSE)
   }
 
