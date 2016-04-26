@@ -8,7 +8,7 @@
     alpha3 = 1, main3 = NULL, palette = c("black", "red", "green", 
         "blue"), scale = TRUE, tx = function(y, center = TRUE) y - 
         center * matrix(colMeans(x), nrow = nrow(y), ncol = ncol(x), 
-            byrow = TRUE), dimToShow = 1:ncol(x), k = NULL, type = "tawm,sw", 
+            byrow = TRUE), dimToShow = NULL, k = NULL, type = "tawm,sw", 
     widths = 1, heights = 1, devices = rgl.cur(), col.axes = "gray", 
     axesExpansion = 1.1, annotate = FALSE, debug = FALSE)}
 \arguments{
