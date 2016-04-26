@@ -130,15 +130,15 @@ level = .95 ##<< confidence level
     Petal.Width = mean(Petal.Width)))
   plot(Sepal.Length, Sepal.Width)
   plot(lmi2, fit = TRUE, lty = 1, col='red')
-  plot(lmi2, cia = TRUE, band = TRUE, border = NA, col = alpha('red',.3))
-  plot(lmi2, cif = TRUE, band = TRUE, border = NA, col = alpha('blue',.2))
-  plot(lmi2, pi = TRUE, band = TRUE, border = NA, col = alpha('black',.2))
+  plot(lmi2, cia = TRUE, band = TRUE, border = NA, col = scales::alpha('red',.3))
+  plot(lmi2, cif = TRUE, band = TRUE, border = NA, col = scales::alpha('blue',.2))
+  plot(lmi2, pi = TRUE, band = TRUE, border = NA, col = scales::alpha('black',.2))
   legend('bottomright', bg='white',
     c('fitted regression line',
     'confidence interval around the regression line',
     'confidence interval for the regression line',
     'prediction int.'),
-    col = c('red', alpha('red',.3), alpha('blue',.2), alpha('black',.1)),
+    col = c('red', scales::alpha('red',.3), scales::alpha('blue',.2), scales::alpha('black',.1)),
     lty = 1, lwd = c(1, 15, 15, 15))
 
   detach(iris.setosa)
