@@ -49,6 +49,10 @@ k = NULL, ##<< if \code{tx} is one of \code{\link{txPca}} or
 ## components, and returns the contribution of individual dimensions to
 ## these components.
 type = '3awm,sw', ##<<
+widths = 1, ##<< relative widths of columns in a multi-subscene scene,
+## see \code{\link[rgl]{layout3d}}
+heights = 1, ##<< relative heights of rows in a multi-subscene scene,
+## see \code{\link[rgl]{layout3d}}
 devices = rgl.cur(), ##<< a list of devices to plot at, defaulting to
 ## the current active device, if any. If \code{devices} is NULL, empty,
 ## contains invalid devices, or does not hold enough devices to plot
@@ -409,7 +413,22 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       cat(sprintf('opening %d x %d subscenes\n',
         length(subsceneRowTypes),maxRowSize))
     }
-    mfrow3d(length(subsceneRowTypes),maxRowSize,sharedMouse=T)
+    if (debug) {
+      .pn(length(subsceneRowTypes))
+      .pn(maxRowSize)
+    }
+    m<-matrix(1:(maxRowSize*length(subsceneRowTypes)),
+      length(subsceneRowTypes),maxRowSize,byrow=TRUE)
+    widths<-rep(widths[1:min(length(widths),maxRowSize)],
+      length.out=maxRowSize)
+    heights<-rep(heights[1:min(length(heights),length(subsceneRowTypes))],
+      length.out=length(subsceneRowTypes))
+    layout3d(mat=m,widths=widths,heights=heights,sharedMouse=TRUE)
+    if (debug) {
+      .pn(m)
+      .pn(widths)
+      .pn(heights)
+    }
     firstSubscene<-TRUE
     for (subsceneRowType in subsceneRowTypes) {
       if (debug) cat(sprintf(' plotting subscene row "%s"\n',subsceneRowType));
