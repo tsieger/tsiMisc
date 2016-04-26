@@ -7,8 +7,9 @@
         "red", "green", "blue"), main = NULL, scale = TRUE, tx = function(y, 
         center = TRUE) y - center * matrix(colMeans(x), nrow = nrow(y), 
         ncol = ncol(x), byrow = TRUE), dimToShow = 1:ncol(x), 
-    k = NULL, type = "3awm,sw", devices = rgl.cur(), col.axes = "gray", 
-    axesExpansion = 1.1, annotate = FALSE, debug = FALSE)}
+    k = NULL, type = "3awm,sw", widths = 1, heights = 1, devices = rgl.cur(), 
+    col.axes = "gray", axesExpansion = 1.1, annotate = FALSE, 
+    debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
 features in columns. It must have at least 3 columns (dimensions).}
@@ -58,6 +59,10 @@ components, and returns the contribution of individual dimensions to
 these components.}
   \item{type}{
 }
+  \item{widths}{relative widths of columns in a multi-subscene scene,
+see \code{\link[rgl]{layout3d}}}
+  \item{heights}{relative heights of rows in a multi-subscene scene,
+see \code{\link[rgl]{layout3d}}}
   \item{devices}{a list of devices to plot at, defaulting to
 the current active device, if any. If \code{devices} is NULL, empty,
 contains invalid devices, or does not hold enough devices to plot
