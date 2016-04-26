@@ -401,7 +401,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
                 opar<-par(mar=c(6,5,4,2)+.1, ask=FALSE)
                 idx1<-which(w2-w1!=0)
                 idx2<-which(w3-w1!=0)
-                plot(x[,c(idx1,idx2)],pch=19,frame=F,col=col,cex.lab=3)
+                plot(x[,c(idx1,idx2)],pch=19,frame=F,col=alpha(col,alpha),cex=size/3,cex.lab=3)
                 #,xlim=c(-1,1),ylim=c(-1,1))
                 #text(0,.5,paste(idx1,idx2),cex=8)
                 #text(0,-.5,paste(crossprod(vectorprod(v1,v2),v4)<0,
@@ -428,7 +428,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   }
 
   plotTitle<-function(main) {
-    decorate3d(main=main,box=FALSE,axes=FALSE)
+    decorate3d(main=main,box=FALSE,axes=FALSE,xlab=NULL,ylab=NULL,zlab=NULL)
   }
 
   if (debug) .pn(devices)
@@ -546,13 +546,23 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
 },ex=function() {
   if (interactive() && require(rgl)) {
+    # plot a 3D scatter plot and 2D scatter plots as
+    # faces of a parallelepipedon:
     plot3dProj(iris[,1:3], cls=iris$Species)
+
+    # Plot two data sets: all Iris flowers (on the left side) and
+    # Setosa and Versicolor species only on the right side.
+    # In both cases, produce 2D and 3D spatter plots.
+    # For the second data set, alter the size and the alpha value
+    # of Setosa flowers. Also, plot small axes under the scatter plots.
     plot3dProj(x = iris[, 1:3], cls = iris$Species,
       main = 'Setosa, Versicolor and Virginica',
       x2 = iris[iris$Species != 'virginica', 1:3],
       cls2 = iris$Species[iris$Species != 'virginica'],
+      alpha2 = c(1,.3)[1+(iris$Species[iris$Species != 'virginica']=='setosa')],
+      size2 = c(3,10)[1+(iris$Species[iris$Species != 'virginica']=='setosa')],
       main2 = 'Setosa and Versicolor',
-      ty='sw,tw,t2,s2;,a',heights=c(2,1),debug=1)
+      ty='sw,twm,t2m2,s2;,a',heights=c(2,1))
   }
 
 # TODO: unify/propagate scaling done in plot3dProj here ?!
