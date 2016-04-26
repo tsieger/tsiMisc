@@ -321,9 +321,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
   # plot wire frame
   plotWireFrame<-function(annotate=FALSE) {
-    rgl.linestrips(wf,color='lightgray',alpha=.5)
-    # or lines3d(wf,color='lightgray',emission='lightgray',
+    #rgl.linestrips(wf,color='lightgray',alpha=.5)
+    lines3d(wf,color='lightgray',alpha=.5)
     # the latter causes problems with writeWebGL in rgl v.0.95.1367
+    #lines3d(wf,color='lightgray',emission='lightgray',
     #specular='lightgray',ambient='lightgray',alpha=.5,shiness=50)
 
     if (annotate) {
