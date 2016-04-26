@@ -103,6 +103,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   #library(tsiMisc) # vectorprod
 
   if (!is.matrix(x)) x<-as.matrix(x)
+  if (nrow(x)==0) stop('\'x\' is empty')
   if (!is.null(cls)) cls<-as.factor(cls)
 
   # check the \code{tx} argument
@@ -186,6 +187,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     }
   }
   if (!is.null(x2)) {
+    if (!is.matrix(x2)) x2<-as.matrix(x2)
+    if (nrow(x2)==0) stop('\'x2\' is empty')
     if (is.null(col2) || length(col2)==0) {
       if (!is.null(cls2) && !is.null(palette)) {
         col2<-palette[cls2]
@@ -195,6 +198,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     }
   }
   if (!is.null(x3)) {
+    if (!is.matrix(x3)) x3<-as.matrix(x3)
+    if (nrow(x3)==0) stop('\'x3\' is empty')
     if (is.null(col3) || length(col3)==0) {
       if (!is.null(cls3) && !is.null(palette)) {
         col3<-palette[cls3]
