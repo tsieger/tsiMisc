@@ -59,5 +59,6 @@ export(vectorLength)
 export(vectorprod)
 
 importFrom(coin, spearman_test, pvalue, statistic)
+importFrom(scales, alpha)
 import(rgl)
 import(stringr)
