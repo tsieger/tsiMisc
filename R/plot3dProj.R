@@ -36,7 +36,7 @@ tx = function(y,center=TRUE) y-center*matrix(colMeans(x),nrow=nrow(y),ncol=ncol(
 ## specifying whether to center the data prior the transform. The
 ## function must return a 3-column transformed version of the input
 ## data matrix.
-dimToShow = 1:ncol(x), ##<< a numeric or character vector of dimensions
+dimToShow = NULL, ##<< a numeric or character vector of dimensions
 ## of \code{x} to plot. If numeric, it indexes the dimensions to show.
 ## If character, it lists  the names of dimensions to show.
 ## The default it to plot all dimensions. \code{dimToShow} takes
