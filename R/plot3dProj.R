@@ -102,8 +102,6 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   #library(geometry) # convhulln
   #library(tsiMisc) # vectorprod
 
-  if (debug) .pn(devices)
-
   if (!is.matrix(x)) x<-as.matrix(x)
   if (!is.null(cls)) cls<-as.factor(cls)
 
@@ -428,8 +426,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     decorate3d(main=main,box=FALSE,axes=FALSE)
   }
 
-  #type = '3aw,sw', '3,s;a'
-
+  if (debug) .pn(devices)
   scenes<-c()
   # split to scenes
   sceneTypes<-str_split(type,'\\|')[[1]]
