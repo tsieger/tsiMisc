@@ -2,14 +2,15 @@
 \alias{plot3dProj}
 \title{Visualize multidimensional data in 3D and/or multiple 2D projections.}
 \description{TODO}
-\usage{plot3dProj(x, col = NULL, cls = NULL, size = 3, alpha = 1, x2 = NULL, 
-    col2 = NULL, cls2 = NULL, size2 = 3, alpha2 = 1, palette = c("black", 
-        "red", "green", "blue"), main = NULL, scale = TRUE, tx = function(y, 
-        center = TRUE) y - center * matrix(colMeans(x), nrow = nrow(y), 
-        ncol = ncol(x), byrow = TRUE), dimToShow = 1:ncol(x), 
-    k = NULL, type = "3awm,sw", widths = 1, heights = 1, devices = rgl.cur(), 
-    col.axes = "gray", axesExpansion = 1.1, annotate = FALSE, 
-    debug = FALSE)}
+\usage{plot3dProj(x, col = NULL, cls = NULL, size = 3, alpha = 1, main = NULL, 
+    x2 = NULL, col2 = NULL, cls2 = NULL, size2 = 3, alpha2 = 1, 
+    main2 = NULL, x3 = NULL, col3 = NULL, cls3 = NULL, size3 = 3, 
+    alpha3 = 1, main3 = NULL, palette = c("black", "red", "green", 
+        "blue"), scale = TRUE, tx = function(y, center = TRUE) y - 
+        center * matrix(colMeans(x), nrow = nrow(y), ncol = ncol(x), 
+            byrow = TRUE), dimToShow = 1:ncol(x), k = NULL, type = "tawm,sw", 
+    widths = 1, heights = 1, devices = rgl.cur(), col.axes = "gray", 
+    axesExpansion = 1.1, annotate = FALSE, debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
 features in columns. It must have at least 3 columns (dimensions).}
@@ -20,15 +21,22 @@ the only purpose of alternative color specification: if
 'col' is NULL ...}
   \item{size}{size of points}
   \item{alpha}{alpha of points}
+  \item{main}{title of \code{x}}
   \item{x2}{another data frame or matrix to visualize.}
   \item{col2}{the color of data in \code{x2}}
   \item{cls2}{class membership of data in \code{x2}}
   \item{size2}{size of points in \code{x2}}
   \item{alpha2}{alpha of points in \code{x2}}
+  \item{main2}{title of \code{x2}}
+  \item{x3}{another data frame or matrix to visualize.}
+  \item{col3}{the color of data in \code{x3}}
+  \item{cls3}{class membership of data in \code{x3}}
+  \item{size3}{size of points in \code{x3}}
+  \item{alpha3}{alpha of points in \code{x3}}
+  \item{main3}{title of \code{x3}}
   \item{palette}{color palette to be
 used for individual classes specified in \code{cls}, see the
 \code{col} argument}
-  \item{main}{title}
   \item{scale}{if TRUE, data get scaled to the range of '[-1, 1]'
 in all dimensions}
   \item{tx}{Transform
@@ -57,8 +65,33 @@ list attached to the \code{tx} argument as the \code{params}
 attribute. This function takes \code{k}, the number of top
 components, and returns the contribution of individual dimensions to
 these components.}
-  \item{type}{
+  \item{type}{a character string defining the type of plots to
+produce. There general syntax is \code{<row>;<row>;...;<row>},
+where each \code{<row>} stands for \code{<plot>,<plot>,...,<plot>},
+and each \code{plot} is a concatenation of one or more plot types to
+be combined in the specific plot. The plot types are:
+\itemize{
+\item \code{t} - \strong{t}hree-dimensional scatter plot
+\item \code{s} - parallelepipedon having 2D \strong{s}catter plots
+on its faces
+\item \code{w} - \strong{w}ire frame defining the feature space
+(the wireframe collides with the edges of the 
+parallelepipedon plotted by \code{s})
+\item \code{a} - \strong{a}xes of the feature space
+\item \code{m} - \strong{m}ain (title) of data
 }
+Each of \code{t}, \code{s}, and \code{m} can be followed by a number
+referring to a specific data (i.e. \code{x}, \code{x2}, or
+\code{x3}). By default, when no number follows the plot type, the
+\code{x} is assumed.
+For example: \code{tawm,sw} defines two subscenes to be plotted in
+one row next to each other. The first plot type \code{tawm} defines
+a \strong{t}hree dimensional scatter plot annotated with
+\strong{a}xes and enriched with a \strong{w}ire frame and the
+\strong{m}ain (title).
+The second plot type \code{sw} defines a parallelepipedon having
+\strong{s}catter plots on its faces, and enriched with a
+\strong{w}ire frame.}
   \item{widths}{relative widths of columns in a multi-subscene scene,
 see \code{\link[rgl]{layout3d}}}
   \item{heights}{relative heights of rows in a multi-subscene scene,
@@ -87,6 +120,12 @@ greater than 1, verbose debugs will be produced.}
 \examples{
   if (interactive() && require(rgl)) {
     plot3dProj(iris[,1:3], cls=iris$Species)
+    plot3dProj(x = iris[, 1:3], cls = iris$Species,
+      main = 'Setosa, Versicolor and Virginica',
+      x2 = iris[iris$Species != 'virginica', 1:3],
+      cls2 = iris$Species[iris$Species != 'virginica'],
+      main2 = 'Setosa and Versicolor',
+      ty='sw,tw,t2,s2;,a',heights=c(2,1),debug=1)
   }
 
 # TODO: unify/propagate scaling done in plot3dProj here ?!

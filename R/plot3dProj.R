@@ -11,15 +11,22 @@ cls = NULL, ##<< class membership of individual instances. This serves
 ## 'col' is NULL ...
 size = 3, ##<< size of points
 alpha = 1, ##<< alpha of points
+main = NULL, ##<< title of \code{x}
 x2 = NULL, ##<< another data frame or matrix to visualize.
 col2 =  NULL, ##<< the color of data in \code{x2}
 cls2 = NULL, ##<< class membership of data in \code{x2}
 size2 = 3, ##<< size of points in \code{x2}
 alpha2 = 1, ##<< alpha of points in \code{x2}
+main2 = NULL, ##<< title of \code{x2}
+x3 = NULL, ##<< another data frame or matrix to visualize.
+col3 =  NULL, ##<< the color of data in \code{x3}
+cls3 = NULL, ##<< class membership of data in \code{x3}
+size3 = 3, ##<< size of points in \code{x3}
+alpha3 = 1, ##<< alpha of points in \code{x3}
+main3 = NULL, ##<< title of \code{x3}
 palette = c('black','red','green','blue'), ##<< color palette to be
 ## used for individual classes specified in \code{cls}, see the
 ## \code{col} argument
-main = NULL, ##<< title
 scale = TRUE, ##<< if TRUE, data get scaled to the range of '[-1, 1]'
 ## in all dimensions
 tx = function(y,center=TRUE) y-center*matrix(colMeans(x),nrow=nrow(y),ncol=ncol(x),byrow=TRUE), ##<< Transform
@@ -48,7 +55,33 @@ k = NULL, ##<< if \code{tx} is one of \code{\link{txPca}} or
 ## attribute. This function takes \code{k}, the number of top
 ## components, and returns the contribution of individual dimensions to
 ## these components.
-type = '3awm,sw', ##<<
+type = 'tawm,sw', ##<< a character string defining the type of plots to
+## produce. There general syntax is \code{<row>;<row>;...;<row>},
+## where each \code{<row>} stands for \code{<plot>,<plot>,...,<plot>},
+## and each \code{plot} is a concatenation of one or more plot types to
+## be combined in the specific plot. The plot types are:
+## \itemize{
+##   \item \code{t} - \strong{t}hree-dimensional scatter plot
+##   \item \code{s} - parallelepipedon having 2D \strong{s}catter plots
+##             on its faces
+##   \item \code{w} - \strong{w}ire frame defining the feature space
+##             (the wireframe collides with the edges of the 
+##             parallelepipedon plotted by \code{s})
+##   \item \code{a} - \strong{a}xes of the feature space
+##   \item \code{m} - \strong{m}ain (title) of data
+##  }
+## Each of \code{t}, \code{s}, and \code{m} can be followed by a number
+## referring to a specific data (i.e. \code{x}, \code{x2}, or
+## \code{x3}). By default, when no number follows the plot type, the
+## \code{x} is assumed.
+## For example: \code{tawm,sw} defines two subscenes to be plotted in
+## one row next to each other. The first plot type \code{tawm} defines
+## a \strong{t}hree dimensional scatter plot annotated with
+## \strong{a}xes and enriched with a \strong{w}ire frame and the
+## \strong{m}ain (title).
+## The second plot type \code{sw} defines a parallelepipedon having
+## \strong{s}catter plots on its faces, and enriched with a
+## \strong{w}ire frame.
 widths = 1, ##<< relative widths of columns in a multi-subscene scene,
 ## see \code{\link[rgl]{layout3d}}
 heights = 1, ##<< relative heights of rows in a multi-subscene scene,
@@ -163,13 +196,27 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       }
     }
   }
-  
+  if (!is.null(x3)) {
+    if (is.null(col3) || length(col3)==0) {
+      if (!is.null(cls3) && !is.null(palette)) {
+        col3<-palette[cls3]
+      } else {
+        col3<-'black'
+      }
+    }
+  }
+
   if (scale) {
     x<-scaleToUnit(x,-1,1)
     if (!is.null(x2)) {
       scalingTx<-attr(x,'scaleToUnit:tx')
       stopifnot(scalingTx!=NULL)
       x2<-scalingTx(x2)
+    }
+    if (!is.null(x3)) {
+      scalingTx<-attr(x,'scaleToUnit:tx')
+      stopifnot(scalingTx!=NULL)
+      x3<-scalingTx(x3)
     }
   }
 
@@ -312,7 +359,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
   # plot a projection of k-dimensional parallelepipedon having scatter
   # plots on its faces
-  plotScatters<-function() {
+  plotScatters<-function(x,size,col,alpha) {
     textureFileName<-tempfile('texture',fileext='.png')
     for (i1 in 1:(nrow(vs)-2)) {
       if (i1 %in% idx.convhull) {
@@ -442,16 +489,48 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
           next3d(reuse=FALSE)
         }
         plotTypes<-str_split(subsceneType,'')[[1]]
-        for (plotType in plotTypes) {
+        plotTypeIdx<-1
+        while (plotTypeIdx<=str_length(subsceneType)) {
+          plotType<-plotTypes[plotTypeIdx]
+          plotTypeIdx<-plotTypeIdx+1
+          # is there a numer following the plotType?
+          if (plotTypeIdx<=str_length(subsceneType) &&
+            regexpr('[1-3]',plotTypes[plotTypeIdx])!=-1) {
+              xi<-as.integer(plotTypes[plotTypeIdx])
+              plotTypeIdx<-plotTypeIdx+1
+              switch(xi,
+                , # no need to test 'x', as it must always be present
+                if (is.null(x2)) {
+                  stop(paste0('unspecified \'x2\' data referred to from subscene \'',
+                    subsceneType,'\''))
+                },
+                if (is.null(x3)) {
+                  stop(paste0('unspecified \'x3\' data referred to from subscene \'',
+                    subsceneType,'\''))
+                },
+                stop(paste0('invalid data referred to from plotTypes \'',
+                    plotTypes,'\''))
+              )
+          } else {
+            xi<-1
+          }
           if (debug) cat(sprintf('    seen plotType "%s"\n',plotType));
           if (length(plotType)>0) {
             switch(plotType,
               'a'=plotAxes(),
               'w'=plotWireFrame(),
-              '3'=plot3dScatter(x,size,col,alpha),
-              '4'=plot3dScatter(x2,size2,col2,alpha2),
-              's'=plotScatters(),
-              'm'=plotTitle(),
+              't'=switch(xi,
+                plot3dScatter(x,size,col,alpha),
+                plot3dScatter(x2,size2,col2,alpha2),
+                plot3dScatter(x3,size3,col3,alpha3)),
+              's'=switch(xi,
+                plotScatters(x,size,col,alpha),
+                plotScatters(x2,size2,col2,alpha2),
+                plotScatters(x3,size3,col3,alpha3)),
+              'm'=switch(xi,
+                plotTitle(main),
+                plotTitle(main2),
+                plotTitle(main3)),
               'otherwise'=stop('unknown type "',plotType,'"'))
           }
         }
@@ -466,6 +545,12 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 },ex=function() {
   if (interactive() && require(rgl)) {
     plot3dProj(iris[,1:3], cls=iris$Species)
+    plot3dProj(x = iris[, 1:3], cls = iris$Species,
+      main = 'Setosa, Versicolor and Virginica',
+      x2 = iris[iris$Species != 'virginica', 1:3],
+      cls2 = iris$Species[iris$Species != 'virginica'],
+      main2 = 'Setosa and Versicolor',
+      ty='sw,tw,t2,s2;,a',heights=c(2,1),debug=1)
   }
 
 # TODO: unify/propagate scaling done in plot3dProj here ?!
