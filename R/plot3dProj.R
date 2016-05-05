@@ -105,13 +105,17 @@ annotateWireFrame = FALSE, ##<< if \code{TRUE}, the wire frame produced
 ## \code{(-1,-1,...,-1)} and numbers 1...\code{k} at the extremes of
 ## the individual \code{k} dimensions.
 ellipses = list(list(center=rep(0,ncol(x)), x=diag(rep(1,ncol(x))), col='gray', alpha=.2)), ##<< a
-## list of lists defining ellipses to be plotted by the \code{'e'} type. TODO
+## list or a list of lists defining ellipses to be plotted by the
+## \code{'e'} type. TODO
 boxes = list(list(center=rep(0,ncol(x)), scale=rep(0,ncol(x)), col='gray', alpha=.2)), ##<< a
-## list of lists defining boxes to be plotted by the \code{'b'} type. TODO
+## list or a list of lists defining boxes to be plotted by the
+## \code{'b'} type. TODO
 planes = list(list(a=1, b=0, c=0, d=0, col='gray', alpha=.2)), ##<< a
-## list of lists defining planes to be plotted by the \code{'p'} type. TODO
+## list or a list of lists defining planes to be plotted by the
+## \code{'p'} type. TODO
 texts = list(list(x=0, y=0, z=0, text = 'text', col = 'gray', alpha = .2)), ##<< a
-## list of lists defining texts to be plotted by the \code{'t'} type. TODO
+## list or a list of lists defining texts to be plotted by the
+## \code{'t'} type. TODO
 debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 ## greater than 1, verbose debugs will be produced.
 ) {
@@ -132,6 +136,21 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   if (!inherits(x1Txed,'matrix')) {
     stop('invalid \'tx\' argument: it does not produce a matrix ',
       '(maybe you forgot to add \'drop=FALSE\' when indexing your matrix')
+  }
+
+
+  # consolidate decorative arguments
+  if (is.list(boxes) && length(boxes)>0 && !is.list(boxes[[1]])) {
+    boxes<-list(boxes)
+  }
+  if (is.list(ellipses) && length(ellipses)>0 && !is.list(ellipses[[1]])) {
+    ellipses<-list(ellipses)
+  }
+  if (is.list(planes) && length(planes)>0 && !is.list(planes[[1]])) {
+    planes<-list(planes)
+  }
+  if (is.list(texts) && length(texts)>0 && !is.list(texts[[1]])) {
+    texts<-list(texts)
   }
 
   # dimensionality of \code{x}
@@ -711,13 +730,14 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     plot3dProj(iris[,1:3], col=c('red','green','blue')[as.numeric(iris$Species)],
       type='sdpbet', # scatter plot with decoration, a plane, a box,
                      # elippses and a text
-      ellipse=list(list(cov(iris.setosa),center=colMeans(iris.setosa),col='red',alpha=.1),
+      ellipse=list(
+        list(cov(iris.setosa),center=colMeans(iris.setosa),col='red',alpha=.1),
         list(cov(iris.versicolor),center=colMeans(iris.versicolor),col='green',alpha=.1),
         list(cov(iris.virginica),center=colMeans(iris.virginica),col='blue',alpha=.1)),
-      box=list(list(center=colMeans(iris[,1:3]),scale=c(.3,.3,.3),col='black',alpha=.2)),
-    planes=list(list(0,0,1,-2.5,col='yellow',alpha=.2)),
-    texts=list(list(colMeans(iris[,1:3]),text='center',col='black')),
-    devices=NULL)
+      box=list(center=colMeans(iris[,1:3]),scale=c(.3,.3,.3),col='black',alpha=.2),
+      planes=list(0,0,1,-2.5,col='yellow',alpha=.2),
+      texts=list(colMeans(iris[,1:3]),text='center',col='black'),
+      devices=NULL)
 
     # Plot two data sets: all Iris flowers (on the left side) and
     # Setosa and Versicolor species only (on the right side).
