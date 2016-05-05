@@ -29,13 +29,10 @@ palette = c('black','red','green','blue'), ##<< color palette to be
 ## \code{col} argument
 scale = TRUE, ##<< if TRUE, data get scaled to the range of '[-1, 1]'
 ## in all dimensions
-tx = function(y,center=TRUE) y-center*matrix(colMeans(x),nrow=nrow(y),ncol=ncol(x),byrow=TRUE), ##<< Transform
-## function used to transform data from the k-dimensional space of 'x'
-## into 3D space to visualize. The function must accept two arguments:
-## a data matrix to transform, and a logical called \code{center}
-## specifying whether to center the data prior the transform. The
-## function must return a 3-column transformed version of the input
-## data matrix.
+tx = function(y) y, ##<< Transform function used to transform data from
+## the k-dimensional space of \code{x} into 3D space to visualize.
+## The function takes a data matrix to transform, and is expected to
+## return a 3-column transformed version of the input data matrix.
 dimToShow = NULL, ##<< a numeric or character vector of dimensions
 ## of \code{x} to plot. If numeric, it indexes the dimensions to show.
 ## If character, it lists  the names of dimensions to show.
@@ -93,7 +90,7 @@ devices = rgl.cur(), ##<< a list of devices to plot at, defaulting to
 ## will be created for such scenes.
 col.axes = 'gray', ##<< color of axes in the 3D plot
 axesExpansion = 1.1, ##<<
-annotate=FALSE,
+annotate = FALSE,
 debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 ## greater than 1, verbose debugs will be produced.
 ) {
@@ -110,11 +107,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   if (is.null(tx)) {
     stop('need an \'tx\' argument')
   }
-  if (length(formals(tx))!=2 || names(formals(tx))[2]!='center') {
-    stop('\'tx\' must take two arguments, and the second must be named \'center\'')
-  }
-  tmp<-tx(x[1,,drop=FALSE],center=TRUE)
-  if (!inherits(tmp,'matrix')) {
+  x1Txed<-tx(x[1,,drop=FALSE])
+  if (!inherits(x1Txed,'matrix')) {
     stop('invalid \'tx\' argument: it does not produce a matrix ',
       '(maybe you forgot to add \'drop=FALSE\' when indexing your matrix')
   }
@@ -127,9 +121,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   if (k0<3) {
     stop('we need at least 3D data')
   }
-  if (ncol(tx(x[1,,drop=FALSE],center=TRUE))!=3) {
+  if (ncol(x1Txed)!=3) {
     stop('\'tx\' must result in 3D data')
   }
+  xTxed<-tx(x)
 
   if (!is.null(dimToShow)) {
     if (!is.null(k)) {
@@ -209,19 +204,13 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     }
   }
 
-  if (scale) {
-    x<-scaleToUnit(x,-1,1)
-    if (!is.null(x2)) {
-      scalingTx<-attr(x,'scaleToUnit:tx')
-      stopifnot(scalingTx!=NULL)
-      x2<-scalingTx(x2)
-    }
-    if (!is.null(x3)) {
-      scalingTx<-attr(x,'scaleToUnit:tx')
-      stopifnot(scalingTx!=NULL)
-      x3<-scalingTx(x3)
-    }
-  }
+  xScaled<-scaleToUnit(x,-1,1)
+  scalingTx<-attr(xScaled,'tx')
+  scalingTxInv<-attr(xScaled,'txInv')
+  scalingInvFactor<-max(scalingTxInv(to.matrix(rep(1,k0)))-scalingTxInv(to.matrix(rep(0,k0))))
+  if (debug>1) .pn(scalingInvFactor)
+  if (debug>1) .pn(scalingTxInv(rbind(c(-1,-1,-1))))
+  if (debug>1) .pn(scalingTxInv(rbind(c(1,1,1))))
 
   doPlotWireFrame<-stringr::str_detect(type,'w')
   doPlotScatters<-stringr::str_detect(type,'s')
@@ -242,8 +231,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
           v2<--1+2*b2
           tmp<-rbind(v1,v2)
           colnames(tmp)<-colnames(x)
-          wireFrame[cnt+1,]<-tx(tmp[1,,drop=FALSE],center=FALSE)
-          wireFrame[cnt+2,]<-tx(tmp[2,,drop=FALSE],center=FALSE)
+          wireFrame[cnt+1,]<-tmp[1,,drop=FALSE]
+          wireFrame[cnt+2,]<-tmp[2,,drop=FALSE]
           # reserve lines of NA's
           cnt<-cnt+3
           #lines3d(rbind(tx(rbind(v1)),tx(v2)),color=c('gray'))
@@ -251,7 +240,15 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         #lines3d(rbind(tx(v1),tx(rbind(v2))),color=c('gray','blue')[(in.convhull(v1)&in.convhull(v2))+1])
       }
     }
+    if (debug>2) .pn(wireFrame)
     wireFrame<-wireFrame[1:cnt,]
+    # transform from the -1...1 in k-dim space to
+    # the k-dim feature space of 'x'
+    wireFrame<-scalingTxInv(wireFrame[1:cnt,])
+    if (debug>2) .pn(wireFrame)
+    # transform the k-dim feature space of 'x' to 3D
+    wireFrame<-tx(wireFrame)
+    if (debug>2) .pn(wireFrame)
     return(wireFrame)
   }
 
@@ -281,8 +278,15 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     vs<--1+2*bs
     colnames(vs)<-colnames(x)
     if (debug>1) .pn(vs)
+    # convert from the range -1...1 (in k-dim space) to
+    # the k-dim feature space of 'x'
+    vsTxed<-scalingTxInv(rbind(vs))
+    # convert from the k-dim feature space of 'x' to 3D
+    vsTxed<-tx(vsTxed)
+    # convert from the range -1...1 (in k-dim space) to 3D space
+    vsUnitaryTxed<-tx(vs)
     # find convex hull - only points on the convex hull will be visible
-    idx.convhull<-unique(as.numeric(geometry::convhulln(tx(rbind(vs),center=FALSE))))
+    idx.convhull<-unique(as.numeric(geometry::convhulln(vsTxed)))
     #sort(idx.convhull)
     idxInConvhull<-1:nrow(vs)%in%idx.convhull
     signatureInConvhull<-rep(FALSE,2^k0)
@@ -300,19 +304,21 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   plotAxes<-function() {
     if (!is.null(colnames(x))) {
       v0<-rep(0,k0)
-      axes.radius<-c(.01,.01,.03,0)
+      axes.radius<-scalingInvFactor*c(.01,.01,.03,0)
       for (i in 1:k) {
         v1<-v2<-v3<-v4<-rep(0,k0)
-        v1[dimVisibleIdx[i]]<-.95
-        v2[dimVisibleIdx[i]]<-.95
-        v3[dimVisibleIdx[i]]<-1
-        v4[dimVisibleIdx[i]]<-1.1
+        v1[dimVisibleIdx[i]]<-.85
+        v2[dimVisibleIdx[i]]<-.85
+        v3[dimVisibleIdx[i]]<-.9
+        v4[dimVisibleIdx[i]]<-1
         tmp<-rbind(v0,v1,v2,v3,v4)
         colnames(tmp)<-colnames(x)
-        shade3d(cylinder3d(tx(axesExpansion*tmp[1:4,],center=FALSE),
+        tmp<-axesExpansion*tmp
+        tmp<-tx(scalingTxInv(tmp))
+        shade3d(cylinder3d(tmp[1:4,],
           radius=axes.radius,closed=-2),col=col.axes)
           #,emission=col.axes,specular=col.axes,alpha=1,shininess=0)
-        text3d(tx(axesExpansion*tmp[5,,drop=FALSE],center=FALSE),
+        text3d(tmp[5,,drop=FALSE],
           texts=colnames(x)[dimVisibleIdx[i]],col=col.axes)
           #,emission=col.axes,specular=col.axes,alpha=1,shinness=0)
       }
@@ -333,7 +339,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       v[dimVisibleIdx]<--1
       tmp<-rbind(v)
       colnames(tmp)<-colnames(x)
-      points3d(tx(tmp,center=FALSE),color='black',size=10)
+      tmp<-tx(scalingTxInv(tmp))
+      points3d(tmp,color='black',size=10)
       # mark axes pointing away from (-1,-1,-1,...,-1,0,0,0)
       for (i in 1:k) {
         v<-rep(.5,k0)
@@ -341,7 +348,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         v[dimVisibleIdx[i]]<-1
         tmp<-rbind(v)
         colnames(tmp)<-colnames(x)
-        text3d(tx(tmp,center=FALSE),texts=i)
+        tmp<-tx(scalingTxInv(tmp))
+        text3d(tmp,texts=i)
       }
     }
   }
@@ -350,13 +358,13 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   plot3dScatter<-function(x,size,col,alpha) {
     #spheres3d(tx(x),radius=radius,color=col,alpha=alpha)
     if (length(unique(size))==1) {
-      points3d(tx(x,!scale),size=size[1],color=col,alpha=alpha)
+      points3d(xTxed,size=size[1],color=col,alpha=alpha)
     } else {
       tmp.size<-rep(size,length=nrow(x))
       tmp.col<-rep(col,length=nrow(x))
       tmp.alpha<-rep(alpha,length=nrow(x))
       for (s in unique(size)) {
-        points3d(tx(x[tmp.size==s,,drop=FALSE],!scale),size=s,
+        points3d(xTxed[tmp.size==s,,drop=FALSE],size=s,
           color=tmp.col[tmp.size==s],alpha=tmp.alpha[tmp.size==s])
       }
     }
@@ -380,23 +388,25 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
                 v4<-v2+v3-v1
                 i4<-which(apply(vs,1,function(x)all(v4==x)))
                 if (!i4 %in% idx.convhull) next
+                # now take vectors in the 3D transformed space
+                v1txed<-vsTxed[i1,,drop=FALSE]
+                v2txed<-vsTxed[i2,,drop=FALSE]
+                v3txed<-vsTxed[i3,,drop=FALSE]
+                v4txed<-vsTxed[i4,,drop=FALSE]
                 # order the vertices such that the face points towards inside
-                tmp<-rbind(v1,v2,v4)
-                colnames(tmp)<-colnames(x)
-                tmp<-tx(tmp,center=FALSE)
                 if (tcrossprod(vectorprod(
-                  tmp[1,,drop=FALSE],
-                  tmp[2,,drop=FALSE]),
-                  tmp[3,,drop=FALSE])<0) {
-                  w1<-v1
-                  w2<-v2
-                  w4<-v4
-                  w3<-v3
+                  vsUnitaryTxed[i1,,drop=FALSE],
+                  vsUnitaryTxed[i2,,drop=FALSE]),
+                  vsUnitaryTxed[i4,,drop=FALSE])<0) {
+                  w1<-v1txed
+                  w2<-v2txed
+                  w4<-v4txed
+                  w3<-v3txed
                 } else {
-                  w1<-v1
-                  w2<-v3
-                  w4<-v4
-                  w3<-v2
+                  w1<-v1txed
+                  w2<-v3txed
+                  w4<-v4txed
+                  w3<-v2txed
                 }
                 # create a scatter plot texture 
                 png(textureFileName)
@@ -414,8 +424,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
                 #rgl.quads(tx(rbind(w1,w2,w4,w3)),texture=textureFileName,alpha=.5,
                 #  texcoord=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),lit=FALSE,front='fill',back='cull')
                 tmp<-rbind(w1,w2,w4,w3)
-                colnames(tmp)<-colnames(x)
-                rgl.quads(tx(tmp,center=FALSE),
+                rgl.quads(tmp,
                   texture=textureFileName,
                   alpha=1,texcoords=rbind(c(0,0),c(1,0),c(1,1),c(0,1)),
                   lit=TRUE,shininess=100,front='fill',back='cull',
@@ -427,10 +436,6 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       }
     }
     #unlink(textureFileName)
-  }
-
-  plotTitle<-function(main) {
-    decorate3d(main=main,box=FALSE,axes=FALSE,xlab=NULL,ylab=NULL,zlab=NULL)
   }
 
   if (debug) .pn(devices)
@@ -519,9 +524,12 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
             xi<-1
           }
           if (debug) cat(sprintf('    seen plotType "%s"\n',plotType));
+          decorate<-FALSE
+          plotTitle<-FALSE
           if (length(plotType)>0) {
             switch(plotType,
               'a'=plotAxes(),
+              'd'=decorate<-TRUE,
               'w'=plotWireFrame(),
               't'=switch(xi,
                 plot3dScatter(x,size,col,alpha),
@@ -531,11 +539,31 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
                 plotScatters(x,size,col,alpha),
                 plotScatters(x2,size2,col2,alpha2),
                 plotScatters(x3,size3,col3,alpha3)),
-              'm'=switch(xi,
-                plotTitle(main),
-                plotTitle(main2),
-                plotTitle(main3)),
+              'm'=plotTitle<-TRUE,
               'otherwise'=stop('unknown type "',plotType,'"'))
+
+            if (decorate || plotTitle) {
+              if (plotTitle) {
+                mn<-switch(xi,
+                    main,
+                    main2,
+                    main3,
+                    default=stop())
+              } else {
+                mn<-NULL
+              }
+              if (decorate) {
+                xlab<-colnames(xTxed)[1]
+                ylab<-colnames(xTxed)[2]
+                zlab<-colnames(xTxed)[3]
+              } else {
+                xlab<-ylab<-zlab<-NULL
+              }
+              decorate3d(
+                xlab=xlab,ylab=ylab,zlab=zlab,
+                box=decorate,axes=decorate,
+                main=mn)
+            }
           }
         }
       }
@@ -552,8 +580,12 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     # faces of a parallelepipedon:
     plot3dProj(iris[,1:3], cls=iris$Species)
 
+    # plot a 3D scatter plot on a new device,
+    # use more standard axis decoration
+    plot3dProj(iris[,1:3], cls=iris$Species, type='td', dev=NULL)
+
     # Plot two data sets: all Iris flowers (on the left side) and
-    # Setosa and Versicolor species only on the right side.
+    # Setosa and Versicolor species only (on the right side).
     # In both cases, produce 2D and 3D spatter plots.
     # For the second data set, alter the size and the alpha value
     # of Setosa flowers. Also, plot small axes under the scatter plots.
@@ -564,7 +596,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       alpha2 = c(1,.3)[1+(iris$Species[iris$Species != 'virginica']=='setosa')],
       size2 = c(3,10)[1+(iris$Species[iris$Species != 'virginica']=='setosa')],
       main2 = 'Setosa and Versicolor',
-      ty='sw,twm,t2m2,s2;,a',heights=c(2,1))
+      ty='sw,twm,t2m2,s2;,a',heights=c(2,1),
+      devices=NULL) # devices=NULL opens a new 'rgl' device
   }
 
 # TODO: unify/propagate scaling done in plot3dProj here ?!

@@ -6,11 +6,10 @@
     x2 = NULL, col2 = NULL, cls2 = NULL, size2 = 3, alpha2 = 1, 
     main2 = NULL, x3 = NULL, col3 = NULL, cls3 = NULL, size3 = 3, 
     alpha3 = 1, main3 = NULL, palette = c("black", "red", "green", 
-        "blue"), scale = TRUE, tx = function(y, center = TRUE) y - 
-        center * matrix(colMeans(x), nrow = nrow(y), ncol = ncol(x), 
-            byrow = TRUE), dimToShow = NULL, k = NULL, type = "tawm,sw", 
-    widths = 1, heights = 1, devices = rgl.cur(), col.axes = "gray", 
-    axesExpansion = 1.1, annotate = FALSE, debug = FALSE)}
+        "blue"), scale = TRUE, tx = function(y) y, dimToShow = NULL, 
+    k = NULL, type = "tawm,sw", widths = 1, heights = 1, devices = rgl.cur(), 
+    col.axes = "gray", axesExpansion = 1.1, annotate = FALSE, 
+    debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
 features in columns. It must have at least 3 columns (dimensions).}
@@ -39,13 +38,10 @@ used for individual classes specified in \code{cls}, see the
 \code{col} argument}
   \item{scale}{if TRUE, data get scaled to the range of '[-1, 1]'
 in all dimensions}
-  \item{tx}{Transform
-function used to transform data from the k-dimensional space of 'x'
-into 3D space to visualize. The function must accept two arguments:
-a data matrix to transform, and a logical called \code{center}
-specifying whether to center the data prior the transform. The
-function must return a 3-column transformed version of the input
-data matrix.}
+  \item{tx}{Transform function used to transform data from
+the k-dimensional space of \code{x} into 3D space to visualize.
+The function takes a data matrix to transform, and is expected to
+return a 3-column transformed version of the input data matrix.}
   \item{dimToShow}{a numeric or character vector of dimensions
 of \code{x} to plot. If numeric, it indexes the dimensions to show.
 If character, it lists  the names of dimensions to show.
@@ -123,8 +119,12 @@ greater than 1, verbose debugs will be produced.}
     # faces of a parallelepipedon:
     plot3dProj(iris[,1:3], cls=iris$Species)
 
+    # plot a 3D scatter plot on a new device,
+    # use more standard axis decoration
+    plot3dProj(iris[,1:3], cls=iris$Species, type='td', dev=NULL)
+
     # Plot two data sets: all Iris flowers (on the left side) and
-    # Setosa and Versicolor species only on the right side.
+    # Setosa and Versicolor species only (on the right side).
     # In both cases, produce 2D and 3D spatter plots.
     # For the second data set, alter the size and the alpha value
     # of Setosa flowers. Also, plot small axes under the scatter plots.
@@ -135,7 +135,8 @@ greater than 1, verbose debugs will be produced.}
       alpha2 = c(1,.3)[1+(iris$Species[iris$Species != 'virginica']=='setosa')],
       size2 = c(3,10)[1+(iris$Species[iris$Species != 'virginica']=='setosa')],
       main2 = 'Setosa and Versicolor',
-      ty='sw,twm,t2m2,s2;,a',heights=c(2,1))
+      ty='sw,twm,t2m2,s2;,a',heights=c(2,1),
+      devices=NULL) # devices=NULL opens a new 'rgl' device
   }
 
 # TODO: unify/propagate scaling done in plot3dProj here ?!
