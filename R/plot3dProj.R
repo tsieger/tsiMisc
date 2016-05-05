@@ -52,20 +52,30 @@ k = NULL, ##<< if \code{tx} is one of \code{\link{txPca}} or
 ## attribute. This function takes \code{k}, the number of top
 ## components, and returns the contribution of individual dimensions to
 ## these components.
-type = 'tawm,sw', ##<< a character string defining the type of plots to
+type = 'sawm,fw', ##<< a character string defining the type of plots to
 ## produce. There general syntax is \code{<row>;<row>;...;<row>},
 ## where each \code{<row>} stands for \code{<plot>,<plot>,...,<plot>},
 ## and each \code{plot} is a concatenation of one or more plot types to
 ## be combined in the specific plot. The plot types are:
 ## \itemize{
-##   \item \code{t} - \strong{t}hree-dimensional scatter plot
-##   \item \code{s} - parallelepipedon having 2D \strong{s}catter plots
-##             on its faces
+##   \item \code{a} - \strong{a}xes of the feature space
+##   \item \code{b} - \strong{b}ox(es) as defined by the \code{boxes}
+##             argument
+##   \item \code{d} - \strong{d}ecoration of a 3D plot (axes and
+##             a bounding box, see \code\link[rgl]{decorated3d})
+##   \item \code{e} - \strong{e}ellipse(s) as defined by the
+##             \code{ellipses} argument
+##   \item \code{f} - 2D scatter plots on the \strong{f}aces of a
+##             parallelepipedon
+##   \item \code{m} - \strong{m}ain (title) of data
+##   \item \code{p} - \strong{p}lane(s) as defined by the \code{planes}
+##             argument
+##   \item \code{s} - 3D \strong{s}catter plot
+##   \item \code{t} - \strong{t}ext(s) as defined by the \code{texts}
+##             argument
 ##   \item \code{w} - \strong{w}ire frame defining the feature space
 ##             (the wireframe collides with the edges of the 
-##             parallelepipedon plotted by \code{s})
-##   \item \code{a} - \strong{a}xes of the feature space
-##   \item \code{m} - \strong{m}ain (title) of data
+##             parallelepipedon plotted by \code{f})
 ##  }
 ## Each of \code{t}, \code{s}, and \code{m} can be followed by a number
 ## referring to a specific data (i.e. \code{x}, \code{x2}, or
@@ -94,6 +104,14 @@ annotateWireFrame = FALSE, ##<< if \code{TRUE}, the wire frame produced
 ## by \code{type='w'} will be annotates by a black point at
 ## \code{(-1,-1,...,-1)} and numbers 1...\code{k} at the extremes of
 ## the individual \code{k} dimensions.
+ellipses = list(list(center=rep(0,ncol(x)), x=diag(rep(1,ncol(x))), col='gray', alpha=.2)), ##<< a
+## list of lists defining ellipses to be plotted by the \code{'e'} type. TODO
+boxes = list(list(center=rep(0,ncol(x)), scale=rep(0,ncol(x)), col='gray', alpha=.2)), ##<< a
+## list of lists defining boxes to be plotted by the \code{'b'} type. TODO
+planes = list(list(a=1, b=0, c=0, d=0, col='gray', alpha=.2)), ##<< a
+## list of lists defining planes to be plotted by the \code{'p'} type. TODO
+texts = list(list(x=0, y=0, z=0, text = 'text', col = 'gray', alpha = .2)), ##<< a
+## list of lists defining texts to be plotted by the \code{'t'} type. TODO
 debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 ## greater than 1, verbose debugs will be produced.
 ) {
@@ -441,6 +459,99 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     #unlink(textureFileName)
   }
 
+  nameListElements<-function(l,nms) {
+    nm<-names(l)
+    if (is.null(nm)) {
+      nm<-vector('character',length(l))
+    }
+    nms<-nms[!nms%in%nm]
+    for (i in 1:length(l)) {
+      if (nchar(nm[i])==0 && length(nms)>0) {
+        nm[i]<-nms[1]
+        nms<-nms[-1]
+      }
+    }
+    names(l)<-nm
+    return(l)
+  }
+  # ex: nameListElements(list(1,2),c('a','b'))
+  # ex: nameListElements(list(1,b=2,3),c('a','b','c'))
+
+  plotBoxes<-function(boxes) {
+    if (debug) cat('-- plotting boxes\n')
+    lapply(boxes,function(b) {
+      knownNames<-c('center','scale','col','alpha')
+      if (debug>1) .pn(b)
+      b<-nameListElements(b,knownNames)
+      if (debug>2) .pn(b)
+
+      if (!is.null(b$scale)) {
+        scl<-rep(b$scale,length.out=k0)
+      } else {
+        scl<-rep(1,k0)
+      }
+      scl<-tx(to.matrix(scl))-tx(to.matrix(rep(0,k0)))
+      if (debug>2) .pn(scl)
+      if (!is.null(b$center)) {
+        center<-rep(b$center,length.out=k0)
+      } else {
+        center<-rep(0,k0)
+      }
+      center<-tx(to.matrix(center))
+      if (debug>2) .pn(center)
+
+      col<-ifelse(!is.null(b$col),b$col,'gray')
+      alpha<-ifelse(!is.null(b$alpha),b$alpha,.2)
+      tmp<-translate3d(scale3d(cube3d(col=col,alpha=alpha),scl[1],scl[2],scl[3]),center[1],center[2],center[3])
+      do.call('shade3d',c(list(x=tmp),b[!names(b)%in%knownNames]))
+    })
+  }
+
+  plotEllipses<-function(ellipses) {
+    if (debug) cat('-- plotting ellipses\n')
+    lapply(ellipses,function(e) {
+      knownNames<-c('center','cov','col','alpha')
+      if (debug>1) .pn(e)
+      e<-nameListElements(e,knownNames)
+      if (debug>2) .pn(e)
+
+      if (!is.null(e$center)) {
+        cntr<-e$center
+      } else {
+        cntr<-rep(0,3)
+      }
+      if (debug>2) .pn(cntr)
+
+      if (!is.null(e$cov)) {
+        cv<-e$cov
+      } else {
+        cv<-diag(rep(1,3))
+      }
+      if (debug>2) .pn(cv)
+
+      col<-ifelse(!is.null(e$col),e$col,'gray')
+      alpha<-ifelse(!is.null(e$alpha),e$alpha,.2)
+      tmp<-ellipse3d(cv,centre=cntr)
+      do.call('plot3d',c(list(x=tmp,col=col,alpha=alpha,add=TRUE),e[!names(e)%in%knownNames]))
+    })
+  }
+
+  plotPlanes<-function(planes) {
+    if (debug) cat('-- plotting planes\n')
+    lapply(planes,function(p) {
+      if (debug>1) .pn(p)
+      do.call('planes3d',p)
+    })
+  }
+
+  plotTexts<-function(texts) {
+    if (debug) cat('-- plotting texts\n')
+    lapply(texts,function(t) {
+      if (debug>1) .pn(t)
+      do.call('text3d',t)
+    })
+  }
+
   if (debug) .pn(devices)
   scenes<-c()
   # split to scenes
@@ -532,17 +643,21 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
           if (length(plotType)>0) {
             switch(plotType,
               'a'=plotAxes(),
+              'b'=plotBoxes(boxes),
               'd'=decorate<-TRUE,
-              'w'=plotWireFrame(annotateWireFrame),
-              't'=switch(xi,
-                plot3dScatter(x,size,col,alpha),
-                plot3dScatter(x2,size2,col2,alpha2),
-                plot3dScatter(x3,size3,col3,alpha3)),
-              's'=switch(xi,
+              'e'=plotEllipses(ellipses),
+              'f'=switch(xi,
                 plotScatters(x,size,col,alpha),
                 plotScatters(x2,size2,col2,alpha2),
                 plotScatters(x3,size3,col3,alpha3)),
               'm'=plotTitle<-TRUE,
+              'p'=plotPlanes(planes),
+              's'=switch(xi,
+                plot3dScatter(x,size,col,alpha),
+                plot3dScatter(x2,size2,col2,alpha2),
+                plot3dScatter(x3,size3,col3,alpha3)),
+              't'=plotTexts(texts),
+              'w'=plotWireFrame(annotateWireFrame),
               'otherwise'=stop('unknown type "',plotType,'"'))
 
             if (decorate || plotTitle) {
@@ -585,7 +700,24 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
     # plot a 3D scatter plot on a new device,
     # use more standard axis decoration
-    plot3dProj(iris[,1:3], cls=iris$Species, type='td', dev=NULL)
+    plot3dProj(iris[,1:3], cls=iris$Species, type='td', devices=NULL)
+
+    # Plot the iris data set with additional decoration: ellipses
+    # representing individual species of the flowers, a box and a text
+    # in the center, and a plane.
+    iris.setosa<-iris[iris$Species=='setosa',1:3]
+    iris.versicolor<-iris[iris$Species=='versicolor',1:3]
+    iris.virginica<-iris[iris$Species=='virginica',1:3]
+    plot3dProj(iris[,1:3], col=c('red','green','blue')[as.numeric(iris$Species)],
+      type='sdpbet', # scatter plot with decoration, a plane, a box,
+                     # elippses and a text
+      ellipse=list(list(cov(iris.setosa),center=colMeans(iris.setosa),col='red',alpha=.1),
+        list(cov(iris.versicolor),center=colMeans(iris.versicolor),col='green',alpha=.1),
+        list(cov(iris.virginica),center=colMeans(iris.virginica),col='blue',alpha=.1)),
+      box=list(list(center=colMeans(iris[,1:3]),scale=c(.3,.3,.3),col='black',alpha=.2)),
+    planes=list(list(0,0,1,-2.5,col='yellow',alpha=.2)),
+    texts=list(list(colMeans(iris[,1:3]),text='center',col='black')),
+    devices=NULL)
 
     # Plot two data sets: all Iris flowers (on the left side) and
     # Setosa and Versicolor species only (on the right side).
@@ -599,7 +731,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       alpha2 = c(1,.3)[1+(iris$Species[iris$Species != 'virginica']=='setosa')],
       size2 = c(3,10)[1+(iris$Species[iris$Species != 'virginica']=='setosa')],
       main2 = 'Setosa and Versicolor',
-      ty='sw,twm,t2m2,s2;,a',heights=c(2,1),
+      ty='fw,swm,s2m2d,f2;,a',heights=c(2,1),
       devices=NULL) # devices=NULL opens a new 'rgl' device
   }
 
