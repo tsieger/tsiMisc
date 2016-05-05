@@ -230,8 +230,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   scalingTxInv<-attr(xScaled,'txInv')
   scalingInvFactor<-max(scalingTxInv(to.matrix(rep(1,k0)))-scalingTxInv(to.matrix(rep(0,k0))))
   if (debug>1) .pn(scalingInvFactor)
-  if (debug>1) .pn(scalingTxInv(rbind(c(-1,-1,-1))))
-  if (debug>1) .pn(scalingTxInv(rbind(c(1,1,1))))
+  if (debug>1) .pn(scalingTxInv(rbind(rep(-1,k0))))
+  if (debug>1) .pn(scalingTxInv(rbind(rep(1,k0))))
 
   doPlotWireFrame<-stringr::str_detect(type,'w')
   doPlotScatters<-stringr::str_detect(type,'s')
@@ -700,7 +700,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
     # plot a 3D scatter plot on a new device,
     # use more standard axis decoration
-    plot3dProj(iris[,1:3], cls=iris$Species, type='td', devices=NULL)
+    plot3dProj(iris[,1:3], cls=iris$Species, type='sd', devices=NULL)
 
     # Plot the iris data set with additional decoration: ellipses
     # representing individual species of the flowers, a box and a text
