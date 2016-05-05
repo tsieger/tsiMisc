@@ -1,13 +1,16 @@
 scaleToUnit<-structure(
 function # Scale to unit range.
 ##description<<
-## 'scaleToUnit' scales the columns of a numeric matrix to the unit range.
-(x, ##<< numeric matrix
-min = 0, ##<< minimum in each dimension to scale to  (defaults to 0)
-max = 1, ##<< maximum in each dimension to scale to (defaults to 1)
-singular = TRUE ##<< if TRUE, constant columns will be transformed to
-## the mean of 'min', 'max', not to NaN, as would result from a
-## straighforward implementation
+## \code{\link{scaleToUnit}} scales the columns of a numeric matrix to
+## the unit range.
+(x, ##<< a numeric matrix
+min = 0, ##<< the minimum in each dimension to scale to (defaults to
+## \code{0})
+max = 1, ##<< the maximum in each dimension to scale to (defaults to
+## \code{1})
+solveSingular = TRUE ##<< if \code{TRUE}, constant columns will be
+## transformed to the mean of \code{min} and \code{max}, not to
+## \code{NaN}, as would result from a straighforward implementation
 ) {
   if (is.na(min) || is.na(max) || min>=max) {
     stop('invalid \'min\'/\'max\'')
@@ -18,7 +21,7 @@ singular = TRUE ##<< if TRUE, constant columns will be transformed to
   minX<-apply(x,2,min,na.rm=T)
   maxX<-apply(x,2,max,na.rm=T)
   rangeX<-maxX-minX
-  if (singular) {
+  if (solveSingular) {
     minX[rangeX==0]<-0
     maxX[rangeX==0]<-maxX[rangeX==0]*2
   }
@@ -35,29 +38,57 @@ singular = TRUE ##<< if TRUE, constant columns will be transformed to
     }
     return(y)
   }
+  txInvImpl<-function(x,minX,maxX,min,max) {
+    if (!is.matrix(x)) x<-as.matrix(x)
+    if (nrow(x)>0) {
+      y<-apply(x,1,function(x) pmin(maxX,pmax(minX,(maxX-minX)*(x-min)/(max-min)+minX)))
+      if (ncol(x)>1) {
+        y<-t(y)
+      }
+      dimnames(y)<-dimnames(x)
+    } else {
+      y<-x
+    }
+    return(y)
+  }
   tx<-function(x) txImpl(x,minX,maxX,min,max)
+  txInv<-function(x) txInvImpl(x,minX,maxX,min,max)
 
   x<-tx(x)
 
-  attr(x,'scaleToUnit:min_x')<-minX
-  attr(x,'scaleToUnit:max_x')<-maxX
-  attr(x,'scaleToUnit:min')<-min
-  attr(x,'scaleToUnit:max')<-max
-  attr(x,'scaleToUnit:tx')<-tx
-  attr(x,'scaleToUnit:txImpl')<-txImpl
+  attr(x,'min_x')<-minX
+  attr(x,'max_x')<-maxX
+  attr(x,'min')<-min
+  attr(x,'max')<-max
+  attr(x,'tx')<-tx
+  attr(x,'txInv')<-txInv
 
   return(x)
-  ### Scaled version of 'x'. The desired minimum and maximum values
-  ### are returned as attributes 'min' and 'max', respectively. The
-  ### minimum/maximum values of 'x' are returned as attributes 'min_x'
-  ### and 'max_x', respectively. The function used to transform a row
-  ### in 'x' to the desired range is returned as 'tx' attribute.
+  ### Scaled \code{x}. The desired minimum and maximum values
+  ### are returned as attributes \code{min} and \code{max},
+  ### respectively. The minimum/maximum values of \code{x} are returned
+  ### as attributes \code{min_x} and \code{max_x}, respectively. The
+  ### function used to transform a row in \code{x} to the desired range
+  ### is returned as the \code{tx} attribute. The inverse transform can
+  ### be find in the \code{txInv} attribute.
 },ex=function() {
-  (x <- scaleToUnit(iris[, 1:4]))
+
+  # scale the \code{iris} data set
+  x <- iris[, 1:4]
   summary(x)
+  x2 <- scaleToUnit(x)
+  summary(x2)
 
-  x[1, ]
-  attr(x, 'scaleToUnit:tx')(iris[1, 1:4])
+  # transform explicitly:
+  x2[1, ]
+  attr(x2, 'tx')(iris[1, 1:4])
 
-  scaleToUnit(cbind(1:4,1),min=0,max=1)
+  # inverse transform:
+  y <- cbind(1:4,1)
+  y
+  y2 <- scaleToUnit(y ,min = 0, max = 1)
+  y2
+  y3 <- attr(y2, 'txInv')(y2)
+  y3
+
 })
