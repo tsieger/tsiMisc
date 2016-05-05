@@ -90,7 +90,10 @@ devices = rgl.cur(), ##<< a list of devices to plot at, defaulting to
 ## will be created for such scenes.
 col.axes = 'gray', ##<< color of axes in the 3D plot
 axesExpansion = 1.1, ##<<
-annotate = FALSE,
+annotateWireFrame = FALSE, ##<< if \code{TRUE}, the wire frame produced
+## by \code{type='w'} will be annotates by a black point at
+## \code{(-1,-1,...,-1)} and numbers 1...\code{k} at the extremes of
+## the individual \code{k} dimensions.
 debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 ## greater than 1, verbose debugs will be produced.
 ) {
@@ -530,7 +533,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
             switch(plotType,
               'a'=plotAxes(),
               'd'=decorate<-TRUE,
-              'w'=plotWireFrame(),
+              'w'=plotWireFrame(annotateWireFrame),
               't'=switch(xi,
                 plot3dScatter(x,size,col,alpha),
                 plot3dScatter(x2,size2,col2,alpha2),

@@ -8,7 +8,7 @@
     alpha3 = 1, main3 = NULL, palette = c("black", "red", "green", 
         "blue"), scale = TRUE, tx = function(y) y, dimToShow = NULL, 
     k = NULL, type = "tawm,sw", widths = 1, heights = 1, devices = rgl.cur(), 
-    col.axes = "gray", axesExpansion = 1.1, annotate = FALSE, 
+    col.axes = "gray", axesExpansion = 1.1, annotateWireFrame = FALSE, 
     debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
@@ -100,8 +100,10 @@ will be created for such scenes.}
   \item{col.axes}{color of axes in the 3D plot}
   \item{axesExpansion}{
 }
-  \item{annotate}{
-}
+  \item{annotateWireFrame}{if \code{TRUE}, the wire frame produced
+by \code{type='w'} will be annotates by a black point at
+\code{(-1,-1,...,-1)} and numbers 1...\code{k} at the extremes of
+the individual \code{k} dimensions.}
   \item{debug}{if TRUE, debugs will be printed. If numeric of value
 greater than 1, verbose debugs will be produced.}
 }
