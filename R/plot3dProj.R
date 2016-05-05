@@ -62,7 +62,7 @@ type = 'sawm,fw', ##<< a character string defining the type of plots to
 ##   \item \code{b} - \strong{b}ox(es) as defined by the \code{boxes}
 ##             argument
 ##   \item \code{d} - \strong{d}ecoration of a 3D plot (axes and
-##             a bounding box, see \code\link[rgl]{decorated3d})
+##             a bounding box, see \code{\link[rgl]{decorated3d}})
 ##   \item \code{e} - \strong{e}ellipse(s) as defined by the
 ##             \code{ellipses} argument
 ##   \item \code{f} - 2D scatter plots on the \strong{f}aces of a

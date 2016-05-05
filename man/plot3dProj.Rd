@@ -76,7 +76,7 @@ be combined in the specific plot. The plot types are:
 \item \code{b} - \strong{b}ox(es) as defined by the \code{boxes}
 argument
 \item \code{d} - \strong{d}ecoration of a 3D plot (axes and
-a bounding box, see \code\link[rgl]{decorated3d})
+a bounding box, see \code{\link[rgl]{decorated3d}})
 \item \code{e} - \strong{e}ellipse(s) as defined by the
 \code{ellipses} argument
 \item \code{f} - 2D scatter plots on the \strong{f}aces of a
@@ -146,7 +146,7 @@ greater than 1, verbose debugs will be produced.}
 
     # plot a 3D scatter plot on a new device,
     # use more standard axis decoration
-    plot3dProj(iris[,1:3], cls=iris$Species, type='td', devices=NULL)
+    plot3dProj(iris[,1:3], cls=iris$Species, type='sd', devices=NULL)
 
     # Plot the iris data set with additional decoration: ellipses
     # representing individual species of the flowers, a box and a text
