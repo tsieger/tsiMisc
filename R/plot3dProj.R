@@ -535,22 +535,24 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       if (debug>2) .pn(e)
 
       if (!is.null(e$center)) {
-        cntr<-e$center
+        center<-e$center
       } else {
-        cntr<-rep(0,3)
+        center<-rep(0,k0)
       }
-      if (debug>2) .pn(cntr)
+      center<-tx(to.matrix(center))
+      if (debug>2) .pn(center)
 
       if (!is.null(e$cov)) {
         cv<-e$cov
       } else {
-        cv<-diag(rep(1,3))
+        cv<-diag(rep(1,k0))
       }
+      cv<-tx(t(tx(to.matrix(cv))))
       if (debug>2) .pn(cv)
 
       col<-ifelse(!is.null(e$col),e$col,'gray')
       alpha<-ifelse(!is.null(e$alpha),e$alpha,.2)
-      tmp<-ellipse3d(cv,centre=cntr)
+      tmp<-ellipse3d(cv,centre=center)
       do.call('plot3d',c(list(x=tmp,col=col,alpha=alpha,add=TRUE),e[!names(e)%in%knownNames]))
     })
   }
@@ -567,7 +569,14 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     if (debug) cat('-- plotting texts\n')
     lapply(texts,function(t) {
       if (debug>1) .pn(t)
-      do.call('text3d',t)
+      knownNames<-c('x','text')
+      t<-nameListElements(t,knownNames)
+      if (debug>2) .pn(t)
+      if (is.null(t$x)) stop('\'x\' element missing from \'texts\'')
+      x<-tx(to.matrix(t$x))
+      if (is.null(t$text)) stop('\'text\' element missing from \'texts\'')
+      do.call('text3d',c(list(x=x[1],y=x[2],z=x[3],text=t$text),
+        t[!names(t)%in%c('x','text')]))
     })
   }
 
