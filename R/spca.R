@@ -70,6 +70,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   if (retx) {
     U$x<-x%*%U$vectors
   }
+  if (!is.null(colnames(d))) {
+    rownames(U$vectors)<-colnames(d)
+  }
+  colnames(U$vectors)<-paste0('SPC',1:ncol(U$vectors))
   U$center<-.center
   U$scale<-.scale
   ### Eigenvalue decomposition of 'Q' (see the paper). The value is a
