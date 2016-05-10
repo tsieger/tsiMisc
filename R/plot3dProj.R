@@ -639,6 +639,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
           if (debug>1) cat('  calling next3d()\n')
           next3d(reuse=FALSE)
         }
+        decorate<-FALSE
+        plotTitle<-FALSE
         plotTypes<-str_split(subsceneType,'')[[1]]
         plotTypeIdx<-1
         while (plotTypeIdx<=str_length(subsceneType)) {
@@ -666,8 +668,6 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
             xi<-1
           }
           if (debug) cat(sprintf('    seen plotType "%s"\n',plotType));
-          decorate<-FALSE
-          plotTitle<-FALSE
           if (length(plotType)>0) {
             switch(plotType,
               'a'=plotAxes(),
@@ -687,30 +687,29 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
               't'=plotTexts(texts),
               'w'=plotWireFrame(annotateWireFrame),
               'otherwise'=stop('unknown type "',plotType,'"'))
-
-            if (decorate || plotTitle) {
-              if (plotTitle) {
-                mn<-switch(xi,
-                    main,
-                    main2,
-                    main3,
-                    default=stop())
-              } else {
-                mn<-NULL
-              }
-              if (decorate) {
-                xlab<-colnames(xTxed)[1]
-                ylab<-colnames(xTxed)[2]
-                zlab<-colnames(xTxed)[3]
-              } else {
-                xlab<-ylab<-zlab<-NULL
-              }
-              decorate3d(
-                xlab=xlab,ylab=ylab,zlab=zlab,
-                box=decorate,axes=decorate,
-                main=mn)
-            }
           }
+        }
+        if (decorate || plotTitle) {
+          if (plotTitle) {
+            mn<-switch(xi,
+                main,
+                main2,
+                main3,
+                default=stop())
+          } else {
+            mn<-NULL
+          }
+          if (decorate) {
+            xlab<-colnames(xTxed)[1]
+            ylab<-colnames(xTxed)[2]
+            zlab<-colnames(xTxed)[3]
+          } else {
+            xlab<-ylab<-zlab<-NULL
+          }
+          decorate3d(
+            xlab=xlab,ylab=ylab,zlab=zlab,
+            box=decorate,axes=decorate,
+            main=mn)
         }
       }
     }
