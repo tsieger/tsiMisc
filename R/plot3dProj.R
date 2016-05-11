@@ -509,6 +509,13 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       } else {
         scl<-rep(1,k0)
       }
+      # transform \code{scl} without possibly centering first:
+      # consider \code{tx} performs \code{tx(scl) = M*(scl-center)},
+      # but we need \code{M*scl}.
+      # Because \code{M*(scl-center) = M*scl - M*center}
+      # and \code{M*(0-center) = -M*center}
+      # \code{M*scl} can be computed as
+      # \code{M*scl = M*(scl-center) + M*center = M*(scl-center) - M*(0-center) = tx(scl) - tx(0)}
       scl<-tx(to.matrix(scl))-tx(to.matrix(rep(0,k0)))
       if (debug>2) .pn(scl)
       if (!is.null(b$center)) {
@@ -547,6 +554,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       } else {
         cv<-diag(rep(1,k0))
       }
+      if (debug>2) .pn(cv)
       cv<-tx(t(tx(to.matrix(cv))))
       if (debug>2) .pn(cv)
 
