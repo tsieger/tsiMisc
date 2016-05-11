@@ -120,13 +120,17 @@ by \code{type='w'} will be annotates by a black point at
 \code{(-1,-1,...,-1)} and numbers 1...\code{k} at the extremes of
 the individual \code{k} dimensions.}
   \item{ellipses}{a
-list of lists defining ellipses to be plotted by the \code{'e'} type. TODO}
+list or a list of lists defining ellipses to be plotted by the
+\code{'e'} type. TODO}
   \item{boxes}{a
-list of lists defining boxes to be plotted by the \code{'b'} type. TODO}
+list or a list of lists defining boxes to be plotted by the
+\code{'b'} type. TODO}
   \item{planes}{a
-list of lists defining planes to be plotted by the \code{'p'} type. TODO}
+list or a list of lists defining planes to be plotted by the
+\code{'p'} type. TODO}
   \item{texts}{a
-list of lists defining texts to be plotted by the \code{'t'} type. TODO}
+list or a list of lists defining texts to be plotted by the
+\code{'t'} type. TODO}
   \item{debug}{if TRUE, debugs will be printed. If numeric of value
 greater than 1, verbose debugs will be produced.}
 }
@@ -140,13 +144,15 @@ greater than 1, verbose debugs will be produced.}
 
 \examples{
   if (interactive() && require(rgl)) {
-    # plot a 3D scatter plot and 2D scatter plots as
+    # Plot a 3D scatter plot and 2D scatter plots as
     # faces of a parallelepipedon:
     plot3dProj(iris[,1:3], cls=iris$Species)
 
-    # plot a 3D scatter plot on a new device,
-    # use more standard axis decoration
-    plot3dProj(iris[,1:3], cls=iris$Species, type='sd', devices=NULL)
+    # Plot 4D data in a 3D scatter plot on a new device,
+    # use PCA to go from 4D to 3D, and add a bounding box and 3D axes
+    # decoration (\code{type='d'}) on top of the axes of the 4D space
+    # (\code{type='a'}).
+    plot3dProj(iris[,1:4], cls=iris$Species, tx=txPca(iris[,1:4]), type='sad', devices=NULL)
 
     # Plot the iris data set with additional decoration: ellipses
     # representing individual species of the flowers, a box and a text
@@ -157,13 +163,14 @@ greater than 1, verbose debugs will be produced.}
     plot3dProj(iris[,1:3], col=c('red','green','blue')[as.numeric(iris$Species)],
       type='sdpbet', # scatter plot with decoration, a plane, a box,
                      # elippses and a text
-      ellipse=list(list(cov(iris.setosa),center=colMeans(iris.setosa),col='red',alpha=.1),
+      ellipse=list(
+        list(cov(iris.setosa),center=colMeans(iris.setosa),col='red',alpha=.1),
         list(cov(iris.versicolor),center=colMeans(iris.versicolor),col='green',alpha=.1),
         list(cov(iris.virginica),center=colMeans(iris.virginica),col='blue',alpha=.1)),
-      box=list(list(center=colMeans(iris[,1:3]),scale=c(.3,.3,.3),col='black',alpha=.2)),
-    planes=list(list(0,0,1,-2.5,col='yellow',alpha=.2)),
-    texts=list(list(colMeans(iris[,1:3]),text='center',col='black')),
-    devices=NULL)
+      box=list(center=colMeans(iris[,1:3]),scale=c(.3,.3,.3),col='black',alpha=.2),
+      planes=list(0,0,1,-2.5,col='yellow',alpha=.2),
+      texts=list(colMeans(iris[,1:3]),text='center',col='black'),
+      devices=NULL)
 
     # Plot two data sets: all Iris flowers (on the left side) and
     # Setosa and Versicolor species only (on the right side).

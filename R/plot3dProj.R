@@ -721,13 +721,15 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
 },ex=function() {
   if (interactive() && require(rgl)) {
-    # plot a 3D scatter plot and 2D scatter plots as
+    # Plot a 3D scatter plot and 2D scatter plots as
     # faces of a parallelepipedon:
     plot3dProj(iris[,1:3], cls=iris$Species)
 
-    # plot a 3D scatter plot on a new device,
-    # use more standard axis decoration
-    plot3dProj(iris[,1:3], cls=iris$Species, type='sd', devices=NULL)
+    # Plot 4D data in a 3D scatter plot on a new device,
+    # use PCA to go from 4D to 3D, and add a bounding box and 3D axes
+    # decoration (\code{type='d'}) on top of the axes of the 4D space
+    # (\code{type='a'}).
+    plot3dProj(iris[,1:4], cls=iris$Species, tx=txPca(iris[,1:4]), type='sad', devices=NULL)
 
     # Plot the iris data set with additional decoration: ellipses
     # representing individual species of the flowers, a box and a text
