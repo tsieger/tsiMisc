@@ -247,7 +247,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   xScaled<-scaleToUnit(x,-1,1)
   scalingTx<-attr(xScaled,'tx')
   scalingTxInv<-attr(xScaled,'txInv')
-  scalingInvFactor<-max(scalingTxInv(to.matrix(rep(1,k0)))-scalingTxInv(to.matrix(rep(0,k0))))
+  scalingInvFactor<-mean(scalingTxInv(to.matrix(rep(1,k0)))-scalingTxInv(to.matrix(rep(0,k0))))
   if (debug>1) .pn(scalingInvFactor)
   if (debug>1) .pn(scalingTxInv(rbind(rep(-1,k0))))
   if (debug>1) .pn(scalingTxInv(rbind(rep(1,k0))))
