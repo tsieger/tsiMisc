@@ -70,8 +70,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   if (retx) {
     U$x<-x%*%U$vectors
   }
-  if (!is.null(colnames(d))) {
-    rownames(U$vectors)<-colnames(d)
+  if (!is.null(colnames(x))) {
+    rownames(U$vectors)<-colnames(x)
   }
   colnames(U$vectors)<-paste0('SPC',1:ncol(U$vectors))
   U$center<-.center
