@@ -555,12 +555,25 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         cv<-diag(rep(1,k0))
       }
       if (debug>2) .pn(cv)
-      cv<-tx(t(tx(to.matrix(cv))))
-      if (debug>2) .pn(cv)
-
+      # we have \code{cv = x' * x} for some \code{x} in \code{k0}-dim space,
+      # but we need \code{cv2 = (tx(x))' * tx(x)} in 3D space.
+      # As a first step, let's consider that \code{tx(x) = M*x}.
+      # We can restore \code{x} by Cholesky decomposition
+      # of the covariance matrix \code{cv}, and can compute \code{cv2}
+      # directly by \code{t(M*x)*(M*x)}.
+      # However, because \code{tx(x)} possibly involves centering,
+      # such that \code{tx(x) = M*(x-x0) = M*x - M*x0}, we
+      # need to cancel the effect of centering and compute \code{M*x} as
+      # \code{M*x = tx(x) - tx(0)} because
+      # \code{tx(x) - tx(0) = M*(x-x0) - M*(0-x0) = M*x - M*x0 +M*x0 = M*x}
+      x<-chol(cv)
+      if (debug>2) .pn(x)
+      mx<-tx(x)-matrix(tx(to.matrix(rep(0,k0))),nrow=k0,ncol=3,byrow=TRUE)
+      cvTxed<-crossprod(mx)
+      if (debug>2) .pn(cvTxed)
       col<-ifelse(!is.null(e$col),e$col,'gray')
       alpha<-ifelse(!is.null(e$alpha),e$alpha,.2)
-      tmp<-ellipse3d(cv,centre=center)
+      tmp<-ellipse3d(cvTxed,centre=center)
       do.call('plot3d',c(list(x=tmp,col=col,alpha=alpha,add=TRUE),e[!names(e)%in%knownNames]))
     })
   }
