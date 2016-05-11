@@ -256,7 +256,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   doPlotScatters<-stringr::str_detect(type,'s')
 
   buildWireFrame<-function() {
-    wireFrame<-matrix(NA,nrow=3*k*2^(k-1),ncol=3)
+    wireFrame<-matrix(NA,nrow=3*k*2^(k-1),ncol=k0)
     bs<-e1071::bincombinations(k-1)
     cnt<-0
     for (i in 1:k) {      # 'i' iterates over 'dimVisibleIdx'
