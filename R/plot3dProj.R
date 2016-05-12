@@ -232,6 +232,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   if (!is.null(x2)) {
     if (!is.matrix(x2)) x2<-as.matrix(x2)
     if (nrow(x2)==0) stop('\'x2\' is empty')
+    x2Txed<-tx(x2)
     if (is.null(col2) || length(col2)==0) {
       if (!is.null(cls2) && !is.null(palette)) {
         col2<-palette[cls2]
@@ -243,6 +244,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   if (!is.null(x3)) {
     if (!is.matrix(x3)) x3<-as.matrix(x3)
     if (nrow(x3)==0) stop('\'x3\' is empty')
+    x3Txed<-tx(x3)
     if (is.null(col3) || length(col3)==0) {
       if (!is.null(cls3) && !is.null(palette)) {
         col3<-palette[cls3]
@@ -409,17 +411,16 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   }
 
   # plot 3D scatter plot of observations
-  plot3dScatter<-function(x,size,col,alpha) {
+  plot3dScatter<-function(xTxed,size,col,alpha) {
     #spheres3d(tx(x),radius=radius,color=col,alpha=alpha)
     if (length(unique(size))==1) {
       points3d(xTxed,size=size[1],color=col,alpha=alpha)
     } else {
-      tmp.size<-rep(size,length=nrow(x))
-      tmp.col<-rep(col,length=nrow(x))
-      tmp.alpha<-rep(alpha,length=nrow(x))
+      tmp.col<-rep(col,length=nrow(xTxed))
+      tmp.alpha<-rep(alpha,length=nrow(xTxed))
       for (s in unique(size)) {
-        points3d(xTxed[tmp.size==s,,drop=FALSE],size=s,
-          color=tmp.col[tmp.size==s],alpha=tmp.alpha[tmp.size==s])
+        points3d(xTxed[size==s,,drop=FALSE],size=s,
+          color=tmp.col[size==s],alpha=tmp.alpha[size==s])
       }
     }
   }
@@ -796,9 +797,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
               'm'=plotTitle<-TRUE,
               'p'=plotPlanes(planes),
               's'=switch(xi,
-                plot3dScatter(x,size,col,alpha),
-                plot3dScatter(x2,size2,col2,alpha2),
-                plot3dScatter(x3,size3,col3,alpha3)),
+                plot3dScatter(xTxed,size,col,alpha),
+                plot3dScatter(x2Txed,size2,col2,alpha2),
+                plot3dScatter(x3Txed,size3,col3,alpha3)),
               't'=plotTexts(texts),
               'w'=plotWireFrame(annotateWireFrame),
               'otherwise'=stop('unknown type "',plotType,'"'))
