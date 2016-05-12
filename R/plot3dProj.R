@@ -61,6 +61,8 @@ type = 'sawm,fw', ##<< a character string defining the type of plots to
 ##   \item \code{a} - \strong{a}xes of the feature space
 ##   \item \code{b} - \strong{b}ox(es) as defined by the \code{boxes}
 ##             argument
+##   \item \code{B} - wire frame \strong{B}ox(es) as defined by the
+##         \code{wfboxes} argument
 ##   \item \code{d} - \strong{d}ecoration of a 3D plot (axes and
 ##             a bounding box, see \code{\link[rgl]{decorated3d}})
 ##   \item \code{e} - \strong{e}ellipse(s) as defined by the
@@ -110,6 +112,9 @@ ellipses = list(list(center=rep(0,ncol(x)), x=diag(rep(1,ncol(x))), col='gray', 
 boxes = list(list(center=rep(0,ncol(x)), scale=rep(0,ncol(x)), col='gray', alpha=.2)), ##<< a
 ## list or a list of lists defining boxes to be plotted by the
 ## \code{'b'} type. TODO
+wfboxes = list(list(center=rep(0,ncol(x)), scale=rep(0,ncol(x)), col='gray', alpha=.2)), ##<< a
+## list or a list of lists defining wire frame boxes to be plotted by the
+## \code{'B'} type. TODO
 planes = list(list(a=1, b=0, c=0, d=0, col='gray', alpha=.2)), ##<< a
 ## list or a list of lists defining planes to be plotted by the
 ## \code{'p'} type. TODO
@@ -142,6 +147,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   # consolidate decorative arguments
   if (is.list(boxes) && length(boxes)>0 && !is.list(boxes[[1]])) {
     boxes<-list(boxes)
+  }
+  if (is.list(wfboxes) && length(wfboxes)>0 && !is.list(wfboxes[[1]])) {
+    wfboxes<-list(wfboxes)
   }
   if (is.list(ellipses) && length(ellipses)>0 && !is.list(ellipses[[1]])) {
     ellipses<-list(ellipses)
@@ -280,15 +288,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         #lines3d(rbind(tx(v1),tx(rbind(v2))),color=c('gray','blue')[(in.convhull(v1)&in.convhull(v2))+1])
       }
     }
-    if (debug>2) .pn(wireFrame)
+    if (debug>2) .pn(head(wireFrame))
+    if (debug>3) .pn(wireFrame)
     wireFrame<-wireFrame[1:cnt,]
-    # transform from the -1...1 in k-dim space to
-    # the k-dim feature space of 'x'
-    wireFrame<-scalingTxInv(wireFrame[1:cnt,])
-    if (debug>2) .pn(wireFrame)
-    # transform the k-dim feature space of 'x' to 3D
-    wireFrame<-tx(wireFrame)
-    if (debug>2) .pn(wireFrame)
     return(wireFrame)
   }
 
@@ -317,7 +319,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     bSignatures<-apply(bs,1,signature)
     vs<--1+2*bs
     colnames(vs)<-colnames(x)
-    if (debug>1) .pn(vs)
+    if (debug>1) .pn(head(vs))
+    if (debug>3) .pn(vs)
     # convert from the range -1...1 (in k-dim space) to
     # the k-dim feature space of 'x'
     vsTxed<-scalingTxInv(rbind(vs))
@@ -331,13 +334,23 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     idxInConvhull<-1:nrow(vs)%in%idx.convhull
     signatureInConvhull<-rep(FALSE,2^k0)
     signatureInConvhull[bSignatures[idxInConvhull]]<-TRUE
-    if (debug>1) .pn(signatureInConvhull)
+    if (debug>2) .pn(head(signatureInConvhull))
+    if (debug>3) .pn(signatureInConvhull)
   }
-  if (doPlotWireFrame) {
+  if (doPlotWireFrame || str_detect(type,'B')) {
     wf<-buildWireFrame()
-    if (debug>1) .pn(wf)
+    if (debug>1) .pn(head(wf))
+    if (debug>3) .pn(wf)
+    # transform from the -1...1 in k-dim space to
+    # the k-dim feature space of 'x'
+    wfTxed<-scalingTxInv(wf)
+    if (debug>2) .pn(head(wfTxed))
+    if (debug>3) .pn(wfTxed)
+    # transform the k-dim feature space of 'x' to 3D
+    wfTxed<-tx(wfTxed)
+    if (debug>2) .pn(head(wfTxed))
+    if (debug>3) .pn(wfTxed)
   }
-
 
   ###
   ## plotting functions
@@ -367,10 +380,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
   # plot wire frame
   plotWireFrame<-function(annotate=FALSE) {
-    #rgl.linestrips(wf,color='lightgray',alpha=.5)
-    lines3d(wf,color='lightgray',alpha=.5)
+    #rgl.linestrips(wfTxed,color='lightgray',alpha=.5)
+    lines3d(wfTxed,color='lightgray',alpha=.5)
     # the latter causes problems with writeWebGL in rgl v.0.95.1367
-    #lines3d(wf,color='lightgray',emission='lightgray',
+    #lines3d(wfTxed,color='lightgray',emission='lightgray',
     #specular='lightgray',ambient='lightgray',alpha=.5,shiness=50)
 
     if (annotate) {
@@ -530,6 +543,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       } else {
         scl<-rep(1,k0)
       }
+      if (debug>2) .pn(scl)
       # transform \code{scl} without possibly centering first:
       # consider \code{tx} performs \code{tx(scl) = M*(scl-center)},
       # but we need \code{M*scl}.
@@ -553,6 +567,55 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       tmp<-scale3d(tmp,scl[1],scl[2],scl[3])
       tmp<-translate3d(tmp,center[1],center[2],center[3])
       do.call('shade3d',c(list(x=tmp),b[!names(b)%in%knownNames]))
+    })
+  }
+
+  plotWireFrameBoxes<-function(boxes) {
+    if (debug) cat('-- plotting wire frame boxes\n')
+    lapply(boxes,function(b) {
+      knownNames<-c('center','scale','col','alpha')
+      if (debug>1) .pn(b)
+      b<-nameListElements(b,knownNames)
+      if (debug>2) .pn(b)
+
+      if (!is.null(b$scale)) {
+        scl<-rep(b$scale,length.out=k0)
+      } else {
+        scl<-rep(1,k0)
+      }
+      if (debug>2) .pn(scl)
+      # transform \code{scl} without possibly centering first:
+      # consider \code{tx} performs \code{tx(scl) = M*(scl-center)},
+      # but we need \code{M*scl}.
+      # Because \code{M*(scl-center) = M*scl - M*center}
+      # and \code{M*(0-center) = -M*center}
+      # \code{M*scl} can be computed as
+      # \code{M*scl = M*(scl-center) + M*center = M*(scl-center) - M*(0-center) = tx(scl) - tx(0)}
+      sclTxed<-tx(to.matrix(scl))-tx(to.matrix(rep(0,k0)))
+      if (debug>2) .pn(sclTxed)
+      if (!is.null(b$center)) {
+        center<-rep(b$center,length.out=k0)
+      } else {
+        center<-rep(0,k0)
+      }
+      if (debug>2) .pn(center)
+      centerTxed<-tx(to.matrix(center))
+      if (debug>2) .pn(centerTxed)
+
+      wfBox<-wf
+      for (i in 1:k0) {
+        wfBox[,i]<-wfBox[,i]*scl[i]/2+center[i]
+      }
+      if (debug>2) .pn(head(wfBox))
+      if (debug>3) .pn(wfBox)
+      # transform the k-dim feature space of 'x' to 3D
+      wfBoxTxed<-tx(wfBox)
+      if (debug>2) .pn(head(wfBoxTxed))
+      if (debug>3) .pn(wfBoxTxed)
+
+      col<-ifelse(!is.null(b$col),b$col,'gray')
+      alpha<-ifelse(!is.null(b$alpha),b$alpha,.2)
+      do.call('lines3d',c(list(x=wfBoxTxed,col=col,alpha=alpha),b[!names(b)%in%knownNames]))
     })
   }
 
@@ -702,6 +765,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
             switch(plotType,
               'a'=plotAxes(),
               'b'=plotBoxes(boxes),
+              'B'=plotWireFrameBoxes(wfboxes),
               'd'=decorate<-TRUE,
               'e'=plotEllipses(ellipses),
               'f'=switch(xi,
