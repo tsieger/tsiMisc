@@ -12,9 +12,11 @@
     ellipses = list(list(center = rep(0, ncol(x)), x = diag(rep(1, 
         ncol(x))), col = "gray", alpha = 0.2)), boxes = list(list(center = rep(0, 
         ncol(x)), scale = rep(0, ncol(x)), col = "gray", alpha = 0.2)), 
-    planes = list(list(a = 1, b = 0, c = 0, d = 0, col = "gray", 
-        alpha = 0.2)), texts = list(list(x = 0, y = 0, z = 0, 
-        text = "text", col = "gray", alpha = 0.2)), debug = FALSE)}
+    wfboxes = list(list(center = rep(0, ncol(x)), scale = rep(0, 
+        ncol(x)), col = "gray", alpha = 0.2)), planes = list(list(a = 1, 
+        b = 0, c = 0, d = 0, col = "gray", alpha = 0.2)), texts = list(list(x = 0, 
+        y = 0, z = 0, text = "text", col = "gray", alpha = 0.2)), 
+    debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
 features in columns. It must have at least 3 columns (dimensions).}
@@ -75,6 +77,8 @@ be combined in the specific plot. The plot types are:
 \item \code{a} - \strong{a}xes of the feature space
 \item \code{b} - \strong{b}ox(es) as defined by the \code{boxes}
 argument
+\item \code{B} - wire frame \strong{B}ox(es) as defined by the
+\code{wfboxes} argument
 \item \code{d} - \strong{d}ecoration of a 3D plot (axes and
 a bounding box, see \code{\link[rgl]{decorated3d}})
 \item \code{e} - \strong{e}ellipse(s) as defined by the
@@ -125,6 +129,9 @@ list or a list of lists defining ellipses to be plotted by the
   \item{boxes}{a
 list or a list of lists defining boxes to be plotted by the
 \code{'b'} type. TODO}
+  \item{wfboxes}{a
+list or a list of lists defining wire frame boxes to be plotted by the
+\code{'B'} type. TODO}
   \item{planes}{a
 list or a list of lists defining planes to be plotted by the
 \code{'p'} type. TODO}
