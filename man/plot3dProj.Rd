@@ -14,8 +14,8 @@
         ncol(x)), scale = rep(0, ncol(x)), col = "gray", alpha = 0.2)), 
     wfboxes = list(list(center = rep(0, ncol(x)), scale = rep(0, 
         ncol(x)), col = "gray", alpha = 0.2)), planes = list(list(a = 1, 
-        b = 0, c = 0, d = 0, col = "gray", alpha = 0.2)), texts = list(list(x = 0, 
-        y = 0, z = 0, text = "text", col = "gray", alpha = 0.2)), 
+        b = 0, c = 0, d = 0, col = "gray", alpha = 0.2)), texts = list(list(center = rep(0, 
+        ncol(x)), text = "text", col = "gray", alpha = 0.2)), 
     debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
