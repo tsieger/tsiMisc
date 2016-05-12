@@ -118,7 +118,7 @@ wfboxes = list(list(center=rep(0,ncol(x)), scale=rep(0,ncol(x)), col='gray', alp
 planes = list(list(a=1, b=0, c=0, d=0, col='gray', alpha=.2)), ##<< a
 ## list or a list of lists defining planes to be plotted by the
 ## \code{'p'} type. TODO
-texts = list(list(x=0, y=0, z=0, text = 'text', col = 'gray', alpha = .2)), ##<< a
+texts = list(list(center=rep(0,ncol(x)), text = 'text', col = 'gray', alpha = .2)), ##<< a
 ## list or a list of lists defining texts to be plotted by the
 ## \code{'t'} type. TODO
 debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
@@ -291,6 +291,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     if (debug>2) .pn(head(wireFrame))
     if (debug>3) .pn(wireFrame)
     wireFrame<-wireFrame[1:cnt,]
+    colnames(wireFrame)<-colnames(x)
     return(wireFrame)
   }
 
@@ -523,9 +524,11 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     # need to cancel the effect of centering and compute \code{M*x} as
     # \code{M*x = tx(x) - tx(0)} because
     # \code{tx(x) - tx(0) = M*(x-x0) - M*(0-x0) = M*x - M*x0 +M*x0 = M*x}
-    x<-chol(cv)
-    if (debug>2) .pn(x)
-    mx<-tx(x)-matrix(tx(to.matrix(rep(0,k0))),nrow=k0,ncol=3,byrow=TRUE)
+    ch<-chol(cv)
+    if (debug>2) .pn(ch)
+    zeros<-to.matrix(rep(0,k0))
+    colnames(zeros)<-colnames(x)
+    mx<-tx(ch)-matrix(tx(zeros),nrow=k0,ncol=3,byrow=TRUE)
     cvTxed<-crossprod(mx)
     return(cvTxed)
   }
@@ -543,6 +546,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       } else {
         scl<-rep(1,k0)
       }
+      scl<-to.matrix(scl)
+      colnames(scl)<-colnames(x)
       if (debug>2) .pn(scl)
       # transform \code{scl} without possibly centering first:
       # consider \code{tx} performs \code{tx(scl) = M*(scl-center)},
@@ -551,13 +556,17 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       # and \code{M*(0-center) = -M*center}
       # \code{M*scl} can be computed as
       # \code{M*scl = M*(scl-center) + M*center = M*(scl-center) - M*(0-center) = tx(scl) - tx(0)}
-      scl<-tx(to.matrix(scl))-tx(to.matrix(rep(0,k0)))
+      tmp<-to.matrix(rep(0,k0))
+      colnames(tmp)<-colnames(x)
+      scl<-tx(scl)-tx(tmp)
       if (debug>2) .pn(scl)
       if (!is.null(b$center)) {
         center<-rep(b$center,length.out=k0)
       } else {
         center<-rep(0,k0)
       }
+      center<-to.matrix(center)
+      colnames(center)<-colnames(x)
       center<-tx(to.matrix(center))
       if (debug>2) .pn(center)
 
@@ -583,6 +592,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       } else {
         scl<-rep(1,k0)
       }
+      scl<-to.matrix(scl)
+      colnames(scl)<-colnames(x)
       if (debug>2) .pn(scl)
       # transform \code{scl} without possibly centering first:
       # consider \code{tx} performs \code{tx(scl) = M*(scl-center)},
@@ -591,15 +602,19 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       # and \code{M*(0-center) = -M*center}
       # \code{M*scl} can be computed as
       # \code{M*scl = M*(scl-center) + M*center = M*(scl-center) - M*(0-center) = tx(scl) - tx(0)}
-      sclTxed<-tx(to.matrix(scl))-tx(to.matrix(rep(0,k0)))
+      tmp<-to.matrix(rep(0,k0))
+      colnames(tmp)<-colnames(x)
+      sclTxed<-tx(scl)-tx(tmp)
       if (debug>2) .pn(sclTxed)
       if (!is.null(b$center)) {
         center<-rep(b$center,length.out=k0)
       } else {
         center<-rep(0,k0)
       }
+      center<-to.matrix(center)
+      colnames(center)<-colnames(x)
       if (debug>2) .pn(center)
-      centerTxed<-tx(to.matrix(center))
+      centerTxed<-tx(center)
       if (debug>2) .pn(centerTxed)
 
       wfBox<-wf
@@ -632,7 +647,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       } else {
         center<-rep(0,k0)
       }
-      center<-tx(to.matrix(center))
+      center<-to.matrix(center)
+      colnames(center)<-colnames(x)
+      center<-tx(center)
       if (debug>2) .pn(center)
 
       if (!is.null(e$cov)) {
@@ -662,14 +679,18 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     if (debug) cat('-- plotting texts\n')
     lapply(texts,function(t) {
       if (debug>1) .pn(t)
-      knownNames<-c('x','text')
+      knownNames<-c('center','text')
       t<-nameListElements(t,knownNames)
       if (debug>2) .pn(t)
-      if (is.null(t$x)) stop('\'x\' element missing from \'texts\'')
-      x<-tx(to.matrix(t$x))
+      if (is.null(t$center)) stop('\'center\' element missing from \'texts\'')
+      center<-to.matrix(t$center)
+      colnames(center)<-colnames(x)
+      if (debug>2) .pn(center)
+      center<-tx(center)
+      if (debug>2) .pn(center)
       if (is.null(t$text)) stop('\'text\' element missing from \'texts\'')
-      do.call('text3d',c(list(x=x[1],y=x[2],z=x[3],text=t$text),
-        t[!names(t)%in%c('x','text')]))
+      do.call('text3d',c(list(x=center[1],y=center[2],z=center[3],text=t$text),
+        t[!names(t)%in%knownNames]))
     })
   }
 
