@@ -496,6 +496,27 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   # ex: nameListElements(list(1,2),c('a','b'))
   # ex: nameListElements(list(1,b=2,3),c('a','b','c'))
 
+  # from a covariance matrix in the k0-dim features space compute
+  # the covariance matrix in the transformed 3D space
+  computeCovTxed<-function(cv) {
+    # we have \code{cv = x' * x} for some \code{x} in \code{k0}-dim space,
+    # but we need \code{cv2 = (tx(x))' * tx(x)} in 3D space.
+    # As a first step, let's consider that \code{tx(x) = M*x}.
+    # We can restore \code{x} by Cholesky decomposition
+    # of the covariance matrix \code{cv}, and can compute \code{cv2}
+    # directly by \code{t(M*x)*(M*x)}.
+    # However, because \code{tx(x)} possibly involves centering,
+    # such that \code{tx(x) = M*(x-x0) = M*x - M*x0}, we
+    # need to cancel the effect of centering and compute \code{M*x} as
+    # \code{M*x = tx(x) - tx(0)} because
+    # \code{tx(x) - tx(0) = M*(x-x0) - M*(0-x0) = M*x - M*x0 +M*x0 = M*x}
+    x<-chol(cv)
+    if (debug>2) .pn(x)
+    mx<-tx(x)-matrix(tx(to.matrix(rep(0,k0))),nrow=k0,ncol=3,byrow=TRUE)
+    cvTxed<-crossprod(mx)
+    return(cvTxed)
+  }
+
   plotBoxes<-function(boxes) {
     if (debug) cat('-- plotting boxes\n')
     lapply(boxes,function(b) {
@@ -528,7 +549,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
       col<-ifelse(!is.null(b$col),b$col,'gray')
       alpha<-ifelse(!is.null(b$alpha),b$alpha,.2)
-      tmp<-translate3d(scale3d(cube3d(col=col,alpha=alpha),scl[1],scl[2],scl[3]),center[1],center[2],center[3])
+      tmp<-cube3d(col=col,alpha=alpha)
+      tmp<-scale3d(tmp,scl[1],scl[2],scl[3])
+      tmp<-translate3d(tmp,center[1],center[2],center[3])
       do.call('shade3d',c(list(x=tmp),b[!names(b)%in%knownNames]))
     })
   }
@@ -555,21 +578,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         cv<-diag(rep(1,k0))
       }
       if (debug>2) .pn(cv)
-      # we have \code{cv = x' * x} for some \code{x} in \code{k0}-dim space,
-      # but we need \code{cv2 = (tx(x))' * tx(x)} in 3D space.
-      # As a first step, let's consider that \code{tx(x) = M*x}.
-      # We can restore \code{x} by Cholesky decomposition
-      # of the covariance matrix \code{cv}, and can compute \code{cv2}
-      # directly by \code{t(M*x)*(M*x)}.
-      # However, because \code{tx(x)} possibly involves centering,
-      # such that \code{tx(x) = M*(x-x0) = M*x - M*x0}, we
-      # need to cancel the effect of centering and compute \code{M*x} as
-      # \code{M*x = tx(x) - tx(0)} because
-      # \code{tx(x) - tx(0) = M*(x-x0) - M*(0-x0) = M*x - M*x0 +M*x0 = M*x}
-      x<-chol(cv)
-      if (debug>2) .pn(x)
-      mx<-tx(x)-matrix(tx(to.matrix(rep(0,k0))),nrow=k0,ncol=3,byrow=TRUE)
-      cvTxed<-crossprod(mx)
+      cvTxed<-computeCovTxed(cv)
       if (debug>2) .pn(cvTxed)
       col<-ifelse(!is.null(e$col),e$col,'gray')
       alpha<-ifelse(!is.null(e$alpha),e$alpha,.2)
