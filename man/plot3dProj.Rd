@@ -56,7 +56,7 @@ The default it to plot all dimensions. \code{dimToShow} takes
 precedence over \code{k}, another way to specify the dimensions to
 show.}
   \item{k}{if \code{tx} is one of \code{\link{txPca}} or
-\code{\link{txSpa}}, \code{k} can specify the number of (most
+\code{\link{txSpca}}, \code{k} can specify the number of (most
 "significant") dimensions to plot. The default is the number of
 dimensions of \code{x}, but smaller values are recommended for
 high-dimensional data in order to speed up plotting. Internally, the
