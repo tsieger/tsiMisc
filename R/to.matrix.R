@@ -16,9 +16,13 @@ rowMatrix = TRUE ##<< if \code{TRUE}, numeric vectors are converted to
       x<-as.matrix(x)
     } else {
       if (rowMatrix) {
+        xn<-names(x)
         x<-matrix(x,nrow=1)
+        if (!is.null(xn)) colnames(x)<-xn
       } else {
+        xn<-names(x)
         x<-matrix(x,ncol=1)
+        if (!is.null(xn)) rownames(x)<-xn
       }
     }
   }
