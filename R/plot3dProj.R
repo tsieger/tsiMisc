@@ -690,8 +690,11 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       center<-tx(center)
       if (debug>2) .pn(center)
       if (is.null(t$text)) stop('\'text\' element missing from \'texts\'')
-      do.call('text3d',c(list(x=center[1],y=center[2],z=center[3],text=t$text),
+      for (i in 1:nrow(center)) {
+        do.call('text3d',c(list(x=center[i,1],y=center[i,2],z=center[i,3],
+          text=t$text[1+(i-1)%%length(t$text)]),
         t[!names(t)%in%knownNames]))
+      }
     })
   }
 
