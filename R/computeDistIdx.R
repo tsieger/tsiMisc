@@ -15,7 +15,7 @@ i ##<< index of point to compute indices for
     idx<-i-1+cumsum(c(0,seq(n-2,n-2-(i-3),-1)))
     # from i to i+1 ... n
     tmp<-1+(2*n-i)*(i-1)/2
-    i2<-c(idx,seqRob(tmp,tmp+n-i-1,1))
+    idx<-c(idx,seqRob(tmp,tmp+n-i-1,1))
   }
   return(idx)
   ### a vector of indices of entries in the distance matrix related to
