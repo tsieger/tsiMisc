@@ -12,7 +12,7 @@ i ##<< index of point to compute indices for
     idx<-1:(n-1)
   } else {
     # from 1 ... i-1 to i
-    idx<-i-1+cumsum(c(0,seq(n-2,n-2-(i-3),-1)))
+    idx<-i-1+cumsum(c(0,seqRob(n-2,n-2-(i-3),-1)))
     # from i to i+1 ... n
     tmp<-1+(2*n-i)*(i-1)/2
     idx<-c(idx,seqRob(tmp,tmp+n-i-1,1))
