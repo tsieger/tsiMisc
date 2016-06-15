@@ -35,6 +35,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 ## greater than 1, verbose debugs will be produced.
 ) {
     args<-list(...)
+    if (!is.null(args[[1]]) && is.list(args[[1]])) {
+      args<-args[[1]]
+    }
     if (!is.null(setupDev)) {
       warning('\'setupDev\' argument is deprecated, use \'setup\' instead')
       setup<-setupDev
