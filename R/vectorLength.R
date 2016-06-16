@@ -5,7 +5,7 @@ function # Vector length.
 (v ##<< a vector
 ) {
   return(sqrt(sum(v^2)))
-  ### vetor length
+  ### vector length
 },ex=function() {
   vectorLength(c(1, 0, 0))
   vectorLength(c(1, 1, 0))

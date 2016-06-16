@@ -7,7 +7,7 @@
   \item{v}{a vector}
 }
 
-\value{vetor length}
+\value{vector length}
 
 \author{Tomas Sieger}
 
