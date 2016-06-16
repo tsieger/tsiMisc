@@ -53,10 +53,11 @@ k = 3, ##<< number of dimensions of the result, defaults to 3 in order
   attr(tx,'params')<-s
 
   return(tx)
-  ### Transform function taking two arguments: a data matrix to
-  ### transform, and a logical determining whether the data are to be
-  ### centered, or not. The parameters of the transform get returned in
-  ### the \code{params} attribute (see \code{\link{spca}}).
+  ### Transform function taking two arguments: a data matrix \code{y}
+  ### to transform, and a logical \code{center} determining whether
+  ### the data are to be centered, or not. The parameters of the
+  ### transform get returned in the \code{params} attribute
+  ### (see \code{\link{spca}}).
   ### In addition, there is the \code{varExplained} function added to
   ### the parameters, which takes \code{k}, the number of components,
   ### and returns the contribution of individual dimensions to the top
