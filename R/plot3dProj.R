@@ -262,8 +262,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   if (debug>1) .pn(scalingTxInv(rbind(rep(-1,k0))))
   if (debug>1) .pn(scalingTxInv(rbind(rep(1,k0))))
 
-  doPlotWireFrame<-stringr::str_detect(type,'w')
-  doPlotScatters<-stringr::str_detect(type,'s')
+  doPlotWireFrame<-str_detect(type,'w')
+  doPlotScatters<-str_detect(type,'s')
 
   buildWireFrame<-function() {
     wireFrame<-matrix(NA,nrow=3*k*2^(k-1),ncol=k0)
