@@ -1,10 +1,11 @@
-seqRob<-structure(
+rseq<-structure(
 function # Robust sequence generation resembling the matlab ':' operator.
 ##description<<
-## 'seqRob' is similar to 'base::seq' with the only difference in the
-## case when 'by' is specified and goes in the opposite direction to
-## 'from' to 'to'. In this case 'base::seq' raises an error, while
-## 'seqRob' returns an empty sequence.
+## \code{rseq} is similar to \code{\link[base]{seq}} with the only
+## difference in the case when \code{by} is specified and goes in the
+## opposite direction to \code{from} to \code{to}. In this case
+## \code{\link[base]{seq}} raises an error, while \code{rseq} returns
+## an empty sequence.
 (from = 1, ##<< from
 to = 1, ##<< to
 by = NULL, ##<< increment
@@ -22,7 +23,7 @@ by = NULL, ##<< increment
     rv<-seq(from=from,to=to,...)
   }
   return(rv)
-  ### Sequence similar to the result of 'base::seq'.
+  ### Sequence similar to the result of \code{\link[base]{seq}}.
 },ex=function() {
-  seqRob(from = 1, to = 0, by = 1)
+  rseq(from = 1, to = 0, by = 1)
 })
