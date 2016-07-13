@@ -124,7 +124,7 @@ verbose = FALSE ##<< if \code{TRUE}, progress is reported.
   attr(rv,'totalSize')<-sum(rv$size)
 
   # limit the number of objects returned
-  if (!is.null(n)) rv<-rv[seqRob(1,min(nrow(rv),n),1),]
+  if (!is.null(n)) rv<-rv[rseq(1,min(nrow(rv),n),1),]
 
   return(rv)
   ### A data frame of columns \code{name}, \code{size}, \code{mode},
