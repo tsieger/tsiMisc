@@ -4,7 +4,7 @@ function # Cat with trailing newline.
 ## \code{cat} with trailing newline.
 (... ##<< arguments to cat
 ) {
-  cat(...,'\n')
+  cat(...,'\n',sep='')
   ### None.
 },ex=function() {
   catnl('Hello, world!')
