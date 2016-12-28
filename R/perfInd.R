@@ -34,6 +34,9 @@ negativeFirst = TRUE, ##<< if TRUE, negative cases come first in both
 debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 ## greater than 1, verbose debugs will be produced.
 ) {
+  if (is.matrix(x)) {
+    x<-as.table(x)
+  }
   if (!is.table(x)) {
     if (is.null(y)) {
       stop('\'x\' argmument not a table, expected \'y\'')
@@ -100,7 +103,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     x<-flip(x,1:2)
   }
 
-  # convert to double to avoid integer ovewflow
+  # convert to double to avoid integer overflow
   storage.mode(x)<-'double'
 
   sensitivity<-x[1,1]/sum(x[,1])
