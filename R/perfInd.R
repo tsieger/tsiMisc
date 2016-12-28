@@ -99,9 +99,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       stop('2x2 table expected')
     }
   }
-  if (!negativeFirst) {
+  if (negativeFirst) {
     x<-flip(x,1:2)
   }
+  tbl<-flip(x,1:2)
 
   # convert to double to avoid integer overflow
   storage.mode(x)<-'double'
@@ -126,7 +127,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
   ##value<< a list containing the following named entries:
   res<-list(
-    table=x, ##<< classification table
+    table=tbl, ##<< classification table
     sensitivity=sensitivity, ##<< sensitivity
     specificity=specificity, ##<< specificity
     npv=npv, ##<< negative predicted value
