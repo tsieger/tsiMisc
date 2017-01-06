@@ -118,6 +118,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   fdr<-1-ppv
   acc<-sum(diag(x))/sum(x)
   f1<-2*sensitivity*ppv/(sensitivity+ppv)
+  f2<-5*sensitivity*ppv/(4*sensitivity+ppv)
+  f05<-1.25*sensitivity*ppv/(.25*sensitivity+ppv)
   mcc<-(x[1,1]*x[2,2]-x[1,2]*x[2,1])/sqrt(as.double(sum(x[1,]))*sum(x[2,])*sum(x[,1])*sum(x[,2]))
   informedness<-sensitivity+specificity-1
   markedness<-ppv+npv-1
@@ -128,6 +130,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   ##value<< a list containing the following named entries:
   res<-list(
     table=tbl, ##<< classification table
+    tp=tbl[2,2], ##<< true positives
+    tn=tbl[1,1], ##<< true negatives
+    fn=tbl[1,2], ##<< false negatives
+    fp=tbl[2,1], ##<< false positives
     sensitivity=sensitivity, ##<< sensitivity
     specificity=specificity, ##<< specificity
     npv=npv, ##<< negative predicted value
@@ -139,6 +145,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     fdr=fdr, ##<< false discovery rate
     accuracy=acc, ##<< accuracy
     f1=f1, ##<< F1 score
+    f2=f2, ##<< F2 score
+    f05=f05, ##<< F0.5 score
     mcc=mcc, ##<< Matthews correlation coefficient
     informedness=informedness, ##<< informedness
     markedness=markedness, ##<< markedness
@@ -157,4 +165,19 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
   # compute perormance over a vector of predicted and true classification:
   print(perfInd(c(0,0,1,1,1), c(0,0,0,1,1)))
+
+  # compare several measures over several classification results:
+  tbls<-list(matrix(c(98,2,2,8),2),matrix(c(8,2,2,8),2),matrix(c(80,20,2,8),2))
+  for (i in 1:length(tbls)) {
+    m<-tbls[[i]]
+    .pn(m)
+    pi<-perfInd(m)
+    with(pi,catnl(
+      'acc: ',accuracy,
+      ', sp+se: ',sensitivity+specificity,
+      ', aggr: ',m[2,2]/(sum(m)-m[1,1]),
+      ', aggr3: ',(2*sensitivity+specificity+ppv)/4,
+      ', F1: ',f1,
+      ', f2: ',f2))
+  }
 })
