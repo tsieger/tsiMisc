@@ -4,7 +4,7 @@ Title: Miscelaneous utility functions, mostly related to exploratory statistical
 Version: 0.0.0.9000
 Date: 2015-05-29
 Author: Tomas Sieger
-Depends: 
+Depends:
 Imports: coin, devtools, e1071, gdata, geometry, inlinedocs, rgl, stringr
 Suggests: idendro, testthat, MASS, scales
 URL: http://github.com/tsieger/tsiMisc
