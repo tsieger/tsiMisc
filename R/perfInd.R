@@ -175,8 +175,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     with(pi,catnl(
       'acc: ',accuracy,
       ', sp+se: ',sensitivity+specificity,
-      ', aggr: ',m[2,2]/(sum(m)-m[1,1]),
-      ', aggr3: ',(2*sensitivity+specificity+ppv)/4,
+      ', agr: ',m[2,2]/(sum(m)-m[1,1]),
+      ', agr3: ',(2*sensitivity+specificity+ppv)/4,
       ', F1: ',f1,
       ', f2: ',f2))
   }
