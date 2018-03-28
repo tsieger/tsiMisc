@@ -3,7 +3,7 @@ Type: Package
 Title: Miscelaneous utility functions, mostly related to exploratory statistical analysis.
 Version: 0.0.0.9000
 Date: 2015-05-29
-Author: Tomas Sieger
+Authors@R: person("Tomas", "Sieger", role = c("aut", "cre"), email = "tomas.sieger@seznam.cz")
 Imports: coin, devtools, e1071, gdata, geometry, inlinedocs, rgl, stringr
 Suggests: idendro, testthat, MASS, scales
 URL: http://github.com/tsieger/tsiMisc
