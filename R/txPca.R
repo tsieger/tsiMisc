@@ -59,8 +59,10 @@ k = 3, ##<< number of dimensions of the result, defaults to 3 in order
   tx<-txPca(iris[,1:4])
   plot(tx(iris[,1:4])[,1:2],pch=19,col=c('red','green','blue')[as.numeric(iris$Species)])
 
-  # a 3D example
-  x<-iris[,1:4]
-  y<-iris$Species
-  plot3dProj(x, cls=y, tx=txPca(x))
+  if (interactive() && require(rgl)) {
+    # a 3D example
+    x<-iris[,1:4]
+    y<-iris$Species
+    plot3dProj(x, cls=y, tx=txPca(x))
+  }
 })
