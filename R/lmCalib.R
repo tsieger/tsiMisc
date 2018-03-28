@@ -5,7 +5,7 @@ function# Calibration in regression.
 ## of \eqn{y ~ x} reaches given \eqn{y0}, and the related confidence interval.
 ##
 ##details<<
-## Tho code is taken from Appendix A.4.5 in Zvara2008.
+## The code is taken from Appendix A.4.5 in Zvara2008.
 ## The estimation is based on chapter 4.4. in Zvara2008
 ##
 ##references<< Karel Zv\'{a}ra: Regrese, Matfyzpress Praha 2008,
