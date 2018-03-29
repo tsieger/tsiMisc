@@ -9,6 +9,10 @@ function # Blind friendly colors.
 ##
 ##references<< Wong, Bang: Points of view: Color blindness, Nature
 ## Methods 8 (6) June 2011, 10.1038/nmeth.1618.
+##
+## Chromatic vision simulator showing how people suffering from
+## protanopia, deuteranopia and tritanopia perceive colors:
+## http://asada.tukusi.ne.jp/webCVS/
 (
 ) {
   x<-data.frame(rbind(
