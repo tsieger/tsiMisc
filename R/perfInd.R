@@ -84,9 +84,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
           # take the levels of 'x' for 'y'
           y<-factor(y,levels=levels(x))
         } else {
-          x<-as.factor(x)
+          y<-as.factor(y)
           # create a surrogate level
-          levels(x)<-c(levels(x),paste0(levels(x),'2'))
+          levels(y)<-c(levels(y),paste0(levels(y),'2'))
         }
       }
     }
