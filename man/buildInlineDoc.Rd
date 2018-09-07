@@ -11,7 +11,7 @@ to generate inline docs for an R package.}
 
 
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

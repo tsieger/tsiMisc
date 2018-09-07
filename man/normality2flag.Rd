@@ -16,7 +16,7 @@ TODO: allow user-supplied normality test?
 2 if normality is rejected at the 5\% level, and 3 if normality
 can't be assesed (not enough data etc.)}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

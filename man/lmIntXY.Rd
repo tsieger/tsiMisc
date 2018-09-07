@@ -35,7 +35,7 @@ are computed for,
 'piLwr' and 'piUpr' holding predictions intervals.}
 \references{Karel Zv\'{a}ra: Regrese, Matfyzpress Praha 2008
 }
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 \note{deprecated, use 'lmInt' instead
 }
 

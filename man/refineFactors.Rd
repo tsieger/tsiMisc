@@ -40,7 +40,7 @@ levels from factors.
 }
 \value{A list of refined 'x1' and 'x2',}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

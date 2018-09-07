@@ -18,7 +18,7 @@ If 'logical'==TRUE, on the diagonal, there are numbers of TRUEs
 in each set, and at position 'i,j' there is the number of TRUEs
 shared by sets 'i' and 'j'.}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

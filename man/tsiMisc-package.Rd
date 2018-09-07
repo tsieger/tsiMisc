@@ -3,23 +3,19 @@
 \alias{tsiMisc}
 \docType{package}
 \title{Miscelaneous utility functions, mostly related to exploratory statistical analysis.}
-\description{Miscelanous utility functions, mostly related to exploratory statistical analysis.}
-\details{
-\tabular{ll}{Package: \tab tsiMisc\cr
-Type: \tab Package\cr
-Title: \tab Miscelaneous utility functions, mostly related to exploratory statistical analysis.\cr
-Version: \tab 0.0.0.9000\cr
-Date: \tab 2015-05-29\cr
-Author: \tab Tomas Sieger\cr
-Depends: \tab \cr
-Imports: \tab coin, devtools, e1071, gdata, geometry, inlinedocs, rgl, stringr\cr
-Suggests: \tab idendro, testthat, MASS, scales\cr
-URL: \tab http://github.com/tsieger/tsiMisc\cr
-Maintainer: \tab Tomas Sieger <tomas.sieger@seznam.cz>\cr
-License: \tab GPL-2\cr
-LazyLoad: \tab yes\cr}
 }
-\author{Tomas Sieger}
+\description{Miscelanous utility functions, mostly related to exploratory statistical analysis.}
+}
+\details{
+
+The DESCRIPTION file:
+\packageDESCRIPTION{tsiMisc}
+\packageIndices{tsiMisc}
+}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+
+Maintainer: \packageMaintainer{tsiMisc}
+}
 
 \keyword{ package }
 

@@ -14,7 +14,7 @@ independent variable}
   \item{approx}{use approximation, or Fieller method?}
   \item{alpha}{confidence interval significance level}
 }
-\details{Tho code is taken from Appendix A.4.5 in Zvara2008.
+\details{The code is taken from Appendix A.4.5 in Zvara2008.
 The estimation is based on chapter 4.4. in Zvara2008
 }
 \value{A vector of the estimate of 'x0', and lower and upper limits of
@@ -23,7 +23,7 @@ related confidence interval.}
 J.A. Neter, W. Wasserman, M. Kutner: Applied Linear Statistical
 Models, Irwin, Homewood, Illinois (1985).
 }
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

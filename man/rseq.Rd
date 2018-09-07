@@ -17,7 +17,7 @@ an empty sequence.}
 
 \value{Sequence similar to the result of \code{\link[base]{seq}}.}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

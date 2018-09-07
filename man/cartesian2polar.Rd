@@ -12,7 +12,7 @@
 \value{A vector of two polar coordinates \eqn{r, phi} of a
 point represented as \eqn{x, y} in Cartesian coordinates.}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

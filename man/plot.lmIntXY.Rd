@@ -22,7 +22,7 @@ to plot the lines}
 
 
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 \note{deprecated, use 'lmInt' and 'plot.lmInt' instead
 }
 

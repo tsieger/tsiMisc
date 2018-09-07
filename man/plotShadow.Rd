@@ -13,7 +13,7 @@ black rectangles, and non-missing values are given in light gray.}
 
 
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

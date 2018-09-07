@@ -27,6 +27,10 @@ greater than 1, verbose debugs will be produced.}
 
 \value{a list containing the following named entries:
 \item{table}{classification table}
+\item{tp}{true positives}
+\item{tn}{true negatives}
+\item{fn}{false negatives}
+\item{fp}{false positives}
 \item{sensitivity}{sensitivity}
 \item{specificity}{specificity}
 \item{npv}{negative predicted value}
@@ -38,6 +42,8 @@ greater than 1, verbose debugs will be produced.}
 \item{fdr}{false discovery rate}
 \item{accuracy}{accuracy}
 \item{f1}{F1 score}
+\item{f2}{F2 score}
+\item{f05}{F0.5 score}
 \item{mcc}{Matthews correlation coefficient}
 \item{informedness}{informedness}
 \item{markedness}{markedness}
@@ -57,7 +63,7 @@ Journal of Machine Learning Technologies ISSN: 2229-3981 &
 ISSN: 2229-399X, Volume 2, Issue 1, 2011, pp-37-63
 Available online at \url{http://www.bioinfo.in/contents.php?id=51}
 }
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 
@@ -71,4 +77,19 @@ perfInd(x)
 
 # compute perormance over a vector of predicted and true classification:
 print(perfInd(c(0,0,1,1,1), c(0,0,0,1,1)))
+
+# compare several measures over several classification results:
+tbls<-list(matrix(c(98,2,2,8),2),matrix(c(8,2,2,8),2),matrix(c(80,20,2,8),2))
+for (i in 1:length(tbls)) {
+  m<-tbls[[i]]
+  .pn(m)
+  pi<-perfInd(m)
+  with(pi,catnl(
+    'acc: ',accuracy,
+    ', sp+se: ',sensitivity+specificity,
+    ', agr: ',m[2,2]/(sum(m)-m[1,1]),
+    ', agr3: ',(2*sensitivity+specificity+ppv)/4,
+    ', F1: ',f1,
+    ', f2: ',f2))
+}
 }

@@ -12,7 +12,7 @@ of '[0, 1]'.
 
 \value{expit of x}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

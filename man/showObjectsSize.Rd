@@ -35,7 +35,7 @@ and \code{env}.
 In addition, the total size of all objects found is put into
 the \code{totalSize} attribute of the data frame.}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

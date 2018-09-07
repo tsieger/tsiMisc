@@ -20,7 +20,7 @@ sealso<< rgl::movie3d, rgl::play3d}
 
 
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

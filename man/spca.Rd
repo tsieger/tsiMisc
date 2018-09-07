@@ -32,7 +32,7 @@ _Supervised principal component analysis: Visualization,
 classification and regression on subspaces and submanifolds_.
 Pattern Recognition, Vol. 44, No. 7. (29 July 2011), pp. 1357-1371,
 doi:10.1016/j.patcog.2010.12.015.}
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

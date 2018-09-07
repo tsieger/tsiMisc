@@ -13,7 +13,7 @@
 point represented as (\eqn{r, phi}) in polar
 coordinates.}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

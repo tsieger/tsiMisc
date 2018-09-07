@@ -18,7 +18,7 @@ determination R^2 in model explaining the current regressor using
 all the others, and tolerance (1-R^2 = 1/VIF).}
 \references{Karel Zvara: Regrese, Matfyzpress Praha 2008
 }
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

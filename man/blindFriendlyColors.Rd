@@ -9,7 +9,11 @@ view (see the reference below). The colors form a qualitative palette.
 }
 \value{a named list holding text 'rgb' values of 8 blind-friendly colors.}
 \references{Wong, Bang: Points of view: Color blindness, Nature
-Methods 8 (6) June 2011, 10.1038/nmeth.1618.}
+Methods 8 (6) June 2011, 10.1038/nmeth.1618.
+
+Chromatic vision simulator showing how people suffering from
+protanopia, deuteranopia and tritanopia perceive colors:
+http://asada.tukusi.ne.jp/webCVS/}
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 

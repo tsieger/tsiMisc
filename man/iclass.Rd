@@ -12,7 +12,7 @@ taken from the great "Advanced R" by Hadley Wickham.
 \value{A vector describing the implicit class of 'x'.}
 \references{Wickham, Hadley. _Advanced R_.
 Available online at http://adv-r.had.co.nz/OO-essentials.html}
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

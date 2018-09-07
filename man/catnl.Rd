@@ -2,14 +2,16 @@
 \alias{catnl}
 \title{Cat with trailing newline.}
 \description{\code{cat} with trailing newline.}
-\usage{catnl(...)}
+\usage{catnl(..., sep = " ")}
 \arguments{
   \item{\dots}{arguments to cat}
+  \item{sep}{
+}
 }
 
 \value{None.}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

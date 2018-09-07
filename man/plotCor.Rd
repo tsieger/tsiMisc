@@ -66,7 +66,7 @@ displayed}
 
 \value{the estimated effective number of the tests performed}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

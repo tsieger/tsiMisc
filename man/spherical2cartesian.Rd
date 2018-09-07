@@ -16,7 +16,7 @@ phi})}
 point represented as (\eqn{r, theta, phi}) in spherical
 coordinates.}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

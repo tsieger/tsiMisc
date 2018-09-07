@@ -12,7 +12,7 @@ to 1 (i.e. flip rows).}
 
 \value{The array 'x' having 'dim' dimension flipped.}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

@@ -9,7 +9,7 @@
 
 \value{trimmed string(s)}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

@@ -25,7 +25,7 @@ the input paramaters. The parameter names correspond to the names
 of the arguments, i.e. 'mean','sd','meanlog','sdlog'. The
 computed parameters come first in the list.}
 \references{http://www.mathworks.com/help/stats/lognstat.html}
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

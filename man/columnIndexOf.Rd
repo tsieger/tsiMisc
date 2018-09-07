@@ -12,7 +12,7 @@ regular expressions.}
 
 \value{indices of requested columns}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

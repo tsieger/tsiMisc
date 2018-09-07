@@ -13,7 +13,7 @@ for debug purposes.
 
 
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

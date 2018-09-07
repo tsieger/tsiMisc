@@ -11,7 +11,7 @@ to the interval of '(-inf, inf)'.
 
 \value{logit}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 

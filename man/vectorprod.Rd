@@ -10,7 +10,7 @@
 
 \value{Vector product of 'a' and 'b'.}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 
