@@ -43,7 +43,7 @@ greater than 1, verbose debugs will be produced.}
 'graphics::hist'). The elements correspond to individual
 histograms depicting the individual numeric vectors.}
 
-\author{Tomas Sieger}
+\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 
