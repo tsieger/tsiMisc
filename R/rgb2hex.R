@@ -29,4 +29,4 @@ b = NULL ##<< optional blue color component
   col<-rgb2hex(mixCol)
   plot(c(0,1,2),c(0,0,0),xlim=c(-.5,2.5),ty='p',pch=21,cex=15,col='black',
     bg=c('yellow',col,'black'),frame=FALSE,xlab='',ylab='',xaxt='n',yaxt='n')
-}
+})
