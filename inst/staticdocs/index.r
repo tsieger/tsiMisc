@@ -12,10 +12,13 @@ sd_section("Dev tools",
 sd_section("Graphics",
   "Graphics, mostly 3D",
   c(
+    "bfc",
+    "blindFriendlyColors",
     "movieSpin3d",
     "plot3dProj",
     "plotImage",
     "plotMatrix",
+    "rgb2hex",
     "rglSetMouseCbTrackball"
   )
 )
