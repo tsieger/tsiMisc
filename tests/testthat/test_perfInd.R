@@ -24,3 +24,45 @@ expect_that(perfInd(factor(c(0,0),levels=c('a')),factor(c(0,1),levels=c('c','d')
 m<-as.table(matrix(c(1,0,1,0),2,2,dimnames=list(x=c('a','a2'),y=c('c','d'))))
 expect_that(perfInd(factor(c('a','a'),levels=c('a')),factor(c('c','d'),levels=c('c','d')))$table, equals(m))
 
+
+# check imputing missing rows/columns
+m<-as.table(matrix(c(1,2),1,2,dimnames=list(x=c('FALSE'),y=c('c','d'))))
+m2<-as.table(matrix(c(1,0,2,0),2,2,dimnames=list(x=c('FALSE','TRUE'),y=c('c','d'))))
+m3<-perfInd(m)$table
+expect_that(m3, equals(m2))
+
+m<-as.table(matrix(c(1,2),1,2,dimnames=list(x=c('TRUE'),y=c('c','d'))))
+m2<-as.table(matrix(c(0,1,0,2),2,2,dimnames=list(x=c('FALSE','TRUE'),y=c('c','d'))))
+m3<-perfInd(m)$table
+expect_that(m3, equals(m2))
+
+m<-as.table(matrix(c(1,2),2,1,dimnames=list(x=c('c','d'),y=c('FALSE'))))
+m2<-as.table(matrix(c(1,2,0,0),2,2,dimnames=list(x=c('c','d'),y=c('FALSE','TRUE'))))
+m3<-perfInd(m)$table
+expect_that(m3, equals(m2))
+
+m<-as.table(matrix(c(1,2),2,1,dimnames=list(x=c('c','d'),y=c('TRUE'))))
+m2<-as.table(matrix(c(0,0,1,2),2,2,dimnames=list(x=c('c','d'),y=c('FALSE','TRUE'))))
+m3<-perfInd(m)$table
+expect_that(m3, equals(m2))
+
+m<-as.table(matrix(c(1),1,1,dimnames=list(x=c('FALSE'),y=c('FALSE'))))
+m2<-as.table(matrix(c(1,0,0,0),2,2,dimnames=list(x=c('FALSE','TRUE'),y=c('FALSE','TRUE'))))
+m3<-perfInd(m)$table
+expect_that(m3, equals(m2))
+
+m<-as.table(matrix(c(1),1,1,dimnames=list(x=c('FALSE'),y=c('TRUE'))))
+m2<-as.table(matrix(c(0,0,1,0),2,2,dimnames=list(x=c('FALSE','TRUE'),y=c('FALSE','TRUE'))))
+m3<-perfInd(m)$table
+expect_that(m3, equals(m2))
+
+m<-as.table(matrix(c(1),1,1,dimnames=list(x=c('TRUE'),y=c('FALSE'))))
+m2<-as.table(matrix(c(0,1,0,0),2,2,dimnames=list(x=c('FALSE','TRUE'),y=c('FALSE','TRUE'))))
+m3<-perfInd(m)$table
+expect_that(m3, equals(m2))
+
+m<-as.table(matrix(c(1),1,1,dimnames=list(x=c('TRUE'),y=c('TRUE'))))
+m2<-as.table(matrix(c(0,0,0,1),2,2,dimnames=list(x=c('FALSE','TRUE'),y=c('FALSE','TRUE'))))
+m3<-perfInd(m)$table
+expect_that(m3, equals(m2))
+

@@ -23,7 +23,10 @@ function # Compute performance indicators.
 ## the \code{negativeFirst} argument), or a vector of predicted values
 ## for each observation (coded, by default, such that negative cases
 ## come first, e.g. as \code{0} and \code{1}, or \code{FALSE} and
-## \code{TRUE}, or as a factor).
+## \code{TRUE}, or as a factor). If a row (and a column) is missing,
+## a guess is made to make a 2x2 table from \code{x}. This requires
+## \code{x} to have rows/columns named as 'TRUE' and 'FALSE' such that
+## we would deduce which row/column is missing. See examples.
 y = NULL, ##<< if \code{x} is a vector of predictions, \code{y} holds
 ## the vector of ground truth classification for each observation
 ## (coded, by default, such that negative cases come first, e.g. as
@@ -95,6 +98,36 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     if (debug) .pn(txt)
     x<-eval(parse(text=txt))
   } else {
+    if (length(dim(x))!=2 || !all(dim(x)==c(2,2))) {
+      if (length(dim(x))==2) {
+        # hack: fix the special case of degenerated classification with two rows
+        # but only one column with known missing column
+        if (dim(x)[1]==1 && rownames(x)%in%c('FALSE','TRUE')) {
+          dn<-dimnames(x)
+          dn[[1]]<-c('FALSE','TRUE')
+          tmp<-matrix(0,1,ncol(x))
+          if (rownames(x)[1]=='FALSE') {
+            x<-as.table(rbind(x,tmp))
+          } else if (rownames(x)[1]=='TRUE') {
+            x<-as.table(rbind(tmp,x))
+          }
+          dimnames(x)<-dn
+        }
+        # hack: fix the special case of degenerated classification with two columns
+        # but only one row with known missing row
+        if (dim(x)[2]==1 && colnames(x)%in%c('FALSE','TRUE')) {
+          dn<-dimnames(x)
+          dn[[2]]<-c('FALSE','TRUE')
+          tmp<-matrix(0,nrow(x),1)
+          if (colnames(x)[1]=='FALSE') {
+            x<-as.table(cbind(x,tmp))
+          } else if (colnames(x)[1]=='TRUE') {
+            x<-as.table(cbind(tmp,x))
+          }
+          dimnames(x)<-dn
+        }
+      }
+    }
     if (length(dim(x))!=2 || !all(dim(x)==c(2,2))) {
       stop('2x2 table expected')
     }
@@ -180,4 +213,11 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
       ', F1: ',f1,
       ', f2: ',f2))
   }
+
+  # make degenerated table proper 2x2 table
+  i1<-c(1,1,1,1)
+  i2<-c(1,1,2,2)
+  m<-table(i1==1,i2==1)
+  print(m) # this is 1x2 table
+  perfInd(m)$table # this is 2x2 table
 })

@@ -13,7 +13,10 @@ ground truth in columns (negative cases come first, by default, see
 the \code{negativeFirst} argument), or a vector of predicted values
 for each observation (coded, by default, such that negative cases
 come first, e.g. as \code{0} and \code{1}, or \code{FALSE} and
-\code{TRUE}, or as a factor).}
+\code{TRUE}, or as a factor). If a row (and a column) is missing,
+a guess is made to make a 2x2 table from \code{x}. This requires
+\code{x} to have rows/columns named as 'TRUE' and 'FALSE' such that
+we would deduce which row/column is missing. See examples.}
   \item{y}{if \code{x} is a vector of predictions, \code{y} holds
 the vector of ground truth classification for each observation
 (coded, by default, such that negative cases come first, e.g. as
@@ -92,4 +95,11 @@ for (i in 1:length(tbls)) {
     ', F1: ',f1,
     ', f2: ',f2))
 }
+
+# make degenerated table proper 2x2 table
+i1<-c(1,1,1,1)
+i2<-c(1,1,2,2)
+m<-table(i1==1,i2==1)
+print(m) # this is 1x2 table
+perfInd(m)$table # this is 2x2 table
 }
