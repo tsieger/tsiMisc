@@ -39,7 +39,7 @@ the \code{totalSize} attribute of the data frame.}
 
 
 
-\seealso{\code{link{object.size}}, \code{link{ls}}, \code{link{mode}}}
+\seealso{\code{\link{object.size}}, \code{\link{ls}}, \code{\link{mode}}}
 \examples{
 showObjectsSize(n=20)
 

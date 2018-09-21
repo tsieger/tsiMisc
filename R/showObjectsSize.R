@@ -13,7 +13,7 @@ function # R object size dump.
 ##
 ##alias<< \code{.sos}
 ##
-##seealso<< \code{link{object.size}}, \code{link{ls}}, \code{link{mode}}
+##seealso<< \code{\link{object.size}}, \code{\link{ls}}, \code{\link{mode}}
 (mode = NULL, ##<< mode of objects to show (see 'mode'), use code{NULL} to
 ##  show objects of all modes.
 n = 20, ##<< number of objects to show (the first \code{n} biggest objects
