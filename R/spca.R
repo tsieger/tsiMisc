@@ -76,6 +76,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   colnames(U$vectors)<-paste0('SPC',1:ncol(U$vectors))
   U$center<-.center
   U$scale<-.scale
+  return(U)
   ### Eigenvalue decomposition of 'Q' (see the paper). The value is a
   ### list of 'values' and 'vectors' components (see 'base::eigen'),
   ### 'Q', the matrix being decomposed, and 'center' and 'scale'
@@ -83,7 +84,6 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   ### If 'retx' is TRUE, the rotated version of 'x' is returned in 'x'.
   ### The number of eigenvalues and eigenvectors correspond to the
   ### dimension of the output space.
-  return(U)
 },ex=function() {
   spca(iris[,1:4],iris$Species)
 })
