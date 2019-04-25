@@ -11,7 +11,10 @@ to = 1, ##<< to
 by = NULL, ##<< increment
 ... ##<<
 ) {
+  if (length(from)!=1) stop('\'from\' must be of length 1')
+  if (length(to)!=1) stop('\'to\' must be of length 1')
   if (!missing(by)) {
+    if (length(by)!=1) stop('\'by\' must be of length 1')
     if (from==to) {
       rv<-from
     } else if ((from<to)!=(by>0)) {
