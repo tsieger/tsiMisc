@@ -9,8 +9,7 @@
   \item{y}{y coordinate}
 }
 
-\value{A vector of two polar coordinates \eqn{r, phi} of a
-point represented as \eqn{x, y} in Cartesian coordinates.}
+\value{A list of the \eqn{r} and \eqn{phi} polar coordinates.}
 
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
@@ -18,6 +17,7 @@ point represented as \eqn{x, y} in Cartesian coordinates.}
 
 \seealso{'cartesian2spherical', 'polar2cartesian'}
 \examples{
-cartesian2polar(c(0, 0))
+cartesian2polar(0, 0)
+cartesian2polar(1, 2)
 cartesian2polar(c(1, 2))
 }

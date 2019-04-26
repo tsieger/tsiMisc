@@ -6,15 +6,13 @@ conversion.
 }
 \usage{spherical2cartesian(r, theta = NULL, phi = NULL)}
 \arguments{
-  \item{r}{radius (or a vector of length 3 holding \eqn{r, theta,
+  \item{r}{a vector of radii (or a vector of length 3 holding \eqn{r, theta,
 phi})}
-  \item{theta}{inclination}
-  \item{phi}{azimuth}
+  \item{theta}{a vector of inclinations}
+  \item{phi}{a vector of azimuths}
 }
 
-\value{A vector of three Cartesian coordinates (\eqn{x, y, z}) of a
-point represented as (\eqn{r, theta, phi}) in spherical
-coordinates.}
+\value{A list of \eqn{x}, \eqn{y}, and \eqn{z} Cartesian coordinates.}
 
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
@@ -22,6 +20,7 @@ coordinates.}
 
 \seealso{'cartesian2spherical'}
 \examples{
-spherical2cartesian(c(1, 0, pi / 2))
+spherical2cartesian(1, 0, pi / 2)
+spherical2cartesian(1, pi, pi / 4)
 spherical2cartesian(c(1, pi, pi / 4))
 }

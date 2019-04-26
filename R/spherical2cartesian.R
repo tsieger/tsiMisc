@@ -5,10 +5,10 @@ function # Spherical to Cartesian coordinate conversion.
 ## conversion.
 ##
 ##seealso<< 'cartesian2spherical'
-(r, ##<< radius (or a vector of length 3 holding \eqn{r, theta,
+(r, ##<< a vector of radii (or a vector of length 3 holding \eqn{r, theta,
 ## phi})
-theta = NULL, ##<< inclination
-phi = NULL ##<< azimuth
+theta = NULL, ##<< a vector of inclinations
+phi = NULL ##<< a vector of azimuths
 ) {
   if (length(r)==3 && is.null(theta) && is.null(phi)) {
     theta<-r[2]
@@ -21,10 +21,9 @@ phi = NULL ##<< azimuth
     x=r*sin(theta)*cos(phi),
     y=r*sin(theta)*sin(phi),
     z=r*cos(theta)))
-  ### A vector of three Cartesian coordinates (\eqn{x, y, z}) of a
-  ### point represented as (\eqn{r, theta, phi}) in spherical
-  ### coordinates.
+  ### A list of \eqn{x}, \eqn{y}, and \eqn{z} Cartesian coordinates.
 },ex=function() {
-  spherical2cartesian(c(1, 0, pi / 2))
+  spherical2cartesian(1, 0, pi / 2)
+  spherical2cartesian(1, pi, pi / 4)
   spherical2cartesian(c(1, pi, pi / 4))
 })

@@ -14,10 +14,10 @@ y = NULL ##<< y coordinate
   names(x)<-names(y)<-NULL
   r<-sqrt(x^2+y^2)
   phi<-atan2(y,x)
-  return(c(r=r,phi=phi))
-  ### A vector of two polar coordinates \eqn{r, phi} of a
-  ### point represented as \eqn{x, y} in Cartesian coordinates.
+  return(list(r=r,phi=phi))
+  ### A list of the \eqn{r} and \eqn{phi} polar coordinates.
 },ex=function() {
-  cartesian2polar(c(0, 0))
+  cartesian2polar(0, 0)
+  cartesian2polar(1, 2)
   cartesian2polar(c(1, 2))
 })

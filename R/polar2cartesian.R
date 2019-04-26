@@ -4,8 +4,8 @@ function # Polar to Cartesian coordinate conversion.
 ## 'polar2cartesian' provides polar to Cartesian coordinate conversion.
 ##
 ##seealso<< 'cartesian2polar'
-(r, ##<< radius (or a vector of length 2 holding \eqn{r, phi})
-phi = NULL ##<< angle
+(r, ##<< a vector of radii (a or a vector of length 2 holding \eqn{r, phi})
+phi = NULL ##<< a vector of angles
 ) {
   if (length(r)==2 && is.null(phi)) {
     phi<-r[2]
@@ -13,13 +13,12 @@ phi = NULL ##<< angle
   }
   names(r)<-names(phi)<-NULL
 
-  return(c(
+  return(list(
     x=r*cos(phi),
     y=r*sin(phi)))
-  ### A vector of two Cartesian coordinates (\eqn{x, y}) of a
-  ### point represented as (\eqn{r, phi}) in polar
-  ### coordinates.
+  ### A list of the \eqn{x} and \eqn{y} Cartesian coordinates.
 },ex=function() {
-  polar2cartesian(c(1, 0))
+  polar2cartesian(1, 0)
+  polar2cartesian(1, pi)
   polar2cartesian(c(1, pi))
 })
