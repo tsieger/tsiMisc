@@ -20,6 +20,7 @@ function # Create 2D data set interactively.
 setupDevice = TRUE, ##<< logical flag specifying whether to setup the graphical device.
 ## Setting to FALSE enables to call `create2dData' several times
 ## getting incrementally more and more points.
+verb = 1,##<< verbosity level
 ... ##<< optinal parameters passed to `points'
 )
 {
@@ -35,6 +36,7 @@ setupDevice = TRUE, ##<< logical flag specifying whether to setup the graphical 
   while (TRUE) {
     p<-locator(1)
     if (is.null(p)) break
+    if (verb) cat(paste0('point ',length(x)+1,': ',p$x,' ',p$y,'\n'))
     points(p$x,p$y,...)
     x<-c(x,p$x)
     y<-c(y,p$y)
