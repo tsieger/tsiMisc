@@ -26,7 +26,13 @@ rotated version of 'x'}
 greater than 1, verbose debugs will be produced.}
 }
 
-
+\value{Eigenvalue decomposition of 'Q' (see the paper). The value is a
+list of 'values' and 'vectors' components (see 'base::eigen'),
+'Q', the matrix being decomposed, and 'center' and 'scale'
+holding the centering and scaling used, or 'FALSE'.
+If 'retx' is TRUE, the rotated version of 'x' is returned in 'x'.
+The number of eigenvalues and eigenvectors correspond to the
+dimension of the output space.}
 \references{Barshan, E., Ghodsi, A., Azimifar, Z., Jahromi, M. Z.
 _Supervised principal component analysis: Visualization,
 classification and regression on subspaces and submanifolds_.
