@@ -4,13 +4,15 @@
 \description{'create2dData' allows you to interactively create a 2D data set
 by clicking points in 2D.
 }
-\usage{create2dData(xyRanges = c(0, 1, 0, 1), setupDevice = TRUE, ...)}
+\usage{create2dData(xyRanges = c(0, 1, 0, 1), setupDevice = TRUE, verb = 1, 
+    ...)}
 \arguments{
   \item{xyRanges}{ranges of 2D space (a numeric vector of length 4
 giving the xmin, xma, ymin, and ymax limits)}
   \item{setupDevice}{logical flag specifying whether to setup the graphical device.
 Setting to FALSE enables to call `create2dData' several times
 getting incrementally more and more points.}
+  \item{verb}{verbosity level}
   \item{\dots}{optinal parameters passed to `points'}
 }
 \details{The user places points in 2D by clicking in a graphical device, and
