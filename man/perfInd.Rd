@@ -36,8 +36,8 @@ greater than 1, verbose debugs will be produced.}
 \item{fp}{false positives}
 \item{sensitivity}{sensitivity}
 \item{specificity}{specificity}
-\item{npv}{negative predicted value}
-\item{ppv}{positive predicted value}
+\item{npv}{negative predicted value, i.e. true negatives over true negatives and false positives}
+\item{ppv}{positive predicted value, i.e. true positives over true positives and false negatives}
 \item{wnpv}{weighted negative predicted value (an obscure measure)}
 \item{wppv}{weighted positive predicted value}
 \item{fpr}{false positive rate}
