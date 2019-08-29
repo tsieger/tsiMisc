@@ -10,4 +10,4 @@ To install the latest development version:
 
 ## Features
 
-See the [reference](reference/index.html).
+See the [documentation](docs/index.html) and [reference](docs/reference/index.html).
