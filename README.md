@@ -10,4 +10,7 @@ To install the latest development version:
 
 ## Features
 
-See the [documentation](docs/index.html) and [reference](docs/reference/index.html).
+Please see the [reference](https://tsieger.github.io/tsiMisc/reference/index.html) 
+at the [tsiMisc site](https://tsieger.github.io/tsiMisc/).
+
+You can browse source code at https://github.com/tsieger/tsiMisc.
