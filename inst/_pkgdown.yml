@@ -12,6 +12,57 @@ reference:
       - rgb2hex
       - rglSetMouseCbTrackball
 
+  - title: "Exploratory data analysis"
+    desc: Shadow and correlation matrix, Bland-Altman plot, vertically-aligned histograms, counting NA's, factor levels, and intersections.
+    contents:
+      - blandAltman
+      - countFactorLevels
+      - countIntersect
+      - countNa
+      - histd
+      - histv
+      - histvd
+      - normality2color
+      - normality2flag
+      - percentTrue
+      - plotCor
+      - plotShadow
+      
+  - title: "Data Manipulation"
+    desc: Robust sequences, matrix repetition and conversion, string trimming, factor manipulation.
+    contents:
+      - dropLevels
+      - refineFactors
+      - repmat
+      - rseq
+      - strTrim
+      - to.matrix
+    
+  - title: "Data Transformations"
+    desc:
+    contents:
+      - flip
+      - flip4image
+      - spca
+      - txPca
+      - txSpca
+
+  - title: "Data Manipulation"
+    desc: Robust sequences, matrix repetition and conversion, string trimming, factor manipulation.
+    contents:
+      - dropLevels
+      - refineFactors
+      - repmat
+      - rseq
+      - strTrim
+      - to.matrix
+    
+  - title: "Machine Learning Tools"
+    desc: Classification performance measures, factor refinement.
+    contents:
+      - perfInd
+      - refineFactors
+
   - title: "Statistics"
     desc: Regression calibration and confidence, D'Agostino normality test, p-value manipulation.
     contents:
@@ -29,22 +80,6 @@ reference:
       - poissonTest
       - pvalStars
 
-  - title: "Exploratory data analysis"
-    desc: Shadow and correlation matrix, Bland-Altman plot, vertically-aligned histograms, counting NA's, factor levels, and intersections.
-    contents:
-      - blandAltman
-      - countFactorLevels
-      - countIntersect
-      - countNa
-      - histd
-      - histv
-      - histvd
-      - normality2color
-      - normality2flag
-      - percentTrue
-      - plotCor
-      - plotShadow
-      
   - title: "Math tools"
     desc: Coordinate conversions, logit/expit, scaling, vector algebra.
     contents:
@@ -69,28 +104,18 @@ reference:
       - buildSiteDoc
       - showObjectsSize
 
-  - title: "Data Manipulation"
-    desc: Robust sequences, matrix repetition and conversion, string trimming, factor manipulation.
-    contents:
-      - dropLevels
-      - refineFactors
-      - repmat
-      - rseq
-      - strTrim
-      - to.matrix
-    
   - title: "Data Generation"
     desc: Create 2D demo data by mouse clicking.
     contents:
       - create2dData
     
-  - title: "IO and debugging"
+  - title: "Debug Printing"
     desc: Robust sequences, repeating computing indices in distance matrix, 
     contents:
       - catnl
       - printWithName
 
-  - title: "Misc utils"
+  - title: "Misc Utils"
     desc: Robust sequences, repeating computing indices in distance matrix, 
     contents:
       - allSame
@@ -98,18 +123,3 @@ reference:
       - computeDistIdx
       - computeIdxFromDistIdx
       - indexOf
-
-  - title: "Data transformations"
-    desc:
-    contents:
-      - flip
-      - flip4image
-      - spca
-      - txPca
-      - txSpca
-
-  - title: "Machine learning tools"
-    desc: Classification performance measures, factor refinement.
-    contents:
-      - perfInd
-      - refineFactors
