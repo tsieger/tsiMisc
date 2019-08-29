@@ -2,7 +2,7 @@
 \alias{rgb2hex}
 \title{Convert RGB color to text hexadecimal representation.}
 \description{Convert an RGB color to '#RRGGBB' representation.
-Useful e.g. to use a mixed color (as mixed by the \code{\link{colorspace::mixcolor}}
+Useful e.g. to use a mixed color (as mixed by the \code{\link[colorspace]{mixcolor}}
 function) as a color in calls to raw graphics function. See examples.
 
 see https://gist.github.com/mbannert/e9fcfa86de3b06068c83}

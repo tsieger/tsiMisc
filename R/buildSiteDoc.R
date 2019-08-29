@@ -1,8 +1,9 @@
 buildSiteDoc<-structure(
 function # build_site build
 ##description<<
+## **OBSOLETED**
 ## This is a simple delegate wrapper for
-## \code{\link{staticdocs::build_site}} to generate package doc for an
+## \code{staticdocs::build_site} to generate package doc for an
 ## R package. In addition, if there are any rgl devices opened by
 ## \code{\link[staticdocs]{build_site}}, they get closed.
 ##

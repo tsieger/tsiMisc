@@ -2,7 +2,7 @@ reloadByName<-structure(
 function # Reload R package(s).
 ##description<<
 ## This is a simple wrapper for
-## \code{\link[devtools]{reload(devtools::inst(pkgName))}}.
+## \code{\link[devtools]{reload}(\link[pkgload]{inst}(pkgName)}
 (pkgName = 'tsiMisc' ##<< name (or a vector of names) of R package(s) to be reloaded
 ) {
   
@@ -16,14 +16,21 @@ function # Reload R package(s).
     # use the deparsed argument as the package
     pkgName<-nm
   }
-  
-  for (x in pkgName) {
-    catnl(paste0('unloading ',x))
-    devtools::unload(devtools::inst(x))
-  }
-  for (x in rev(pkgName)) {
-    catnl(paste0('loading ',x))
-    require(x,character.only=TRUE)
+
+  if (TRUE) {
+    for (x in pkgName) {
+      catnl(paste0('reloading ',x))
+      devtools::reload(devtools::inst(x))
+    }
+  } else {
+    for (x in pkgName) {
+      catnl(paste0('unloading ',x))
+      devtools::unload(devtools::inst(x))
+    }
+    for (x in rev(pkgName)) {
+      catnl(paste0('loading ',x))
+      require(x,character.only=TRUE)
+    }
   }
 },ex=function() {
   library(MASS)

@@ -64,7 +64,7 @@ type = 'sawm,fw', ##<< a character string defining the type of plots to
 ##   \item \code{B} - wire frame \strong{B}ox(es) as defined by the
 ##         \code{wfboxes} argument
 ##   \item \code{d} - \strong{d}ecoration of a 3D plot (axes and
-##             a bounding box, see \code{\link[rgl]{decorated3d}})
+##             a bounding box, see \code{rgl::decorate3d})
 ##   \item \code{e} - \strong{e}ellipse(s) as defined by the
 ##             \code{ellipses} argument
 ##   \item \code{f} - 2D scatter plots on the \strong{f}aces of a
@@ -92,9 +92,9 @@ type = 'sawm,fw', ##<< a character string defining the type of plots to
 ## \strong{s}catter plots on its faces, and enriched with a
 ## \strong{w}ire frame.
 widths = 1, ##<< relative widths of columns in a multi-subscene scene,
-## see \code{\link[rgl]{layout3d}}
+## see \code{rgl::layout3d}
 heights = 1, ##<< relative heights of rows in a multi-subscene scene,
-## see \code{\link[rgl]{layout3d}}
+## see \code{rgl::layout3d}
 devices = rgl.cur(), ##<< a list of devices to plot at, defaulting to
 ## the current active device, if any. If \code{devices} is NULL, empty,
 ## contains invalid devices, or does not hold enough devices to plot
