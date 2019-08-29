@@ -1,19 +1,20 @@
 \name{flip4image}
 \alias{flip4image}
-\title{Flip a matrix to be passed to `image'.}
-\description{Flip a matrix such that it will appear `as is' when plotted by `image'.
-Note that `image' shows the rows of the matrix on the x axis and the
-columns of the matrix on the y axis (with column 1 at the bottom),
-such that the matrix gets displayed rotated 90 degree clockwise.
-`flip4image' therefore rotates the matrix 90 degree
-coutner-clockwise, such that the rotation made by `image' results in
-the desired form of the matrix.}
+\title{Flip a matrix to be passed to \code{\link[graphics]{image}}.}
+\description{Flip a matrix such that it will appear `as is' when plotted by
+\code{\link[graphics]{image}}.
+Note that \code{\link[graphics]{image}} shows the rows of the matrix
+on the x axis and the columns of the matrix on the y axis (with
+column 1 at the bottom), such that the matrix gets displayed rotated
+90 degree clockwise. `flip4image' therefore rotates the matrix 90 degree
+coutner-clockwise, such that the rotation made by
+\code{\link[graphics]{image}} results in the desired form of the matrix.}
 \usage{flip4image(x)}
 \arguments{
   \item{x}{a matrix}
 }
 
-\value{The matrix 'x' prepared to be displyed by `image'.}
+\value{The matrix \code{x} prepared to be displyed by \code{\link[graphics]{image}}.}
 
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 

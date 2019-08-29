@@ -1,10 +1,10 @@
 spherical2cartesian<-structure(
 function # Spherical to Cartesian coordinate conversion.
 ##description<<
-## 'spherical2cartesian' provides spherical to Cartesian coordinate
-## conversion.
+## \code{\link{spherical2cartesian}} provides spherical to
+## Cartesian coordinate conversion.
 ##
-##seealso<< 'cartesian2spherical'
+##seealso<< \code{\link{cartesian2spherical}}
 (r, ##<< a vector of radii (or a vector of length 3 holding \eqn{r, theta,
 ## phi})
 theta = NULL, ##<< a vector of inclinations

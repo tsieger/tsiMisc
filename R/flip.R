@@ -23,7 +23,7 @@ dim = 1 ##<< dimension(s) along which to flip (in sequence), defaults
     }
   }
   return(x)
-  ### The array 'x' having 'dim' dimension flipped.
+  ### The array \code{x} having the \code{dim} dimension flipped.
 },ex=function() {
   # flip a matrix
   x<-matrix(1:6,2)

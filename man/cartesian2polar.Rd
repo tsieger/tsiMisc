@@ -15,7 +15,7 @@
 
 
 
-\seealso{'cartesian2spherical', 'polar2cartesian'}
+\seealso{\code{\link{cartesian2spherical}}, \code{\link{polar2cartesian}}}
 \examples{
 cartesian2polar(0, 0)
 cartesian2polar(1, 2)

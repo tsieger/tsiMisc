@@ -1,8 +1,9 @@
 \name{normality2color}
 \alias{normality2color}
 \title{Sample normality color code.}
-\description{'normality2color' estimates the normality of vector 'x' and returns
-a color code representing the result of a normality test.
+\description{\code{\link{normality2color}} estimates the normality of vector
+\code{x} and returns a color code representing the result of a
+normality test.
 }
 \usage{normality2color(x, cols = c("green", "red", "gray"))}
 \arguments{
@@ -18,7 +19,7 @@ third undetermined normality.}
 
 
 
-\seealso{'normality2flag', 'dagostinoTest'}
+\seealso{\code{\link{normality2flag}}, \code{\link{dagostinoTest}}}
 \examples{
 normality2color(rnorm(30))
 normality2color(rnorm(3))

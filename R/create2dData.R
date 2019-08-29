@@ -1,7 +1,7 @@
 create2dData <- structure(
 function # Create 2D data set interactively.
 ##description<<
-## 'create2dData' allows you to interactively create a 2D data set
+## \code{\link{create2dData}} allows you to interactively create a 2D data set
 ## by clicking points in 2D.
 ##
 ##details<<
@@ -14,7 +14,7 @@ function # Create 2D data set interactively.
 ## the pop-up menu equivalent (usually second mouse button or
 ## `Ctrl'-click) or the `ESC' key.
 ##
-##seealso<< 'identify'
+##seealso<< \code{\link[graphics]{identify}}
 (xyRanges = c(0,1,0,1), ##<< ranges of 2D space (a numeric vector of length 4
 ## giving the xmin, xma, ymin, and ymax limits)
 setupDevice = TRUE, ##<< logical flag specifying whether to setup the graphical device.
@@ -46,12 +46,14 @@ verb = 1,##<< verbosity level
   ### a list of `x' and `y', each holding the coordinates of selected
   ### points
 },ex=function() {
-  # create first sample
-  xy<-create2dData()
-  print(xy)
+  if (interactive()) {
+    # create first sample
+    xy<-create2dData()
+    print(xy)
 
-  # create another sample
-  xy2<-create2dData(setupDevice=FALSE,col='red',pch=19)
-  print(xy2)
+    # create another sample
+    xy2<-create2dData(setupDevice=FALSE,col='red',pch=19)
+    print(xy2)
+  }
 })
 

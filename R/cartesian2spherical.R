@@ -3,7 +3,7 @@ function # Cartesian to spherical coordinate conversion.
 ##description<<
 ## Cartesian to spherical coordinate conversion.
 ##
-##seealso<< 'spherical2cartesian'
+##seealso<< \code{\link{spherical2cartesian}}
 (x, ##<< a vector of x coordinates (or a vector of length 3 holding \eqn{x, y, z})
 y = NULL, ##<< a vector of y coordinates
 z = NULL ## z a vector of coordinates

@@ -4,6 +4,7 @@ function # Are all values the same?
 ## Given a vector, are all the values in it the same?
 (x ##<< a vector
 ) {
+  require(utils)
   return(all(x==head(x,1)))
   ### TRUE, if all the values are the same (or the vector is empty)
 },ex=function() {

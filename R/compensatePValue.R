@@ -1,15 +1,16 @@
 compensatePValue<-structure(
 function # P-value compensation for multiple comparisons.
 ##description<<
-## 'compensatePValue' compensates a p-value for the number of tests
+## **OBSOLETED**
+## \code{\link{compensatePValue}} compensates a p-value for the number of tests
 ## performed.
 ##
 ##references<<
-## SISA, http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm
+## SISA, \url{http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm}
 ## Sture Holm, A Simple Sequentially Rejective Multiple Test Procedure, Scand J Statist 6: 65-70, 1979
-##note<< deprecated, not working properly, use 'stats::p.adjust' instead
+##note<< deprecated, not working properly, use \code{\link[stats]{p.adjust}} instead
 ##
-##seealso<< 'stats::p.adjust', 'compensateAlpha'
+##seealso<< \code{\link[stats]{p.adjust}}, \code{\link{compensateAlpha}}
 (p, ##<< p-value(s) to be compensated
 n=length(p), ##<< number of tests made
 method = c('bonferroni', 'sidak', 'holm-bonferroni'), ##<< compensation method,
@@ -86,9 +87,9 @@ r = 0 ##<< optional mean "correlation between the tests made",
     stop('unimplemented')
   } else stop('unsupported method "',method,'"')
   return(p)
-  ### Compensated p-value. It equals 'min(1,p*n)' for the 'bonferroni'
-  ### method, '1-(1-p)^n' for the 'sidak' method, and the result of the
-  ### iterative procedure for the method of 'holm-bonferroni'.
+  ### Compensated p-value. It equals \code{min(1,p*n)} for the \code{'bonferroni'}
+  ### method, \code{1-(1-p)^n} for the \code{'sidak'} method, and the result of the
+  ### iterative procedure for the method of \code{'holm-bonferroni'}.
 },ex=function() {
   # demonstrate the difference between Bonferroni and Sidak:
   compensatePValue(.025,2,method='bonferroni')

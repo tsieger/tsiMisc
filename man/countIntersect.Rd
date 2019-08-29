@@ -1,8 +1,8 @@
 \name{countIntersect}
 \alias{countIntersect}
 \title{Cardinality of set intersections.}
-\description{Given 'n' sets, 'countIntersect' computes the number of elements
-being shared by the individual 'n*(n-1)/2' pairs of sets.}
+\description{Given \code{n} sets, \code{\link{countIntersect}} computes the number of elements
+being shared by the individual \code{n*(n-1)/2} pairs of sets.}
 \usage{countIntersect(..., logical = FALSE)}
 \arguments{
   \item{\dots}{several numeric or character vectors to intersect;
@@ -11,12 +11,12 @@ will be treated as individual sets}
   \item{logical}{should}
 }
 
-\value{A matrix of size 'n*n'. If 'logical'==FALSE, on the diagonal,
-there are numbers of elements in each set, and at position 'i,j'
-there is the number of elements in set 'j' shared with set 'i'.
-If 'logical'==TRUE, on the diagonal, there are numbers of TRUEs
-in each set, and at position 'i,j' there is the number of TRUEs
-shared by sets 'i' and 'j'.}
+\value{A matrix of size \code{n*n}. If \code{logical==FALSE}, on the diagonal,
+there are numbers of elements in each set, and at position \code{i,j}
+there is the number of elements in set \code{j} shared with set \code{i}.
+If \code{logical==TRUE}, on the diagonal, there are numbers of \code{TRUE}s
+in each set, and at position \code{i,j} there is the number of \code{TRUE}s
+shared by sets \code{i} and \code{j}.}
 
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 

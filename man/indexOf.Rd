@@ -1,15 +1,15 @@
 \name{indexOf}
 \alias{indexOf}
 \title{Indices of member(s) in vector.}
-\description{'indexOf' finds indices of value(s) in a given vector.
+\description{\code{\link{indexOf}} finds indices of value(s) in a given vector.
 
 sealso<< regexpr}
 \usage{indexOf(x, v, regexp = TRUE)}
 \arguments{
-  \item{x}{value(s) to be searched for in vector 'v'}
+  \item{x}{value(s) to be searched for in vector \code{v}}
   \item{v}{vector}
-  \item{regexp}{If TRUE, 'x' of character type is interpreted as
-regular expressions.}
+  \item{regexp}{If \code{TRUE}, \code{x} of character type is
+interpreted as a regular expressions.}
 }
 
 

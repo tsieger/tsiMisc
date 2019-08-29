@@ -1,7 +1,7 @@
 \name{compensateAlpha}
 \alias{compensateAlpha}
 \title{Significance level compensation for multiple comparisons.}
-\description{'compensateAlpha' compensates statistical significance level
+\description{\code{\link{compensateAlpha}} compensates statistical significance level
 (alpha) for multiple comparisons/tests.
 }
 \usage{compensateAlpha(alpha, n, method = c("bonferroni", "sidak"), 
@@ -19,15 +19,15 @@ of 1 leads to no compensation (as all the tests are considered equal).
 See the SISA help for explanation.}
 }
 
-\value{Compensated significance level. It equals 'alpha/n' for the
-'bonferroni' method, and '1-(1-alpha)^(1/n))' for the 'sidak
+\value{Compensated significance level. It equals \code{alpha/n} for the
+\code{'bonferroni'} method, and \code{1-(1-alpha)^(1/n))} for the \code{'sidak'}
 method.}
-\references{SISA, http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm}
+\references{SISA, \url{http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm}}
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 
 
 
-\seealso{'compensatePValue', 'stats::p.adjust'}
+\seealso{\code{\link{compensatePValue}}, \code{\link[stats]{p.adjust}}}
 \examples{
 compensateAlpha(.05,2,method='sidak')
 }

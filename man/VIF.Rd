@@ -1,8 +1,8 @@
 \name{VIF}
 \alias{VIF}
 \title{Variance-inflaction factor.}
-\description{'VIF' computes multicolinearity-related diagnostic statistics for a
-linear model with an absolute term.
+\description{\code{\link{VIF}} computes multicolinearity-related diagnostic
+statistics for a linear model with an absolute term.
 }
 \usage{VIF(m)}
 \arguments{
@@ -22,8 +22,10 @@ all the others, and tolerance (1-R^2 = 1/VIF).}
 
 
 
-\seealso{'car::vif'}
+\seealso{\code{\link[car]{vif}}}
 \examples{
+require(stats)
+require(datasets)
 m<-lm(Sepal.Width~Sepal.Length+Petal.Width+Petal.Length,iris)
 VIF(m)
 }

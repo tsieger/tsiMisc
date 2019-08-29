@@ -1,7 +1,8 @@
 \name{compensatePValue}
 \alias{compensatePValue}
 \title{P-value compensation for multiple comparisons.}
-\description{'compensatePValue' compensates a p-value for the number of tests
+\description{**OBSOLETED**
+\code{\link{compensatePValue}} compensates a p-value for the number of tests
 performed.
 }
 \usage{compensatePValue(p, n = length(p), method = c("bonferroni", "sidak", 
@@ -22,17 +23,17 @@ See the SISA help for explanation. Note that the FWE is controlled
 in the strict sense only for 'r=0'.}
 }
 
-\value{Compensated p-value. It equals 'min(1,p*n)' for the 'bonferroni'
-method, '1-(1-p)^n' for the 'sidak' method, and the result of the
-iterative procedure for the method of 'holm-bonferroni'.}
-\references{SISA, http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm
+\value{Compensated p-value. It equals \code{min(1,p*n)} for the \code{'bonferroni'}
+method, \code{1-(1-p)^n} for the \code{'sidak'} method, and the result of the
+iterative procedure for the method of \code{'holm-bonferroni'}.}
+\references{SISA, \url{http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm}
 Sture Holm, A Simple Sequentially Rejective Multiple Test Procedure, Scand J Statist 6: 65-70, 1979}
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
-\note{deprecated, not working properly, use 'stats::p.adjust' instead
+\note{deprecated, not working properly, use \code{\link[stats]{p.adjust}} instead
 }
 
 
-\seealso{'stats::p.adjust', 'compensateAlpha'}
+\seealso{\code{\link[stats]{p.adjust}}, \code{\link{compensateAlpha}}}
 \examples{
 # demonstrate the difference between Bonferroni and Sidak:
 compensatePValue(.025,2,method='bonferroni')

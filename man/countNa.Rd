@@ -1,15 +1,15 @@
 \name{countNa}
 \alias{countNa}
 \title{Count NA's in a data frame.}
-\description{'countNa' computes the number of missing values in a data frame.
+\description{\code{\link{countNa}} computes the number of missing values in a data frame.
 It counts the number of missings in each column, the number of rows
 in which a value in at least one columns is missing, and the
 expected number of rows with at least one missing value (computed
 under the assumption of independence of missingness in individual
 columns). Number of rows left are also given.
 Optionally, combinations of columns reaching highest joint
-missingness is also reported (if 'combColCount > 1' and the
-number of columns in 'x' is at least 2).}
+missingness is also reported (if \code{combColCount > 1} and the
+number of columns in \code{x} is at least \code{2}).}
 \usage{countNa(d, sort = TRUE, decreasing = FALSE, combColCount = 3)}
 \arguments{
   \item{d}{a data frame}
@@ -26,7 +26,7 @@ missingness in individual columns, plus the missingness in the
 combination of all columns (in a row called 'any'), plus the
 average missingness (in a row called 'average').
 The second data frame (if requested) describes the combinations
-of at most 'combColCount' columns of 'x' reaching highest joint
+of at most \code{combColCount} columns of \code{x} reaching highest joint
 missingness.}
 
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}

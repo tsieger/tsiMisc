@@ -1,7 +1,7 @@
 \name{vectorLength}
 \alias{vectorLength}
 \title{Vector length.}
-\description{'vectorLength' computes the length of a vector.}
+\description{\code{\link{vectorLength}} computes the length of a vector.}
 \usage{vectorLength(v)}
 \arguments{
   \item{v}{a vector}

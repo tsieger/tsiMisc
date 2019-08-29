@@ -1,8 +1,8 @@
 countIntersect<-structure(
 function # Cardinality of set intersections.
 ##description<<
-## Given 'n' sets, 'countIntersect' computes the number of elements
-## being shared by the individual 'n*(n-1)/2' pairs of sets.
+## Given \code{n} sets, \code{\link{countIntersect}} computes the number of elements
+## being shared by the individual \code{n*(n-1)/2} pairs of sets.
 (..., ##<< several numeric or character vectors to intersect;
 ## alternatively, a data frame or matrix can be supplied, whose columns
 ## will be treated as individual sets
@@ -46,12 +46,12 @@ logical = FALSE ##<< should
     rownames(m)<-colnames(m)<-sapply(as.list(substitute(list(...)))[-1],deparse)
   }
   return(m)
-  ### A matrix of size 'n*n'. If 'logical'==FALSE, on the diagonal,
-  ### there are numbers of elements in each set, and at position 'i,j'
-  ### there is the number of elements in set 'j' shared with set 'i'.
-  ### If 'logical'==TRUE, on the diagonal, there are numbers of TRUEs
-  ### in each set, and at position 'i,j' there is the number of TRUEs
-  ### shared by sets 'i' and 'j'.
+  ### A matrix of size \code{n*n}. If \code{logical==FALSE}, on the diagonal,
+  ### there are numbers of elements in each set, and at position \code{i,j}
+  ### there is the number of elements in set \code{j} shared with set \code{i}.
+  ### If \code{logical==TRUE}, on the diagonal, there are numbers of \code{TRUE}s
+  ### in each set, and at position \code{i,j} there is the number of \code{TRUE}s
+  ### shared by sets \code{i} and \code{j}.
 },ex=function() {
   countIntersect(1:2,1:3)
   countIntersect(c('a','b'),c('a','c'),c('b','c'))

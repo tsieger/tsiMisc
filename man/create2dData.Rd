@@ -1,7 +1,7 @@
 \name{create2dData}
 \alias{create2dData}
 \title{Create 2D data set interactively.}
-\description{'create2dData' allows you to interactively create a 2D data set
+\description{\code{\link{create2dData}} allows you to interactively create a 2D data set
 by clicking points in 2D.
 }
 \usage{create2dData(xyRanges = c(0, 1, 0, 1), setupDevice = TRUE, verb = 1, 
@@ -31,13 +31,15 @@ points}
 
 
 
-\seealso{'identify'}
+\seealso{\code{\link[graphics]{identify}}}
 \examples{
-# create first sample
-xy<-create2dData()
-print(xy)
+if (interactive()) {
+  # create first sample
+  xy<-create2dData()
+  print(xy)
 
-# create another sample
-xy2<-create2dData(setupDevice=FALSE,col='red',pch=19)
-print(xy2)
+  # create another sample
+  xy2<-create2dData(setupDevice=FALSE,col='red',pch=19)
+  print(xy2)
+}
 }

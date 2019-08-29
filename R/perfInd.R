@@ -6,7 +6,7 @@ function # Compute performance indicators.
 ## under the receiver operating characteristic, the Gini coefficient
 ## etc. (see the return value).
 ##
-##seealso<< \code{link[ROCR]{performance}} which gives many more measures
+##seealso<< \code{\link[ROCR]{performance}} which gives many more measures
 ##
 ##references<<
 ## Fawcett, Tom (2006). _An Introduction to ROC Analysis_. Pattern

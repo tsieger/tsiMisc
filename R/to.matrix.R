@@ -1,8 +1,8 @@
 to.matrix<-structure(
 function # Conversion to a matrix.
 ##description<<
-## 'to.matrix' attempts to convert any data to a row matrix. In
-## particular, data frames are converted by 'as.matrix', (numeric)
+## \code{\link{to.matrix}} attempts to convert any data to a row matrix. In
+## particular, data frames are converted by \code{\link{as.matrix}}, (numeric)
 ## vectors are converted to a single row/column matrix, according to
 ## the \code{rowMatrix} argument.
 (x, ##<< data to convert to a matrix

@@ -1,9 +1,9 @@
 \name{histv}
 \alias{histv}
 \title{Vertically aligned histograms.}
-\description{'histv' creates one or more vertically aligned histograms,
-rendered by 'hist'. This is useful for visual comparison of several
-numeric vectors.}
+\description{\code{\link{histv}} creates one or more vertically aligned histograms,
+rendered by \code{\link[graphics]{hist}}. This is useful for visual
+comparison of several numeric vectors.}
 \usage{histv(..., setup = TRUE, setupDev = NULL, ylimFixed = FALSE, 
     col = NULL, border = NULL, main = NULL, xlab = NULL, callback = NULL, 
     debug = FALSE)}
@@ -39,8 +39,8 @@ it}
 greater than 1, verbose debugs will be produced.}
 }
 
-\value{a list of objects of class 'histograms' (see
-'graphics::hist'). The elements correspond to individual
+\value{a list of objects of class \code{'histograms'} (see
+\code{\link[graphics]{hist}}). The elements correspond to individual
 histograms depicting the individual numeric vectors.}
 
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}

@@ -17,7 +17,7 @@ position in a distance matrix.}
 
 
 
-\seealso{computeDistIdx}
+\seealso{\code{\link{computeDistIdx}}}
 \examples{
 x <- 1:10
 d <- dist(x)

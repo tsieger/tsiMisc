@@ -4,8 +4,7 @@ function # Indices into distance matrix.
 ## \code{\link{computeDistIdx}} computes the indices of entries in a
 ## distance matrix (as computed by \code{\link[stats]{dist}}) that hold
 ## the distances between a given point and one or more other points.
-##seealso<<
-## computeIdxFromDistIdx
+##seealso<< \code{\link{computeIdxFromDistIdx}}
 (n, ##<< number of points
 i, ##<< index of point to compute distance from
 j = setdiff(1:n, i), ##<< index of point(s) to compute distance to

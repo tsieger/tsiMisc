@@ -1,7 +1,7 @@
 \name{catnl}
 \alias{catnl}
 \title{Cat with trailing newline.}
-\description{\code{cat} with trailing newline.}
+\description{\code{\link{cat}} with trailing newline.}
 \usage{catnl(..., sep = " ")}
 \arguments{
   \item{\dots}{arguments to cat}

@@ -1,12 +1,12 @@
 iclass<-structure(
 function # Determine implicit class.
 ##description<<
-## 'iclass' determines the implicit class of a base type. The code is
-## taken from the great "Advanced R" by Hadley Wickham.
+## \code{\link{iclass}} determines the implicit class of a base type.
+## The code is taken from the great "Advanced R" by Hadley Wickham.
 ##
 ##references<<
 ## Wickham, Hadley. _Advanced R_.
-## Available online at http://adv-r.had.co.nz/OO-essentials.html
+## Available online at \url{http://adv-r.had.co.nz/OO-essentials.html}
 (x ##<< base type
 ) {
   if (is.object(x)) {

@@ -1,8 +1,8 @@
 \name{spherical2cartesian}
 \alias{spherical2cartesian}
 \title{Spherical to Cartesian coordinate conversion.}
-\description{'spherical2cartesian' provides spherical to Cartesian coordinate
-conversion.
+\description{\code{\link{spherical2cartesian}} provides spherical to
+Cartesian coordinate conversion.
 }
 \usage{spherical2cartesian(r, theta = NULL, phi = NULL)}
 \arguments{
@@ -18,7 +18,7 @@ phi})}
 
 
 
-\seealso{'cartesian2spherical'}
+\seealso{\code{\link{cartesian2spherical}}}
 \examples{
 spherical2cartesian(1, 0, pi / 2)
 spherical2cartesian(1, pi, pi / 4)

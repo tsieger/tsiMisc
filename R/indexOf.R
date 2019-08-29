@@ -1,13 +1,13 @@
 indexOf<-structure(
 function # Indices of member(s) in vector.
 ##description<<
-## 'indexOf' finds indices of value(s) in a given vector.
+## \code{\link{indexOf}} finds indices of value(s) in a given vector.
 ##
 ##sealso<< regexpr
-(x, ##<< value(s) to be searched for in vector 'v'
+(x, ##<< value(s) to be searched for in vector \code{v}
 v, ##<< vector
-regexp = TRUE ##<< If TRUE, 'x' of character type is interpreted as
-## regular expressions.
+regexp = TRUE ##<< If \code{TRUE}, \code{x} of character type is
+## interpreted as a regular expressions.
 ) {
   if (is.character(x) && regexp) {
     rv<-c(unlist(sapply(x,function(cn)which(regexpr(paste('^',cn,'$',sep=''),v)!=-1))))

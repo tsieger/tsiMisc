@@ -1,9 +1,9 @@
 repmat<-structure(
 function # Repeat matrix.
 ##description<<
-## Create a big matrix by tiling given matrix m*n times in a
-## rectangular grid. 'repmat' resembles the matlab function of the same
-## name.
+## Create a big matrix by tiling given matrix \code{m*n} times in a
+## rectangular grid. \code{\link{repmat}} resembles the matlab function
+## of the same name.
 (x, ##<< a matrix
 m, ##<< number of repetitions in dimension 1 (row multiply factor)
 n ##<< number of repetitions in dimension 2 (column multiply factor)

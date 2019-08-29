@@ -1,21 +1,22 @@
 \name{histd}
 \alias{histd}
 \title{Histogram with defaults.}
-\description{'histd' is just a shortcut to 'hist' passing it some default values.}
+\description{\code{\link{histd}} is just a shortcut to \code{\link[graphics]{hist}}
+passing it some default values.}
 \usage{histd(x, breaks = 100, col = "gray", main = NULL, xlab = NULL, 
     ...)}
 \arguments{
   \item{x}{a vector of values for which the histogram is desired}
-  \item{breaks}{histogram breaks, see 'hist'}
-  \item{col}{a color to fill the bars, defaults to gray, see 'hist'}
+  \item{breaks}{histogram breaks, see \code{\link[graphics]{hist}}}
+  \item{col}{a color to fill the bars, defaults to gray, see \code{\link[graphics]{hist}}}
   \item{main}{
 }
   \item{xlab}{
 }
-  \item{\dots}{other parameters to 'hist'}
+  \item{\dots}{other parameters to \code{\link[graphics]{hist}}}
 }
 
-\value{an object of class 'histogram', see 'hist'}
+\value{an object of class \code{histogram}, see \code{\link[graphics]{hist}}}
 
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 

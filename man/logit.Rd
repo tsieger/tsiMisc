@@ -1,8 +1,8 @@
 \name{logit}
 \alias{logit}
 \title{The logit function.}
-\description{'logit' computes 'log( p / (1-p))', i.e. maps the interval '[0, 1]'
-to the interval of '(-inf, inf)'.
+\description{\code{\link{logit}} computes \eqn{log( p / (1-p))}, i.e. maps the interval \eqn{[0, 1]}
+to the interval of \eqn{(-\infty, \infty)}.
 }
 \usage{logit(p)}
 \arguments{
@@ -15,7 +15,7 @@ to the interval of '(-inf, inf)'.
 
 
 
-\seealso{'expit'}
+\seealso{\code{\link{expit}}}
 \examples{
 logit(0)
 logit(.5)

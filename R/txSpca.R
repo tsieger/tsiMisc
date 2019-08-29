@@ -1,11 +1,11 @@
 txSpca<-structure(
 function # Supervised PCA transform.
 ##description<<
-## 'txSpca' transforms data using supervised principal component
+## \code{\link{txSpca}} transforms data using supervised principal component
 ## analysis.
 ## TODO
 ##
-##seealso<< 'spca', 'txPca', 'plot3dProj'
+##seealso<< \code{\link{spca}}, \code{\link{txPca}}, \code{\link{plot3dProj}}
 (x, ##<< a data matrix (features in columns, samples in rows)
 y = diag(1, nrow(x)), ##<< target classification of x (logical, numeric,
 ## or a factor), or a kernel matrix of the target. If not specified, it

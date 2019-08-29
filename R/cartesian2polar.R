@@ -3,7 +3,7 @@ function # Cartesian to polar coordinate conversion.
 ##description<<
 ## Cartesian to polar coordinate conversion.
 ##
-##seealso<< 'cartesian2spherical', 'polar2cartesian'
+##seealso<< \code{\link{cartesian2spherical}}, \code{\link{polar2cartesian}}
 (x, ##<< x coordinate (or a vector of length 2 holding \eqn{x, y})
 y = NULL ##<< y coordinate
 ) {

@@ -1,19 +1,19 @@
 lnormPar<-structure(
 function # Lognormal distribution parameter conversion.
 ##description<<
-## 'lnormPar' converts the parameters of lognormal distribution
+## \code{\link{lnormPar}} converts the parameters of lognormal distribution
 ## between linear and log scales.
 ## Lognormal distribution is naturally characterized by parameters on
 ## the log scale. However, the distribution can also be parameterized
 ## on the linear scale, e.g. using sample-based parameters estimates.
-## 'lnormPar' accepts either the 'mean' and 'sd' parameters
-## from the linear scale and computes the 'meanlog' and 'sdlog'
-## parameters on the log scale, or 'meanlog' and 'sdlog' parameters
-## from the log scale and computes the 'mean' and 'sd' parameters on
-## the linear scale.
+## \code{\link{lnormPar}} accepts either the \code{mean} and \code{sd}
+## parameters from the linear scale and computes the \code{meanlog} and
+## \code{sdlog} parameters on the log scale, or \code{meanlog} and
+## \code{sdlog} parameters from the log scale and computes the
+## \code{mean} and \code{sd} parameters on the linear scale.
 ##
 ##references<<
-## http://www.mathworks.com/help/stats/lognstat.html
+## \url{http://www.mathworks.com/help/stats/lognstat.html}
 (mean = NULL, ##<< the mean on the linear scale
 sd = NULL, ##<< the standard deviation on the linear scale
 meanlog = NULL, ##<< the mean on the log scale
@@ -41,8 +41,8 @@ sdlog = NULL ##<< the standard deviation on the log scale
   return(rv)
   ### a named list of length 4 holding both the computed parameters and
   ### the input paramaters. The parameter names correspond to the names
-  ### of the arguments, i.e. 'mean','sd','meanlog','sdlog'. The
-  ### computed parameters come first in the list.
+  ### of the arguments, i.e. \code{mean}, \code{sd}, \code{meanlog}, and
+  ### \code{sdlog}. The computed parameters come first in the list.
 },ex=function() {
   # convert parameters from the linear scale to the log scale
   paramsOnLogScale <- lnormPar(mean = 10, sd = 3)

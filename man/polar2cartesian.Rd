@@ -1,7 +1,8 @@
 \name{polar2cartesian}
 \alias{polar2cartesian}
 \title{Polar to Cartesian coordinate conversion.}
-\description{'polar2cartesian' provides polar to Cartesian coordinate conversion.
+\description{\code{\link{polar2cartesian}} provides polar to Cartesian
+coordinate conversion.
 }
 \usage{polar2cartesian(r, phi = NULL)}
 \arguments{
@@ -15,7 +16,7 @@
 
 
 
-\seealso{'cartesian2polar'}
+\seealso{\code{\link{cartesian2polar}}}
 \examples{
 polar2cartesian(1, 0)
 polar2cartesian(1, pi)

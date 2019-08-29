@@ -1,7 +1,7 @@
 \name{txSpca}
 \alias{txSpca}
 \title{Supervised PCA transform.}
-\description{'txSpca' transforms data using supervised principal component
+\description{\code{\link{txSpca}} transforms data using supervised principal component
 analysis.
 TODO
 }
@@ -35,7 +35,7 @@ and returns the contribution of individual dimensions to the top
 
 
 
-\seealso{'spca', 'txPca', 'plot3dProj'}
+\seealso{\code{\link{spca}}, \code{\link{txPca}}, \code{\link{plot3dProj}}}
 \examples{
 tx<-txSpca(iris[,1:4],iris$Species)
 plot(tx(iris[1:10,1:4])[,1:2])

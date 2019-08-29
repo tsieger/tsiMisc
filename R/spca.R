@@ -1,7 +1,7 @@
 spca<-structure(
 function # Supervised PCA.
 ##description<<
-## 'spca' computes supervised principal component analysis as
+## \code{\link{spca}} computes supervised principal component analysis as
 ## described in Barshan et al.
 ##
 ##references<< Barshan, E., Ghodsi, A., Azimifar, Z., Jahromi, M. Z.
@@ -77,11 +77,13 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   U$center<-.center
   U$scale<-.scale
   return(U)
-  ### Eigenvalue decomposition of 'Q' (see the paper). The value is a
-  ### list of 'values' and 'vectors' components (see 'base::eigen'),
-  ### 'Q', the matrix being decomposed, and 'center' and 'scale'
-  ### holding the centering and scaling used, or 'FALSE'.
-  ### If 'retx' is TRUE, the rotated version of 'x' is returned in 'x'.
+  ### Eigenvalue decomposition of \code{Q} (see the paper). The value is a
+  ### list of \code{values} and \code{vectors} components (see
+  ### \code{\link[base]{eigen}},
+  ### \code{Q}, the matrix being decomposed, and \code{center} and \code{scale}
+  ### holding the centering and scaling used, or \code{FALSE}.
+  ### If \code{retx} is \code{TRUE}, the rotated version of \code{x}
+  ### is returned in \code{x}.
   ### The number of eigenvalues and eigenvectors correspond to the
   ### dimension of the output space.
 },ex=function() {

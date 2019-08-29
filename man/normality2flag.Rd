@@ -1,7 +1,8 @@
 \name{normality2flag}
 \alias{normality2flag}
 \title{Sample normality estimate flag.}
-\description{'normality2flag' estimates the normality of a vector vector 'x' and
+\description{\code{\link{normality2flag}} estimates the normality of a
+vector vector \code{x} and
 returns a discrete flag assessing the normality (normal,
 non-normal, don't know).
 
@@ -20,7 +21,7 @@ can't be assesed (not enough data etc.)}
 
 
 
-\seealso{'dagostinoTest', 'normality2color'}
+\seealso{\code{\link{dagostinoTest}}, \code{\link{normality2color}}}
 \examples{
 normality2flag(rnorm(30))
 normality2flag(rnorm(3))

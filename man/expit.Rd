@@ -1,9 +1,9 @@
 \name{expit}
 \alias{expit}
 \title{The expit function (the inverse to logit).}
-\description{'expit' computes 'exp(x) / (1 + exp(x))', i.e. the inverse to
-'logit', i.e. it maps the interval '(-inf, inf)' to the interval
-of '[0, 1]'.
+\description{\code{\link{expit}} computes \eqn{exp(x) / (1 + exp(x))}, i.e. the inverse to
+\code{\link{logit}}, i.e. it maps the interval \eqn{(-\infty, \infty)}
+to the interval of \eqn{[0, 1]}.
 }
 \usage{expit(x)}
 \arguments{

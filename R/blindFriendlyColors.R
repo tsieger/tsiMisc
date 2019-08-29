@@ -27,7 +27,7 @@ function # Blind friendly colors.
   colnames(x)<-c('name','r','g','b')
   y<-c()
   for (i in 1:nrow(x)) {
-    tmp<-as.character(rgb(
+    tmp<-as.character(grDevices::rgb(
       as.numeric(as.character(x[i,2]))/255,
       as.numeric(as.character(x[i,3]))/255,
       as.numeric(as.character(x[i,4]))/255))
@@ -35,7 +35,7 @@ function # Blind friendly colors.
   }
   names(y)<-x[,1]
   return(y)
-  ### a named list holding text 'rgb' values of 8 blind-friendly colors.
+  ### a named list holding text \code{rgb} values of 8 blind-friendly colors.
 },ex=function() {
   # list color names
   print(names(bfc()))
@@ -46,6 +46,8 @@ function # Blind friendly colors.
   # show all colors
   x<-bfc()
   tmp<-rev(seq(along=names(x)))
+    # needed to let pkgdonw find graphics::plot():
+    require(graphics)
   plot(c(.8,1.3),c(0,length(x)+1),ty='n',frame=FALSE,xaxt='n',yaxt='n',xlab='',ylab='')
   points(rep(1,length(x)),tmp,pch=19,cex=6,col=x)
   text(rep(1.05,length(x)),tmp,names(x),adj=0)

@@ -1,7 +1,7 @@
 catnl<-structure(
 function # Cat with trailing newline.
 ##description<<
-## \code{cat} with trailing newline.
+## \code{\link{cat}} with trailing newline.
 (..., ##<< arguments to cat
 sep=' '
 ) {

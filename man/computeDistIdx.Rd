@@ -36,7 +36,7 @@ between point \code{i} and point \code{j} resides at position
 
 
 
-\seealso{computeIdxFromDistIdx}
+\seealso{\code{\link{computeIdxFromDistIdx}}}
 \examples{
 x <- 1:10
 d <- dist(x)

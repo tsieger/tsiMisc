@@ -1,10 +1,11 @@
 dropLevels<-structure(
 function # Drop unused levels in a factor.
 ##description<<
-## This is only a wrapper for 'gdata::drop.levels'.
-##seealso<< 'gdata::drop.levels'
+## This is only a wrapper for \code{\link[gdata]{drop.levels}}
+##seealso<< \code{\link[gdata]{drop.levels}}
 (x, ##<< object to be processed
-reorder = TRUE, ##<< should factor levels be reordered using 'reorder.factor'?
+reorder = TRUE, ##<< should factor levels be reordered using
+## \code{gdata::reorder.factor}?
 ... ##<< additional arguments to 'reorder.factor'
 ) {
   return(gdata::drop.levels(x,reorder,...))

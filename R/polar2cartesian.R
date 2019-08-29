@@ -1,9 +1,10 @@
 polar2cartesian<-structure(
 function # Polar to Cartesian coordinate conversion.
 ##description<<
-## 'polar2cartesian' provides polar to Cartesian coordinate conversion.
+## \code{\link{polar2cartesian}} provides polar to Cartesian
+## coordinate conversion.
 ##
-##seealso<< 'cartesian2polar'
+##seealso<< \code{\link{cartesian2polar}}
 (r, ##<< a vector of radii (a or a vector of length 2 holding \eqn{r, phi})
 phi = NULL ##<< a vector of angles
 ) {

@@ -18,7 +18,7 @@ point represented as \eqn{x, y, z} in Cartesian coordinates.}
 
 
 
-\seealso{'spherical2cartesian'}
+\seealso{\code{\link{spherical2cartesian}}}
 \examples{
 cartesian2spherical(0, 0, 0)
 cartesian2spherical(1, 2, 3)

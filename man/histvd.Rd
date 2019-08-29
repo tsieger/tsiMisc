@@ -1,9 +1,9 @@
 \name{histvd}
 \alias{histvd}
 \title{Vertically aligned histograms.}
-\description{'histvg' creates one or more vertically aligned histograms,
-rendered by 'hist'. This is useful for visual comparison of several
-numeric vectors.}
+\description{\code{\link{histvd}} creates one or more vertically aligned histograms,
+rendered by \code{\link[graphics]{hist}}. This is useful for visual
+comparison of several numeric vectors.}
 \usage{histvd(..., breaks = 100, col = "gray")}
 \arguments{
   \item{\dots}{one or more numeric vectors to compare}
@@ -11,8 +11,8 @@ numeric vectors.}
   \item{col}{colour(s) to be used to fill the bars. The default}
 }
 
-\value{a list of objects of class 'histograms' (see
-'histv')}
+\value{a list of objects of class \code{'histograms'} (see
+\code{\link{histv}})}
 
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
 

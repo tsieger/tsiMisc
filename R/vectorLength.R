@@ -1,7 +1,7 @@
 vectorLength<-structure(
 function # Vector length.
 ##description<<
-## 'vectorLength' computes the length of a vector.
+## \code{\link{vectorLength}} computes the length of a vector.
 (v ##<< a vector
 ) {
   return(sqrt(sum(v^2)))

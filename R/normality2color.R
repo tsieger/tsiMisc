@@ -1,10 +1,11 @@
 normality2color<-structure(
 function # Sample normality color code.
 ##description<<
-## 'normality2color' estimates the normality of vector 'x' and returns
-## a color code representing the result of a normality test.
+## \code{\link{normality2color}} estimates the normality of vector
+## \code{x} and returns a color code representing the result of a
+## normality test.
 ##
-##seealso<< 'normality2flag', 'dagostinoTest'
+##seealso<< \code{\link{normality2flag}}, \code{\link{dagostinoTest}}
 (x, ##<< a numeric vector
 cols = c('green', 'red', 'gray') ##<< a vector of three colors, the
 ## first used to represent normality, the second non-normality, and the

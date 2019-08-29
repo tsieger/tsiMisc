@@ -70,7 +70,7 @@ Available online at \url{http://www.bioinfo.in/contents.php?id=51}
 
 
 
-\seealso{\code{link[ROCR]{performance}} which gives many more measures
+\seealso{\code{\link[ROCR]{performance}} which gives many more measures
 }
 \examples{
 # example from https://en.wikipedia.org/w/index.php?title=Sensitivity_and_specificity&oldid=680316530

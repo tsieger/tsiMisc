@@ -1,9 +1,9 @@
 histv<-structure(
 function # Vertically aligned histograms.
 ##description<<
-## 'histv' creates one or more vertically aligned histograms,
-## rendered by 'hist'. This is useful for visual comparison of several
-## numeric vectors.
+## \code{\link{histv}} creates one or more vertically aligned histograms,
+## rendered by \code{\link[graphics]{hist}}. This is useful for visual
+## comparison of several numeric vectors.
 (..., ##<< one or more numeric vectors to compare
 setup = TRUE, ##<< if TRUE, graphic device will be set up to hold
 ## enough subfigures. If FALSE, no setup will be performed.
@@ -123,8 +123,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
         }
     },finally=if(setup) par(opar))
     return(invisible(hists))
-    ### a list of objects of class 'histograms' (see
-    ### 'graphics::hist'). The elements correspond to individual
+    ### a list of objects of class \code{'histograms'} (see
+    ### \code{\link[graphics]{hist}}). The elements correspond to individual
     ### histograms depicting the individual numeric vectors.
 },ex=function() {
   # two aligned histograms with free 'ylim'

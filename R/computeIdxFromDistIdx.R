@@ -4,8 +4,7 @@ function # Indices of two samples of given index into distance matrix.
 ## \code{\link{computeIdxFromDistIdx}} computes the indices of two
 ## points whose distance appears at given position in a distance matrix
 ## (as computed by \code{\link[stats]{dist}}).
-##seealso<<
-## computeDistIdx
+##seealso<< \code{\link{computeDistIdx}}
 (n, ##<< number of points
 i ##<< index into the distance matrix
 ) {

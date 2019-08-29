@@ -1,7 +1,7 @@
 refineFactors<-structure(
 function # Refine factors in two twin data frames.
 ##description<<
-## Refine two data frames 'x1' and 'x2' to be usable as a pair of
+## Refine two data frames \code{x1} and \code{x2} to be usable as a pair of
 ## a train/test set pair in a modeling or classification task, such
 ## that a model/classifier (e.g. a binomial GLM) can be trained on the
 ## train set and can be then directly applied to the test set.
@@ -19,14 +19,14 @@ function # Refine factors in two twin data frames.
 ## level not appearing in the twin data frame, and dropping unused
 ## levels from factors.
 ##
-##seealso<< 'dropLevels'
+##seealso<< \code{\link{dropLevels}}
 (x1, ##<< first data frame
 x2, ##<< second data frame
 unify = TRUE, ##<< shall factors be unified?
 dropSingular = TRUE, ##<< shall factors having only a single level be
 ## removed?
 naLimit = Inf, ##<< numeric columns containing more than 'naLimit' NA's
-## (in 'x1' and in 'x2') will be converted into a factor created by
+## (in \code{x1} and in \code{x2}) will be converted into a factor created by
 ## 'cut'-ting the numeric values into 'k' intervals, and adding a
 ## special 'naLevelName' level to hold the missing values
 k = 5, ##<< the number of intervals into which numeric columns having
@@ -217,7 +217,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 
   res<-list(x1=x1,x2=x2)
   return(res)
-  ### A list of refined 'x1' and 'x2',
+  ### A list of refined \code{x1} and \code{x2}.
 },ex=function() {
   # unify factor levels and remove constant factors:
   x<-data.frame(x = 1:6, y = c('a','b','c','b','c','d'), z = c('d','c','c','c','c','d'))

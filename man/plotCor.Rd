@@ -1,16 +1,16 @@
 \name{plotCor}
 \alias{plotCor}
 \title{Plot decorated bivariate correlations.}
-\description{'plotCor' creates a matrix of bivariate correlation plots between
+\description{\code{\link{plotCor}} creates a matrix of bivariate correlation plots between
 all/selected pairs of variables in a data frame, similarly to
-'plot.data.frame'. On the diagonal, there are histograms of
+\code{plot.data.frame}. On the diagonal, there are histograms of
 individual variables colored, by default,according to the estimated
 normality of those variables. Below (or above) the diagonal, there
 are scatter plots enriched by smoothed conditional estimates of the
 mean. Above (or below) the diagonal, there are estimates of the
 correlation coefficients and their significances shown.
 
-'plotCor' is based on / inspired by several other similar plots.
+\code{\link{plotCor}} is based on / inspired by several other similar plots.
 I thank their authors, but, unfortunatelly, can't give credits to
 them, as I can't remember all of them.
 }
