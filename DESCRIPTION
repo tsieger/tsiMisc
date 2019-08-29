@@ -8,6 +8,7 @@ Imports: coin, devtools, e1071, gdata, geometry, inlinedocs, stringr
 Suggests: idendro, testthat, MASS, scales, colorspace, rgl
 URL: http://github.com/tsieger/tsiMisc
 Maintainer: Tomas Sieger <tomas.sieger@seznam.cz>
+BugReports: https://github.com/tsieger/tsiMisc/issues
 Description: Miscelanous utility functions, mostly related to exploratory statistical analysis.
 License: GPL-2
 LazyLoad: yes
