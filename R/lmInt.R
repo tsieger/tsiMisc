@@ -1,7 +1,7 @@
 lmInt<-structure(
 function # Confidence and prediction intervals for regression.
 ##description<<
-## 'lmInt' contructs confidence and prediction intervals for
+## \code{\link{lmInt}} contructs confidence and prediction intervals for
 ## linear regression. It computes confidence intervals around the regression
 ## line (i.e. the point-wise confidence bands of \eqn{E(Y | X = x)}
 ## for each individual \eqn{x}), confidence intervals for the
@@ -18,7 +18,8 @@ function # Confidence and prediction intervals for regression.
 ##
 ##references<< Karel Zv\'{a}ra: Regrese, Matfyzpress Praha 2008
 ##
-##seealso<< 'plot.lmInt', 'stats::predict.lm', 'stats::lm'
+##seealso<< \code{\link{plot.lmInt}}, \code{\link[stats]{predict.lm}},
+## \code{\link[stats]{lm}}
 ##
 (m, ##<< a fitted linear model
 newdata = NULL, ##<< a data frame to look for predictors. If omitted,

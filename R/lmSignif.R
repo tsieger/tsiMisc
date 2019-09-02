@@ -1,10 +1,10 @@
 lmSignif<-structure(
 function # Overall linear model significance.
 ##description<<
-## 'lmSignif' compute the significance of the F statistics in a
-## 'lm.summary' object.
-(s ##<< an object of class 'lm.summary'
-## (or a linear model of class 'lm' that will get summarized)
+## \code{\link{lmSignif}} compute the significance of the F statistics in a
+## \code{\link[stats]{summary.lm}} object.
+(s ##<< an object of class \code{\link[stats]{summary.lm}}
+## (or a linear model of class \code{\link[stats]{lm}} that will get summarized)
 ) {
   if (!inherits(s,'summary.lm')) {
     if (inherits(s,'lm')) {

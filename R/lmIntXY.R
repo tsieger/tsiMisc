@@ -1,7 +1,7 @@
 lmIntXY<-structure(
 function # Confidence and prediction intervals for regression.
 ##description<<
-## 'lmInt' contructs confidence and prediction intervals for simple
+## \code{\link{lmInt}} contructs confidence and prediction intervals for simple
 ## linear regression. For a simple univariate linear model in the form
 ## of \eqn{EY = beta_0 + beta_1 X} computed using 'lm(y ~ x)',
 ## 'lmIntervals' computes confidence intervals around the regression
@@ -20,9 +20,9 @@ function # Confidence and prediction intervals for regression.
 ##
 ##references<< Karel Zv\'{a}ra: Regrese, Matfyzpress Praha 2008
 ##
-##seealso<< 'stats::predict.lm', 'stats::lm'
+##seealso<< \code{\link[stats]{predict.lm}}, \code{\link[stats]{lm}}
 ##
-##note<< deprecated, use 'lmInt' instead
+##note<< deprecated, use \code{\link{lmInt}} instead
 ##
 (x, ##<< independent variable, or a fitted linear model
 y, ##<< dependent variable
@@ -49,15 +49,15 @@ d = 100 ##<< a vector of values to compute the intervals for, or a number of val
     piUpr=predint[,'upr'])
    class(li)<-'lmIntXY'
   return(li)
-  ### An object of class 'lmInt' - a data frame of columns
-  ### 'x' holding the values of the independent variable the intervals
+  ### An object of class \code{lmInt} - a data frame of columns
+  ### \code{x} holding the values of the independent variable the intervals
   ### are computed for,
-  ### 'fit' holding the mean value fitted by the regression model,
-  ### 'ciaLwr' and 'ciaUpr' holding confidence intervals
+  ### \code{fit} holding the mean value fitted by the regression model,
+  ### \code{ciaLwr} and \code{ciaUpr} holding confidence intervals
   ### \emph{a}round the regression line,
-  ### 'cifLwr' and 'cifUpr' holding confidence intervals
+  ### \code{cifLwr} and 'cifUpr' holding confidence intervals
   ### \emph{f}or the regression line, and
-  ### 'piLwr' and 'piUpr' holding predictions intervals.
+  ### \code{piLwr} and \code{piUpr} holding predictions intervals.
 },ex=function() {
   iris.setosa<-iris[iris$Species=='setosa',]
   attach(iris.setosa)

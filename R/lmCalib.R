@@ -1,7 +1,7 @@
 lmCalib<-structure(
 function# Calibration in regression.
 ##description<<
-## 'lmCalib' computes the estimate of \eqn{x_0} in which the regression
+## \code{\link{lmCalib}} computes the estimate of \eqn{x_0} in which the regression
 ## of \eqn{y ~ x} reaches given \eqn{y0}, and the related confidence interval.
 ##
 ##details<<
@@ -12,7 +12,7 @@ function# Calibration in regression.
 ## J.A. Neter, W. Wasserman, M. Kutner: Applied Linear Statistical
 ## Models, Irwin, Homewood, Illinois (1985).
 ##
-##seealso<< 'lmInt'
+##seealso<< \code{\link{lmInt}}
 (x, ##<< independent variable
 y, ##<< dependent variable
 y0, ##<< dependent variable for which to compute the expected
