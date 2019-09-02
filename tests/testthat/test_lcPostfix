@@ -1,0 +1,7 @@
+expect_that(lcPostfix(c('abab','cdab')), equals('ab'))
+expect_that(lcPostfix(c('ab','cdab')), equals('ab'))
+expect_that(lcPostfix(c('xyz','abc')), equals(''))
+expect_that(lcPostfix(c('yz','yz')), equals('yz'))
+expect_that(lcPostfix('yz'), equals('yz'))
+expect_that(lcPostfix(''), equals(''))
+expect_that(lcPostfix(NULL), equals(character(0)))

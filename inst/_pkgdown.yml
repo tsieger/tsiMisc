@@ -114,10 +114,14 @@ reference:
       - printWithName
 
   - title: "Misc Utils"
-    desc: Robust sequences, indices in distance matrix, 
+    desc: Robust sequences, string manipulation, indices in distance matrix, 
     contents:
       - allSame
       - columnIndexOf
       - computeDistIdx
       - computeIdxFromDistIdx
       - indexOf
+      - lcPrefix
+      - lcPostfix
+      - rmLcPrefix
+      - rmLcPostfix
