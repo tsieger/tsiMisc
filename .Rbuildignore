@@ -21,3 +21,6 @@
 ^test_dist$
 ^fix_man$
 ^make_NEWS$
+
+R/buildSiteDoc.R
+man/buildSiteDoc.Rd
