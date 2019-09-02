@@ -100,7 +100,6 @@ reference:
       - iclass
       - reloadByName
       - buildInlineDoc
-      - buildSiteDoc
       - showObjectsSize
 
   - title: "Data Generation"
