@@ -22,5 +22,13 @@
 ^fix_man$
 ^make_NEWS$
 
+
+R/0.txt
+R/plot3dProj.R\..*
+
+man/tsiMisc-package.Rd.new
+demo/footer.html
+demo/head.html.orig
+
 R/buildSiteDoc.R
 man/buildSiteDoc.Rd
