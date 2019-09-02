@@ -7,12 +7,12 @@ function # Vertically aligned histograms.
 (..., ##<< one or more numeric vectors to compare
 setup = TRUE, ##<< if TRUE, graphic device will be set up to hold
 ## enough subfigures. If FALSE, no setup will be performed.
-setupDev = NULL, ##<< deprecated, use 'setup' instead
+setupDev = NULL, ##<< deprecated, use \code{setup} instead
 ylimFixed = FALSE, ##<< if TRUE, ylim of all histograms will be the
 ## same. Useful to visually assess the proportions of the individual
 ## samples.
 col = NULL, ##<< colour(s) to be used to fill the bars. The default of
-## 'NULL' yields unfilled bars. If a vector is suplied, it will be
+## \code{NULL} yields unfilled bars. If a vector is suplied, it will be
 ## used to define the color of individual histograms, recycled if
 ## necessary.
 border = NULL, ##<< the color(s) of the border around the bars. The
@@ -27,8 +27,9 @@ xlab = NULL, ##<< xlab(s) of the individual histograms. If a
 ## of individual histograms, recycled if necessary.
 callback = NULL, ##<< callback function to be called after each
 ## individual histogram gets plotted, receiving two arguments: the
-## list of arguments passed to 'hist' previously, and the histogram
-## created by the 'hist'. The code can decorate or adapt the plot
+## list of arguments passed to \code{\link[graphics]{hist}} previously,
+## and the histogram created by the \code{\link[graphics]{hist}}.
+## The code can decorate or adapt the plot
 ## in a histogram-specific way (e.g. use pretty y axis labels).
 ## it
 debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value

@@ -1,7 +1,7 @@
 \name{lmIntXY}
 \alias{lmIntXY}
 \title{Confidence and prediction intervals for regression.}
-\description{'lmInt' contructs confidence and prediction intervals for simple
+\description{\code{\link{lmInt}} contructs confidence and prediction intervals for simple
 linear regression. For a simple univariate linear model in the form
 of \eqn{EY = beta_0 + beta_1 X} computed using 'lm(y ~ x)',
 'lmIntervals' computes confidence intervals around the regression
@@ -24,23 +24,23 @@ prediction intervals are computed using the 'predict.lm' function.
 The confidence intervals for the regression line are computed
 according to eq. (4.15) in Zvara2008.
 }
-\value{An object of class 'lmInt' - a data frame of columns
-'x' holding the values of the independent variable the intervals
+\value{An object of class \code{lmInt} - a data frame of columns
+\code{x} holding the values of the independent variable the intervals
 are computed for,
-'fit' holding the mean value fitted by the regression model,
-'ciaLwr' and 'ciaUpr' holding confidence intervals
+\code{fit} holding the mean value fitted by the regression model,
+\code{ciaLwr} and \code{ciaUpr} holding confidence intervals
 \emph{a}round the regression line,
-'cifLwr' and 'cifUpr' holding confidence intervals
+\code{cifLwr} and \code{cifUpr} holding confidence intervals
 \emph{f}or the regression line, and
-'piLwr' and 'piUpr' holding predictions intervals.}
+\code{piLwr} and \code{piUpr} holding predictions intervals.}
 \references{Karel Zv\'{a}ra: Regrese, Matfyzpress Praha 2008
 }
 \author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
-\note{deprecated, use 'lmInt' instead
+\note{deprecated, use \code{\link{lmInt}} instead
 }
 
 
-\seealso{'stats::predict.lm', 'stats::lm'
+\seealso{\code{\link[stats]{predict.lm}}, \code{\link[stats]{lm}}
 }
 \examples{
 iris.setosa<-iris[iris$Species=='setosa',]

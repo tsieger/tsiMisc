@@ -55,7 +55,7 @@ d = 100 ##<< a vector of values to compute the intervals for, or a number of val
   ### \code{fit} holding the mean value fitted by the regression model,
   ### \code{ciaLwr} and \code{ciaUpr} holding confidence intervals
   ### \emph{a}round the regression line,
-  ### \code{cifLwr} and 'cifUpr' holding confidence intervals
+  ### \code{cifLwr} and \code{cifUpr} holding confidence intervals
   ### \emph{f}or the regression line, and
   ### \code{piLwr} and \code{piUpr} holding predictions intervals.
 },ex=function() {

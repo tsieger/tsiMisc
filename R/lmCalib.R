@@ -17,7 +17,7 @@ function# Calibration in regression.
 y, ##<< dependent variable
 y0, ##<< dependent variable for which to compute the expected
 ## independent variable
-fixed = FALSE, ##<< is 'y0' fixed, or random?
+fixed = FALSE, ##<< is \code{y0} fixed, or random?
 approx = FALSE, ##<< use approximation, or Fieller method?
 alpha = 0.05 ##<< confidence interval significance level
 ) {

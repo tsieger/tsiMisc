@@ -73,7 +73,6 @@ reference:
       - dagostinoTest
       - lmCalib
       - lmInt
-      - lmIntXY
       - lmSignif
       - plot.lmInt
       - plot.lmIntXY

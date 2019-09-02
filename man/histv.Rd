@@ -11,12 +11,12 @@ comparison of several numeric vectors.}
   \item{\dots}{one or more numeric vectors to compare}
   \item{setup}{if TRUE, graphic device will be set up to hold
 enough subfigures. If FALSE, no setup will be performed.}
-  \item{setupDev}{deprecated, use 'setup' instead}
+  \item{setupDev}{deprecated, use \code{setup} instead}
   \item{ylimFixed}{if TRUE, ylim of all histograms will be the
 same. Useful to visually assess the proportions of the individual
 samples.}
   \item{col}{colour(s) to be used to fill the bars. The default of
-'NULL' yields unfilled bars. If a vector is suplied, it will be
+\code{NULL} yields unfilled bars. If a vector is suplied, it will be
 used to define the color of individual histograms, recycled if
 necessary.}
   \item{border}{the color(s) of the border around the bars. The
@@ -31,8 +31,9 @@ character vector is suplied, it will be used to define the title
 of individual histograms, recycled if necessary.}
   \item{callback}{callback function to be called after each
 individual histogram gets plotted, receiving two arguments: the
-list of arguments passed to 'hist' previously, and the histogram
-created by the 'hist'. The code can decorate or adapt the plot
+list of arguments passed to \code{\link[graphics]{hist}} previously,
+and the histogram created by the \code{\link[graphics]{hist}}.
+The code can decorate or adapt the plot
 in a histogram-specific way (e.g. use pretty y axis labels).
 it}
   \item{debug}{if TRUE, debugs will be printed. If numeric of value
