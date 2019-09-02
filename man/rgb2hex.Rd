@@ -15,7 +15,7 @@ see https://gist.github.com/mbannert/e9fcfa86de3b06068c83}
 
 
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

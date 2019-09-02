@@ -22,7 +22,7 @@ the parameters, which takes \code{k}, the number of components,
 and returns the contribution of individual dimensions to the top
 \code{k} components.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

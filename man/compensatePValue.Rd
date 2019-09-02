@@ -28,7 +28,7 @@ method, \code{1-(1-p)^n} for the \code{'sidak'} method, and the result of the
 iterative procedure for the method of \code{'holm-bonferroni'}.}
 \references{SISA, \url{http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm}
 Sture Holm, A Simple Sequentially Rejective Multiple Test Procedure, Scand J Statist 6: 65-70, 1979}
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 \note{deprecated, not working properly, use \code{\link[stats]{p.adjust}} instead
 }
 

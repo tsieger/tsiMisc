@@ -16,7 +16,7 @@ in Zvara (2008), chapter 10.5.
 values), and 'p' (the p-value of the test)}
 \references{Karel Zv\'{a}ra. _Regrese._ Matfyzpress Praha 2008.
 Chapter 10.5}
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

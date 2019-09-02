@@ -13,7 +13,7 @@ points whose distance appears at given position in a distance matrix
 \value{a vector of two indices of points whose distance appears at given
 position in a distance matrix.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

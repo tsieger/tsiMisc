@@ -15,7 +15,7 @@ TODO: Remove this rgl-closing hack.}
 
 
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

@@ -18,7 +18,7 @@ If \code{logical==TRUE}, on the diagonal, there are numbers of \code{TRUE}s
 in each set, and at position \code{i,j} there is the number of \code{TRUE}s
 shared by sets \code{i} and \code{j}.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

@@ -32,7 +32,7 @@ to \code{n}, such that the index corresponding to the distance
 between point \code{i} and point \code{j} resides at position
 \code{j} in the returned vector.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

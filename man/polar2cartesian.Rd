@@ -12,7 +12,7 @@ coordinate conversion.
 
 \value{A list of the \eqn{x} and \eqn{y} Cartesian coordinates.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

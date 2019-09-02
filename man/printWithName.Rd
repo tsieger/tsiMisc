@@ -13,7 +13,7 @@ of a variable. Useful for debug purposes.
 
 
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

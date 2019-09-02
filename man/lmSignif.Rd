@@ -11,7 +11,7 @@
 
 \value{Overall significance of a linear model.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

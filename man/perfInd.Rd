@@ -66,7 +66,7 @@ Journal of Machine Learning Technologies ISSN: 2229-3981 &
 ISSN: 2229-399X, Volume 2, Issue 1, 2011, pp-37-63
 Available online at \url{http://www.bioinfo.in/contents.php?id=51}
 }
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

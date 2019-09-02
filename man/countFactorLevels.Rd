@@ -14,7 +14,7 @@ lists).}
 'used') holding numbers of all (used) factor levels in
 individual columns of \code{x}}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

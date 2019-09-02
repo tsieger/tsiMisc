@@ -11,7 +11,7 @@ to the interval of \eqn{(-\infty, \infty)}.
 
 \value{logit}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

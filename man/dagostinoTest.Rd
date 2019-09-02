@@ -18,7 +18,7 @@ in rows.}
 The American Statistician 44 (4): 316-321. JSTOR 2684359.
 
 Karel Zv\'{a}ra: Regrese, Matfyzpress Praha 2008}
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

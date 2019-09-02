@@ -25,7 +25,7 @@ diffs' given as 'lower' and 'upper'}
 \references{Bland JM, Altman DG (1986) _Statistical methods for
 assessing agreement between two methods of clinical measurement.__
 Lancet 327 (8476): 30710.}
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

@@ -27,7 +27,7 @@ the pop-up menu equivalent (usually second mouse button or
 \value{a list of `x' and `y', each holding the coordinates of selected
 points}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

@@ -14,7 +14,7 @@
 \value{A vector of three spherical coordinates \eqn{r, theta, phi} of a
 point represented as \eqn{x, y, z} in Cartesian coordinates.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

@@ -15,7 +15,7 @@ column matrix}
 
 \value{matrix}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

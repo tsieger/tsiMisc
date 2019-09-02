@@ -18,7 +18,7 @@ passing it some default values.}
 
 \value{an object of class \code{histogram}, see \code{\link[graphics]{hist}}}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

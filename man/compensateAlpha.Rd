@@ -23,7 +23,7 @@ See the SISA help for explanation.}
 \code{'bonferroni'} method, and \code{1-(1-alpha)^(1/n))} for the \code{'sidak'}
 method.}
 \references{SISA, \url{http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm}}
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

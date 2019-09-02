@@ -23,7 +23,7 @@ function used to transform a row in \code{x} to the desired range
 is returned as the \code{tx} attribute. The inverse transform can
 be find in the \code{txInv} attribute.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

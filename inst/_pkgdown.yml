@@ -114,7 +114,7 @@ reference:
       - printWithName
 
   - title: "Misc Utils"
-    desc: Robust sequences, repeating computing indices in distance matrix, 
+    desc: Robust sequences, indices in distance matrix, 
     contents:
       - allSame
       - columnIndexOf

@@ -36,7 +36,7 @@ matrix followed by columns of the:
 \code{piLwr} and \code{piUpr} holding predictions intervals.}
 \references{Karel Zv\'{a}ra: Regrese, Matfyzpress Praha 2008
 }
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

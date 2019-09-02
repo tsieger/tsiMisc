@@ -29,7 +29,7 @@ The second data frame (if requested) describes the combinations
 of at most \code{combColCount} columns of \code{x} reaching highest joint
 missingness.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

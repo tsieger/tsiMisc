@@ -9,7 +9,7 @@
 
 \value{TRUE, if all the values are the same (or the vector is empty)}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

@@ -11,7 +11,7 @@
 \value{a vector of character strings representing the significance of
 'p'}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

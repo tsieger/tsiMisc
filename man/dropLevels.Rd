@@ -12,7 +12,7 @@
 
 \value{Input object without unused levels.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

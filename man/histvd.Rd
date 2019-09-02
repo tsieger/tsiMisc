@@ -14,7 +14,7 @@ comparison of several numeric vectors.}
 \value{a list of objects of class \code{'histograms'} (see
 \code{\link{histv}})}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

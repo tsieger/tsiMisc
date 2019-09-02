@@ -11,7 +11,7 @@
 
 \value{Percentual ratio of \code{TRUE} cases of \code{x}.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

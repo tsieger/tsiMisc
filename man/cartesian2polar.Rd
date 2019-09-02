@@ -11,7 +11,7 @@
 
 \value{A list of the \eqn{r} and \eqn{phi} polar coordinates.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

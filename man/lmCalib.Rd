@@ -23,7 +23,7 @@ related confidence interval.}
 J.A. Neter, W. Wasserman, M. Kutner: Applied Linear Statistical
 Models, Irwin, Homewood, Illinois (1985).
 }
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

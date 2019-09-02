@@ -14,7 +14,7 @@ of the same name.}
 \value{A matrix of size '(m*r) x (n*c)', where 'r' ('c') represent
 the number of rows (columns) of 'x'.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

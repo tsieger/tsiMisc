@@ -18,7 +18,7 @@ in a device, not only the current one}
 
 
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

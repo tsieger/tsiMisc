@@ -9,7 +9,7 @@
 
 \value{normalized vector}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

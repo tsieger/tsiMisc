@@ -14,7 +14,7 @@ Methods 8 (6) June 2011, 10.1038/nmeth.1618.
 Chromatic vision simulator showing how people suffering from
 protanopia, deuteranopia and tritanopia perceive colors:
 http://asada.tukusi.ne.jp/webCVS/}
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

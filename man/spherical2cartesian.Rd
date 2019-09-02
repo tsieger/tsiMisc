@@ -14,7 +14,7 @@ phi})}
 
 \value{A list of \eqn{x}, \eqn{y}, and \eqn{z} Cartesian coordinates.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

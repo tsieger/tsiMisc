@@ -16,7 +16,7 @@ coutner-clockwise, such that the rotation made by
 
 \value{The matrix \code{x} prepared to be displyed by \code{\link[graphics]{image}}.}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 

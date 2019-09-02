@@ -144,7 +144,7 @@ greater than 1, verbose debugs will be produced.}
 
 \value{a list of rgl device IDs holding the scenes plotted}
 
-\author{Tomas Sieger <tomas.sieger@seznam.cz> [aut, cre]}
+\author{Tomas Sieger}
 
 
 
