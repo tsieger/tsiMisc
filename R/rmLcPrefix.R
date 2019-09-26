@@ -13,6 +13,8 @@ function # Remove longest common prefix.
 (x, ##<< a vector of character strings
 ignore.case = FALSE ##<<
 ) {
+  x<-as.character(x)
+  if (length(x)<2) return(x)
   p<-lcPrefix(x,ignore.case=ignore.case)
   n<-nchar(p)
   for (i in seq(along=x)) {
