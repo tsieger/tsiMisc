@@ -14,6 +14,7 @@ function # Remove longest common postfix.
 ignore.case = FALSE ##<<
 ) {
   x<-as.character(x)
+  if (length(x)<2) return(x)
   p<-lcPostfix(x,ignore.case=ignore.case)
   n<-nchar(p)
   for (i in seq(along=x)) {
