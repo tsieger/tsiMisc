@@ -12,8 +12,8 @@ function # Longest common postfix.
 ignore.case = FALSE ##<<
 ) {
   x <- as.character(x)
-  if (ignore.case) x <- toupper(x)
   if (length(x)<2) return(x)
+  if (ignore.case) x <- toupper(x)
   nc <- nchar(x, type = "char")
   for (i in rseq(1,min(nc),1)) {
     ss <- substr(x, nc-i+1, nc)
