@@ -7,6 +7,7 @@ reference:
       - blindFriendlyColors
       - bfc
       - movieSpin3d
+      - mixcol
       - plot3dProj
       - plotMatrix
       - rgb2hex
