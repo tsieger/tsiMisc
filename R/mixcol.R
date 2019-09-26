@@ -11,10 +11,11 @@ function # Mix colors in textual representation.
 ## \code{\link{rgb2hex}}.
 (col1, ##<< the first color (a character vector or an integer color code)
 col2, ##<< the second color (a character vector or an integer color code)
-r = 0.5 ##<< amount of the first color (a number between 0 and 1)
+alpha = 0.5 ##<< the mixed color is obtained by combining an amount
+## \code{1-alpha} of \code{col1} with an amount \code{alpha} of \code{col2}.
 ){
-  if (!is.numeric(r) || length(r)!=1 || r<0 || r>1) {
-    stop('invalid "r" argument')
+  if (!is.numeric(alpha) || any(alpha<0) || any(alpha>1)) {
+    stop('invalid "alpha" argument')
   }
   if (!is.character(col1) && !is.integer(col1)) {
     stop('invalid "col1" color specification, expected a character vector or an integer')
@@ -25,7 +26,7 @@ r = 0.5 ##<< amount of the first color (a number between 0 and 1)
 
   col1<-RGB(t(col2rgb(col1)))
   col2<-RGB(t(col2rgb(col2)))
-  mc<-mixcolor(r,col1,col2)
+  mc<-mixcolor(alpha,col1,col2)
   col<-rgb2hex(mc)
 
   return(col)
