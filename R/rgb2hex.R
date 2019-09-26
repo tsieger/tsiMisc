@@ -15,7 +15,7 @@ b = NULL ##<< optional blue color component
     rv<-rgb(r[1], r[2], r[3], maxColorValue = 255)
   } else if (inherits(r,'RGB')) {
     tmp<-coords(r)
-    rv<-rgb(tmp[1], tmp[2], tmp[3], maxColorValue = 255)
+    rv<-rgb(tmp[,1], tmp[,2], tmp[,3], maxColorValue = 255)
   } else {
     rv<-rgb(r, g, b, maxColorValue = 255)
   }
