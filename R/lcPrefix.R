@@ -16,8 +16,8 @@ function # Longest common prefix.
 ignore.case = FALSE ##<<
 ) {
   x <- as.character(x)
-  if (ignore.case) x <- toupper(x)
   if (length(x)<2) return(x)
+  if (ignore.case) x <- toupper(x)
   nc <- nchar(x, type = "char")
   for (i in rseq(1,min(nc),1)) {
     ss <- substr(x, 1, i)
