@@ -26,7 +26,7 @@ colDelimCol = 'black' ##<< the color of the column separation line
     x<-as.matrix(x)
   }
   if (is.logical(x)) {
-    x<-as.numeric(x)
+    for (i in rseq(1,ncol(x),1)) x[,i]<-as.numeric(x[,i])
     xLogical<-TRUE
   }
   if (!is.numeric(x)) {
