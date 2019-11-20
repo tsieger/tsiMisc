@@ -23,13 +23,14 @@ colDelimCol = 'black' ##<< the color of the column separation line
 ) {
   xLogical<-FALSE
   if (!is.matrix(x)) {
-    if (is.logical(x)) {
-      x<-as.numeric(x)
-      xLogical<-TRUE
-    }
-    if (!is.numeric(x)) {
-      stop('\'x\' is not a numeric matrix.')
-    }
+    x<-as.matrix(x)
+  }
+  if (is.logical(x)) {
+    x<-as.numeric(x)
+    xLogical<-TRUE
+  }
+  if (!is.numeric(x)) {
+    stop('\'x\' is not a numeric matrix.')
   }
 
   # setup plot(s)
