@@ -47,16 +47,6 @@ reference:
       - spca
       - txPca
       - txSpca
-
-  - title: "Data Manipulation"
-    desc: Robust sequences, matrix repetition and conversion, string trimming, factor manipulation.
-    contents:
-      - dropLevels
-      - refineFactors
-      - repmat
-      - rseq
-      - strTrim
-      - to.matrix
     
   - title: "Machine Learning Tools"
     desc: Classification performance measures, factor refinement.
