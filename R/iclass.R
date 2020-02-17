@@ -10,7 +10,7 @@ function # Determine implicit class.
 (x ##<< base type
 ) {
   if (is.object(x)) {
-    stop("x is not a primitive type", call. = FALSE)
+    stop(paste('not a primitive type, but an object of class:',paste(class(x),collapse=',')), call. = FALSE)
   }
 
   rv<-c(
