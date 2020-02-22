@@ -44,9 +44,10 @@ greater than 1, verbose debugs will be produced.}
 \item{fnr}{false negative rate}
 \item{fdr}{false discovery rate}
 \item{accuracy}{accuracy}
-\item{f1}{F1 score}
-\item{f2}{F2 score}
-\item{f05}{F0.5 score}
+\item{f1}{F1 score (2*TP/(2*TP+FN+FP))}
+\item{f2}{F2 score (5*TP/(5*TP+4*FN+FP))}
+\item{f05}{F0.5 score (1.25*TP/(1.25*TP+0.25*FN+FP))}
+\item{correspondence}{correspondence score (TP/(TP+FN+FP))}
 \item{mcc}{Matthews correlation coefficient}
 \item{informedness}{informedness}
 \item{markedness}{markedness}
@@ -90,10 +91,9 @@ for (i in 1:length(tbls)) {
   with(pi,catnl(
     'acc: ',accuracy,
     ', sp+se: ',sensitivity+specificity,
-    ', agr: ',m[2,2]/(sum(m)-m[1,1]),
-    ', agr3: ',(2*sensitivity+specificity+ppv)/4,
+    ', correspondence: ',correspondence,
     ', F1: ',f1,
-    ', f2: ',f2))
+    ', F2: ',f2,sep=''))
 }
 
 # make degenerated table proper 2x2 table

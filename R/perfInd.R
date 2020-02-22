@@ -140,20 +140,25 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   # convert to double to avoid integer overflow
   storage.mode(x)<-'double'
 
-  sensitivity<-x[1,1]/sum(x[,1])
-  specificity<-x[2,2]/sum(x[,2])
-  ppv<-        x[1,1]/sum(x[1,])
-  npv<-        x[2,2]/sum(x[2,])
-  wppv<-ppv*sum(x[,1])/sum(x)
-  wnpv<-npv*sum(x[,2])/sum(x)
+  tp<-tbl[2,2]
+  tn<-tbl[1,1]
+  fn<-tbl[1,2]
+  fp<-tbl[2,1]
+  sensitivity<-tp/(tp+fn)
+  specificity<-tn/(tn+fp)
+  ppv<-        tp/(tp+fp)
+  npv<-        tn/(tn+fn)
+  wppv<-ppv*(tp+fn)/sum(x)
+  wnpv<-npv*(tn+fp)/sum(x)
   fpr<-1-specificity
   fnr<-1-sensitivity
   fdr<-1-ppv
   acc<-sum(diag(x))/sum(x)
-  f1<-2*sensitivity*ppv/(sensitivity+ppv)
-  f2<-5*sensitivity*ppv/(4*sensitivity+ppv)
-  f05<-1.25*sensitivity*ppv/(.25*sensitivity+ppv)
-  mcc<-(x[1,1]*x[2,2]-x[1,2]*x[2,1])/sqrt(as.double(sum(x[1,]))*sum(x[2,])*sum(x[,1])*sum(x[,2]))
+  f1<-2*tp/(2*tp+fn+fp)
+  f2<-5*tp/(5*tp+4*fn+fp)
+  f05<-1.25*tp/(1.25*tp+0.25*fn+fp)
+  correspondence<-tp/(tp+fn+fp)
+  mcc<-(tp*tn-fp*fn)/sqrt(as.double((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn)))
   informedness<-sensitivity+specificity-1
   markedness<-ppv+npv-1
   auc<-sensitivity*(1-specificity)/2+specificity*sensitivity+specificity*(1-sensitivity)/2
@@ -177,9 +182,10 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     fnr=fnr, ##<< false negative rate
     fdr=fdr, ##<< false discovery rate
     accuracy=acc, ##<< accuracy
-    f1=f1, ##<< F1 score
-    f2=f2, ##<< F2 score
-    f05=f05, ##<< F0.5 score
+    f1=f1, ##<< F1 score (2*TP/(2*TP+FN+FP))
+    f2=f2, ##<< F2 score (5*TP/(5*TP+4*FN+FP))
+    f05=f05, ##<< F0.5 score (1.25*TP/(1.25*TP+0.25*FN+FP))
+    correspondence=correspondence, ##<< correspondence score (TP/(TP+FN+FP))
     mcc=mcc, ##<< Matthews correlation coefficient
     informedness=informedness, ##<< informedness
     markedness=markedness, ##<< markedness
@@ -208,10 +214,9 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     with(pi,catnl(
       'acc: ',accuracy,
       ', sp+se: ',sensitivity+specificity,
-      ', agr: ',m[2,2]/(sum(m)-m[1,1]),
-      ', agr3: ',(2*sensitivity+specificity+ppv)/4,
+      ', correspondence: ',correspondence,
       ', F1: ',f1,
-      ', f2: ',f2))
+      ', F2: ',f2,sep=''))
   }
 
   # make degenerated table proper 2x2 table
