@@ -21,12 +21,14 @@ reference:
       - countIntersect
       - countNa
       - histd
+      - histld
       - histv
       - histvd
       - normality2color
       - normality2flag
       - percentTrue
       - plotCor
+      - plotd
       - plotShadow
       
   - title: "Data Manipulation"
