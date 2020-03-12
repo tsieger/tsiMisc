@@ -65,7 +65,7 @@ plot = TRUE, ##<< if TRUE, a plot is produced.
 ... ##<< further arguments passed on to 'pairs'
 ) {
   panel.cor <- function(x, y, digits=2, prefix="", cex.cor,
-    method = c('pearson','spearman','spearmanExact','lm','glmPoisson')) {
+    method = c('pearson','spearman','spearmanExact','lm','glmPoisson'), ...) {
 
     method<-match.arg(method)
     ok<-complete.cases(x,y)
@@ -151,7 +151,8 @@ plot = TRUE, ##<< if TRUE, a plot is produced.
     h <- hist(x, plot = FALSE)
     breaks <- h$breaks; nB <- length(breaks)
     y <- h$counts; y <- y/max(y)
-    rect(breaks[-nB], 0, breaks[-1], y, col=c('green','red','gray')[normality2flag(x)],...)
+    dots <- list(...)
+    do.call('rect', c(list(breaks[-nB], 0, breaks[-1], y, col=c('green','red','gray')[normality2flag(x)]), dots[!names(dots) %in% 'col']))
   }
 
   method<-match.arg(method)
