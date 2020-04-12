@@ -13,7 +13,7 @@ function # Blind friendly colors.
 ## Chromatic vision simulator showing how people suffering from
 ## protanopia, deuteranopia and tritanopia perceive colors:
 ## http://asada.tukusi.ne.jp/webCVS/
-(
+(names=TRUE ##<< if TRUE, the returned vector will be named
 ) {
   x<-data.frame(rbind(
     c('Black',            c(0, 0, 0)),
@@ -33,9 +33,9 @@ function # Blind friendly colors.
       as.numeric(as.character(x[i,4]))/255))
     y<-c(y,tmp)
   }
-  names(y)<-x[,1]
+  if (names) names(y)<-x[,1]
   return(y)
-  ### a named list holding text \code{rgb} values of 8 blind-friendly colors.
+  ### a vector holding text \code{rgb} values of 8 blind-friendly colors.
 },ex=function() {
   # list color names
   print(names(bfc()))

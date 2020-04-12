@@ -3,11 +3,14 @@
 \title{Blind friendly colors.}
 \description{Returns RGB values of blind-friendly colors.
 }
-\usage{bfc()}
+\usage{bfc(names = TRUE)}
+\arguments{
+  \item{names}{if TRUE, the returned vector will be named}
+}
 \details{Blind-friendly colors were taken from the Nature Methods Point of
 view (see the reference below). The colors form a qualitative palette.
 }
-\value{a named list holding text \code{rgb} values of 8 blind-friendly colors.}
+\value{a vector holding text \code{rgb} values of 8 blind-friendly colors.}
 \references{Wong, Bang: Points of view: Color blindness, Nature
 Methods 8 (6) June 2011, 10.1038/nmeth.1618.
 
