@@ -144,6 +144,11 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   tn<-tbl[1,1]
   fn<-tbl[1,2]
   fp<-tbl[2,1]
+  # convert to doubles to overcome integer overflow
+  tp<-as.double(tp)
+  tn<-as.double(tn)
+  fn<-as.double(fn)
+  fp<-as.double(fp)
   sensitivity<-tp/(tp+fn)
   specificity<-tn/(tn+fp)
   ppv<-        tp/(tp+fp)
@@ -158,7 +163,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
   f2<-5*tp/(5*tp+4*fn+fp)
   f05<-1.25*tp/(1.25*tp+0.25*fn+fp)
   correspondence<-tp/(tp+fn+fp)
-  mcc<-(tp*tn-fp*fn)/sqrt(as.double((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn)))
+  mcc<-(tp*tn-fp*fn)/sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))
   informedness<-sensitivity+specificity-1
   markedness<-ppv+npv-1
   auc<-sensitivity*(1-specificity)/2+specificity*sensitivity+specificity*(1-sensitivity)/2
