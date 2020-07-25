@@ -75,6 +75,7 @@ displayed}
 #
 plotCor(iris[,1:4])
 plotCor(iris[,1:4],i1=c('Sepal.Length','Sepal.Width'),i2=c('Petal.Length','Petal.Width'))
+plotCor(iris[,1:4],adjust='full')
 
 # TODO: demonstrate more features
 }

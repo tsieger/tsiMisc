@@ -61,75 +61,9 @@ aboveDiag = FALSE, ##<< If TRUE, scatter plots will appear above the
 ## the diagonal.
 silent = FALSE, ##<< if TRUE, the number of tests compenstaing for gets
 ## displayed
-plot = TRUE, ##<< if TRUE, a plot is produced. 
+plot = TRUE, ##<< if TRUE, a plot is produced.
 ... ##<< further arguments passed on to 'pairs'
 ) {
-  panel.cor <- function(x, y, digits=2, prefix="", cex.cor,
-    method = c('pearson','spearman','spearmanExact','lm','glmPoisson'), ...) {
-
-    method<-match.arg(method)
-    ok<-complete.cases(x,y)
-    x<-x[ok]
-    y<-y[ok]
-
-    usr <- par("usr"); on.exit(par(usr)) 
-    par(usr = c(1,2,1,2))
-
-    if (method=='pearson') {
-      simplifiedMethod<-'pearson'
-    } else if (method=='spearman') {
-      simplifiedMethod<-'spearman'
-    } else if (method=='spearmanExact') {
-      simplifiedMethod<-'spearman'
-    } else if (method=='lm') {
-      simplifiedMethod<-'pearson'
-    } else if (method=='glmPoisson') {
-      simplifiedMethod<-'spearman'
-    } else {
-      stop('unsupported method "',method,'"')
-    }
-
-    # compute P-value of given test ('method')
-    if (method=='spearmanExact') {
-      p<-tryCatch(pvalue(spearman_test(x~y,data.frame(x=x,y=y))),error=function(e)NA)
-      r<-tryCatch(statistic(spearman_test(x~y,data.frame(x=x,y=y))),error=function(e)NA)
-    } else if (method=='glmPoisson') {
-      p<-tryCatch({
-        m<-glm(x~y,family='poisson')
-        m0<-glm(x~1,family='poisson')
-        anova(m,m0,test='Chisq')[2,5]
-      },error=function(e)NA)
-      r<-tryCatch({coef(glm(x~y,family='poisson'))[2]},error=function(e)NA)
-    } else if (method=='lm') {
-      p<-tryCatch({
-        coef(summary(lm(x~y)))[2,4]
-      },error=function(e)NA)
-      r<-tryCatch({coef(lm(x~y))[2]},error=function(e)NA)
-    } else {
-      # pearson, spearman
-      p<-tryCatch(cor.test(x,y,method=method)$p.value,error=function(e)NA)
-      r<-cor(x,y,method=method)
-    }
-
-    # compute correlation coefficient based on 'simplifiedMethod'
-    #r<-cor(x, y,method=simplifiedMethod)
-
-    txt <- format(c(r, 0.123456789), digits=digits)[1]
-    txt <- paste(prefix, txt, sep="")
-    if(missing(cex.cor)) cex <- 0.8/strwidth(txt)
-
-    compCount<-.gfc(plotCorData.adjustmentCnt)
-
-    p<-compensatePValue(p,compCount,'bonferroni')
-
-    # borrowed from printCoefmat
-    signif <- symnum(p, corr = FALSE, na = FALSE,
-      cutpoints = c(0, 0.001, 0.01, 0.05, 0.1, 1),
-      symbols = c("***", "**", "*", ".", " "))
-
-    text(1.5, 1.5, txt, cex = max(.4,cex * abs(r)))
-    text(1.5, 1.8, signif, cex=cex, col=2)
-  }
   panel.cor.pearson <- function(...) panel.cor(...,method='pearson')
   panel.cor.spearman <- function(...) panel.cor(...,method='spearman')
   panel.cor.spearmanExact <- function(...) panel.cor(...,method='spearmanExact')
@@ -248,14 +182,12 @@ plot = TRUE, ##<< if TRUE, a plot is produced.
   } else stop('invalid \'adjust\' argument')
   if (!silent) cat(sprintf('adjusting to %.2f tests\n',n))
 
-  # set up multiple comparison count
-  plotCorData.adjustmentCnt<-n
   if (plot) {
       if (normalityColor) dp<-panel.histWithNormalityColorCodes else dp<-panel.hist
       if (aboveDiag) {
-          pairs(x,lower.panel=panel,upper.panel=panel.smooth,diag.panel=dp,i1=i1,i2=i2,...)
+          pairs(x,lower.panel=function(x,y)panel(x,y,n.adjust=n),upper.panel=panel.smooth,diag.panel=dp,i1=i1,i2=i2,...)
       } else {
-          pairs(x,lower.panel=panel.smooth,upper.panel=panel,diag.panel=dp,i1=i1,i2=i2,...)
+          pairs(x,lower.panel=panel.smooth,upper.panel=function(x,y)panel(x,y,n.adjust=n),diag.panel=dp,i1=i1,i2=i2,...)
       }
   }
   return(invisible(n))
@@ -264,6 +196,7 @@ plot = TRUE, ##<< if TRUE, a plot is produced.
   #
   plotCor(iris[,1:4])
   plotCor(iris[,1:4],i1=c('Sepal.Length','Sepal.Width'),i2=c('Petal.Length','Petal.Width'))
+  plotCor(iris[,1:4],adjust='full')
 
   # TODO: demonstrate more features
 })

@@ -26,6 +26,7 @@ reference:
       - histvd
       - normality2color
       - normality2flag
+      - panel.cor
       - percentTrue
       - plotCor
       - plotd
