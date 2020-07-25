@@ -6,9 +6,10 @@
 \description{\code{\link{printWithName}} prints both the name and value
 of a variable. Useful for debug purposes.
 }
-\usage{printWithName(x)}
+\usage{printWithName(x, heading = NULL)}
 \arguments{
   \item{x}{variable}
+  \item{heading}{optional heading for the variable print}
 }
 
 

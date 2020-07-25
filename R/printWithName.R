@@ -7,9 +7,13 @@ function # Print the name and value of a variable.
 ##alias<< \code{\link{.pn}}
 ##
 ##seealso<< \code{\link[NCmisc]{preview}}, \code{\link[NCmisc]{prv}}.
-(x ##<< variable
+(x, ##<< variable
+heading = NULL##<< optional heading for the variable print
 ) {
-  cat(paste0(deparse(substitute(x)),'\n'))
+  if (!is.null(heading)) {
+    heading<-paste0(heading,': ')
+  }
+  cat(paste0(heading,deparse(substitute(x)),'\n'))
   print(x)
 },ex=function() {
   a<-1:10
