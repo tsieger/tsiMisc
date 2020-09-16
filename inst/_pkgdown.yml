@@ -37,6 +37,7 @@ reference:
     contents:
       - dropLevels
       - refineFactors
+      - rencol
       - repmat
       - rseq
       - strTrim
@@ -117,5 +118,6 @@ reference:
       - indexOf
       - lcPrefix
       - lcPostfix
+      - rencol
       - rmLcPrefix
       - rmLcPostfix
