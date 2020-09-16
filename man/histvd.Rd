@@ -4,10 +4,11 @@
 \description{\code{\link{histvd}} creates one or more vertically aligned histograms,
 rendered by \code{\link[graphics]{hist}}. This is useful for visual
 comparison of several numeric vectors.}
-\usage{histvd(..., breaks = 100, col = "gray")}
+\usage{histvd(..., breaks = 100, 
+    col = "gray")}
 \arguments{
   \item{\dots}{one or more numeric vectors to compare}
-  \item{breaks}{histogram breaks, see 'hist'}
+  \item{breaks}{histogram \code{breaks}, see 'hist'}
   \item{col}{colour(s) to be used to fill the bars. The default}
 }
 

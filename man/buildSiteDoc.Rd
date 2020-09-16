@@ -10,7 +10,7 @@ R package. In addition, if there are any rgl devices opened by
 TODO: Remove this rgl-closing hack.}
 \usage{buildSiteDoc(path = "~/src/Rweb/tsiMisc")}
 \arguments{
-  \item{path}{path to an R package source}
+  \item{path}{\code{path} to an R package source}
 }
 
 

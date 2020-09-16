@@ -5,7 +5,9 @@
 graphical tool to measure agreement between two estimates of a
 single variables methods.
 }
-\usage{blandAltman(x1, x2, xlab = "Average", ylab = "Difference", alpha = 0.05)}
+\usage{blandAltman(x1, x2, xlab = "Average", 
+    ylab = "Difference", 
+    alpha = 0.05)}
 \arguments{
   \item{x1}{the first estimate}
   \item{x2}{the second estimate}

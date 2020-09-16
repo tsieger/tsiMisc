@@ -5,7 +5,8 @@
 \code{x} and returns a color code representing the result of a
 normality test.
 }
-\usage{normality2color(x, cols = c("green", "red", "gray"))}
+\usage{normality2color(x, cols = c("green", 
+    "red", "gray"))}
 \arguments{
   \item{x}{a numeric vector}
   \item{cols}{a vector of three colors, the

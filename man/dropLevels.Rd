@@ -2,7 +2,8 @@
 \alias{dropLevels}
 \title{Drop unused levels in a factor.}
 \description{This is only a wrapper for \code{\link[gdata]{drop.levels}}}
-\usage{dropLevels(x, reorder = TRUE, ...)}
+\usage{dropLevels(x, reorder = TRUE, 
+    ...)}
 \arguments{
   \item{x}{object to be processed}
   \item{reorder}{should factor levels be reordered using

@@ -23,8 +23,8 @@ individual columns of \code{x}}
 if (require(MASS)) {
   countFactorLevels(Cars93)
 
-  # omitting the first row results in some levels of \code{Cars$Model} and
-  # \code{Cars93$Make} unused (and reported in the second row)
+  # omitting the first row results in some levels of \\code{Cars$Model} and
+  # \\code{Cars93$Make} unused (and reported in the second row)
   countFactorLevels(Cars93[-1L, ])
 
   countFactorLevels(Cars93$Model[-1L])

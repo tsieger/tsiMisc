@@ -5,8 +5,10 @@
 an existing plot depicting a simple univariate linear model.
 The intervals are computed using the 'lmInt' function.
 }
-\usage{\method{plot}{lmInt}(x, xx = colnames(x)[1], fit = FALSE, cia = FALSE, 
-    cif = FALSE, pi = FALSE, band = FALSE, ...)}
+\usage{\method{plot}{lmInt}(x, xx = colnames(x)[1], 
+    fit = FALSE, cia = FALSE, 
+    cif = FALSE, pi = FALSE, 
+    band = FALSE, ...)}
 \arguments{
   \item{x}{an object of class 'lmInt'}
   \item{xx}{the name of dependent variable to plot against}

@@ -11,7 +11,7 @@ of the same name.}
   \item{n}{number of repetitions in dimension 2 (column multiply factor)}
 }
 
-\value{A matrix of size '(m*r) x (n*c)', where 'r' ('c') represent
+\value{A matrix of size '(m*r) \code{x} (n*c)', where 'r' ('c') represent
 the number of rows (columns) of 'x'.}
 
 \author{Tomas Sieger}

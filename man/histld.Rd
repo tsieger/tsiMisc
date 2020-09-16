@@ -3,11 +3,13 @@
 \title{Histogram with log counts and defaults.}
 \description{\code{\link{histld}} plots a histogram having the counts logged and
 passing some default values to \code{\link[graphics]{hist}}.}
-\usage{histld(x, breaks = 100, col = "gray", main = NULL, xlab = NULL, 
-    plot = TRUE, ...)}
+\usage{histld(x, breaks = 100, 
+    col = "gray", main = NULL, 
+    xlab = NULL, plot = TRUE, 
+    ...)}
 \arguments{
   \item{x}{a vector of values for which the histogram is desired}
-  \item{breaks}{histogram breaks, see \code{\link[graphics]{hist}}}
+  \item{breaks}{histogram \code{breaks}, see \code{\link[graphics]{hist}}}
   \item{col}{a color to fill the bars, defaults to gray, see \code{\link[graphics]{hist}}}
   \item{main}{
 }

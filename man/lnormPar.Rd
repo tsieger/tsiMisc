@@ -12,11 +12,13 @@ parameters from the linear scale and computes the \code{meanlog} and
 \code{sdlog} parameters from the log scale and computes the
 \code{mean} and \code{sd} parameters on the linear scale.
 }
-\usage{lnormPar(mean = NULL, sd = NULL, meanlog = NULL, sdlog = NULL)}
+\usage{lnormPar(mean = NULL, 
+    sd = NULL, meanlog = NULL, 
+    sdlog = NULL)}
 \arguments{
-  \item{mean}{the mean on the linear scale}
+  \item{mean}{the \code{mean} on the linear scale}
   \item{sd}{the standard deviation on the linear scale}
-  \item{meanlog}{the mean on the log scale}
+  \item{meanlog}{the \code{mean} on the log scale}
   \item{sdlog}{the standard deviation on the log scale}
 }
 

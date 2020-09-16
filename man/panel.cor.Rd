@@ -5,15 +5,19 @@
 \code{\link[graphics]{pairs}} to visually depict the correlation
 coefficient and its significancy.
 }
-\usage{panel.cor(x, y, digits = 2, prefix = "", cex.cor = NULL, method = c("pearson", 
-    "spearman", "spearmanExact", "lm", "glmPoisson"), n.adjust = 1, 
-    dbg = 0, ...)}
+\usage{panel.cor(x, y, digits = 2, 
+    prefix = "", cex.cor = NULL, 
+    method = c("pearson", 
+        "spearman", "spearmanExact", 
+        "lm", "glmPoisson"), 
+    n.adjust = 1, dbg = 0, 
+    ...)}
 \arguments{
-  \item{x}{x data}
-  \item{y}{y data}
-  \item{digits}{number of significant digits in the reported
+  \item{x}{\code{x} data}
+  \item{y}{\code{y} data}
+  \item{digits}{number of significant \code{digits} in the reported
 correlation coefficients}
-  \item{prefix}{prefix to be shown in front of correlation coefficients}
+  \item{prefix}{\code{prefix} to be shown in front of correlation coefficients}
   \item{cex.cor}{magnification for the correlation coefficients and
 its significance (if \code{NULL}, is computed automatically and
 scaled proportionally to the significance)}

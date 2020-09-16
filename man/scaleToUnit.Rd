@@ -3,7 +3,8 @@
 \title{Scale to unit range.}
 \description{\code{\link{scaleToUnit}} scales the columns of a numeric matrix to
 the unit range.}
-\usage{scaleToUnit(x, min = 0, max = 1, solveSingular = TRUE)}
+\usage{scaleToUnit(x, min = 0, 
+    max = 1, solveSingular = TRUE)}
 \arguments{
   \item{x}{a numeric matrix}
   \item{min}{the minimum in each dimension to scale to (defaults to
@@ -30,7 +31,7 @@ be find in the \code{txInv} attribute.}
 
 \examples{
 
-# scale the \code{iris} data set
+# scale the \\code{iris} data set
 x <- iris[, 1:4]
 summary(x)
 x2 <- scaleToUnit(x)

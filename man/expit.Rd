@@ -1,7 +1,7 @@
 \name{expit}
 \alias{expit}
 \title{The expit function (the inverse to logit).}
-\description{\code{\link{expit}} computes \eqn{exp(x) / (1 + exp(x))}, i.e. the inverse to
+\description{\code{\link{expit}} computes \eqn{exp(\code{x}) / (1 + exp(\code{x}))}, i.e. the inverse to
 \code{\link{logit}}, i.e. it maps the interval \eqn{(-\infty, \infty)}
 to the interval of \eqn{[0, 1]}.
 }
@@ -10,7 +10,7 @@ to the interval of \eqn{[0, 1]}.
   \item{x}{a number}
 }
 
-\value{expit of x}
+\value{expit of \code{x}}
 
 \author{Tomas Sieger}
 

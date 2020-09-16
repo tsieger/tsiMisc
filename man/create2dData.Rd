@@ -4,8 +4,9 @@
 \description{\code{\link{create2dData}} allows you to interactively create a 2D data set
 by clicking points in 2D.
 }
-\usage{create2dData(xyRanges = c(0, 1, 0, 1), setupDevice = TRUE, verb = 1, 
-    ...)}
+\usage{create2dData(xyRanges = c(0, 
+    1, 0, 1), setupDevice = TRUE, 
+    verb = 1, ...)}
 \arguments{
   \item{xyRanges}{ranges of 2D space (a numeric vector of length 4
 giving the xmin, xma, ymin, and ymax limits)}

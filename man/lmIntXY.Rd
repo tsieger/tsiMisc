@@ -3,9 +3,9 @@
 \title{Confidence and prediction intervals for regression.}
 \description{\code{\link{lmInt}} contructs confidence and prediction intervals for simple
 linear regression. For a simple univariate linear model in the form
-of \eqn{EY = beta_0 + beta_1 X} computed using 'lm(y ~ x)',
+of \eqn{EY = beta_0 + beta_1 X} computed using 'lm(\code{y} ~ \code{x})',
 'lmIntervals' computes confidence intervals around the regression
-line (i.e. the point-wise confidence bands of \eqn{E(Y | X = x)}
+line (i.e. the point-wise confidence bands of \eqn{E(Y | X = \code{x})}
 for each individual \eqn{x}), confidence intervals for the
 regression line (i.e. the simultaneous confidence bands of
 \eqn{E(Y)} for all \eqn{x}), and prediction intervals (i.e.

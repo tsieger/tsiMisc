@@ -1,7 +1,7 @@
 \name{logit}
 \alias{logit}
 \title{The logit function.}
-\description{\code{\link{logit}} computes \eqn{log( p / (1-p))}, i.e. maps the interval \eqn{[0, 1]}
+\description{\code{\link{logit}} computes \eqn{log( \code{p} / (1-p))}, i.e. maps the interval \eqn{[0, 1]}
 to the interval of \eqn{(-\infty, \infty)}.
 }
 \usage{logit(p)}

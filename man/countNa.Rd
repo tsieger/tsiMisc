@@ -10,12 +10,14 @@ columns). Number of rows left are also given.
 Optionally, combinations of columns reaching highest joint
 missingness is also reported (if \code{combColCount > 1} and the
 number of columns in \code{x} is at least \code{2}).}
-\usage{countNa(d, sort = TRUE, decreasing = FALSE, combColCount = 3)}
+\usage{countNa(d, sort = TRUE, 
+    decreasing = FALSE, 
+    combColCount = 3)}
 \arguments{
   \item{d}{a data frame}
-  \item{sort}{sort columns of 'x' by the number of missings?}
+  \item{sort}{\code{sort} columns of 'x' by the number of missings?}
   \item{decreasing}{if sorting by the number of missing, should
-the sort be decreasing or increasing?}
+the \code{sort} be \code{decreasing} or increasing?}
   \item{combColCount}{maximum number of columns to combine when finding a
 combination of columns reaching the highest number of missings}
 }

@@ -2,7 +2,7 @@
 \alias{countIntersect}
 \title{Cardinality of set intersections.}
 \description{Given \code{n} sets, \code{\link{countIntersect}} computes the number of elements
-being shared by the individual \code{n*(n-1)/2} pairs of sets.}
+being shared by the individual \code{n*(n-1)/2} \code{\link{pairs}} of sets.}
 \usage{countIntersect(..., logical = FALSE)}
 \arguments{
   \item{\dots}{several numeric or character vectors to intersect;

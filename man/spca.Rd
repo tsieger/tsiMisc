@@ -4,11 +4,12 @@
 \description{\code{\link{spca}} computes supervised principal component analysis as
 described in Barshan et al.
 }
-\usage{spca(x, y = diag(1, nrow(x)), center = TRUE, scale = FALSE, retx = FALSE, 
-    debug = FALSE)}
+\usage{spca(x, y = diag(1, nrow(x)), 
+    center = TRUE, scale = FALSE, 
+    retx = FALSE, debug = FALSE)}
 \arguments{
   \item{x}{a data matrix (features in columns, samples in rows)}
-  \item{y}{target classification of x (logical, numeric,
+  \item{y}{target classification of \code{x} (logical, numeric,
 or a factor), or a kernel matrix of the target. If not specified, it
 defaults to identity matrix, in which case SPCA becomes equivalent
 to classical PCA (as the matrix being decomposed equals the
@@ -16,9 +17,9 @@ covariance matrix of 'x'. (Strictly speaking, when centering is in
 use, SPCA becomes the classical PCA. Otherwise, SPCA yields
 components similar to those yielded by PCA over centered data, but
 shifted.)}
-  \item{center}{a logical value indicating whether to center the
+  \item{center}{a logical value indicating whether to \code{center} the
 data. This is advisable.}
-  \item{scale}{a logical value indicating whether to scale the
+  \item{scale}{a logical value indicating whether to \code{scale} the
 data to have unit variance.}
   \item{retx}{a logical value indicating whether to return the
 rotated version of 'x'}

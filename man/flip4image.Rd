@@ -4,7 +4,7 @@
 \description{Flip a matrix such that it will appear `as is' when plotted by
 \code{\link[graphics]{image}}.
 Note that \code{\link[graphics]{image}} shows the rows of the matrix
-on the x axis and the columns of the matrix on the y axis (with
+on the \code{x} axis and the columns of the matrix on the y axis (with
 column 1 at the bottom), such that the matrix gets displayed rotated
 90 degree clockwise. `flip4image' therefore rotates the matrix 90 degree
 coutner-clockwise, such that the rotation made by

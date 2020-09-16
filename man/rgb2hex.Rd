@@ -6,7 +6,8 @@ Useful e.g. to use a mixed color (as mixed by the \code{\link[colorspace]{mixcol
 function) as a color in calls to raw graphics function. See examples.
 
 see https://gist.github.com/mbannert/e9fcfa86de3b06068c83}
-\usage{rgb2hex(r, g = NULL, b = NULL)}
+\usage{rgb2hex(r, g = NULL, 
+    b = NULL)}
 \arguments{
   \item{r}{red color component, or a column 3-element vector of R,G,B values, or an object of class 'RGB'}
   \item{g}{optional green color component}

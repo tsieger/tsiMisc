@@ -6,7 +6,7 @@
 to generate inline docs for an R package.}
 \usage{buildInlineDoc(path = "~/src/Rweb/tsiMisc")}
 \arguments{
-  \item{path}{path to an R package source}
+  \item{path}{\code{path} to an R package source}
 }
 
 

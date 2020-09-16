@@ -2,20 +2,46 @@
 \alias{plot3dProj}
 \title{Visualize multidimensional data in 3D and/or multiple 2D projections.}
 \description{TODO}
-\usage{plot3dProj(x, col = NULL, cls = NULL, size = 3, alpha = 1, main = NULL, 
-    x2 = NULL, col2 = NULL, cls2 = NULL, size2 = 3, alpha2 = 1, 
-    main2 = NULL, x3 = NULL, col3 = NULL, cls3 = NULL, size3 = 3, 
-    alpha3 = 1, main3 = NULL, palette = c("black", "red", "green", 
-        "blue"), scale = TRUE, tx = function(y) y, dimToShow = NULL, 
-    k = NULL, type = "sawm,fw", widths = 1, heights = 1, devices = rgl.cur(), 
-    col.axes = "gray", axesExpansion = 1.1, annotateWireFrame = FALSE, 
-    ellipses = list(list(center = rep(0, ncol(x)), x = diag(rep(1, 
-        ncol(x))), col = "gray", alpha = 0.2)), boxes = list(list(center = rep(0, 
-        ncol(x)), scale = rep(0, ncol(x)), col = "gray", alpha = 0.2)), 
-    wfboxes = list(list(center = rep(0, ncol(x)), scale = rep(0, 
-        ncol(x)), col = "gray", alpha = 0.2)), planes = list(list(a = 1, 
-        b = 0, c = 0, d = 0, col = "gray", alpha = 0.2)), texts = list(list(center = rep(0, 
-        ncol(x)), text = "text", col = "gray", alpha = 0.2)), 
+\usage{plot3dProj(x, col = NULL, 
+    cls = NULL, size = 3, 
+    alpha = 1, main = NULL, 
+    x2 = NULL, col2 = NULL, 
+    cls2 = NULL, size2 = 3, 
+    alpha2 = 1, main2 = NULL, 
+    x3 = NULL, col3 = NULL, 
+    cls3 = NULL, size3 = 3, 
+    alpha3 = 1, main3 = NULL, 
+    palette = c("black", 
+        "red", "green", 
+        "blue"), scale = TRUE, 
+    tx = function(y) y, 
+    dimToShow = NULL, 
+    k = NULL, type = "sawm,fw", 
+    widths = 1, heights = 1, 
+    devices = rgl.cur(), 
+    col.axes = "gray", 
+    axesExpansion = 1.1, 
+    annotateWireFrame = FALSE, 
+    ellipses = list(list(center = rep(0, 
+        ncol(x)), x = diag(rep(1, 
+        ncol(x))), col = "gray", 
+        alpha = 0.2)), 
+    boxes = list(list(center = rep(0, 
+        ncol(x)), scale = rep(0, 
+        ncol(x)), col = "gray", 
+        alpha = 0.2)), 
+    wfboxes = list(list(center = rep(0, 
+        ncol(x)), scale = rep(0, 
+        ncol(x)), col = "gray", 
+        alpha = 0.2)), 
+    planes = list(list(a = 1, 
+        b = 0, c = 0, 
+        d = 0, col = "gray", 
+        alpha = 0.2)), 
+    texts = list(list(center = rep(0, 
+        ncol(x)), text = "text", 
+        col = "gray", 
+        alpha = 0.2)), 
     debug = FALSE)}
 \arguments{
   \item{x}{a data frame or matrix to visualize. Instances in rows,
@@ -25,22 +51,22 @@ color of individual instances, recycled if necessary}
   \item{cls}{class membership of individual instances. This serves
 the only purpose of alternative color specification: if
 'col' is NULL ...}
-  \item{size}{size of points}
-  \item{alpha}{alpha of points}
+  \item{size}{\code{size} of points}
+  \item{alpha}{\code{alpha} of points}
   \item{main}{title of \code{x}}
   \item{x2}{another data frame or matrix to visualize.}
   \item{col2}{the color of data in \code{x2}}
   \item{cls2}{class membership of data in \code{x2}}
-  \item{size2}{size of points in \code{x2}}
-  \item{alpha2}{alpha of points in \code{x2}}
+  \item{size2}{\code{size} of points in \code{x2}}
+  \item{alpha2}{\code{alpha} of points in \code{x2}}
   \item{main2}{title of \code{x2}}
   \item{x3}{another data frame or matrix to visualize.}
   \item{col3}{the color of data in \code{x3}}
   \item{cls3}{class membership of data in \code{x3}}
-  \item{size3}{size of points in \code{x3}}
-  \item{alpha3}{alpha of points in \code{x3}}
+  \item{size3}{\code{size} of points in \code{x3}}
+  \item{alpha3}{\code{alpha} of points in \code{x3}}
   \item{main3}{title of \code{x3}}
-  \item{palette}{color palette to be
+  \item{palette}{color \code{palette} to be
 used for individual classes specified in \code{cls}, see the
 \code{col} argument}
   \item{scale}{if TRUE, data get scaled to the range of '[-1, 1]'
@@ -68,7 +94,7 @@ list attached to the \code{tx} argument as the \code{params}
 attribute. This function takes \code{k}, the number of top
 components, and returns the contribution of individual dimensions to
 these components.}
-  \item{type}{a character string defining the type of plots to
+  \item{type}{a character string defining the \code{type} of plots to
 produce. There general syntax is \code{<row>;<row>;...;<row>},
 where each \code{<row>} stands for \code{<plot>,<plot>,...,<plot>},
 and each \code{plot} is a concatenation of one or more plot types to
@@ -97,23 +123,23 @@ parallelepipedon plotted by \code{f})
 }
 Each of \code{t}, \code{s}, and \code{m} can be followed by a number
 referring to a specific data (i.e. \code{x}, \code{x2}, or
-\code{x3}). By default, when no number follows the plot type, the
+\code{x3}). By default, when no number follows the plot \code{type}, the
 \code{x} is assumed.
 For example: \code{tawm,sw} defines two subscenes to be plotted in
-one row next to each other. The first plot type \code{tawm} defines
+one row next to each other. The first plot \code{type} \code{tawm} defines
 a \strong{t}hree dimensional scatter plot annotated with
 \strong{a}xes and enriched with a \strong{w}ire frame and the
 \strong{m}ain (title).
-The second plot type \code{sw} defines a parallelepipedon having
+The second plot \code{type} \code{sw} defines a parallelepipedon having
 \strong{s}catter plots on its faces, and enriched with a
 \strong{w}ire frame.}
-  \item{widths}{relative widths of columns in a multi-subscene scene,
+  \item{widths}{relative \code{widths} of columns in a multi-subscene scene,
 see \code{rgl::layout3d}}
-  \item{heights}{relative heights of rows in a multi-subscene scene,
+  \item{heights}{relative \code{heights} of rows in a multi-subscene scene,
 see \code{rgl::layout3d}}
-  \item{devices}{a list of devices to plot at, defaulting to
+  \item{devices}{a list of \code{devices} to plot at, defaulting to
 the current active device, if any. If \code{devices} is NULL, empty,
-contains invalid devices, or does not hold enough devices to plot
+contains invalid \code{devices}, or does not hold enough \code{devices} to plot
 all the scenes requested by the \code{type} argument, new scene(s)
 will be created for such scenes.}
   \item{col.axes}{color of axes in the 3D plot}
@@ -124,20 +150,20 @@ by \code{type='w'} will be annotates by a black point at
 \code{(-1,-1,...,-1)} and numbers 1...\code{k} at the extremes of
 the individual \code{k} dimensions.}
   \item{ellipses}{a
-list or a list of lists defining ellipses to be plotted by the
-\code{'e'} type. TODO}
+list or a list of lists defining \code{ellipses} to be plotted by the
+\code{'e'} \code{type}. TODO}
   \item{boxes}{a
-list or a list of lists defining boxes to be plotted by the
-\code{'b'} type. TODO}
+list or a list of lists defining \code{boxes} to be plotted by the
+\code{'b'} \code{type}. TODO}
   \item{wfboxes}{a
-list or a list of lists defining wire frame boxes to be plotted by the
-\code{'B'} type. TODO}
+list or a list of lists defining wire frame \code{boxes} to be plotted by the
+\code{'B'} \code{type}. TODO}
   \item{planes}{a
-list or a list of lists defining planes to be plotted by the
-\code{'p'} type. TODO}
+list or a list of lists defining \code{planes} to be plotted by the
+\code{'p'} \code{type}. TODO}
   \item{texts}{a
-list or a list of lists defining texts to be plotted by the
-\code{'t'} type. TODO}
+list or a list of lists defining \code{texts} to be plotted by the
+\code{'t'} \code{type}. TODO}
   \item{debug}{if TRUE, debugs will be printed. If numeric of value
 greater than 1, verbose debugs will be produced.}
 }
@@ -157,8 +183,8 @@ greater than 1, verbose debugs will be produced.}
 
     # Plot 4D data in a 3D scatter plot on a new device,
     # use PCA to go from 4D to 3D, and add a bounding box and 3D axes
-    # decoration (\code{type='d'}) on top of the axes of the 4D space
-    # (\code{type='a'}).
+    # decoration (\\code{type='d'}) on top of the axes of the 4D space
+    # (\\code{type='a'}).
     plot3dProj(iris[,1:4], cls=iris$Species, tx=txPca(iris[,1:4]), type='sad', devices=NULL)
 
     # Plot the iris data set with additional decoration: ellipses

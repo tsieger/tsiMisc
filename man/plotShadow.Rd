@@ -5,11 +5,12 @@
 plotting the shadow matrix of the data, in which missing values
 are coded as black rectangles, and non-missing values are given
 in light gray.}
-\usage{plotShadow(x, col = gray.colors(2), transpose = FALSE)}
+\usage{plotShadow(x, col = gray.colors(2), 
+    transpose = FALSE)}
 \arguments{
   \item{x}{a matrix}
   \item{col}{color palette}
-  \item{transpose}{transpose the matrix?}
+  \item{transpose}{\code{transpose} the matrix?}
 }
 
 

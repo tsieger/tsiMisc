@@ -4,13 +4,14 @@
 \description{\code{\link{lmCalib}} computes the estimate of \eqn{x_0} in which the regression
 of \eqn{y ~ x} reaches given \eqn{y0}, and the related confidence interval.
 }
-\usage{lmCalib(x, y, y0, fixed = FALSE, approx = FALSE, alpha = 0.05)}
+\usage{lmCalib(x, y, y0, fixed = FALSE, 
+    approx = FALSE, alpha = 0.05)}
 \arguments{
   \item{x}{independent variable}
   \item{y}{dependent variable}
   \item{y0}{dependent variable for which to compute the expected
 independent variable}
-  \item{fixed}{is \code{y0} fixed, or random?}
+  \item{fixed}{is \code{y0} \code{fixed}, or random?}
   \item{approx}{use approximation, or Fieller method?}
   \item{alpha}{confidence interval significance level}
 }

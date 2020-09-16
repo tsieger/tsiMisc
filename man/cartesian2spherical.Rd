@@ -3,16 +3,17 @@
 \title{Cartesian to spherical coordinate conversion.}
 \description{Cartesian to spherical coordinate conversion.
 }
-\usage{cartesian2spherical(x, y = NULL, z = NULL)}
+\usage{cartesian2spherical(x, 
+    y = NULL, z = NULL)}
 \arguments{
-  \item{x}{a vector of x coordinates (or a vector of length 3 holding \eqn{x, y, z})}
-  \item{y}{a vector of y coordinates}
+  \item{x}{a vector of \code{x} coordinates (or a vector of length 3 holding \eqn{x, \code{y}, z})}
+  \item{y}{a vector of \code{y} coordinates}
   \item{z}{
 }
 }
 
 \value{A vector of three spherical coordinates \eqn{r, theta, phi} of a
-point represented as \eqn{x, y, z} in Cartesian coordinates.}
+point represented as \eqn{x, \code{y}, z} in Cartesian coordinates.}
 
 \author{Tomas Sieger}
 

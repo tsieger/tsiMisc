@@ -5,7 +5,8 @@
 Poisson distribution with unknown parameter. The test is described
 in Zvara (2008), chapter 10.5.
 }
-\usage{poissonTest(x, alpha = 0.05, na.rm = FALSE)}
+\usage{poissonTest(x, alpha = 0.05, 
+    na.rm = FALSE)}
 \arguments{
   \item{x}{a vector of samples}
   \item{alpha}{significance level}

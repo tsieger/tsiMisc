@@ -5,10 +5,12 @@
 analysis.
 TODO
 }
-\usage{txSpca(x, y = diag(1, nrow(x)), k = 3, ...)}
+\usage{txSpca(x, y = diag(1, 
+    nrow(x)), k = 3, 
+    ...)}
 \arguments{
   \item{x}{a data matrix (features in columns, samples in rows)}
-  \item{y}{target classification of x (logical, numeric,
+  \item{y}{target classification of \code{x} (logical, numeric,
 or a factor), or a kernel matrix of the target. If not specified, it
 defaults to identity matrix, in which case SPCA becomes equivalent
 to classical PCA (as the matrix being decomposed equals the

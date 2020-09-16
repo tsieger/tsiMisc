@@ -4,9 +4,10 @@
 \description{\code{\link{spherical2cartesian}} provides spherical to
 Cartesian coordinate conversion.
 }
-\usage{spherical2cartesian(r, theta = NULL, phi = NULL)}
+\usage{spherical2cartesian(r, 
+    theta = NULL, phi = NULL)}
 \arguments{
-  \item{r}{a vector of radii (or a vector of length 3 holding \eqn{r, theta,
+  \item{r}{a vector of radii (or a vector of length 3 holding \eqn{r, \code{theta},
 phi})}
   \item{theta}{a vector of inclinations}
   \item{phi}{a vector of azimuths}

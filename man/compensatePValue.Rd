@@ -5,12 +5,14 @@
 \code{\link{compensatePValue}} compensates a p-value for the number of tests
 performed.
 }
-\usage{compensatePValue(p, n = length(p), method = c("bonferroni", "sidak", 
-    "holm-bonferroni"), r = 0)}
+\usage{compensatePValue(p, n = length(p), 
+    method = c("bonferroni", 
+        "sidak", "holm-bonferroni"), 
+    r = 0)}
 \arguments{
   \item{p}{p-value(s) to be compensated}
   \item{n}{number of tests made}
-  \item{method}{compensation method,
+  \item{method}{compensation \code{method},
 'bonferroni' is conservative, does not assume independence
 of the tests, and controls for the family-wise error (FWE),
 'sidak' is more liberal, and controls for FWE only under the
@@ -24,8 +26,8 @@ in the strict sense only for 'r=0'.}
 }
 
 \value{Compensated p-value. It equals \code{min(1,p*n)} for the \code{'bonferroni'}
-method, \code{1-(1-p)^n} for the \code{'sidak'} method, and the result of the
-iterative procedure for the method of \code{'holm-bonferroni'}.}
+\code{method}, \code{1-(1-p)^n} for the \code{'sidak'} \code{method}, and the result of the
+iterative procedure for the \code{method} of \code{'holm-bonferroni'}.}
 \references{SISA, \url{http://www.quantitativeskills.com/sisa/calculations/bonhlp.htm}
 Sture Holm, A Simple Sequentially Rejective Multiple Test Procedure, Scand J Statist 6: 65-70, 1979}
 \author{Tomas Sieger}

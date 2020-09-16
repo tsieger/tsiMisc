@@ -5,15 +5,19 @@
 \title{R object size dump.}
 \description{\code{showObjectsSize} shows how much memory do objects in specific
 environment(s) occupy. It builds upon \code{\link{object.size}} and
-gathers information about the size and mode of objects in specific
+gathers information about the size and \code{mode} of objects in specific
 environment(s). It supports environment name filtering using regular
-expressions, object mode filtering, as well as filtering by size.
+expressions, object \code{mode} filtering, as well as filtering by size.
 }
-\usage{showObjectsSize(mode = NULL, n = 20, env = parent.frame(), recursive = FALSE, 
-    envNameRegexpr = NULL, all.names = TRUE, sizeUnits = 1024 * 
+\usage{showObjectsSize(mode = NULL, 
+    n = 20, env = parent.frame(), 
+    recursive = FALSE, 
+    envNameRegexpr = NULL, 
+    all.names = TRUE, 
+    sizeUnits = 1024 * 
         1024, verbose = FALSE)}
 \arguments{
-  \item{mode}{mode of objects to show (see 'mode'), use code{NULL} to
+  \item{mode}{\code{mode} of objects to show (see 'mode'), use code{NULL} to
 show objects of all modes.}
   \item{n}{number of objects to show (the first \code{n} biggest objects
 will be shown).}

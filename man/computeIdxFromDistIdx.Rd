@@ -4,7 +4,8 @@
 \description{\code{\link{computeIdxFromDistIdx}} computes the indices of two
 points whose distance appears at given position in a distance matrix
 (as computed by \code{\link[stats]{dist}}).}
-\usage{computeIdxFromDistIdx(n, i)}
+\usage{computeIdxFromDistIdx(n, 
+    i)}
 \arguments{
   \item{n}{number of points}
   \item{i}{index into the distance matrix}

@@ -6,7 +6,9 @@ classifier, e.g. sensitivity, specificity, an estimate of the area
 under the receiver operating characteristic, the Gini coefficient
 etc. (see the return value).
 }
-\usage{perfInd(x, y = NULL, negativeFirst = TRUE, debug = FALSE)}
+\usage{perfInd(x, y = NULL, 
+    negativeFirst = TRUE, 
+    debug = FALSE)}
 \arguments{
   \item{x}{a 2x2 classification table having predictions in rows, and
 ground truth in columns (negative cases come first, by default, see

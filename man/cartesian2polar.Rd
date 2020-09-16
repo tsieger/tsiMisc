@@ -5,8 +5,8 @@
 }
 \usage{cartesian2polar(x, y = NULL)}
 \arguments{
-  \item{x}{x coordinate (or a vector of length 2 holding \eqn{x, y})}
-  \item{y}{y coordinate}
+  \item{x}{\code{x} coordinate (or a vector of length 2 holding \eqn{x, y})}
+  \item{y}{\code{y} coordinate}
 }
 
 \value{A list of the \eqn{r} and \eqn{phi} polar coordinates.}

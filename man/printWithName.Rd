@@ -9,7 +9,7 @@ of a variable. Useful for debug purposes.
 \usage{printWithName(x, heading = NULL)}
 \arguments{
   \item{x}{variable}
-  \item{heading}{optional heading for the variable print}
+  \item{heading}{optional \code{heading} for the variable print}
 }
 
 
