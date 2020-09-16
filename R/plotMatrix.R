@@ -14,6 +14,7 @@ legend.width = .2, ##<< the relative width of the legend to the total
 ## width of the plot
 legend.nlevels = length(col) + 1, ##<< number of levels in the legend
 ## (defaults to the number of colors in 'col')
+main = NULL, ##<< main
 rowDelim = NULL, ##<< an optional vector of rows after which to put a
 ## separation line
 rowDelimCol = 'black', ##<< the color of the row separation line
@@ -48,7 +49,7 @@ colDelimCol = 'black' ##<< the color of the column separation line
   }
 
   # plot the matrix
-  image(t(x[nrow(x):1,]),xaxt='n',yaxt='n',col=col)
+  image(t(x[nrow(x):1,]),xaxt='n',yaxt='n',col=col,main=main)
 
   if (1%in%axes && !is.null(colnames(x))) axis(1,(1:ncol(x)-1)/(ncol(x)-1),colnames(x),las=3)
   if (3%in%axes && !is.null(rownames(x))) axis(3,(1:ncol(x)-1)/(ncol(x)-1),colnames(x),las=3)
