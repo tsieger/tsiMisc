@@ -185,9 +185,9 @@ plot = TRUE, ##<< if TRUE, a plot is produced.
   if (plot) {
       if (normalityColor) dp<-panel.histWithNormalityColorCodes else dp<-panel.hist
       if (aboveDiag) {
-          pairs(x,lower.panel=function(x,y)panel(x,y,n.adjust=n),upper.panel=panel.smooth,diag.panel=dp,i1=i1,i2=i2,...)
+          pairs(x,lower.panel=function(x,y,...)panel(x,y,n.adjust=n,...),upper.panel=panel.smooth,diag.panel=dp,i1=i1,i2=i2,...)
       } else {
-          pairs(x,lower.panel=panel.smooth,upper.panel=function(x,y)panel(x,y,n.adjust=n),diag.panel=dp,i1=i1,i2=i2,...)
+          pairs(x,lower.panel=panel.smooth,upper.panel=function(x,y,...)panel(x,y,n.adjust=n,...),diag.panel=dp,i1=i1,i2=i2,...)
       }
   }
   return(invisible(n))
