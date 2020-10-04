@@ -34,14 +34,14 @@ colDelimCol = 'black' ##<< the color of the column separation line
     stop('\'x\' is not a numeric matrix.')
   }
 
+  if (transpose) x<-t(x)
+
   # setup plot(s)
-#.pn(par('mai'))
   opar<-par(mai=c(
     .2+(1%in%axes && !is.null(colnames(x)))*max(.5,max(strwidth(colnames(x),'in'))),
     .1+(2%in%axes && !is.null(rownames(x)))*max(.5,max(strwidth(rownames(x),'in'))),
     .2+(3%in%axes && !is.null(colnames(x)))*max(.5,max(strwidth(colnames(x),'in'))),
     .2+(4%in%axes && !is.null(rownames(x)))*max(.5,max(strwidth(rownames(x),'in')))))
-  if (transpose) x<-t(x)
   if (legend && is.numeric(legend.width) && legend.width>0) {
     layout(matrix(c(1,2),1),widths=c(1-legend.width,legend.width))
   } else {
@@ -51,10 +51,10 @@ colDelimCol = 'black' ##<< the color of the column separation line
   # plot the matrix
   image(t(x[nrow(x):1,]),xaxt='n',yaxt='n',col=col,main=main)
 
-  if (1%in%axes && !is.null(colnames(x))) axis(1,(1:ncol(x)-1)/(ncol(x)-1),colnames(x),las=3)
-  if (3%in%axes && !is.null(rownames(x))) axis(3,(1:ncol(x)-1)/(ncol(x)-1),colnames(x),las=3)
-  if (2%in%axes && !is.null(colnames(x))) axis(2,(1:nrow(x)-1)/(nrow(x)-1),rev(rownames(x)),las=1)
-  if (4%in%axes && !is.null(rownames(x))) axis(4,(1:nrow(x)-1)/(nrow(x)-1),rev(rownames(x)),las=1)
+  if (1%in%axes && !is.null(colnames(x))) axis(1,(1:ncol(x)-1)/(ncol(x)-1),colnames(x),las=2)
+  if (2%in%axes && !is.null(rownames(x))) axis(2,(1:nrow(x)-1)/(nrow(x)-1),rownames(x),las=2)
+  if (3%in%axes && !is.null(colnames(x))) axis(3,(1:ncol(x)-1)/(ncol(x)-1),colnames(x),las=2)
+  if (4%in%axes && !is.null(rownames(x))) axis(4,(1:nrow(x)-1)/(nrow(x)-1),rownames(x),las=2)
 
   # plot delimiters, if requested
   if (!is.null(colDelim)) {
