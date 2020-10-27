@@ -6,7 +6,7 @@ Miscelaneous utilities, mostly related to data exploration, statistical analysis
 
 To install the latest development version: 
 
-  `devtools::install_github("tsieger/idendro")`
+  `devtools::install_github("tsieger/tsiMisc")`
 
 ## Features
 
