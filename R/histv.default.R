@@ -1,4 +1,4 @@
-histv<-structure(
+histv.default<-structure(
 function # Vertically aligned histograms.
 ##description<<
 ## \code{\link{histv}} creates one or more vertically aligned histograms,

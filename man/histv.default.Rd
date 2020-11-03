@@ -1,10 +1,10 @@
-\name{histv}
-\alias{histv}
+\name{histv.default}
+\alias{histv.default}
 \title{Vertically aligned histograms.}
 \description{\code{\link{histv}} creates one or more vertically aligned histograms,
 rendered by \code{\link[graphics]{hist}}. This is useful for visual
 comparison of several numeric vectors.}
-\usage{histv(..., setup = TRUE, 
+\usage{\method{histv}{default}(..., setup = TRUE, 
     setupDev = NULL, 
     ylimFixed = FALSE, 
     col = NULL, border = NULL, 
@@ -44,7 +44,9 @@ it}
 greater than 1, verbose debugs will be produced.}
 }
 
-
+\value{a list of objects of class \code{'histograms'} (see
+\code{\link[graphics]{hist}}). The elements correspond to individual
+histograms depicting the individual numeric vectors.}
 
 \author{Tomas Sieger}
 
@@ -58,7 +60,6 @@ histv(seq(1,10), seq(1,20,.1))
 # proportions
 histv(seq(1,10), seq(1,20,.1), ylimFixed=TRUE)
 
-# 3 data arguments
 set.seed(1)
 n <- 1000
 a <- rnorm(n)
@@ -66,12 +67,4 @@ b <- runif(n)
 c <- rchisq(n,1)
 histv(a, b, c, breaks = 100, main = c('N(0,1)', 'U(0,1)', 'Chisq(1)'),
   col = c('gray','blue','red'))
-
-# 1 single list argument holding 3 data vectors
-histv(list(a, b, c), breaks = 100, main = c('N(0,1)', 'U(0,1)', 'Chisq(1)'),
-  col = c('gray','blue','red'))
-
-# formula interface
-histv(Sepal.Length~Species, iris)
-
 }
