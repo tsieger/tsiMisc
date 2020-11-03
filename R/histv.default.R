@@ -60,8 +60,12 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     }
     if (debug) .pn(xs.idx)
     xs<-args[xs.idx]
-    # see http://stackoverflow.com/questions/5754367/using-substitute-to-get-argument-name-with
-    xsNames<-sapply(as.list(substitute(list(...)))[-1][xs.idx],deparse)
+    if (listArgSupplied) {
+        xsNames<-names(args)
+    } else {
+        # see http://stackoverflow.com/questions/5754367/using-substitute-to-get-argument-name-with
+        xsNames<-sapply(as.list(substitute(list(...)))[-1][xs.idx],deparse)
+    }
     n<-length(xs)
     if (debug) .pn(n)
     if (debug>1) .pn(xs)
@@ -109,8 +113,8 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
           a<-list(
             x=xs[[i]],
             breaks=hOverall$breaks,
-            main=ifelse(is.null(main),paste('Histogram of',xsNames[i]),main[1+(i-1)%%length(main)]),
-            xlab=ifelse(is.null(xlab),xsNames[i],xlab[1+(i-1)%%length(xlab)])
+            main=ifelse(is.null(main),ifelse(is.null(xsNames),"",paste('Histogram of',xsNames[i])),main[1+(i-1)%%length(main)]),
+            xlab=ifelse(is.null(xlab),ifelse(is.null(xsNames),"",xsNames[i]),xlab[1+(i-1)%%length(xlab)])
           )
           if(!is.null(col)) a<-c(a,list(col=col[1+(i-1)%%length(col)]))
           if(!is.null(border)) a<-c(a,list(border=border[1+(i-1)%%length(border)]))
