@@ -36,19 +36,24 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 ## greater than 1, verbose debugs will be produced.
 ) {
     args<-list(...)
-    if (!is.null(args[[1]]) && is.list(args[[1]])) {
-      args<-args[[1]]
+    listArgSupplied<-FALSE
+    if (!is.null(args[[1]])) {
+      if (is.list(args[[1]])) {
+        listArgSupplied<-TRUE
+        args<-args[[1]]
+      }
     }
     if (!is.null(setupDev)) {
       warning('\'setupDev\' argument is deprecated, use \'setup\' instead')
       setup<-setupDev
     }
     if (debug) .pn(border)
-    if (debug>1) .pn(args)
-    if (debug) .pn(names(args))
+    if (debug>1) .pn(class(args))
     if (debug) .pn(length(args))
+    if (debug) .pn(names(args))
+    if (debug>1) .pn(args)
     # unnamed arguments are the numeric vectors
-    if (is.null(names(args))) {
+    if (is.null(names(args)) || listArgSupplied) {
       xs.idx<-rep(TRUE,length(args))
     } else {
       xs.idx<-sapply(names(args),nchar)==0
@@ -62,7 +67,7 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
     if (debug>1) .pn(xs)
     if (debug) .pn(xsNames)
     # named arguments are optional arguments to hist()
-    opts<-args[sapply(names(args),nchar)>0]
+    opts<-args[!xs.idx]
     if (debug) .pn(opts)
     opts<-opts[!((names(opts)%in%'plot'))]
     if (debug) .pn(opts)
