@@ -36,47 +36,45 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
 ## greater than 1, verbose debugs will be produced.
 ) {
     args<-list(...)
-    listArgSupplied<-FALSE
-    if (!is.null(args[[1]])) {
-      if (is.list(args[[1]])) {
-        listArgSupplied<-TRUE
-        args<-args[[1]]
-      }
+    if (debug) .pn(class(args))
+    if (debug) .pn(length(args))
+    if (debug) .pn(names(args))
+    if (debug) .pn(args)
+    if (length(args)==0) {
+      stop('no data to display')
     }
+    if (is.list(args[[1]])) {
+      xs<-args[[1]]
+      xsNames<-names(xs)
+      opts<-args[-1]
+    } else {
+      # unnamed arguments are the numeric vectors
+      if (is.null(names(args))) {
+        xs.idx<-rep(TRUE,length(args))
+      } else {
+        xs.idx<-sapply(names(args),nchar)==0
+      }
+      if (debug) .pn(xs.idx)
+      xs<-args[xs.idx]
+      # see http://stackoverflow.com/questions/5754367/using-substitute-to-get-argument-name-with
+      xsNames<-sapply(as.list(substitute(list(...)))[-1][xs.idx],deparse)
+      # named arguments are optional arguments to hist()
+      opts<-args[!xs.idx]
+      opts<-opts[!((names(opts)%in%'plot'))]
+    }
+    n<-length(xs)
+    if (debug) .pn(n)
+    if (debug>1) .pn(xs)
+    if (debug>1) .pn(unlist(xs))
+    if (debug) .pn(xsNames)
+    if (debug) .pn(length(opts))
+    if (debug) .pn(opts)
+
     if (!is.null(setupDev)) {
       warning('\'setupDev\' argument is deprecated, use \'setup\' instead')
       setup<-setupDev
     }
     if (debug) .pn(border)
-    if (debug>1) .pn(class(args))
-    if (debug) .pn(length(args))
-    if (debug) .pn(names(args))
-    if (debug>1) .pn(args)
-    # unnamed arguments are the numeric vectors
-    if (is.null(names(args)) || listArgSupplied) {
-      xs.idx<-rep(TRUE,length(args))
-    } else {
-      xs.idx<-sapply(names(args),nchar)==0
-    }
-    if (debug) .pn(xs.idx)
-    xs<-args[xs.idx]
-    if (listArgSupplied) {
-        xsNames<-names(args)
-    } else {
-        # see http://stackoverflow.com/questions/5754367/using-substitute-to-get-argument-name-with
-        xsNames<-sapply(as.list(substitute(list(...)))[-1][xs.idx],deparse)
-    }
-    n<-length(xs)
-    if (debug) .pn(n)
-    if (debug>1) .pn(xs)
-    if (debug) .pn(xsNames)
-    # named arguments are optional arguments to hist()
-    opts<-args[!xs.idx]
-    if (debug) .pn(opts)
-    opts<-opts[!((names(opts)%in%'plot'))]
-    if (debug) .pn(opts)
-    if (debug) .pn(length(opts))
-    if (debug>1) .pn(unlist(xs))
 
     # determine breaks for all the histograms by calling 'hist' over
     # all the data
