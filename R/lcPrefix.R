@@ -19,13 +19,16 @@ ignore.case = FALSE ##<<
   if (length(x)<2) return(x)
   if (ignore.case) x <- toupper(x)
   nc <- nchar(x, type = "char")
-  for (i in rseq(1,min(nc),1)) {
-    ss <- substr(x, 1, i)
-    if (any(ss != ss[1])) {
-      return(substr(x[1], 1, i - 1))
+  if (min(nc)>0) {
+    for (i in rseq(1,min(nc),1)) {
+      ss <- substr(x, 1, i)
+      if (any(ss != ss[1])) {
+        return(substr(x[1], 1, i - 1))
+      }
     }
+    return(substr(x[1], 1, min(nc)))
   }
-  return(substr(x[1], 1, i))
+  return('')
   ### The longest common prefix.
 },ex=function() {
   lcPrefix(c('abcd','abef','aqwe'))

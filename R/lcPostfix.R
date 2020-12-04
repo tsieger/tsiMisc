@@ -15,14 +15,16 @@ ignore.case = FALSE ##<<
   if (length(x)<2) return(x)
   if (ignore.case) x <- toupper(x)
   nc <- nchar(x, type = "char")
-  for (i in rseq(1,min(nc),1)) {
-    ss <- substr(x, nc-i+1, nc)
-    if (any(ss != ss[1])) {
-      return(substr(x[1], nc-i+2, nc))
+  if (min(nc)>0) {
+    for (i in rseq(1,min(nc),1)) {
+      ss <- substr(x, nc-i+1, nc)
+      if (any(ss != ss[1])) {
+        return(substr(x[1], nc-i+2, nc))
+      }
     }
+    return(substr(x[1], nc-min(nc)+1, nc))
   }
-  return(substr(x[1], nc-i+1, nc))
-
+  return('')
   ### A character string vector having the longest common postfix removed.
 },ex=function() {
   lcPostfix(c('abab','cdab'))
