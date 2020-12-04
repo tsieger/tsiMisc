@@ -1,3 +1,5 @@
+context('rgb2hex')
+
 # simple cases
 expect_that(rgb2hex(RGB(t(col2rgb('yellow')))), equals('#FFFF00'))
 expect_that(rgb2hex(RGB(t(col2rgb(c('white','black'))))), equals(c('#FFFFFF','#000000')))

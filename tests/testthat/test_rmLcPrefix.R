@@ -1,3 +1,5 @@
+context('rmLcPrefix')
+
 expect_that(rmLcPrefix(c('abcd','abef','aqwe')), equals(c('bcd','bef','qwe')))
 expect_that(rmLcPrefix(c('abcd','abef','abqwe')), equals(c('cd','ef','qwe')))
 expect_that(rmLcPrefix(c('abc','abc')), equals(c('','')))

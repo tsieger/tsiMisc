@@ -1,3 +1,5 @@
+context('rmLcPostfix')
+
 expect_that(rmLcPostfix(c('abab','weab')), equals(c('ab','we')))
 expect_that(rmLcPostfix(c('qwea','asda','zxca')), equals(c('qwe','asd','zxc')))
 expect_that(rmLcPostfix(c('abc','abc')), equals(c('','')))

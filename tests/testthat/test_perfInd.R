@@ -1,3 +1,5 @@
+context('perfInd')
+
 n<-300000
 x<-rep(c(0,1),n)
 y<-rep(c(0,1),each=n)

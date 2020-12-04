@@ -1,3 +1,5 @@
+context('mixcol')
+
 # simple cases
 expect_that(mixcol('black','white'), equals('#7F7F7F'))
 expect_that(mixcol('black','white',.5), equals('#7F7F7F'))

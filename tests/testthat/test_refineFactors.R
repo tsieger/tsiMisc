@@ -1,3 +1,5 @@
+context('refineFactors')
+
 x<-data.frame(b=c('a','b','b','b','b','a'),c=c('c','c','x','d','d','x'))
 x.train<-x[1:3,]
 x.test<-x[4:6,]
