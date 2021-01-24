@@ -18,11 +18,8 @@ multi = FALSE ##<< logical flag indicating whether to change multiple
 
   if (!regexp) {
     on<-gsub('\\(','\\\\(',on)
-    nn<-gsub('\\(','\\\\(',nn)
     on<-gsub('\\)','\\\\)',on)
-    nn<-gsub('\\)','\\\\)',nn)
     on<-gsub('\\.','\\\\.',on)
-    nn<-gsub('\\.','\\\\.',nn)
   }
 
   if (multi) {

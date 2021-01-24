@@ -46,3 +46,13 @@ test_that("regexp", {
     expect_that(colnames(x), equals(c('a()','b()')))
 
 })
+
+test_that("dots", {
+    x<-data.frame(prefix.a1=1:2,prefix.a2=2:3)
+    x<-rencol(x,'prefix.a','p.a',multi=TRUE)
+    expect_that(colnames(x), equals(c('p.a1','p.a2')))
+
+    x<-data.frame(prefix.a1=1:2,prefix.a2=2:3)
+    x<-rencol(x,'prefix.a1','p.a1')
+    expect_that(colnames(x), equals(c('p.a1','prefix.a2')))
+})
