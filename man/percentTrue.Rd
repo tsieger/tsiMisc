@@ -3,10 +3,12 @@
 \title{Percentual ratio of TRUE cases.}
 \description{\code{\link{percentTrue}} computes the percentual ratio of
 \code{TRUE} cases}
-\usage{percentTrue(x, digits = NULL)}
+\usage{percentTrue(x, digits = NULL, 
+    ...)}
 \arguments{
   \item{x}{a logical vector (or a vector that can be coerced to one)}
   \item{digits}{number of decimal places (passed to \code{round})}
+  \item{\dots}{additional arguments passed to \code{sum()}}
 }
 
 \value{Percentual ratio of \code{TRUE} cases of \code{x}.}
