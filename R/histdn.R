@@ -17,7 +17,7 @@ xlab = NULL, ##<<
   h<-hist(x,breaks=breaks,col=col,main=main,xlab=xlab,...)
   y<-dnorm(h$mids,mean(x,na.rm=T),sd(x,na.rm=T))*diff(h$mids[1:2])*sum(!is.na(x))
   lines(h$mids,y,col=coln)
-  return(h)
+  return(invisible(h))
   ### an object of class \code{histogram}, see \code{\link[graphics]{hist}}
 },ex=function() {
   histdn(rnorm(100))
