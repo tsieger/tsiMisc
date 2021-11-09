@@ -1,14 +1,14 @@
-\name{rencol}
-\alias{rencol}
-\title{Rename columns in a data frame.}
-\description{\code{\link{rencol}} renames columns in a data frame.
+\name{cpcol}
+\alias{cpcol}
+\title{Copy columns in a data frame.}
+\description{\code{\link{cpcol}} copies columns in a data frame.
 }
-\usage{rencol(d, on, nn, i = NULL, 
+\usage{cpcol(d, on, nn, i = NULL, 
     regexp = FALSE, multi = FALSE)}
 \arguments{
   \item{d}{data frame}
-  \item{on}{original column name (or a regexpr)}
-  \item{nn}{desired column name (or a regexpr)}
+  \item{on}{original column name (or part of it, or a regexpr)}
+  \item{nn}{desired column name (or part of it, or a regexpr)}
   \item{i}{optional column index that must match the column with the name
 denoted by \code{on} (this serves as a sanity check ensuring the
 change affects the intended column)}
@@ -24,13 +24,14 @@ coumns at once}
 
 
 
-\seealso{cpcol}
+\seealso{rencol}
 \examples{
 tmp<-data.frame(a=1:2,b=2:3)
-rencol(tmp,'a','a2')
-rencol(tmp,'a','a2',1)
+cpcol(tmp,'a','a2')
+# copy with explicit column idx check
+cpcol(tmp,'a','a2',1)
 
-# get rid of a common prefix
-tmp<-data.frame(prefix.a=1:2,prefix.b=2:3)
-rencol(tmp,'prefix.','',multi=TRUE)
+# copy all columns starting with 'a.' as 'b.'
+tmp<-data.frame(a.x=1:2,a.b=2:3)
+cpcol(tmp,'a.','b.',multi=TRUE)
 }
