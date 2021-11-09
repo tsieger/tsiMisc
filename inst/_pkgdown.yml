@@ -73,6 +73,8 @@ reference:
       - lmSignif
       - plot.lmInt
       - plot.lmIntXY
+      - plotLm
+      - plotLmPartRes
       - poissonTest
       - pvalStars
 
