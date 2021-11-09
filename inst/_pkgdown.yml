@@ -37,6 +37,8 @@ reference:
   - title: "Data Manipulation"
     desc: Robust sequences, matrix repetition and conversion, string trimming, factor manipulation.
     contents:
+      - cpcol
+      - dfc2num
       - dropLevels
       - refineFactors
       - rencol
