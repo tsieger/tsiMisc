@@ -21,7 +21,9 @@ reference:
       - countIntersect
       - countNa
       - histd
+      - histdn
       - histld
+      - histldn
       - histv
       - histvd
       - normality2color
