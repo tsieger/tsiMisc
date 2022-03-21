@@ -32,7 +32,7 @@ solveSingular = TRUE ##<< if \code{TRUE}, constant columns will be
       if (ncol(x)>1) {
         y<-t(y)
       }
-      dimnames(y)<-dimnames(x)
+      if (!is.null(dim(y)) && dim(x)==dim(y)) dimnames(y)<-dimnames(x)
     } else {
       y<-x
     }
