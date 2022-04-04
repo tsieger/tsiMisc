@@ -10,8 +10,9 @@ coefficient and its significancy.
     method = c("pearson", 
         "spearman", "spearmanExact", 
         "lm", "glmPoisson"), 
-    n.adjust = 1, dbg = 0, 
-    ...)}
+    n.adjust = 1, col.coef = "black", 
+    col.signif = "red", 
+    dbg = 0, ...)}
 \arguments{
   \item{x}{\code{x} data}
   \item{y}{\code{y} data}
@@ -24,6 +25,8 @@ scaled proportionally to the significance)}
   \item{method}{
 }
   \item{n.adjust}{number of tests to adjust P-values to}
+  \item{col.coef}{color of coefficient}
+  \item{col.signif}{color of significance flags}
   \item{dbg}{debug level}
   \item{\dots}{other arguments (ignored currently)}
 }

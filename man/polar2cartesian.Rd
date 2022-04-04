@@ -6,11 +6,12 @@ coordinate conversion.
 }
 \usage{polar2cartesian(r, phi = NULL)}
 \arguments{
-  \item{r}{a vector of radii (a or a vector of length 2 holding \eqn{r, phi})}
+  \item{r}{a vector of radii (a or a vector of length 2 holding \eqn{r, phi},
+or a matrix of two columns holding \eqn{r} and \eqn{phi} coordinates)}
   \item{phi}{a vector of angles}
 }
 
-\value{A list of the \eqn{x} and \eqn{y} Cartesian coordinates.}
+\value{A matrix of the \eqn{x} and \eqn{y} Cartesian coordinates in columns.}
 
 \author{Tomas Sieger}
 
@@ -21,4 +22,5 @@ coordinate conversion.
 polar2cartesian(1, 0)
 polar2cartesian(1, pi)
 polar2cartesian(c(1, pi))
+polar2cartesian(cbind(1, seq(0,pi,.1)))
 }

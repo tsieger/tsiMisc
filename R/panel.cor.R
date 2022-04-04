@@ -17,6 +17,8 @@ cex.cor = NULL, ##<< magnification for the correlation coefficients and
 method = c('pearson','spearman','spearmanExact','lm','glmPoisson'), ##<<
 ## method of (cor)relation
 n.adjust = 1, ##<< number of tests to adjust P-values to
+col.coef = 'black', ##<< color of coefficient
+col.signif = 'red', ##<< color of significance flags
 dbg = 0, ##<< debug level
 ... ##<< other arguments (ignored currently)
 ) {
@@ -87,8 +89,8 @@ dbg = 0, ##<< debug level
     cutpoints = c(0, 0.001, 0.01, 0.05, 0.1, 1),
     symbols = c("***", "**", "*", ".", " "))
 
-  text(1.5, 1.5, txt, cex = max(.4,cex * abs(r)))
-  text(1.5, 1.8, signif, cex=cex, col=2)
+  text(1.5, 1.5, txt, cex = max(.4,cex * abs(r)), col = col.coef)
+  text(1.5, 1.8, signif, cex=cex, col = col.signif)
 },ex=function() {
   pairs(iris,
     upper.panel = function(x,y,..) panel.cor(x, y, n.adjust = ncol(iris) * (ncol(iris) - 1) / 2),

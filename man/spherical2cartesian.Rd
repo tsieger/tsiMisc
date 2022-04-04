@@ -8,12 +8,12 @@ Cartesian coordinate conversion.
     theta = NULL, phi = NULL)}
 \arguments{
   \item{r}{a vector of radii (or a vector of length 3 holding \eqn{r, \code{theta},
-phi})}
+phi}, or a matrix of 3 columns)}
   \item{theta}{a vector of inclinations}
   \item{phi}{a vector of azimuths}
 }
 
-\value{A list of \eqn{x}, \eqn{y}, and \eqn{z} Cartesian coordinates.}
+\value{A matrix with \eqn{x}, \eqn{y}, and \eqn{z} Cartesian coordinates.}
 
 \author{Tomas Sieger}
 
@@ -24,4 +24,5 @@ phi})}
 spherical2cartesian(1, 0, pi / 2)
 spherical2cartesian(1, pi, pi / 4)
 spherical2cartesian(c(1, pi, pi / 4))
+spherical2cartesian(cbind(1,2,1:10))
 }
