@@ -12,20 +12,22 @@ y, ##<< vector of y-coordinates
 bandwidth=.2 ##<< bandwidth defining the neighbourhood in which to evaluate the quantiles
 ) {
   if (length(x)!=length(y)) stop('length of x and y differ')
+  if (any(is.na(x))) stop('x contains NAs, UNIMPLEMENTED, TODO')
 
   n<-length(x)
 
-  z<-numeric(n)
+  z<-rep(NA,n)
   d<-diff(range(x))*bandwidth
+  nonna<-which(!is.na(y))
+  y2<-y[nonna]
+  x2<-x[nonna]
   #TODO:optimize
-  for (i in 1:length(y)) {
-    if (!is.na(y[i])) {
-      # indices of samples in the neighbourhood of i
-      idx<-c(i,setdiff(which(x>x[i]-d & x<x[i]+d),i))
-      tmp<-y[idx]
-      tmp<-na.omit(tmp)
-      z[i]<-(rank(tmp)[1]-1)/(length(tmp)-1)
-    }
+  for (i in seq(along=nonna)) {
+    ii<-nonna[i]
+    # indices of samples in the neighbourhood of ii
+    idx<-c(ii,setdiff(which(x2>x2[ii]-d & x2<x2[ii]+d),ii))
+    tmp<-y2[idx]
+    z[ii]<-(sum(tmp[1]>=tmp)-1)/(length(tmp)-1)
   }
   return(z)
   ### A vector of local quantiles.
