@@ -1,10 +1,14 @@
 locapply<-structure(
-function # 
+function # Apply function to data locally.
 ##description<<
+## \code{\link{locapply}} applies given function to portions of \code{y}
+## in the local \code{x} neighbourhood. This generalizes e.g. \code{lowess}
+## as you can compute any function of \code{y}, not only the mean.
 (x, ##<< vector of x-coordinates
 y, ##<< vector of y-coordinates
-fun, ##<<
-bandwidth=.2, ##<< bandwidth defining the neighbourhood in which to evaluate the quantiles
+fun, ##<< function to be applied; it will be passed a vector of y coordinates
+## in the neighbourhood of some x
+bandwidth=.2, ##<< bandwidth defining the neighbourhood in x-coordinates
 ... ##<< additional arguments to \code{fun}
 ) {
   if (length(x)!=length(y)) stop('length of x and y differ')
@@ -25,17 +29,19 @@ bandwidth=.2, ##<< bandwidth defining the neighbourhood in which to evaluate the
     tmp<-y2[idx]
     z[ii]<-fun(tmp,...)
   }
-  return(z)
-  ### A vector of .
+  return(list(x=x2,y=z))
+  ### A list of vectors \code{x} and \code{y} holding the x-coordinates,
+  ### and the result of \code{fun} applied to the local neighbourhood
+  ### of corresponding element of \code{x}.
 },ex=function() {
   set.seed(1)
   n<-100
   x<-sort(runif(n,0,5))
   y<-runif(n,-exp(x),exp(x))
   plot(x,y,pch=19)
-  lines(x,locapply(x,y,quantile,probs=.5))
-  lines(x,locapply(x,y,quantile,probs=.9))
-  lines(x,locapply(x,y,quantile,probs=.1))
-  lines(x,locapply(x,y,quantile,probs=1))
-  lines(x,locapply(x,y,quantile,probs=0))
+  lines(x,locapply(x,y,quantile,probs=.5)$y)
+  lines(x,locapply(x,y,quantile,probs=.9)$y)
+  lines(x,locapply(x,y,quantile,probs=.1)$y)
+  lines(x,locapply(x,y,quantile,probs=1)$y)
+  lines(x,locapply(x,y,quantile,probs=0)$y)
 })
