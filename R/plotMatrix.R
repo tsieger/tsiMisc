@@ -52,9 +52,9 @@ colDelimCol = 'black' ##<< the color of the column separation line
   image(t(x[nrow(x):1,]),xaxt='n',yaxt='n',col=col,main=main)
 
   if (1%in%axes && !is.null(colnames(x))) axis(1,(1:ncol(x)-1)/(ncol(x)-1),colnames(x),las=2)
-  if (2%in%axes && !is.null(rownames(x))) axis(2,(1:nrow(x)-1)/(nrow(x)-1),rownames(x),las=2)
+  if (2%in%axes && !is.null(rownames(x))) axis(2,(rev(1:nrow(x)-1))/(nrow(x)-1),rownames(x),las=2)
   if (3%in%axes && !is.null(colnames(x))) axis(3,(1:ncol(x)-1)/(ncol(x)-1),colnames(x),las=2)
-  if (4%in%axes && !is.null(rownames(x))) axis(4,(1:nrow(x)-1)/(nrow(x)-1),rownames(x),las=2)
+  if (4%in%axes && !is.null(rownames(x))) axis(4,(rev(1:nrow(x)-1))/(nrow(x)-1),rownames(x),las=2)
 
   # plot delimiters, if requested
   if (!is.null(colDelim)) {
