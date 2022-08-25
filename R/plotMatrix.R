@@ -20,7 +20,10 @@ rowDelim = NULL, ##<< an optional vector of rows after which to put a
 rowDelimCol = 'black', ##<< the color of the row separation line
 colDelim = NULL, ##<< an optional vector of columns after which to put
 ## a separation line
-colDelimCol = 'black' ##<< the color of the column separation line
+colDelimCol = 'black', ##<< the color of the column separation line
+useRaster = NULL ##<< if \code{TRUE}, the matrix gets plotted as a raster
+## image, not as rectangles (the latter sometimes leads to antialising
+## artifacts), see \code{image()})
 ) {
   xLogical<-FALSE
   if (!is.matrix(x)) {
@@ -49,7 +52,10 @@ colDelimCol = 'black' ##<< the color of the column separation line
   }
 
   # plot the matrix
-  image(t(x[nrow(x):1,]),xaxt='n',yaxt='n',col=col,main=main)
+  args<-list(t(x[nrow(x):1,]),xaxt='n',yaxt='n',col=col,main=main)
+  if (!is.null(useRaster)) args<-c(args,useRaster=useRaster)
+  do.call('image',args)
+  #image(t(x[nrow(x):1,]),xaxt='n',yaxt='n',col=col,main=main,useRaster=useRaster)
 
   if (1%in%axes && !is.null(colnames(x))) axis(1,(1:ncol(x)-1)/(ncol(x)-1),colnames(x),las=2)
   if (2%in%axes && !is.null(rownames(x))) axis(2,(rev(1:nrow(x)-1))/(nrow(x)-1),rownames(x),las=2)

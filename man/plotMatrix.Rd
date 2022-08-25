@@ -13,7 +13,8 @@ specified rows/columns. Also, a \code{legend} gets drawn, by default.}
     rowDelim = NULL, 
     rowDelimCol = "black", 
     colDelim = NULL, 
-    colDelimCol = "black")}
+    colDelimCol = "black", 
+    useRaster = NULL)}
 \arguments{
   \item{x}{a matrix}
   \item{col}{colors}
@@ -32,6 +33,9 @@ separation line}
   \item{colDelim}{an optional vector of columns after which to put
 a separation line}
   \item{colDelimCol}{the color of the column separation line}
+  \item{useRaster}{if \code{TRUE}, the matrix gets plotted as a raster
+image, not as rectangles (the latter sometimes leads to antialising
+artifacts), see \code{image()})}
 }
 
 
