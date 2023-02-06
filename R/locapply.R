@@ -8,26 +8,32 @@ function # Apply function to data locally.
 y, ##<< vector of y-coordinates
 fun, ##<< function to be applied; it will be passed a vector of y coordinates
 ## in the neighbourhood of some x
-bandwidth=.2, ##<< bandwidth defining the neighbourhood in x-coordinates
+bandwidth = .2, ##<< bandwidth defining the neighbourhood in x-coordinates
+.na.rm = FALSE, ##<< logical; if \code{TRUE}, any \code{NA} and \code{NaN}s are
+## removed from \code{y} and correspoding elements of \code{x} get removed as well
 ... ##<< additional arguments to \code{fun}
 ) {
   if (length(x)!=length(y)) stop('length of x and y differ')
   if (any(is.na(x))) stop('x contains NAs, UNIMPLEMENTED, TODO')
 
-  n<-length(x)
-
-  z<-rep(NA,n)
   d<-diff(range(x))*bandwidth
-  nonna<-which(!is.na(y))
+  if (.na.rm) {
+    nonna<-which(!is.na(y))
+  } else {
+    nonna<-seq(along=y)
+  }
   y2<-y[nonna]
   x2<-x[nonna]
+  n<-length(x2)
+  z<-rep(NA,n)
   #TODO:optimize
   for (i in seq(along=nonna)) {
-    ii<-nonna[i]
+    #ii<-nonna[i]
     # indices of samples in the neighbourhood of ii
-    idx<-c(ii,setdiff(which(x2>x2[ii]-d & x2<x2[ii]+d),ii))
+    #idx<-c(ii,setdiff(which(x2>x2[ii]-d & x2<x2[ii]+d),ii))
+    idx<-c(i,setdiff(which(x2>x2[i]-d & x2<x2[i]+d),i))
     tmp<-y2[idx]
-    z[ii]<-fun(tmp,...)
+    z[i]<-fun(tmp,...)
   }
   return(list(x=x2,y=z))
   ### A list of vectors \code{x} and \code{y} holding the x-coordinates,
