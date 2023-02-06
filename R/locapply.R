@@ -11,6 +11,7 @@ fun, ##<< function to be applied; it will be passed a vector of y coordinates
 bandwidth = .2, ##<< bandwidth defining the neighbourhood in x-coordinates
 .na.rm = FALSE, ##<< logical; if \code{TRUE}, any \code{NA} and \code{NaN}s are
 ## removed from \code{y} and correspoding elements of \code{x} get removed as well
+.sort = FALSE, ##<< sort results by increasing values of x?
 ... ##<< additional arguments to \code{fun}
 ) {
   if (length(x)!=length(y)) stop('length of x and y differ')
@@ -34,6 +35,11 @@ bandwidth = .2, ##<< bandwidth defining the neighbourhood in x-coordinates
     idx<-c(i,setdiff(which(x2>x2[i]-d & x2<x2[i]+d),i))
     tmp<-y2[idx]
     z[i]<-fun(tmp,...)
+  }
+  if (.sort) {
+    o<-order(x2)
+    x2<-x2[o]
+    z<-z[o]
   }
   return(list(x=x2,y=z))
   ### A list of vectors \code{x} and \code{y} holding the x-coordinates,
