@@ -3,6 +3,8 @@ function # p-value text summary.
 ##description<<
 ## 'pvalStars' creates a graphical representation of p-value(s) (AKA
 ## "significance stars").
+##
+##sealso<< \link[gtools]{stars.pval}
 (p, ##<< p-value(s)
 width=NULL, ##<< width of text summary (number of characters), if not
 ## \code{NULL}, the summary gets padded with spaces to consist
