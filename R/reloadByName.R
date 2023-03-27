@@ -20,12 +20,12 @@ function # Reload R package(s).
   if (TRUE) {
     for (x in pkgName) {
       catnl(paste0('reloading ',x))
-      devtools::reload(devtools::inst(x))
+      devtools::reload(pkgload::inst(x))
     }
   } else {
     for (x in pkgName) {
       catnl(paste0('unloading ',x))
-      devtools::unload(devtools::inst(x))
+      devtools::unload(pkgload::inst(x))
     }
     for (x in rev(pkgName)) {
       catnl(paste0('loading ',x))
