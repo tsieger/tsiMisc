@@ -8,6 +8,8 @@ min = 0, ##<< the minimum in each dimension to scale to (defaults to
 ## \code{0})
 max = 1, ##<< the maximum in each dimension to scale to (defaults to
 ## \code{1})
+center = TRUE, ##<< shift and scale values to fit in the desired interval,
+## or only scale them (and keep the mean fixed)?
 solveSingular = TRUE ##<< if \code{TRUE}, constant columns will be
 ## transformed to the mean of \code{min} and \code{max}, not to
 ## \code{NaN}, as would result from a straighforward implementation
@@ -28,7 +30,11 @@ solveSingular = TRUE ##<< if \code{TRUE}, constant columns will be
   txImpl<-function(x,minX,maxX,min,max) {
     if (!is.matrix(x)) x<-as.matrix(x)
     if (nrow(x)>0) {
-      y<-apply(x,1,function(x) pmin(max,pmax(min,(max-min)*(x-minX)/(maxX-minX)+min)))
+      if (center) {
+        y<-apply(x,1,function(x) pmin(max,pmax(min,(max-min)*(x-minX)/(maxX-minX)+min)))
+      } else {
+        y<-apply(x,1,function(x) pmin(max,pmax(min,x/max(maxX/max,minX/min))))
+      }
       if (ncol(x)>1) {
         y<-t(y)
       }
@@ -41,7 +47,11 @@ solveSingular = TRUE ##<< if \code{TRUE}, constant columns will be
   txInvImpl<-function(x,minX,maxX,min,max) {
     if (!is.matrix(x)) x<-as.matrix(x)
     if (nrow(x)>0) {
-      y<-apply(x,1,function(x) pmin(maxX,pmax(minX,(maxX-minX)*(x-min)/(max-min)+minX)))
+      if (center) {
+        y<-apply(x,1,function(x) pmin(maxX,pmax(minX,(maxX-minX)*(x-min)/(max-min)+minX)))
+      } else {
+        y<-apply(x,1,function(x) pmin(maxX,pmax(minX,x*max(maxX/max,minX/min))))
+      }
       if (ncol(x)>1) {
         y<-t(y)
       }
@@ -90,5 +100,10 @@ solveSingular = TRUE ##<< if \code{TRUE}, constant columns will be
   y2
   y3 <- attr(y2, 'txInv')(y2)
   y3
+
+  # scale, but not center
+  scaleToUnit(1:10, min = -1, max = 1, center = FALSE)
+  scaleToUnit(-2:5, min = -1, max = 1, center = FALSE)
+
 
 })
