@@ -4,13 +4,16 @@
 \description{\code{\link{scaleToUnit}} scales the columns of a numeric matrix to
 the unit range.}
 \usage{scaleToUnit(x, min = 0, 
-    max = 1, solveSingular = TRUE)}
+    max = 1, center = TRUE, 
+    solveSingular = TRUE)}
 \arguments{
   \item{x}{a numeric matrix}
   \item{min}{the minimum in each dimension to scale to (defaults to
 \code{0})}
   \item{max}{the maximum in each dimension to scale to (defaults to
 \code{1})}
+  \item{center}{shift and scale values to fit in the desired interval,
+or only scale them (and keep the mean fixed)?}
   \item{solveSingular}{if \code{TRUE}, constant columns will be
 transformed to the mean of \code{min} and \code{max}, not to
 \code{NaN}, as would result from a straighforward implementation}
@@ -48,5 +51,10 @@ y2 <- scaleToUnit(y ,min = 0, max = 1)
 y2
 y3 <- attr(y2, 'txInv')(y2)
 y3
+
+# scale, but not center
+scaleToUnit(1:10, min = -1, max = 1, center = FALSE)
+scaleToUnit(-2:5, min = -1, max = 1, center = FALSE)
+
 
 }
