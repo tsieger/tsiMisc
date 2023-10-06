@@ -13,11 +13,14 @@ b = NULL ##<< optional blue color component
 ){
   if (is.null(r)) {
     rv<-NULL
-  } else if (length(r)==3) {
-    rv<-rgb(r[1], r[2], r[3], maxColorValue = 255)
   } else if (inherits(r,'RGB')) {
     tmp<-coords(r)
     rv<-rgb(tmp[,1], tmp[,2], tmp[,3], maxColorValue = 255)
+  } else if (is.matrix(r)&&ncol(r)==3) {
+    tmp<-coords(RGB(r))
+    rv<-rgb(tmp[,1], tmp[,2], tmp[,3], maxColorValue = 255)
+  } else if (length(r)==3) {
+    rv<-rgb(r[1], r[2], r[3], maxColorValue = 255)
   } else {
     rv<-rgb(r, g, b, alpha = 0, maxColorValue = 255)
   }
