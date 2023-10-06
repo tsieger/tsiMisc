@@ -11,7 +11,8 @@ function # Plot partial residuals of a simple linear model fit.
 ##
 ##seealso<< \code{\link[car]{crPlot}}, \code{\link[car]{ceresPlot}}
 (m, ##<< an object of class 'lm'
-covNames=names(m$model)[-1] ##<< names of covariates to plot (defaults to all of them)
+covNames=names(m$model)[-1], ##<< names of covariates to plot (defaults to all of them)
+... ##<< further arguments to \code{plot()}
 ) {
   nCov<-length(covNames)
   opar<-par(mfcol=c(2,nCov))
@@ -22,14 +23,14 @@ covNames=names(m$model)[-1] ##<< names of covariates to plot (defaults to all of
     .pn(nm)
     x<-eval(parse(text=nm),m$model)
     #.pn(x)
-    plot(x,y,xlab=nm,ylab=yName,main='unadjusted')
+    plot(x,y,xlab=nm,ylab=yName,main='unadjusted',...)
     lines(lowess(x,y),col='red')
     #
     tmp<-m$model
     #.pn(tmp)
     tmp[[nm]]<-0
     y2<-y-predict(m,newdata=tmp)
-    plot(x,y2,xlab=nm,ylab=yName,main='adjusted for other covariates')
+    plot(x,y2,xlab=nm,ylab=yName,main='adjusted for other covariates',...)
     lines(lowess(x,y2),col='red')
   }
   par(opar)

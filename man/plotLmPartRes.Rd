@@ -9,10 +9,12 @@ The functionality of plotLmPartRes is very limited.
 Only numeric vectors are supported (factors, interactions, I()'s are NOT).
 \code{\link[car]{crPlot}} and \code{\link[car]{ceresPlot}} should be preferred.
 }
-\usage{plotLmPartRes(m, covNames = names(m$model)[-1])}
+\usage{plotLmPartRes(m, covNames = names(m$model)[-1], 
+    ...)}
 \arguments{
   \item{m}{an object of class 'lm'}
   \item{covNames}{names of covariates to plot (defaults to all of them)}
+  \item{\dots}{further arguments to \code{plot()}}
 }
 
 
