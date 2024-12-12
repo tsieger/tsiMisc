@@ -20,28 +20,28 @@ combColCount = 3 ##<< maximum number of columns to combine when finding a
   if (!is.data.frame(d)) d<-as.data.frame(d)
   n<-nrow(d)
   p<-ncol(d)
-  missing<-vector('numeric',p+2)
+  missingPlus<-vector('numeric',p+2)
   # number of NA's in each column
-  missing[1:p]<-apply(d,2,function(x)sum(is.na(x)))
+  missingPlus[1:p]<-missing<-apply(d,2,function(x)sum(is.na(x)))
   # number of rows with at least one NA in them
-  missing[p+1]<-n-nrow(na.omit(d))
+  missingPlus[p+1]<-n-nrow(na.omit(d))
   # average number of NA's
-  missing[p+2]<-n*(1-prod(1-missing[1:p]/n)^(1/p))
+  missingPlus[p+2]<-n*(1-prod(1-missing/n)^(1/p))
 
   res<-data.frame(names=c(colnames(d),'any','expected'),
-    missing=missing,
-    missingPercent=missing/n*100,
-    left=n-missing,
-    leftPercent=(n-missing)/n*100)
-  o<-order(res$missing[1:p],decreasing=decreasing)
+    missing=missingPlus,
+    missingPercent=missingPlus/n*100,
+    left=n-missingPlus,
+    leftPercent=(n-missingPlus)/n*100)
+  o<-order(missing,decreasing=decreasing)
   res<-res[c(o,p+1,p+2),]
 
-  k<-min(combColCount,p)
+  k<-min(c(combColCount,p,sum(missing>0)))
   if (k>1) {
-    o<-order(res$missing[1:p],decreasing=TRUE)
+    o<-order(missing,decreasing=TRUE)
     bc<-e1071::bincombinations(k)
     # get rid of combinations of 0 or 1 column(s)
-    bc<-bc[rowSums(bc)>1,]
+    bc<-bc[rowSums(bc)>1,,drop=F]
    
     colComb<-data.frame(missing=numeric(nrow(bc)),n.col=numeric(nrow(bc)),str=character(nrow(bc)),stringsAsFactors=FALSE)
     max.present<-n
@@ -82,6 +82,10 @@ combColCount = 3 ##<< maximum number of columns to combine when finding a
   ### missingness.
 },ex=function() {
   d<-data.frame(x1=1,x2=2,x3=1:4,y=c(1,NA,2,NA),z=c(NaN,NaN,3,4))
+  d
+  countNa(d)
+
+  d<-data.frame(x=1:10,y=c(1:9,NA),z=c(NA,NA,1:8))
   d
   countNa(d)
 })
