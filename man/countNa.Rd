@@ -40,4 +40,8 @@ missingness.}
 d<-data.frame(x1=1,x2=2,x3=1:4,y=c(1,NA,2,NA),z=c(NaN,NaN,3,4))
 d
 countNa(d)
+
+d<-data.frame(x=1:10,y=c(1:9,NA),z=c(NA,NA,1:8))
+d
+countNa(d)
 }
