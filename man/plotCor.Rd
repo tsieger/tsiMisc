@@ -7,8 +7,9 @@ all/selected \code{\link{pairs}} of variables in a data frame, similarly to
 individual variables colored, by default,according to the estimated
 normality of those variables. Below (or above) the diagonal, there
 are scatter plots enriched by smoothed conditional estimates of the
-mean. Above (or below) the diagonal, there are estimates of the
-correlation coefficients and their significances shown.
+mean, and, optionally, a linear fit. Above (or below) the diagonal,
+there are estimates of the correlation coefficients and their
+significances shown.
 
 \code{\link{plotCor}} is based on / inspired by several other similar plots.
 I thank their authors, but, unfortunatelly, can't give credits to
@@ -21,7 +22,7 @@ them, as I can't remember all of them.
     i2 = NULL, normalityColor = TRUE, 
     aboveDiag = FALSE, 
     silent = FALSE, plot = TRUE, 
-    ...)}
+    lmFit = TRUE, ...)}
 \arguments{
   \item{x}{data frame}
   \item{method}{\code{method}
@@ -65,6 +66,7 @@ the diagonal.}
   \item{silent}{if TRUE, the number of tests compenstaing for gets
 displayed}
   \item{plot}{if TRUE, a \code{plot} is produced.}
+  \item{lmFit}{add a linear fit to smooth}
   \item{\dots}{further arguments passed on to 'pairs'}
 }
 

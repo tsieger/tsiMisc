@@ -7,8 +7,9 @@ function # Plot decorated bivariate correlations.
 ## individual variables colored, by default,according to the estimated
 ## normality of those variables. Below (or above) the diagonal, there
 ## are scatter plots enriched by smoothed conditional estimates of the
-## mean. Above (or below) the diagonal, there are estimates of the
-## correlation coefficients and their significances shown.
+## mean, and, optionally, a linear fit. Above (or below) the diagonal,
+## there are estimates of the correlation coefficients and their
+## significances shown.
 ##
 ## \code{\link{plotCor}} is based on / inspired by several other similar plots.
 ## I thank their authors, but, unfortunatelly, can't give credits to
@@ -62,6 +63,7 @@ aboveDiag = FALSE, ##<< If TRUE, scatter plots will appear above the
 silent = FALSE, ##<< if TRUE, the number of tests compenstaing for gets
 ## displayed
 plot = TRUE, ##<< if TRUE, a plot is produced.
+lmFit = TRUE, ##<< add a linear fit to smooth
 ... ##<< further arguments passed on to 'pairs'
 ) {
   panel.cor.pearson <- function(...) panel.cor(...,method='pearson')
@@ -187,10 +189,17 @@ plot = TRUE, ##<< if TRUE, a plot is produced.
       # remove 'col' from ..., if present, as panel* funs accept multiple arguments starting with 'col'
       dots<-list(...)
       dots<-dots[!names(dots)%in%'col']
+      panel.smooth.with.lm <- function (x, y, ...) {
+          panel.smooth(x, y, ...)
+          if (lmFit) {
+            abline(coef(lm(y~x)),lwd=2,col=scales::alpha('black',.3))
+          }
+      }
+
       if (aboveDiag) {
-          pairs(x,lower.panel=function(x,y,...)do.call('panel',c(list(x,y,n.adjust=n),dots)),upper.panel=panel.smooth,diag.panel=dp,i1=i1,i2=i2,...)
+          pairs(x,lower.panel=function(x,y,...)do.call('panel',c(list(x,y,n.adjust=n),dots)),upper.panel=panel.smooth.with.lm,diag.panel=dp,i1=i1,i2=i2,...)
       } else {
-          pairs(x,lower.panel=panel.smooth,upper.panel=function(x,y,...)do.call('panel',c(list(x,y,n.adjust=n),dots)),diag.panel=dp,i1=i1,i2=i2,...)
+          pairs(x,lower.panel=panel.smooth.with.lm,upper.panel=function(x,y,...)do.call('panel',c(list(x,y,n.adjust=n),dots)),diag.panel=dp,i1=i1,i2=i2,...)
       }
   }
   return(invisible(n))
