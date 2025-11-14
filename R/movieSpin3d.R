@@ -15,7 +15,7 @@ rpm, ##<< the speed of rotation (rotations per minute)
 fps = 5, ##<< frame rate (frames per second)
 ... ##<< additional arguments passed to movie3d
 ) {
-  if (require(rgl)) {
+  if (requireNamespace('rgl')) {
     # 'rpm' rpm,
     # 'rpm'/60 rotation per second,
     # period of 60/'rpm',
@@ -35,7 +35,7 @@ fps = 5, ##<< frame rate (frames per second)
     # constant, we need to half 'fps'. To slow rotation (e.g. half 'rpm')
     # but keep the 'fps' constant, we need to double the number of
     # frames.
-    movie3d(spin3d(axis=axis,rpm=rpm),duration=60/rpm-1/fps,fps=fps,...)
+    rgl::movie3d(rgl::spin3d(axis=axis,rpm=rpm),duration=60/rpm-1/fps,fps=fps,...)
   }
 },ex=function() {
   ##dontrun:
