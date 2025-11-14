@@ -90,6 +90,12 @@ export(txSpca)
 export(vectorLength)
 export(vectorprod)
 
+S3method(histv, default)
+S3method(histv, formula)
+
+S3method(plot, lmInt)
+S3method(plot, lmIntXY)
+
 importFrom(coin, spearman_test, pvalue, statistic)
 #importFrom(colorspace, RGB, mixcolor) # this is not enough as tehse functions call other colorspace functions
 import(colorspace)
