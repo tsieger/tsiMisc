@@ -13,17 +13,17 @@ function # build_site build
   if (is.null(path) || !file.exists(path)) {
     stop('a path to an R package needed')
   }
-  if (require(rgl)) {
-    devList<-rgl.dev.list()
+  if (requireNamespace('rgl')) {
+    devList<-rgl::rgl.dev.list()
   } else {
     devList<-NULL
   }
   staticdocs::build_site(path)
-  if (require(rgl)) {
-    devList<-setdiff(rgl.dev.list(),devList)
+  if (requireNamespace('rgl')) {
+    devList<-setdiff(rgl::rgl.dev.list(),devList)
     for (dev in devList) {
-      rgl.set(dev)
-      rgl.close()
+      rgl::rgl.set(dev)
+      rgl::rgl.close()
     }
   }
 },ex=function() {
