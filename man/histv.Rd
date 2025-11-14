@@ -68,7 +68,7 @@ histv(a, b, c, breaks = 100, main = c('N(0,1)', 'U(0,1)', 'Chisq(1)'),
   col = c('gray','blue','red'))
 
 # 1 single list argument holding 3 data vectors
-histv(list(a, b, c), breaks = 100, main = c('N(0,1)', 'U(0,1)', 'Chisq(1)'),
+histv(list(a=a, b=b, c=c), breaks = 100, main = c('N(0,1)', 'U(0,1)', 'Chisq(1)'),
   col = c('gray','blue','red'))
 
 # formula interface

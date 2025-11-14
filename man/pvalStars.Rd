@@ -2,7 +2,9 @@
 \alias{pvalStars}
 \title{p-value text summary.}
 \description{'pvalStars' creates a graphical representation of p-value(s) (AKA
-"significance stars").}
+"significance stars").
+
+sealso<< \link[gtools]{stars.pval}}
 \usage{pvalStars(p, width = NULL, 
     right = TRUE)}
 \arguments{

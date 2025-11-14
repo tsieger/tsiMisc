@@ -22,7 +22,8 @@ them, as I can't remember all of them.
     i2 = NULL, normalityColor = TRUE, 
     aboveDiag = FALSE, 
     silent = FALSE, plot = TRUE, 
-    lmFit = TRUE, ...)}
+    lmFit = TRUE, hist = TRUE, 
+    ...)}
 \arguments{
   \item{x}{data frame}
   \item{method}{\code{method}
@@ -67,6 +68,7 @@ the diagonal.}
 displayed}
   \item{plot}{if TRUE, a \code{plot} is produced.}
   \item{lmFit}{add a linear fit to smooth}
+  \item{hist}{\code{plot} histograms at the diagonal?}
   \item{\dots}{further arguments passed on to 'pairs'}
 }
 

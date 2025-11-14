@@ -5,6 +5,7 @@
 in the local \code{x} neighbourhood. This generalizes e.g. \code{lowess}
 as you can compute any function of \code{y}, not only the mean.}
 \usage{locapply(x, y, fun, bandwidth = 0.2, 
+    .na.rm = FALSE, .sort = FALSE, 
     ...)}
 \arguments{
   \item{x}{vector of x-coordinates}
@@ -12,6 +13,9 @@ as you can compute any function of \code{y}, not only the mean.}
   \item{fun}{function to be applied; it will be passed a vector of \code{y} coordinates
 in the neighbourhood of some \code{x}}
   \item{bandwidth}{\code{bandwidth} defining the neighbourhood in x-coordinates}
+  \item{.na.rm}{logical; if \code{TRUE}, any \code{NA} and \code{NaN}s are
+removed from \code{y} and correspoding elements of \code{x} get removed as well}
+  \item{.sort}{sort results by increasing values of \code{x}?}
   \item{\dots}{additional arguments to \code{fun}}
 }
 

@@ -52,6 +52,8 @@ reference:
     contents:
       - flip
       - flip4image
+      - lecdf
+      - projectDataInto1d
       - spca
       - txPca
       - txSpca

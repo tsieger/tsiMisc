@@ -9,7 +9,7 @@ comparison of several numeric vectors.}
     ylimFixed = FALSE, 
     col = NULL, border = NULL, 
     main = NULL, xlab = NULL, 
-    callback = NULL, 
+    log = FALSE, callback = NULL, 
     debug = FALSE)}
 \arguments{
   \item{\dots}{one or more numeric vectors to compare}
@@ -33,6 +33,8 @@ of individual histograms, recycled if necessary.}
   \item{xlab}{xlab(s) of the individual histograms. If a
 character vector is suplied, it will be used to define the title
 of individual histograms, recycled if necessary.}
+  \item{log}{if TRUE, the counts in each bin will be subject of
+the \code{log} transform}
   \item{callback}{\code{callback} function to be called after each
 individual histogram gets plotted, receiving two arguments: the
 list of arguments passed to \code{\link[graphics]{hist}} previously,

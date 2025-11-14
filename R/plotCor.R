@@ -64,6 +64,7 @@ silent = FALSE, ##<< if TRUE, the number of tests compenstaing for gets
 ## displayed
 plot = TRUE, ##<< if TRUE, a plot is produced.
 lmFit = TRUE, ##<< add a linear fit to smooth
+hist = TRUE, ##<< plot histograms at the diagonal?
 ... ##<< further arguments passed on to 'pairs'
 ) {
   panel.cor.pearson <- function(...) panel.cor(...,method='pearson')
@@ -185,7 +186,11 @@ lmFit = TRUE, ##<< add a linear fit to smooth
   if (!silent) cat(sprintf('adjusting to %.2f tests\n',n))
 
   if (plot) {
-      if (normalityColor) dp<-panel.histWithNormalityColorCodes else dp<-panel.hist
+      if (hist) {
+        if (normalityColor) dp<-panel.histWithNormalityColorCodes else dp<-panel.hist
+      } else {
+        dp<-NULL
+      }
       # remove 'col' from ..., if present, as panel* funs accept multiple arguments starting with 'col'
       dots<-list(...)
       dots<-dots[!names(dots)%in%'col']
