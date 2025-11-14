@@ -25,6 +25,8 @@ main = NULL, ##<< the title(s) of the individual histograms. If a
 xlab = NULL, ##<< xlab(s) of the individual histograms. If a
 ## character vector is suplied, it will be used to define the title
 ## of individual histograms, recycled if necessary.
+log = FALSE, ##<< if TRUE, the counts in each bin will be subject of
+## the log transform
 callback = NULL, ##<< callback function to be called after each
 ## individual histogram gets plotted, receiving two arguments: the
 ## list of arguments passed to \code{\link[graphics]{hist}} previously,
@@ -125,7 +127,24 @@ debug = FALSE ##<< if TRUE, debugs will be printed. If numeric of value
             a<-c(a,list(ylim=ylimRange))
           }
           if (debug>1) .pn(a)
-          h<-do.call('hist',a)
+          if (log) {
+            a<-c(a,list(plot=FALSE))
+            h<-do.call('hist',a)
+            h2<-h
+            h2$counts<-log10(1+h2$counts)
+            # TODO: accept 'freq' argument?
+            a2<-list(x=h2)
+            if(!is.null(col)) a2<-c(a2,list(col=col[1+(i-1)%%length(col)]))
+            if(!is.null(border)) a2<-c(a2,list(border=border[1+(i-1)%%length(border)]))
+            if (any(regexpr('^(br|col|border|m|xla)',names(opts))==-1)) {
+              a2<-c(a2,opts[regexpr('^(br|col|border|m|xla)',names(opts))==-1])
+            }
+            a2<-c(a2,list(ylab='Log Frequency'))
+            #.pn(class(h2))
+            do.call('plot',a2)#list(x=h2))
+          } else {
+            h<-do.call('hist',a)
+          }
           if (!is.null(callback)) callback(a,h)
           hists<-c(hists,list(h))
         }
