@@ -5,7 +5,7 @@ Version: 0.0.0.9000
 Date: 2015-05-29
 Author: Tomas Sieger
 Authors@R: person("Tomas", "Sieger", role = c("aut", "cre"), email = "tomas.sieger@seznam.cz")
-Imports: coin, colorspace, devtools, e1071, gdata, geometry, inlinedocs, stringr, scales, data.table
+Imports: coin, colorspace, devtools, e1071, gdata, geometry, inlinedocs, stringr, scales, data.table, pkgload
 Suggests: testthat, MASS, rgl
 URL: http://github.com/tsieger/tsiMisc
 Maintainer: Tomas Sieger <tomas.sieger@seznam.cz>
